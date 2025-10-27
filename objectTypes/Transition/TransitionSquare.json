@@ -1,0 +1,29 @@
+{
+	"name": "TransitionSquare",
+	"plugin-id": "TiledBg",
+	"sid": 312370712076912,
+	"isGlobal": true,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 211043189293269
+		}
+	],
+	"effectTypes": [],
+	"image": {
+		"width": 1,
+		"height": 1,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"fileType": "image/png",
+		"imageSpriteId": 4334238,
+		"useCollisionPoly": true,
+		"tag": ""
+	}
+}

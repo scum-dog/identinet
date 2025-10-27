@@ -1,0 +1,303 @@
+{
+	"name": "Server",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "Connection"
+		},
+		{
+			"eventType": "variable",
+			"name": "SERVER_state",
+			"type": "string",
+			"initialValue": "unconnected",
+			"comment": "Server connection state",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 478405131128988
+		},
+		{
+			"eventType": "variable",
+			"name": "SERVER_attempts",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "How many times have we attempted connection?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 212917060977009
+		},
+		{
+			"eventType": "variable",
+			"name": "SERVER_retryTimeout",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Time to retry after an error",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 981787943011431
+		},
+		{
+			"eventType": "variable",
+			"name": "SERVER_timeout",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "Time in seconds before giving up on a request",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 807907404581172
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 108818327151656
+				}
+			],
+			"actions": [
+				{
+					"id": "set-timeout",
+					"objectClass": "AJAX",
+					"sid": 314382095437510,
+					"parameters": {
+						"timeout": "SERVER_timeout"
+					}
+				}
+			],
+			"sid": 746822859248797
+		},
+		{
+			"eventType": "comment",
+			"text": "Success"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 575873366874504,
+					"parameters": {
+						"tag": "\"connect\""
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Text",
+					"sid": 190773663533701,
+					"parameters": {
+						"instance-variable": "type",
+						"comparison": 0,
+						"value": "\"server\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "Text",
+					"sid": 552939936469235,
+					"parameters": {
+						"text": "newline&\"CONNECTION #\"&SERVER_attempts&\" SUCCESSFUL\""
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 553890404615797,
+					"parameters": {
+						"variable": "SERVER_state",
+						"value": "\"connected\""
+					}
+				}
+			],
+			"sid": 424836303539810
+		},
+		{
+			"eventType": "comment",
+			"text": "Error"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-error",
+					"objectClass": "AJAX",
+					"sid": 263755481450490,
+					"parameters": {
+						"tag": "\"connect\""
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Text",
+					"sid": 151684058807434,
+					"parameters": {
+						"instance-variable": "type",
+						"comparison": 0,
+						"value": "\"server\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "append-text",
+					"objectClass": "Text",
+					"sid": 880989644053009,
+					"parameters": {
+						"text": "newline&\"CONNECTION #\"&SERVER_attempts&\" FAILED (\"&(AJAX.LastStatusCode > 0 ? AJAX.LastStatusCode : \"UNKNOWN ERROR\")&\")\""
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 268815744991696,
+					"parameters": {
+						"variable": "SERVER_state",
+						"value": "\"unconnected\""
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 178453805586968,
+					"parameters": {
+						"variable": "SERVER_retryTimeout",
+						"value": "time+SERVER_attempts"
+					}
+				}
+			],
+			"sid": 958539016024921,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 518291992018073,
+							"parameters": {
+								"variable": "SERVER_attempts",
+								"comparison": 5,
+								"value": "5"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "append-text",
+							"objectClass": "Text",
+							"sid": 104372131049276,
+							"parameters": {
+								"text": "newline&\"CONNECTION FAILED AFTER \"&SERVER_attempts&\" ATTEMPTS\""
+							}
+						}
+					],
+					"sid": 880539219804030
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "Try connection"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 304356654713308,
+					"parameters": {
+						"variable": "SERVER_attempts",
+						"comparison": 2,
+						"value": "5"
+					}
+				},
+				{
+					"id": "compare-time",
+					"objectClass": "System",
+					"sid": 714637599069574,
+					"parameters": {
+						"comparison": 5,
+						"time-seconds": "SERVER_retryTimeout"
+					}
+				},
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 135029801029530,
+					"parameters": {
+						"variable": "SERVER_state",
+						"comparison": 0,
+						"value": "\"unconnected\""
+					}
+				},
+				{
+					"id": "trigger-once-while-true",
+					"objectClass": "System",
+					"sid": 955431399599178
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "serverConnect",
+					"sid": 684013499934861
+				}
+			],
+			"sid": 160686645739667
+		},
+		{
+			"functionName": "serverConnect",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 645810679927681,
+					"parameters": {
+						"variable": "SERVER_attempts",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 539843516613954,
+					"parameters": {
+						"variable": "SERVER_state",
+						"value": "\"connecting\""
+					}
+				},
+				{
+					"id": "request-url",
+					"objectClass": "AJAX",
+					"sid": 563446685722162,
+					"disabled": true,
+					"parameters": {
+						"tag": "\"connect\"",
+						"url": "\"https://api.scum.dog/test-retry?attempt=\"&SERVER_attempts&\"&type=random\""
+					}
+				},
+				{
+					"id": "request-url",
+					"objectClass": "AJAX",
+					"sid": 886617226736254,
+					"parameters": {
+						"tag": "\"connect\"",
+						"url": "\"https://api.scum.dog/ping\""
+					}
+				}
+			],
+			"sid": 269848149938488
+		}
+	],
+	"sid": 639706102547049
+}

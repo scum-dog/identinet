@@ -1,0 +1,1175 @@
+{
+	"name": "Global",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "Server"
+		},
+		{
+			"eventType": "comment",
+			"text": "Game type flags"
+		},
+		{
+			"eventType": "variable",
+			"name": "GAME_mobile",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Is the game being played with touch controls?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 407265585322280
+		},
+		{
+			"eventType": "variable",
+			"name": "GAME_standalone",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Is the game a standalone version?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 554719297062832
+		},
+		{
+			"eventType": "comment",
+			"text": "Settings"
+		},
+		{
+			"eventType": "variable",
+			"name": "SETTING_fullscreen",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Fullscreen status; dynamically changed",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 179305125864221
+		},
+		{
+			"eventType": "comment",
+			"text": "Global transition flags"
+		},
+		{
+			"eventType": "variable",
+			"name": "TRANSITION_running",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Is a transition running?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 990990060792822
+		},
+		{
+			"eventType": "variable",
+			"name": "TRANSITION_movedLayout",
+			"type": "boolean",
+			"initialValue": "true",
+			"comment": "Has the transition moved layouts?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 607851642029713
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Global - Core Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Input signals, for menus and such"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 727191375239650
+						}
+					],
+					"actions": [
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 996870111812566,
+							"parameters": {
+								"tag": "\"inputKeyboard\""
+							}
+						}
+					],
+					"sid": 502866726537902
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 437172700693341
+						}
+					],
+					"actions": [
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 777287560701650,
+							"parameters": {
+								"tag": "\"inputMouse\""
+							}
+						}
+					],
+					"sid": 134940548235051,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-in-touch",
+							"objectClass": "Touch",
+							"sid": 523426427525745
+						}
+					],
+					"actions": [
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 813835561099967,
+							"parameters": {
+								"tag": "\"inputTouch\""
+							}
+						}
+					],
+					"sid": 666154280898187,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-button-pressed",
+							"objectClass": "Gamepad",
+							"sid": 345377304997760,
+							"parameters": {
+								"gamepad": "0"
+							}
+						},
+						{
+							"id": "compare-axis",
+							"objectClass": "Gamepad",
+							"sid": 288255676579172,
+							"parameters": {
+								"gamepad": "0",
+								"axis": "left-analog-x-axis",
+								"comparison": 1,
+								"value": "0"
+							}
+						},
+						{
+							"id": "compare-axis",
+							"objectClass": "Gamepad",
+							"sid": 234036461372792,
+							"parameters": {
+								"gamepad": "0",
+								"axis": "left-analog-y-axis",
+								"comparison": 1,
+								"value": "0"
+							}
+						},
+						{
+							"id": "compare-axis",
+							"objectClass": "Gamepad",
+							"sid": 127610234071055,
+							"parameters": {
+								"gamepad": "0",
+								"axis": "right-analog-x-axis",
+								"comparison": 1,
+								"value": "0"
+							}
+						},
+						{
+							"id": "compare-axis",
+							"objectClass": "Gamepad",
+							"sid": 906433205917106,
+							"parameters": {
+								"gamepad": "0",
+								"axis": "right-analog-y-axis",
+								"comparison": 1,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 859654476697312,
+							"parameters": {
+								"tag": "\"inputGamepad\""
+							}
+						}
+					],
+					"sid": 422176127192514,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-key-released",
+							"objectClass": "Keyboard",
+							"sid": 434821225144844
+						},
+						{
+							"id": "on-movement",
+							"objectClass": "Mouse",
+							"sid": 827058721706502
+						},
+						{
+							"id": "on-mouse-wheel",
+							"objectClass": "Mouse",
+							"sid": 919252453008920,
+							"parameters": {
+								"direction": "any"
+							}
+						},
+						{
+							"id": "on-any-button-released",
+							"objectClass": "Gamepad",
+							"sid": 278062757147981,
+							"parameters": {
+								"gamepad": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 722407230240405,
+							"parameters": {
+								"tag": "\"inputMixed\""
+							}
+						}
+					],
+					"sid": 442189682028448,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Global - Fullscreen",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Global fullscreen logic"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 155821520712423,
+									"parameters": {
+										"key": 70
+									}
+								}
+							],
+							"actions": [],
+							"sid": 738691964537577,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-fullscreen",
+											"objectClass": "Browser",
+											"sid": 781063148920599,
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "request-fullscreen",
+											"objectClass": "Browser",
+											"sid": 286100259290533,
+											"parameters": {
+												"mode": "stretch-letterbox-scale",
+												"navigation-ui": "hide"
+											}
+										}
+									],
+									"sid": 534736673127166
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "has-pointer-lock",
+											"objectClass": "Mouse",
+											"sid": 415699415818024
+										}
+									],
+									"actions": [
+										{
+											"id": "request-pointer-lock",
+											"objectClass": "Mouse",
+											"sid": 553984261761215,
+											"parameters": {
+												"unadjusted-movement": false
+											}
+										}
+									],
+									"sid": 809430725792374
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 268451051059547,
+									"parameters": {
+										"key": 27
+									}
+								}
+							],
+							"actions": [],
+							"sid": 466272135959637,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-fullscreen",
+											"objectClass": "Browser",
+											"sid": 647511298494421
+										}
+									],
+									"actions": [
+										{
+											"id": "cancel-fullscreen",
+											"objectClass": "Browser",
+											"sid": 333662706842389
+										}
+									],
+									"sid": 934843066124839
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "has-pointer-lock",
+											"objectClass": "Mouse",
+											"sid": 254183900445408
+										}
+									],
+									"actions": [
+										{
+											"id": "request-pointer-lock",
+											"objectClass": "Mouse",
+											"sid": 858146093385978,
+											"parameters": {
+												"unadjusted-movement": false
+											}
+										}
+									],
+									"sid": 392443654052895
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Fullscreen status has changed"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-fullscreen",
+									"objectClass": "Browser",
+									"sid": 927137681348916
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 671694128739538,
+									"parameters": {
+										"variable": "SETTING_fullscreen",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 832848798733814,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 643253179806765
+										}
+									],
+									"actions": [
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 416826441927277,
+											"parameters": {
+												"tag": "\"refreshToggles\""
+											}
+										}
+									],
+									"sid": 485236235179779
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 226153426644858
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 422914758752218,
+									"parameters": {
+										"variable": "SETTING_fullscreen",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 678025845406038,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "trigger-once-while-true",
+											"objectClass": "System",
+											"sid": 332937020591583
+										}
+									],
+									"actions": [
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 134236314217683,
+											"parameters": {
+												"tag": "\"refreshToggles\""
+											}
+										}
+									],
+									"sid": 982178288415076
+								}
+							]
+						}
+					],
+					"sid": 848170105583906
+				}
+			],
+			"sid": 105681604197051
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Global - Transitions",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "TRANSITION_layout",
+					"type": "string",
+					"initialValue": "Plaza",
+					"comment": "Layout to move to during transition",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 130197556402275
+				},
+				{
+					"eventType": "variable",
+					"name": "TRANSITION_squareSize",
+					"type": "number",
+					"initialValue": "10",
+					"comment": "Square size, defined here",
+					"isStatic": true,
+					"isConstant": true,
+					"sid": 116895204679513
+				},
+				{
+					"eventType": "variable",
+					"name": "TRANSITION_squareAmountX",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Amount of squares to create on the X axis, determined at runtime",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 419704741782169
+				},
+				{
+					"eventType": "variable",
+					"name": "TRANSITION_squareAmountY",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Amount of squares to create on the Y axis, determined at runtime",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 564387598816413
+				},
+				{
+					"eventType": "variable",
+					"name": "TRANSITION_squaresReady",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "Are all squares ready?",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 553566298581460
+				},
+				{
+					"eventType": "variable",
+					"name": "TRANSITION_snapshotReady",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "Is the snapshot ready?",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 757773616769131
+				},
+				{
+					"eventType": "variable",
+					"name": "TRANSITION_squaresLoaded",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Amount of squares with snapshot image loaded",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 585053844716741
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Global - Transitions (Initialization)",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "transition",
+							"functionDescription": "Pixelate transition effect between two layouts",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "layout",
+									"type": "string",
+									"initialValue": "Level",
+									"comment": "",
+									"sid": 372225208034038
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 611281440882290,
+									"parameters": {
+										"variable": "TRANSITION_running"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-size",
+									"objectClass": "TransitionPixelateArr",
+									"sid": 574419307005699,
+									"parameters": {
+										"width": "1",
+										"height": "1",
+										"depth": "1"
+									}
+								},
+								{
+									"id": "clear",
+									"objectClass": "TransitionPixelateArr",
+									"sid": 165310334802459,
+									"parameters": {
+										"value": "0"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 927396777200273,
+									"parameters": {
+										"variable": "TRANSITION_running",
+										"value": "true"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 101237970749030,
+									"parameters": {
+										"variable": "TRANSITION_movedLayout",
+										"value": "false"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 601707983777940,
+									"parameters": {
+										"variable": "TRANSITION_layout",
+										"value": "layout"
+									}
+								},
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 408103702938976,
+									"parameters": {
+										"cursor-style": "normal"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "Initialization"
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 590385969546263,
+									"parameters": {
+										"variable": "TRANSITION_squareAmountX",
+										"value": "ceil(ViewportWidth(\"Transition\")/TRANSITION_squareSize)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 674157351106468,
+									"parameters": {
+										"variable": "TRANSITION_squareAmountY",
+										"value": "ceil(ViewportHeight(\"Transition\")/TRANSITION_squareSize)"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 194403266251229,
+									"parameters": {
+										"variable": "TRANSITION_squaresReady",
+										"value": "false"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 708034889731857,
+									"parameters": {
+										"variable": "TRANSITION_snapshotReady",
+										"value": "false"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 195468205352286,
+									"parameters": {
+										"variable": "TRANSITION_squaresLoaded",
+										"value": "0"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "Take snapshot of current frame"
+								},
+								{
+									"id": "snapshot-canvas",
+									"objectClass": "System",
+									"sid": 831122490899637,
+									"parameters": {
+										"format": "png",
+										"jpeg-quality": "0",
+										"x": "0",
+										"y": "0",
+										"width": "0",
+										"height": "0"
+									}
+								}
+							],
+							"sid": 970279391503934,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 500549008742932,
+											"parameters": {
+												"name": "\"width\"",
+												"start-index": "0",
+												"end-index": "TRANSITION_squareAmountX-1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 998987020069115,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 380066934394231,
+													"parameters": {
+														"name": "\"height\"",
+														"start-index": "0",
+														"end-index": "TRANSITION_squareAmountY-1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 988873856281884,
+													"parameters": {
+														"object-to-create": "TransitionSquare",
+														"layer": "\"Transition\"",
+														"x": "loopindex(\"width\")*TRANSITION_squareSize",
+														"y": "loopindex(\"height\")*TRANSITION_squareSize",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "push",
+													"objectClass": "TransitionPixelateArr",
+													"sid": 896312526402651,
+													"parameters": {
+														"where": "back",
+														"value": "TransitionSquare.UID",
+														"axis": "x"
+													}
+												},
+												{
+													"id": "set-size",
+													"objectClass": "TransitionSquare",
+													"sid": 529451085512324,
+													"parameters": {
+														"width": "TRANSITION_squareSize",
+														"height": "TRANSITION_squareSize"
+													}
+												},
+												{
+													"type": "comment",
+													"text": "Terrible - Set up scales and offsets for snapshot"
+												},
+												{
+													"id": "set-image-scale-x",
+													"objectClass": "TransitionSquare",
+													"sid": 997692948709502,
+													"parameters": {
+														"scale-x": "100/(PlatformInfo.CanvasDeviceWidth/ViewportWidth(\"Transition\"))"
+													}
+												},
+												{
+													"id": "set-image-scale-y",
+													"objectClass": "TransitionSquare",
+													"sid": 977749516268942,
+													"parameters": {
+														"scale-y": "100/(PlatformInfo.CanvasDeviceHeight/ViewportHeight(\"Transition\"))"
+													}
+												},
+												{
+													"id": "set-image-offset-x",
+													"objectClass": "TransitionSquare",
+													"sid": 746747977990692,
+													"parameters": {
+														"offset-x": "-loopindex(\"width\")*(PlatformInfo.CanvasDeviceWidth/ViewportWidth(\"Transition\"))*TRANSITION_squareSize\n"
+													}
+												},
+												{
+													"id": "set-image-offset-y",
+													"objectClass": "TransitionSquare",
+													"sid": 296428041293200,
+													"parameters": {
+														"offset-y": "-loopindex(\"height\")*(PlatformInfo.CanvasDeviceHeight/ViewportHeight(\"Transition\"))*TRANSITION_squareSize"
+													}
+												}
+											],
+											"sid": 248784332770947,
+											"children": [
+												{
+													"eventType": "comment",
+													"text": "All squares are created and ready"
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 363986607135924,
+															"parameters": {
+																"first-value": "TransitionSquare.Count",
+																"comparison": 0,
+																"second-value": "TRANSITION_squareAmountX*TRANSITION_squareAmountY"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "shuffle",
+															"objectClass": "TransitionPixelateArr",
+															"sid": 485508096421154,
+															"parameters": {
+																"axis": "x"
+															}
+														},
+														{
+															"id": "set-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 209794590137673,
+															"parameters": {
+																"variable": "TRANSITION_squaresReady",
+																"value": "true"
+															}
+														}
+													],
+													"sid": 300672378702979
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "Global - Transitions (Image Loading)",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Snapshot is ready"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-canvas-snapshot",
+											"objectClass": "System",
+											"sid": 281966298787691
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 267002736530621,
+											"parameters": {
+												"variable": "TRANSITION_snapshotReady",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 493928470016582
+								},
+								{
+									"eventType": "comment",
+									"text": "Lines are ready and snapshot is taken, ready to move on"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 135477830791949,
+											"parameters": {
+												"variable": "TRANSITION_squaresReady"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 838671906702418,
+											"parameters": {
+												"variable": "TRANSITION_snapshotReady"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 625482575438195,
+											"parameters": {
+												"variable": "TRANSITION_squaresReady",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 111106703925344,
+											"parameters": {
+												"variable": "TRANSITION_snapshotReady",
+												"value": "false"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "Apply snapshot image to squares"
+										},
+										{
+											"id": "load-image-from-url",
+											"objectClass": "TransitionSquare",
+											"sid": 286987264757595,
+											"parameters": {
+												"uri": "CanvasSnapshot",
+												"cross-origin": "anonymous"
+											}
+										}
+									],
+									"sid": 266121399199693
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-image-url-loaded",
+											"objectClass": "TransitionSquare",
+											"sid": 381856112509436
+										}
+									],
+									"actions": [
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 463862929764901,
+											"parameters": {
+												"variable": "TRANSITION_squaresLoaded",
+												"value": "1"
+											}
+										}
+									],
+									"sid": 463015861273726
+								},
+								{
+									"eventType": "comment",
+									"text": "All lines are ready to move, go to the new layout"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 240837710211247,
+											"parameters": {
+												"variable": "TRANSITION_squaresLoaded",
+												"comparison": 4,
+												"value": "0"
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 167265590870200,
+											"parameters": {
+												"variable": "TRANSITION_squaresLoaded",
+												"comparison": 0,
+												"value": "TransitionSquare.Count"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 493508115404962,
+											"parameters": {
+												"variable": "TRANSITION_squaresLoaded",
+												"value": "0"
+											}
+										},
+										{
+											"id": "go-to-layout-by-name",
+											"objectClass": "System",
+											"sid": 389973761210653,
+											"parameters": {
+												"layout": "TRANSITION_layout"
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 174835197406434,
+											"parameters": {
+												"variable": "TRANSITION_movedLayout",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 369231360367869,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "Set the start time for each line"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 280184008321174,
+													"parameters": {
+														"name": "\"i\"",
+														"start-index": "0",
+														"end-index": "TransitionPixelateArr.Width-1"
+													}
+												},
+												{
+													"id": "pick-by-unique-id",
+													"objectClass": "TransitionSquare",
+													"sid": 164856463578671,
+													"parameters": {
+														"unique-id": "TransitionPixelateArr.At(loopindex(\"i\"))"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "start-timer",
+													"objectClass": "TransitionSquare",
+													"sid": 637127220699581,
+													"behaviorType": "Timer",
+													"parameters": {
+														"duration": "dt*0.05*loopindex(\"i\")",
+														"type": "once",
+														"tag": "\"transitionWait\""
+													}
+												},
+												{
+													"id": "log",
+													"objectClass": "Browser",
+													"sid": 637489199156969,
+													"parameters": {
+														"type": "log",
+														"message": "\"delete\""
+													}
+												}
+											],
+											"sid": 419729662348684
+										}
+									]
+								}
+							],
+							"sid": 123975274482247
+						},
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "Global - Transitions (Finalizing)",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-timer",
+											"objectClass": "TransitionSquare",
+											"sid": 937086554162048,
+											"behaviorType": "Timer",
+											"parameters": {
+												"tag": "\"transitionWait\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "TransitionSquare",
+											"sid": 496950008259930
+										}
+									],
+									"sid": 563152772072802
+								},
+								{
+									"eventType": "comment",
+									"text": "All lines are finished, unlock the game"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 525430346946100,
+											"parameters": {
+												"variable": "TRANSITION_running"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 499805924925661,
+											"parameters": {
+												"first-value": "TransitionSquare.Count",
+												"comparison": 3,
+												"second-value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 790750030533005,
+											"parameters": {
+												"variable": "TRANSITION_running",
+												"value": "false"
+											}
+										}
+									],
+									"sid": 363984484603128
+								}
+							],
+							"sid": 413334033436080
+						}
+					],
+					"sid": 402618144576826
+				}
+			],
+			"sid": 125678649172217
+		}
+	],
+	"sid": 778792192564054
+}

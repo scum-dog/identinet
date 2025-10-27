@@ -1,0 +1,37 @@
+{
+	"name": "LoaderBar",
+	"plugin-id": "TiledBg",
+	"sid": 720592613957014,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "maxWidth",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 772669904015521
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 337288706668719
+		}
+	],
+	"effectTypes": [],
+	"image": {
+		"width": 9,
+		"height": 16,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"fileType": "image/png",
+		"imageSpriteId": 6735961,
+		"useCollisionPoly": true,
+		"tag": ""
+	}
+}

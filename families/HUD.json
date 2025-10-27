@@ -1,0 +1,12 @@
+{
+	"name": "HUD",
+	"plugin-id": "Sprite",
+	"sid": 376399873744848,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"NavBar",
+		"Sprite"
+	]
+}

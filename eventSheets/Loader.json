@@ -1,0 +1,706 @@
+{
+	"name": "Loader",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "Global"
+		},
+		{
+			"eventType": "comment",
+			"text": "Loader"
+		},
+		{
+			"eventType": "variable",
+			"name": "LOADER_maxItems",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "Total items to load",
+			"isStatic": true,
+			"isConstant": true,
+			"sid": 182389247185637
+		},
+		{
+			"eventType": "variable",
+			"name": "LOADER_progress",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Progress, from 0-1",
+			"isStatic": true,
+			"isConstant": false,
+			"sid": 276676158304313
+		},
+		{
+			"eventType": "variable",
+			"name": "LOADER_clicked",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Has the user already clicked?",
+			"isStatic": true,
+			"isConstant": false,
+			"sid": 976373945172048
+		},
+		{
+			"eventType": "variable",
+			"name": "LOADER_error",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Was there an error?",
+			"isStatic": true,
+			"isConstant": false,
+			"sid": 331397207379710
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 598871558771563
+				}
+			],
+			"actions": [
+				{
+					"id": "set-width",
+					"objectClass": "LoaderBar",
+					"sid": 365442473783328,
+					"parameters": {
+						"width": "Self.ImageWidth"
+					}
+				},
+				{
+					"id": "add-child",
+					"objectClass": "LoaderBar",
+					"sid": 870525862207833,
+					"parameters": {
+						"child": "LoaderBase",
+						"transform-x": true,
+						"transform-y": true,
+						"transform-w": false,
+						"transform-h": false,
+						"transform-a": false,
+						"transform-o": false,
+						"transform-z-elevation": false,
+						"transform-visibility": false,
+						"destroy-with-parent": false
+					}
+				}
+			],
+			"sid": 285701772623755
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Loader - Loading",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "LOADER_progressOld",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Progress to compare to",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 660805596494828
+				},
+				{
+					"eventType": "comment",
+					"text": "Update progress"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 760377676130674
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 115596880675308,
+							"parameters": {
+								"variable": "LOADER_progressOld",
+								"value": "LOADER_progress"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "(loadingprogress+LOAD_artworks+LOAD_pickups+LOAD_drinks+LOAD_skins+LOAD_medals+LOAD_save)/LOADER_maxItems"
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 595971971646067,
+							"parameters": {
+								"variable": "LOADER_progress",
+								"value": "loadingprogress/LOADER_maxItems"
+							}
+						},
+						{
+							"id": "set-width",
+							"objectClass": "LoaderBar",
+							"sid": 129794291733017,
+							"parameters": {
+								"width": "clamp(Self.ImageWidth*int(ceil(Self.maxWidth/Self.ImageWidth)*LOADER_progress), Self.ImageWidth, Self.maxWidth)"
+							}
+						}
+					],
+					"sid": 774831531875853,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Text",
+									"sid": 591644137397129,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"loading\""
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 605917549436275,
+									"parameters": {
+										"variable": "LOADER_progress",
+										"comparison": 5,
+										"value": "1"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 543432065467133,
+									"parameters": {
+										"variable": "LOADER_error"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "\"Loading... \"&floor(loadingprogress)+LOAD_artworks+LOAD_pickups+LOAD_drinks+LOAD_skins+LOAD_medals+LOAD_save&\"/\"&LOADER_maxItems"
+								},
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 427776983080404,
+									"parameters": {
+										"text": "\"LOADING... \"&round(LOADER_progress*100)&\"%\""
+									}
+								}
+							],
+							"sid": 739206004072175
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "If there's been no progress in 10 seconds, throw an error"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 594020472019409,
+							"parameters": {
+								"variable": "LOADER_progressOld",
+								"comparison": 0,
+								"value": "LOADER_progress"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "stop-timer",
+							"objectClass": "LoaderBar",
+							"sid": 437578232591593,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"timeout\""
+							}
+						}
+					],
+					"sid": 536807434572199
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 135321205178544
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 572044966633043
+						}
+					],
+					"actions": [
+						{
+							"id": "start-timer",
+							"objectClass": "LoaderBar",
+							"sid": 837791155586334,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "10",
+								"type": "once",
+								"tag": "\"timeout\""
+							}
+						}
+					],
+					"sid": 610859263450382
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "LoaderBar",
+							"sid": 280970039004267,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"timeout\""
+							}
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 480090168453390,
+							"parameters": {
+								"variable": "LOADER_progress",
+								"comparison": 5,
+								"value": "1"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "loadComplete",
+							"sid": 184913201349140,
+							"parameters": [
+								"2"
+							]
+						}
+					],
+					"sid": 328293619067920
+				},
+				{
+					"eventType": "comment",
+					"text": "Progress is ready"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 379992754225359,
+							"parameters": {
+								"variable": "LOADER_progress",
+								"comparison": 5,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 133746795494068,
+							"parameters": {
+								"variable": "LOADER_error"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 524495367315562
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "loadComplete",
+							"sid": 526114936438725,
+							"parameters": [
+								"0"
+							]
+						}
+					],
+					"sid": 594479939733702
+				},
+				{
+					"eventType": "comment",
+					"text": "Loading is complete"
+				},
+				{
+					"functionName": "loadComplete",
+					"functionDescription": "We've completed loading",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "error",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 149533747307838
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Text",
+							"sid": 236259719562732,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"loading\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "Text",
+							"sid": 493505055341025,
+							"parameters": {
+								"text": "\"CLICK ANYWHERE TO BEGIN\""
+							}
+						}
+					],
+					"sid": 678832989372234,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 980989802869140,
+									"parameters": {
+										"variable": "GAME_standalone"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 314589727164940,
+									"parameters": {
+										"cursor-style": "pointer"
+									}
+								}
+							],
+							"sid": 623026736364633
+						},
+						{
+							"eventType": "comment",
+							"text": "Errors:\n1 - AJAX error\n2 - Took too long"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 627079391152584,
+									"parameters": {
+										"variable": "error",
+										"comparison": 4,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 754058298685520,
+									"parameters": {
+										"cursor-style": "pointer"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 849846213029342,
+									"parameters": {
+										"text": "\"ERROR (\"&error&\") - CLICK ANYWHERE TO RELOAD\""
+									}
+								},
+								{
+									"id": "set-default-color",
+									"objectClass": "Text",
+									"sid": 401041829955313,
+									"parameters": {
+										"color": "rgbEx255(255, 128, 128)"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 867404637630481,
+									"parameters": {
+										"variable": "LOADER_error",
+										"value": "true"
+									}
+								},
+								{
+									"id": "start-timer",
+									"objectClass": "LoaderBar",
+									"sid": 365563495015609,
+									"behaviorType": "Timer",
+									"parameters": {
+										"duration": "0.5",
+										"type": "once",
+										"tag": "\"shake\""
+									}
+								},
+								{
+									"id": "set-default-color",
+									"objectClass": "LoaderBar",
+									"sid": 825236118381268,
+									"parameters": {
+										"color": "rgbEx255(255, 64, 64)"
+									}
+								}
+							],
+							"sid": 578771660480336
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-timer-running",
+							"objectClass": "LoaderBar",
+							"sid": 310574091352008,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"shake\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "LoaderBar",
+							"sid": 651232811193002,
+							"parameters": {
+								"x": "12+random(10, -10)*(Self.Timer.Duration(\"shake\")-Self.Timer.CurrentTime(\"shake\"))",
+								"y": "212+random(10, -10)*(Self.Timer.Duration(\"shake\")-Self.Timer.CurrentTime(\"shake\"))"
+							}
+						}
+					],
+					"sid": 727978649238087
+				},
+				{
+					"eventType": "comment",
+					"text": "Click"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 223921276202389,
+							"parameters": {
+								"tag": "\"inputMouse\""
+							}
+						},
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 928797879792487,
+							"parameters": {
+								"tag": "\"inputTouch\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 409087951456488,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 805620299751975,
+									"parameters": {
+										"variable": "LOADER_clicked"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 761144428668256,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Reload the game if there's an error"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 905876411944575,
+											"parameters": {
+												"variable": "LOADER_error"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 315163981468431,
+											"parameters": {
+												"variable": "LOADER_clicked",
+												"value": "true"
+											}
+										},
+										{
+											"id": "reload",
+											"objectClass": "Browser",
+											"sid": 801204970953673
+										}
+									],
+									"sid": 547410160789497
+								},
+								{
+									"eventType": "comment",
+									"text": "Proceed"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 686551251064942
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 184947176961792,
+											"parameters": {
+												"variable": "LOADER_progress",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 523548305345215,
+											"parameters": {
+												"variable": "LOADER_clicked",
+												"value": "true"
+											}
+										},
+										{
+											"callFunction": "transition",
+											"sid": 630365933446348,
+											"parameters": [
+												"\"\""
+											]
+										}
+									],
+									"sid": 862155453466308
+								}
+							]
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 984568439165564,
+							"parameters": {
+								"variable": "TRANSITION_running"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 267895981549800,
+							"parameters": {
+								"variable": "TRANSITION_movedLayout"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 784637914653480
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 934273347363108,
+							"parameters": {
+								"layer": "\"Loader\"",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "LoaderBG",
+							"sid": 439210977719259
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 683102494346794,
+							"parameters": {
+								"seconds": "2.5",
+								"use-timescale": true
+							}
+						},
+						{
+							"callFunction": "transition",
+							"sid": 101232090462302,
+							"parameters": [
+								"\"Plaza\"\n"
+							]
+						}
+					],
+					"sid": 319816031277947
+				}
+			],
+			"sid": 114182442222367
+		}
+	],
+	"sid": 715364961094236
+}

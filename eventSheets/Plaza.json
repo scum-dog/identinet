@@ -1,0 +1,403 @@
+{
+	"name": "Plaza",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "NGIO_sessionID",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 536121950603561
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "Global"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 452559337657283
+				}
+			],
+			"actions": [
+				{
+					"id": "scroll-to-position",
+					"objectClass": "System",
+					"sid": 524594682351745,
+					"parameters": {
+						"x": "LayoutWidth/2",
+						"y": "LayoutHeight/2"
+					}
+				}
+			],
+			"sid": 108488389426900
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Scrolling",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "mouseOldX",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 711956314382606
+				},
+				{
+					"eventType": "variable",
+					"name": "mouseOldY",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 665065107762481
+				},
+				{
+					"eventType": "variable",
+					"name": "scrolling",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 420098599979999
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 334835742689212,
+							"parameters": {
+								"variable": "TRANSITION_running"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [],
+					"sid": 713041413504836,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "We're not hovered over another object, so allow scrolling"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 642414414798601,
+									"parameters": {
+										"object": "HUD"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 563848615721658,
+									"parameters": {
+										"cursor-style": "grab"
+									}
+								}
+							],
+							"sid": 599725708890573,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-click",
+											"objectClass": "Mouse",
+											"sid": 941799323211793,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 151818726982636,
+											"parameters": {
+												"variable": "mouseOldX",
+												"value": "Mouse.X"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 429020680566354,
+											"parameters": {
+												"variable": "mouseOldY",
+												"value": "Mouse.Y"
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 134359938862594,
+											"parameters": {
+												"variable": "scrolling",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 571477744430632
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "We're hovered over another object, ignore"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 771539171123210
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 730785912360647,
+									"parameters": {
+										"variable": "scrolling"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 325570730390865,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 124039009293975,
+											"parameters": {
+												"object": "NavBar"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-cursor-style2",
+											"objectClass": "Mouse",
+											"sid": 366359354113652,
+											"parameters": {
+												"cursor-style": "pointer"
+											}
+										}
+									],
+									"sid": 536647248557085
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 224253330178612
+										}
+									],
+									"actions": [
+										{
+											"id": "set-cursor-style2",
+											"objectClass": "Mouse",
+											"sid": 425633268287740,
+											"parameters": {
+												"cursor-style": "normal"
+											}
+										}
+									],
+									"sid": 899084190997999
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "If we're allowed to scroll, do it"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "mouse-button-is-down",
+									"objectClass": "Mouse",
+									"sid": 554861985852266,
+									"parameters": {
+										"mouse-button": "left"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 877436005215348,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 876552446766733,
+											"parameters": {
+												"variable": "scrolling"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "scroll",
+											"sid": 285899651176284
+										}
+									],
+									"sid": 170849575189436
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 112611487596805
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 415071247545272,
+									"parameters": {
+										"variable": "scrolling",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 633841516198976
+						}
+					]
+				},
+				{
+					"functionName": "scroll",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "scroll-to-position",
+							"objectClass": "System",
+							"sid": 739702915821974,
+							"parameters": {
+								"x": "scrollx-(Mouse.X-mouseOldX)",
+								"y": "scrolly-(Mouse.Y-mouseOldY)"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 831156597046693,
+							"parameters": {
+								"variable": "mouseOldX",
+								"value": "Mouse.X"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 470688736847827,
+							"parameters": {
+								"variable": "mouseOldY",
+								"value": "Mouse.Y"
+							}
+						},
+						{
+							"id": "set-cursor-style2",
+							"objectClass": "Mouse",
+							"sid": 994797378902634,
+							"parameters": {
+								"cursor-style": "grabbing"
+							}
+						}
+					],
+					"sid": 968523805563949
+				}
+			],
+			"sid": 355935260737114
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 321385736829153,
+					"parameters": {
+						"variable": "TRANSITION_running"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [],
+			"sid": 538712431605535,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 545188688428286,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "Sprite"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "transition",
+							"sid": 766684914368511,
+							"parameters": [
+								"\"Creator\""
+							]
+						}
+					],
+					"sid": 587576778105027
+				}
+			]
+		}
+	],
+	"sid": 235165046402222
+}
