@@ -228,7 +228,7 @@
 			],
 			"instances": [
 				{
-					"type": "Sprite",
+					"type": "CreateNew",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Animation 1",

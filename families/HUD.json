@@ -7,6 +7,6 @@
 	"effectTypes": [],
 	"members": [
 		"NavBar",
-		"Sprite"
+		"CreateNew"
 	]
 }

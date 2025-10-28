@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 45800,
+	"savedWithRelease": 45802,
 	"name": "IDENTI-NET",
 	"runtime": "c3",
 	"useWorker": "auto",
@@ -127,7 +127,8 @@
 		"items": [
 			"PlazaBackground",
 			"NavBar",
-			"Sprite"
+			"CreateNew",
+			"Character"
 		],
 		"subfolders": [
 			{
