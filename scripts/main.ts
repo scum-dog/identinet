@@ -1,8 +1,8 @@
-console.log("main.js loaded successfully");
+console.log("main.ts loaded successfully");
 
-function exposeGlobals(obj) {
+function exposeGlobals(obj: Record<string, any>) {
   for (const [key, value] of Object.entries(obj)) {
-    globalThis[key] = value;
+    (globalThis as any)[key] = value;
   }
 }
 
