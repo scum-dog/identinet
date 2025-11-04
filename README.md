@@ -8,7 +8,7 @@ Created by [SCUM DOG](https://scum.dog/)
 
 - Filippo Meozzi - Director
 - Liam Stone - Programming, Art
-- John Q. Herman - Serverside programming
+- John Q. Herman - Technical Director, Systems Engineer
 
 ## Bugs
 Find a bug? Report it on our [issue tracker](https://github.com/scum-dog/identikit/issues/new/choose).
