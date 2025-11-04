@@ -4,6 +4,59 @@
 		{
 			"eventType": "include",
 			"includeSheet": "Global"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 510203870714978
+				}
+			],
+			"actions": [
+				{
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 462865184833412,
+					"parameters": {
+						"tag": "\"json\"",
+						"file": "me.json"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "DrawingCanvas",
+					"sid": 890444531470516
+				}
+			],
+			"sid": 915152436072914
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 899257260846407,
+					"parameters": {
+						"tag": "\"json\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "createCharacter",
+					"sid": 442446871723790,
+					"parameters": [
+						"AJAX.LastData",
+						"76",
+						"128",
+						"1"
+					]
+				}
+			],
+			"sid": 221188305471193
 		}
 	],
 	"sid": 247199195301411

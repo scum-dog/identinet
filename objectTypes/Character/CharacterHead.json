@@ -1,0 +1,146 @@
+{
+	"name": "CharacterHead",
+	"plugin-id": "Sprite",
+	"sid": 891634417783942,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 713523867564614
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 119,
+						"height": 156,
+						"originX": 0.4957983193277311,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 5705267,
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "hair",
+								"x": 0.48739495798319327,
+								"y": 0.22435897435897437
+							},
+							{
+								"name": "beard",
+								"x": 0.48739495798319327,
+								"y": 0.9102564102564102
+							},
+							{
+								"name": "eyes",
+								"x": 0.31932773109243695,
+								"y": 0.47435897435897434
+							},
+							{
+								"name": "eyebrows",
+								"x": 0.31092436974789917,
+								"y": 0.41025641025641024
+							},
+							{
+								"name": "nose",
+								"x": 0.4957983193277311,
+								"y": 0.5512820512820513
+							},
+							{
+								"name": "lips",
+								"x": 0.48739495798319327,
+								"y": 0.7948717948717948
+							},
+							{
+								"name": "glasses",
+								"x": 0.48739495798319327,
+								"y": 0.4935897435897436
+							},
+							{
+								"name": "mustache",
+								"x": 0.4957983193277311,
+								"y": 0.7051282051282052
+							}
+						],
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 124,
+						"height": 152,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4978003,
+						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "hair",
+								"x": 0.5,
+								"y": 0.23026315789473684
+							},
+							{
+								"name": "beard",
+								"x": 0.5161290322580645,
+								"y": 0.9276315789473685
+							},
+							{
+								"name": "eyes",
+								"x": 0.33064516129032256,
+								"y": 0.46710526315789475
+							},
+							{
+								"name": "eyebrows",
+								"x": 0.3467741935483871,
+								"y": 0.40789473684210525
+							},
+							{
+								"name": "nose",
+								"x": 0.5080645161290323,
+								"y": 0.5921052631578947
+							},
+							{
+								"name": "lips",
+								"x": 0.5,
+								"y": 0.7763157894736842
+							},
+							{
+								"name": "glasses",
+								"x": 0.5080645161290323,
+								"y": 0.46710526315789475
+							},
+							{
+								"name": "mustache",
+								"x": 0.5,
+								"y": 0.6776315789473685
+							}
+						],
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 253504029975877,
+				"name": "head",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

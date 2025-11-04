@@ -1,53 +1,22 @@
 {
-	"name": "Character",
+	"name": "CharacterPart",
 	"plugin-id": "Sprite",
 	"sid": 649290336238584,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
-	"instanceVariables": [],
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 625186003520901
+		}
+	],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
-			{
-				"frames": [
-					{
-						"width": 119,
-						"height": 156,
-						"originX": 0.5042016806722689,
-						"originY": 0.5,
-						"originalSource": "",
-						"exportFormat": "lossless",
-						"exportQuality": 0.8,
-						"fileType": "image/png",
-						"imageSpriteId": 8568342,
-						"useCollisionPoly": true,
-						"duration": 1,
-						"tag": ""
-					},
-					{
-						"width": 124,
-						"height": 152,
-						"originX": 0.5042016806722689,
-						"originY": 0.5,
-						"originalSource": "",
-						"exportFormat": "lossless",
-						"exportQuality": 0.8,
-						"fileType": "image/png",
-						"imageSpriteId": 7734949,
-						"useCollisionPoly": true,
-						"duration": 1,
-						"tag": ""
-					}
-				],
-				"sid": 853811773222859,
-				"name": "HS",
-				"isLooping": false,
-				"isPingPong": false,
-				"repeatCount": 1,
-				"repeatTo": 0,
-				"speed": 5
-			},
 			{
 				"frames": [
 					{
@@ -67,7 +36,7 @@
 					{
 						"width": 131,
 						"height": 92,
-						"originX": 0.5042016806722689,
+						"originX": 0.48854961832061067,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
@@ -80,7 +49,57 @@
 					}
 				],
 				"sid": 480286627825174,
-				"name": "H",
+				"name": "hair",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 71,
+						"height": 27,
+						"originX": 0.5070422535211268,
+						"originY": 0.48148148148148145,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4075245,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 687579180853064,
+				"name": "beard",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 80,
+						"height": 45,
+						"originX": 0.5,
+						"originY": 0.17777777777777778,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1355992,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 280159401051524,
+				"name": "age_lines",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -112,14 +131,14 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 3546066,
+						"imageSpriteId": 9976827,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
 				"sid": 753919270753769,
-				"name": "EY",
+				"name": "eyes",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -158,7 +177,7 @@
 					}
 				],
 				"sid": 208136922603606,
-				"name": "EB",
+				"name": "eyebrows",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -197,7 +216,7 @@
 					}
 				],
 				"sid": 861788567281927,
-				"name": "N",
+				"name": "nose",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -236,7 +255,82 @@
 					}
 				],
 				"sid": 362140159158663,
-				"name": "L",
+				"name": "lips",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 75,
+						"height": 31,
+						"originX": 0.49333333333333335,
+						"originY": 0.4838709677419355,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4882567,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 172802098868414,
+				"name": "glasses",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 42,
+						"height": 12,
+						"originX": 0.5238095238095238,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8731268,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 287294993523420,
+				"name": "mustache",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 5,
+						"height": 5,
+						"originX": 0.4,
+						"originY": 0.4,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 3611590,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 406426713558431,
+				"name": "misc",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,

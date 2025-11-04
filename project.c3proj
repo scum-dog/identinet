@@ -29,6 +29,27 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Date",
+			"name": "Date",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "DrawingCanvas",
+			"name": "Drawing canvas",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Json",
+			"name": "JSON",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Keyboard",
 			"name": "Keyboard",
 			"author": "Scirra",
@@ -128,7 +149,7 @@
 			"PlazaBackground",
 			"NavBar",
 			"CreateNew",
-			"Character"
+			"DrawingCanvas"
 		],
 		"subfolders": [
 			{
@@ -149,7 +170,9 @@
 					"Mouse",
 					"NGIO",
 					"Touch",
-					"PlatformInfo"
+					"PlatformInfo",
+					"Date",
+					"JSON"
 				],
 				"subfolders": [],
 				"name": "Plugins"
@@ -169,6 +192,14 @@
 				],
 				"subfolders": [],
 				"name": "General"
+			},
+			{
+				"items": [
+					"CharacterHead",
+					"CharacterPart"
+				],
+				"subfolders": [],
+				"name": "Character"
 			}
 		]
 	},
@@ -177,7 +208,8 @@
 	"containers": [],
 	"families": {
 		"items": [
-			"HUD"
+			"HUD",
+			"Character"
 		],
 		"subfolders": []
 	},
@@ -282,7 +314,16 @@
 			"subfolders": []
 		},
 		"general": {
-			"items": [],
+			"items": [
+				{
+					"name": "me.json",
+					"type": "application/json",
+					"sid": 949877365663199,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		}
 	},
@@ -339,7 +380,7 @@
 		"gpuPreference": "high-performance",
 		"framerateMode": "vsync",
 		"sampling": "nearest",
-		"downscaling": "medium",
+		"downscaling": "low",
 		"renderingMode": "auto",
 		"anisotropicFiltering": "auto",
 		"zNear": 1,

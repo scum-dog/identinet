@@ -1,0 +1,85 @@
+{
+  "character_data": {
+    "info": {
+      "name": "John",
+      "sex": "other",
+      "date_of_birth": "1996-06-13",
+      "height_in": 71,
+      "weight_lb": 166,
+      "location": {
+        "country": "Denmark"
+      }
+    },
+    "static": {
+      "head": {
+        "asset_id": 154,
+        "skin_color": "medium"
+      },
+      "hair": {
+        "asset_id": 268,
+        "hair_color": "red"
+      },
+      "beard": {
+        "asset_id": 879,
+        "facial_hair_color": "pink"
+      },
+      "age_lines": {
+        "asset_id": 14
+      }
+    },
+    "placeable_movable": {
+      "eyes": {
+        "asset_id": 864,
+        "eye_color": "hazel",
+        "offset_x": 0,
+        "offset_y": -0.1,
+        "scale": 1,
+        "rotation": 0
+      },
+      "eyebrows": {
+        "asset_id": 412,
+        "offset_x": 0,
+        "offset_y": 0.6,
+        "scale": 1,
+        "rotation": 0
+      },
+      "nose": {
+        "asset_id": 141,
+        "offset_y": 0.4,
+        "scale": 0.7
+      },
+      "lips": {
+        "asset_id": 586,
+        "offset_y": 0.3,
+        "scale": 0.9
+      },
+      "glasses": {
+        "asset_id": 823,
+        "offset_y": -1,
+        "scale": 1.5
+      },
+      "mustache": {
+        "asset_id": 342,
+        "offset_y": 0.9,
+        "scale": 0.7
+      },
+      "misc": {
+        "asset_id": 452,
+        "offset_x": 0.3,
+        "offset_y": 0.6,
+        "scale": 0.6
+      }
+    }
+  },
+  "metadata": {
+    "upload_id": "efa6ee63-1463-4f34-8a75-3372186657d8",
+    "user_id": "72d898c6-dbfd-4f2a-bb00-4a7fd4be67da",
+    "created_at": "2024-03-31T01:38:40.394Z",
+    "last_edited_at": null,
+    "is_edited": false,
+    "can_edit": true,
+    "is_deleted": false,
+    "deleted_at": null,
+    "deleted_by": null
+  }
+}

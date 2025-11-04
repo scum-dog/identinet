@@ -1169,6 +1169,677 @@
 				}
 			],
 			"sid": 125678649172217
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Global - Character Rendering",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "createCharacter",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "data",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 715063372738345
+						},
+						{
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 642588114322242
+						},
+						{
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 566747219068032
+						},
+						{
+							"name": "scale",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "",
+							"sid": 223414682603978
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "parse",
+							"objectClass": "JSON",
+							"sid": 417030151869635,
+							"parameters": {
+								"data": "data"
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 459819244694242,
+							"parameters": {
+								"object-to-create": "DrawingCanvas",
+								"layer": "\"Character\"",
+								"x": "-100",
+								"y": "-100",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Create the head as a separate object, for use as a base"
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 170537780844335,
+							"parameters": {
+								"object-to-create": "CharacterHead",
+								"layer": "\"Character\"",
+								"x": "-100",
+								"y": "-100",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "stop-animation",
+							"objectClass": "CharacterHead",
+							"sid": 759681670879772
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "CharacterHead",
+							"sid": 189122213028469,
+							"parameters": {
+								"frame-number": "JSON.Get(\"character_data.static.head.asset_id\")"
+							}
+						},
+						{
+							"id": "set-scale",
+							"objectClass": "CharacterHead",
+							"sid": 891294344040833,
+							"parameters": {
+								"scale": "scale"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 164717800919316
+						}
+					],
+					"sid": 966193678938643,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Iterate through character parts and create them"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "JSON",
+									"sid": 423665316548200,
+									"parameters": {
+										"path": "\"character_data\""
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 526404320474343,
+									"parameters": {
+										"first-value": "JSON.Path",
+										"comparison": 1,
+										"second-value": "\"character_data.info\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 836597036949490,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "JSON",
+											"sid": 114343034100314,
+											"parameters": {
+												"path": "JSON.Path"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 439190423255852,
+											"parameters": {
+												"first-value": "JSON.CurrentKey",
+												"comparison": 1,
+												"second-value": "\"head\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "createCharacterPart",
+											"sid": 526747923447601,
+											"parameters": [
+												"JSON.Path",
+												"JSON.CurrentKey",
+												"CharacterHead.UID",
+												"scale",
+												false
+											]
+										}
+									],
+									"sid": 685485503349728,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "Create a second, mirrored part for eyes and eyebrows"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 430375854223968,
+													"parameters": {
+														"first-value": "JSON.CurrentKey",
+														"comparison": 0,
+														"second-value": "\"eyes\""
+													}
+												},
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 188361403114366,
+													"parameters": {
+														"first-value": "JSON.CurrentKey",
+														"comparison": 0,
+														"second-value": "\"eyebrows\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "createCharacterPart",
+													"sid": 101642636351080,
+													"parameters": [
+														"JSON.Path",
+														"JSON.CurrentKey",
+														"CharacterHead.UID",
+														"scale",
+														true
+													]
+												}
+											],
+											"sid": 114748455462276,
+											"isOrBlock": true
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Render the created character to a canvas"
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 979375315211866
+								},
+								{
+									"id": "set-size",
+									"objectClass": "DrawingCanvas",
+									"sid": 843035547301499,
+									"parameters": {
+										"width": "200*scale",
+										"height": "200*scale"
+									}
+								},
+								{
+									"id": "paste-object",
+									"objectClass": "DrawingCanvas",
+									"sid": 899876580873102,
+									"parameters": {
+										"object": "Character",
+										"effects": "without-effects"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 278803787937293
+								},
+								{
+									"id": "destroy",
+									"objectClass": "Character",
+									"sid": 984787237900687
+								},
+								{
+									"id": "set-position",
+									"objectClass": "DrawingCanvas",
+									"sid": 646534830624536,
+									"parameters": {
+										"x": "x",
+										"y": "y"
+									}
+								}
+							],
+							"sid": 923943902055360
+						}
+					]
+				},
+				{
+					"functionName": "createCharacterPart",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": true,
+					"functionParameters": [
+						{
+							"name": "path",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 221965785347236
+						},
+						{
+							"name": "name",
+							"type": "string",
+							"initialValue": "head",
+							"comment": "",
+							"sid": 468938354630657
+						},
+						{
+							"name": "id",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 807809198592149
+						},
+						{
+							"name": "scale",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 904925659898665
+						},
+						{
+							"name": "mirrored",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"sid": 916699683696727
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "CharacterHead",
+							"sid": 846533911405620,
+							"parameters": {
+								"unique-id": "id"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 566683830900231,
+							"parameters": {
+								"object-to-create": "CharacterPart",
+								"layer": "\"Character\"",
+								"x": "CharacterHead.ImagePointX(name)",
+								"y": "CharacterHead.ImagePointY(name)",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "CharacterPart",
+							"sid": 769097454682488,
+							"parameters": {
+								"animation": "name",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "stop-animation",
+							"objectClass": "CharacterPart",
+							"sid": 234629665993541
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "CharacterPart",
+							"sid": 713407821360288,
+							"parameters": {
+								"frame-number": "JSON.Get(path&\".asset_id\")"
+							}
+						},
+						{
+							"id": "set-scale",
+							"objectClass": "CharacterPart",
+							"sid": 680980037460570,
+							"parameters": {
+								"scale": "(JSON.Get(path&\".scale\") = 0 ? 1 : JSON.Get(path&\".scale\")) * scale"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "CharacterPart",
+							"sid": 406144653378803,
+							"parameters": {
+								"angle": "JSON.Get(JSON.Path&\".rotation\")"
+							}
+						}
+					],
+					"sid": 224978106459319,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Offsets are interpreted differently by different parts"
+						},
+						{
+							"eventType": "group",
+							"disabled": false,
+							"title": "Global - Character Rendering (Offsets)",
+							"description": "",
+							"isActiveOnStart": true,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "offsetScale",
+									"type": "number",
+									"initialValue": "1",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 280465840867975
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 354641686276935,
+											"parameters": {
+												"variable": "name",
+												"comparison": 0,
+												"value": "\"eyes\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 954945875856893,
+											"parameters": {
+												"variable": "name",
+												"comparison": 0,
+												"value": "\"eyebrows\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 803835129251064,
+											"parameters": {
+												"variable": "offsetScale",
+												"value": "10"
+											}
+										}
+									],
+									"sid": 136614957908137,
+									"isOrBlock": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 199704469550182,
+											"parameters": {
+												"variable": "name",
+												"comparison": 0,
+												"value": "\"nose\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 641543737658491,
+											"parameters": {
+												"variable": "name",
+												"comparison": 0,
+												"value": "\"lips\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 605690150219797,
+											"parameters": {
+												"variable": "offsetScale",
+												"value": "20"
+											}
+										}
+									],
+									"sid": 587084052742400,
+									"isOrBlock": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 911312623037668,
+											"parameters": {
+												"variable": "name",
+												"comparison": 0,
+												"value": "\"glasses\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 866224098255927,
+											"parameters": {
+												"variable": "offsetScale",
+												"value": "25"
+											}
+										}
+									],
+									"sid": 223151291098735
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 429834496323152,
+											"parameters": {
+												"variable": "name",
+												"comparison": 0,
+												"value": "\"misc\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 321016036673409,
+											"parameters": {
+												"variable": "offsetScale",
+												"value": "70"
+											}
+										}
+									],
+									"sid": 117740113920113,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 355152760552312,
+													"parameters": {
+														"first-value": "find(path, \"offset_x\")",
+														"comparison": 4,
+														"second-value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 572976740241185,
+													"parameters": {
+														"variable": "offsetScale",
+														"value": "35"
+													}
+												}
+											],
+											"sid": 408780568160718
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-position",
+											"objectClass": "CharacterPart",
+											"sid": 437325316586109,
+											"parameters": {
+												"x": "Self.X+((JSON.Get(path&\".offset_x\")*offsetScale)*scale)",
+												"y": "Self.Y+((JSON.Get(path&\".offset_y\")*offsetScale)*scale)"
+											}
+										}
+									],
+									"sid": 951154415174297
+								}
+							],
+							"sid": 233878006206272
+						},
+						{
+							"eventType": "comment",
+							"text": "If this part is mirrored, modify certain aspects of it accordingly"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 534550872367974,
+									"parameters": {
+										"variable": "mirrored"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-mirrored",
+									"objectClass": "CharacterPart",
+									"sid": 384503148379599,
+									"parameters": {
+										"state": "mirrored"
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "CharacterPart",
+									"sid": 104927779583482,
+									"parameters": {
+										"angle": "360-Self.Angle"
+									}
+								},
+								{
+									"id": "set-x",
+									"objectClass": "CharacterPart",
+									"sid": 485076943685677,
+									"parameters": {
+										"x": "CharacterHead.X-(Self.X-CharacterHead.X)"
+									}
+								}
+							],
+							"sid": 310165465806934
+						}
+					]
+				}
+			],
+			"sid": 144180611067032
+		},
+		{
+			"eventType": "comment",
+			"text": "temp"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Text",
+					"sid": 987565913412552,
+					"parameters": {
+						"instance-variable": "type",
+						"comparison": 0,
+						"value": "\"time\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "Text",
+					"sid": 499964652053378,
+					"parameters": {
+						"text": "zeropad(Date.GetHours(Date.Now),2)&(Date.GetSeconds(Date.Now)%2 ? \":\" : \"•\")&zeropad(Date.GetMinutes(Date.Now),2)"
+					}
+				}
+			],
+			"sid": 549201169076781
 		}
 	],
 	"sid": 778792192564054
