@@ -1,7 +1,7 @@
 {
-	"name": "LoaderBG",
+	"name": "TiledBackground",
 	"plugin-id": "TiledBg",
-	"sid": 186008273193879,
+	"sid": 180343471453006,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -16,7 +16,7 @@
 		"exportFormat": "lossless",
 		"exportQuality": 0.8,
 		"fileType": "image/png",
-		"imageSpriteId": 5606272,
+		"imageSpriteId": 5841799,
 		"useCollisionPoly": true,
 		"tag": ""
 	}

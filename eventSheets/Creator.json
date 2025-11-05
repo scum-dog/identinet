@@ -2,6 +2,16 @@
 	"name": "Creator",
 	"events": [
 		{
+			"eventType": "variable",
+			"name": "CREATOR_page",
+			"type": "string",
+			"initialValue": "head",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 669241709430264
+		},
+		{
 			"eventType": "include",
 			"includeSheet": "Global"
 		},
@@ -16,18 +26,23 @@
 			],
 			"actions": [
 				{
+					"id": "destroy",
+					"objectClass": "Character",
+					"sid": 540826311061842
+				},
+				{
+					"id": "destroy",
+					"objectClass": "CharacterCanvas",
+					"sid": 342927959376332
+				},
+				{
 					"id": "request-project-file",
 					"objectClass": "AJAX",
 					"sid": 462865184833412,
 					"parameters": {
 						"tag": "\"json\"",
-						"file": "me.json"
+						"file": "character.json"
 					}
-				},
-				{
-					"id": "destroy",
-					"objectClass": "DrawingCanvas",
-					"sid": 890444531470516
 				}
 			],
 			"sid": 915152436072914
@@ -47,16 +62,56 @@
 			"actions": [
 				{
 					"callFunction": "createCharacter",
-					"sid": 442446871723790,
+					"sid": 617681095397910,
 					"parameters": [
 						"AJAX.LastData",
+						"76",
+						"152",
+						"1"
+					]
+				}
+			],
+			"sid": 221188305471193
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 774935033850399,
+					"parameters": {
+						"key": 32
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-value",
+					"objectClass": "JSON",
+					"sid": 765512009659272,
+					"parameters": {
+						"path": "\"character_data.placeable_movable.eyes.asset_id\"",
+						"value": "1"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "CharacterCanvas",
+					"sid": 630014871259120
+				},
+				{
+					"callFunction": "createCharacter",
+					"sid": 855400519019368,
+					"parameters": [
+						"JSON.ToCompactString",
 						"76",
 						"128",
 						"1"
 					]
 				}
 			],
-			"sid": 221188305471193
+			"sid": 920336834580851
 		}
 	],
 	"sid": 247199195301411

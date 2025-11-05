@@ -12,62 +12,62 @@
     },
     "static": {
       "head": {
-        "asset_id": 154,
+        "asset_id": 0,
         "skin_color": "medium"
       },
       "hair": {
-        "asset_id": 268,
+        "asset_id": 0,
         "hair_color": "red"
       },
       "beard": {
-        "asset_id": 879,
+        "asset_id": 0,
         "facial_hair_color": "pink"
       },
       "age_lines": {
-        "asset_id": 14
+        "asset_id": 0
       }
     },
     "placeable_movable": {
       "eyes": {
-        "asset_id": 864,
+        "asset_id": 0,
         "eye_color": "hazel",
         "offset_x": 0,
-        "offset_y": -0.1,
+        "offset_y": 0,
         "scale": 1,
         "rotation": 0
       },
       "eyebrows": {
-        "asset_id": 412,
+        "asset_id": 0,
         "offset_x": 0,
-        "offset_y": 0.6,
+        "offset_y": 0,
         "scale": 1,
         "rotation": 0
       },
       "nose": {
-        "asset_id": 141,
-        "offset_y": 0.4,
-        "scale": 0.7
+        "asset_id": 0,
+        "offset_y": 0,
+        "scale": 1
       },
       "lips": {
-        "asset_id": 586,
-        "offset_y": 0.3,
-        "scale": 0.9
+        "asset_id": 0,
+        "offset_y": 0,
+        "scale": 1
       },
       "glasses": {
-        "asset_id": 823,
-        "offset_y": -1,
-        "scale": 1.5
+        "asset_id": 0,
+        "offset_y": 0,
+        "scale": 1
       },
       "mustache": {
-        "asset_id": 342,
-        "offset_y": 0.9,
-        "scale": 0.7
+        "asset_id": 0,
+        "offset_y": 0,
+        "scale": 1
       },
       "misc": {
-        "asset_id": 452,
-        "offset_x": 0.3,
-        "offset_y": 0.6,
-        "scale": 0.6
+        "asset_id": 0,
+        "offset_x": -0.4,
+        "offset_y": 0.7,
+        "scale": 1
       }
     }
   },

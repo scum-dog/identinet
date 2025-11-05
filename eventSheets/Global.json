@@ -1220,22 +1220,9 @@
 						{
 							"id": "parse",
 							"objectClass": "JSON",
-							"sid": 417030151869635,
+							"sid": 258864811973050,
 							"parameters": {
 								"data": "data"
-							}
-						},
-						{
-							"id": "create-object",
-							"objectClass": "System",
-							"sid": 459819244694242,
-							"parameters": {
-								"object-to-create": "DrawingCanvas",
-								"layer": "\"Character\"",
-								"x": "-100",
-								"y": "-100",
-								"create-hierarchy": false,
-								"template-name": "\"\""
 							}
 						},
 						{
@@ -1245,12 +1232,12 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 170537780844335,
+							"sid": 348826955218250,
 							"parameters": {
 								"object-to-create": "CharacterHead",
 								"layer": "\"Character\"",
-								"x": "-100",
-								"y": "-100",
+								"x": "x",
+								"y": "y",
 								"create-hierarchy": false,
 								"template-name": "\"\""
 							}
@@ -1258,12 +1245,12 @@
 						{
 							"id": "stop-animation",
 							"objectClass": "CharacterHead",
-							"sid": 759681670879772
+							"sid": 110640651536510
 						},
 						{
 							"id": "set-animation-frame",
 							"objectClass": "CharacterHead",
-							"sid": 189122213028469,
+							"sid": 808969220666537,
 							"parameters": {
 								"frame-number": "JSON.Get(\"character_data.static.head.asset_id\")"
 							}
@@ -1271,19 +1258,51 @@
 						{
 							"id": "set-scale",
 							"objectClass": "CharacterHead",
-							"sid": 891294344040833,
+							"sid": 219141233942691,
 							"parameters": {
 								"scale": "scale"
 							}
-						},
-						{
-							"id": "wait-for-previous-actions",
-							"objectClass": "System",
-							"sid": 164717800919316
 						}
 					],
-					"sid": 966193678938643,
+					"sid": 376666166151287,
 					"children": [
+						{
+							"eventType": "variable",
+							"name": "total",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 715671487891147
+						},
+						{
+							"eventType": "comment",
+							"text": "Calculate the total number of parts"
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"const data = JSON.parse(localVars.data);",
+										"",
+										"var staticCount = Object.keys(data.character_data.static).length;",
+										"if (\"head\" in data.character_data.static) staticCount -= 1;",
+										"",
+										"var movableCount = Object.keys(data.character_data.placeable_movable).length;",
+										"if (\"eyes\" in data.character_data.placeable_movable) movableCount += 1;",
+										"if (\"eyebrows\" in data.character_data.placeable_movable) movableCount += 1;",
+										"",
+										"localVars.total = (staticCount + movableCount);"
+									]
+								}
+							],
+							"sid": 576296742432846
+						},
 						{
 							"eventType": "comment",
 							"text": "Iterate through character parts and create them"
@@ -1294,7 +1313,7 @@
 								{
 									"id": "for-each",
 									"objectClass": "JSON",
-									"sid": 423665316548200,
+									"sid": 596779858863434,
 									"parameters": {
 										"path": "\"character_data\""
 									}
@@ -1302,7 +1321,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 526404320474343,
+									"sid": 146415014220161,
 									"parameters": {
 										"first-value": "JSON.Path",
 										"comparison": 1,
@@ -1311,7 +1330,7 @@
 								}
 							],
 							"actions": [],
-							"sid": 836597036949490,
+							"sid": 338516524271327,
 							"children": [
 								{
 									"eventType": "block",
@@ -1319,7 +1338,7 @@
 										{
 											"id": "for-each",
 											"objectClass": "JSON",
-											"sid": 114343034100314,
+											"sid": 703960605960660,
 											"parameters": {
 												"path": "JSON.Path"
 											}
@@ -1327,7 +1346,7 @@
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 439190423255852,
+											"sid": 885521788392315,
 											"parameters": {
 												"first-value": "JSON.CurrentKey",
 												"comparison": 1,
@@ -1338,17 +1357,18 @@
 									"actions": [
 										{
 											"callFunction": "createCharacterPart",
-											"sid": 526747923447601,
+											"sid": 443610831075317,
 											"parameters": [
 												"JSON.Path",
 												"JSON.CurrentKey",
 												"CharacterHead.UID",
 												"scale",
-												false
+												false,
+												"total"
 											]
 										}
 									],
-									"sid": 685485503349728,
+									"sid": 283109568167367,
 									"children": [
 										{
 											"eventType": "comment",
@@ -1360,7 +1380,7 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 430375854223968,
+													"sid": 664898344917072,
 													"parameters": {
 														"first-value": "JSON.CurrentKey",
 														"comparison": 0,
@@ -1370,7 +1390,7 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 188361403114366,
+													"sid": 660467286514466,
 													"parameters": {
 														"first-value": "JSON.CurrentKey",
 														"comparison": 0,
@@ -1381,75 +1401,23 @@
 											"actions": [
 												{
 													"callFunction": "createCharacterPart",
-													"sid": 101642636351080,
+													"sid": 698716121377109,
 													"parameters": [
 														"JSON.Path",
 														"JSON.CurrentKey",
 														"CharacterHead.UID",
 														"scale",
-														true
+														true,
+														"total"
 													]
 												}
 											],
-											"sid": 114748455462276,
+											"sid": 621978645025216,
 											"isOrBlock": true
 										}
 									]
 								}
 							]
-						},
-						{
-							"eventType": "comment",
-							"text": "Render the created character to a canvas"
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 979375315211866
-								},
-								{
-									"id": "set-size",
-									"objectClass": "DrawingCanvas",
-									"sid": 843035547301499,
-									"parameters": {
-										"width": "200*scale",
-										"height": "200*scale"
-									}
-								},
-								{
-									"id": "paste-object",
-									"objectClass": "DrawingCanvas",
-									"sid": 899876580873102,
-									"parameters": {
-										"object": "Character",
-										"effects": "without-effects"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 278803787937293
-								},
-								{
-									"id": "destroy",
-									"objectClass": "Character",
-									"sid": 984787237900687
-								},
-								{
-									"id": "set-position",
-									"objectClass": "DrawingCanvas",
-									"sid": 646534830624536,
-									"parameters": {
-										"x": "x",
-										"y": "y"
-									}
-								}
-							],
-							"sid": 923943902055360
 						}
 					]
 				},
@@ -1459,7 +1427,7 @@
 					"functionCategory": "",
 					"functionReturnType": "none",
 					"functionCopyPicked": false,
-					"functionIsAsync": true,
+					"functionIsAsync": false,
 					"functionParameters": [
 						{
 							"name": "path",
@@ -1495,6 +1463,13 @@
 							"initialValue": "false",
 							"comment": "",
 							"sid": 916699683696727
+						},
+						{
+							"name": "total",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 857195558840523
 						}
 					],
 					"eventType": "function-block",
@@ -1502,7 +1477,7 @@
 						{
 							"id": "pick-by-unique-id",
 							"objectClass": "CharacterHead",
-							"sid": 846533911405620,
+							"sid": 229131449145418,
 							"parameters": {
 								"unique-id": "id"
 							}
@@ -1512,7 +1487,7 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 566683830900231,
+							"sid": 862972119670596,
 							"parameters": {
 								"object-to-create": "CharacterPart",
 								"layer": "\"Character\"",
@@ -1525,7 +1500,7 @@
 						{
 							"id": "set-animation",
 							"objectClass": "CharacterPart",
-							"sid": 769097454682488,
+							"sid": 185047667464879,
 							"parameters": {
 								"animation": "name",
 								"from": "beginning"
@@ -1534,12 +1509,12 @@
 						{
 							"id": "stop-animation",
 							"objectClass": "CharacterPart",
-							"sid": 234629665993541
+							"sid": 106710821122245
 						},
 						{
 							"id": "set-animation-frame",
 							"objectClass": "CharacterPart",
-							"sid": 713407821360288,
+							"sid": 947444891794140,
 							"parameters": {
 								"frame-number": "JSON.Get(path&\".asset_id\")"
 							}
@@ -1547,7 +1522,7 @@
 						{
 							"id": "set-scale",
 							"objectClass": "CharacterPart",
-							"sid": 680980037460570,
+							"sid": 178112147957874,
 							"parameters": {
 								"scale": "(JSON.Get(path&\".scale\") = 0 ? 1 : JSON.Get(path&\".scale\")) * scale"
 							}
@@ -1555,13 +1530,30 @@
 						{
 							"id": "set-angle",
 							"objectClass": "CharacterPart",
-							"sid": 406144653378803,
+							"sid": 807378041003759,
 							"parameters": {
 								"angle": "JSON.Get(JSON.Path&\".rotation\")"
 							}
+						},
+						{
+							"id": "add-child",
+							"objectClass": "CharacterHead",
+							"sid": 438921458422195,
+							"parameters": {
+								"child": "CharacterPart",
+								"transform-x": false,
+								"transform-y": false,
+								"transform-w": false,
+								"transform-h": false,
+								"transform-a": false,
+								"transform-o": false,
+								"transform-z-elevation": false,
+								"transform-visibility": false,
+								"destroy-with-parent": true
+							}
 						}
 					],
-					"sid": 224978106459319,
+					"sid": 676305223673531,
 					"children": [
 						{
 							"eventType": "comment",
@@ -1582,7 +1574,7 @@
 									"comment": "",
 									"isStatic": false,
 									"isConstant": false,
-									"sid": 280465840867975
+									"sid": 378286197433346
 								},
 								{
 									"eventType": "block",
@@ -1590,7 +1582,7 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 354641686276935,
+											"sid": 958008727897425,
 											"parameters": {
 												"variable": "name",
 												"comparison": 0,
@@ -1600,7 +1592,7 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 954945875856893,
+											"sid": 467151586820504,
 											"parameters": {
 												"variable": "name",
 												"comparison": 0,
@@ -1612,14 +1604,14 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 803835129251064,
+											"sid": 299867640046760,
 											"parameters": {
 												"variable": "offsetScale",
 												"value": "10"
 											}
 										}
 									],
-									"sid": 136614957908137,
+									"sid": 207703837776739,
 									"isOrBlock": true
 								},
 								{
@@ -1628,7 +1620,7 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 199704469550182,
+											"sid": 534740635633497,
 											"parameters": {
 												"variable": "name",
 												"comparison": 0,
@@ -1638,7 +1630,7 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 641543737658491,
+											"sid": 270735342274659,
 											"parameters": {
 												"variable": "name",
 												"comparison": 0,
@@ -1650,14 +1642,14 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 605690150219797,
+											"sid": 977235300109205,
 											"parameters": {
 												"variable": "offsetScale",
 												"value": "20"
 											}
 										}
 									],
-									"sid": 587084052742400,
+									"sid": 812767083843640,
 									"isOrBlock": true
 								},
 								{
@@ -1666,7 +1658,7 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 911312623037668,
+											"sid": 477894296092872,
 											"parameters": {
 												"variable": "name",
 												"comparison": 0,
@@ -1678,14 +1670,14 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 866224098255927,
+											"sid": 965410418109041,
 											"parameters": {
 												"variable": "offsetScale",
 												"value": "25"
 											}
 										}
 									],
-									"sid": 223151291098735
+									"sid": 724316632681991
 								},
 								{
 									"eventType": "block",
@@ -1693,7 +1685,7 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 429834496323152,
+											"sid": 109489733638854,
 											"parameters": {
 												"variable": "name",
 												"comparison": 0,
@@ -1705,14 +1697,14 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 321016036673409,
+											"sid": 648621146940442,
 											"parameters": {
 												"variable": "offsetScale",
 												"value": "70"
 											}
 										}
 									],
-									"sid": 117740113920113,
+									"sid": 651472867223379,
 									"children": [
 										{
 											"eventType": "block",
@@ -1720,7 +1712,7 @@
 												{
 													"id": "compare-two-values",
 													"objectClass": "System",
-													"sid": 355152760552312,
+													"sid": 544162919904722,
 													"parameters": {
 														"first-value": "find(path, \"offset_x\")",
 														"comparison": 4,
@@ -1732,14 +1724,14 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 572976740241185,
+													"sid": 211875598562017,
 													"parameters": {
 														"variable": "offsetScale",
 														"value": "35"
 													}
 												}
 											],
-											"sid": 408780568160718
+											"sid": 418808186043048
 										}
 									]
 								},
@@ -1750,17 +1742,17 @@
 										{
 											"id": "set-position",
 											"objectClass": "CharacterPart",
-											"sid": 437325316586109,
+											"sid": 801726470731116,
 											"parameters": {
 												"x": "Self.X+((JSON.Get(path&\".offset_x\")*offsetScale)*scale)",
 												"y": "Self.Y+((JSON.Get(path&\".offset_y\")*offsetScale)*scale)"
 											}
 										}
 									],
-									"sid": 951154415174297
+									"sid": 394647719774844
 								}
 							],
-							"sid": 233878006206272
+							"sid": 544581437662270
 						},
 						{
 							"eventType": "comment",
@@ -1772,7 +1764,7 @@
 								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 534550872367974,
+									"sid": 286695312502532,
 									"parameters": {
 										"variable": "mirrored"
 									}
@@ -1782,7 +1774,7 @@
 								{
 									"id": "set-mirrored",
 									"objectClass": "CharacterPart",
-									"sid": 384503148379599,
+									"sid": 175037393286136,
 									"parameters": {
 										"state": "mirrored"
 									}
@@ -1790,7 +1782,7 @@
 								{
 									"id": "set-angle",
 									"objectClass": "CharacterPart",
-									"sid": 104927779583482,
+									"sid": 763718248622661,
 									"parameters": {
 										"angle": "360-Self.Angle"
 									}
@@ -1798,13 +1790,85 @@
 								{
 									"id": "set-x",
 									"objectClass": "CharacterPart",
-									"sid": 485076943685677,
+									"sid": 219801602684115,
 									"parameters": {
 										"x": "CharacterHead.X-(Self.X-CharacterHead.X)"
 									}
 								}
 							],
-							"sid": 310165465806934
+							"sid": 251786540339612
+						},
+						{
+							"eventType": "comment",
+							"text": "Render the created character to a canvas"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-child-count",
+									"objectClass": "CharacterHead",
+									"sid": 727633881579055,
+									"parameters": {
+										"which": "own",
+										"comparison": 0,
+										"count": "total"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Despite absolutely no action up to this point being asynchronous, having this here solves a race condition... I hate this engine sometimes"
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 201279660701680
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 454481544927061,
+									"parameters": {
+										"object-to-create": "CharacterCanvas",
+										"layer": "\"Character\"",
+										"x": "CharacterHead.X",
+										"y": "CharacterHead.Y",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-size",
+									"objectClass": "CharacterCanvas",
+									"sid": 218640971418455,
+									"parameters": {
+										"width": "200*scale",
+										"height": "200*scale"
+									}
+								},
+								{
+									"id": "paste-object",
+									"objectClass": "CharacterCanvas",
+									"sid": 131198939754078,
+									"parameters": {
+										"object": "Character",
+										"effects": "without-effects"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 958272994426915
+								},
+								{
+									"id": "destroy",
+									"objectClass": "CharacterHead",
+									"sid": 907337970047555
+								}
+							],
+							"sid": 927720068444914
 						}
 					]
 				}

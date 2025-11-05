@@ -676,7 +676,7 @@
 						},
 						{
 							"id": "destroy",
-							"objectClass": "LoaderBG",
+							"objectClass": "LoaderBackground",
 							"sid": 439210977719259
 						},
 						{

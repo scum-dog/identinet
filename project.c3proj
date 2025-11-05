@@ -149,14 +149,17 @@
 			"PlazaBackground",
 			"NavBar",
 			"CreateNew",
-			"DrawingCanvas"
+			"9patch",
+			"TiledBackground",
+			"Sprite",
+			"Sprite2"
 		],
 		"subfolders": [
 			{
 				"items": [
 					"LoaderBase",
 					"LoaderBar",
-					"LoaderBG"
+					"LoaderBackground"
 				],
 				"subfolders": [],
 				"name": "Loader"
@@ -196,7 +199,8 @@
 			{
 				"items": [
 					"CharacterHead",
-					"CharacterPart"
+					"CharacterPart",
+					"CharacterCanvas"
 				],
 				"subfolders": [],
 				"name": "Character"
@@ -233,8 +237,64 @@
 	},
 	"rootFileFolders": {
 		"script": {
-			"items": [],
-			"subfolders": []
+			"items": [
+				{
+					"name": "admin.ts",
+					"type": "application/typescript",
+					"sid": 653376274620966,
+					"script-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "auth.ts",
+					"type": "application/typescript",
+					"sid": 155541603349765,
+					"script-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "index.ts",
+					"type": "application/typescript",
+					"sid": 493991624773397,
+					"script-info": {
+						"purpose": "main"
+					}
+				},
+				{
+					"name": "characters.ts",
+					"type": "application/typescript",
+					"sid": 963228726306775,
+					"script-info": {
+						"purpose": "none"
+					}
+				}
+			],
+			"subfolders": [
+				{
+					"items": [
+						{
+							"name": "api-client.ts",
+							"type": "application/typescript",
+							"sid": 614429255271054,
+							"script-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "types.ts",
+							"type": "application/typescript",
+							"sid": 101711763115626,
+							"script-info": {
+								"purpose": "imports-for-events"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "base"
+				}
+			]
 		},
 		"sound": {
 			"items": [],
@@ -316,7 +376,7 @@
 		"general": {
 			"items": [
 				{
-					"name": "me.json",
+					"name": "character.json",
 					"type": "application/json",
 					"sid": 949877365663199,
 					"file-info": {
