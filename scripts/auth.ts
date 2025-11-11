@@ -48,7 +48,7 @@ export async function getGoogleOAuthUrl(): Promise<ApiResponse<AuthUrlResult>> {
 export async function verifySession(): Promise<
   ApiResponse<{ valid: boolean; user?: any }>
 > {
-  const response = await post("/auth/verify");
+  const response = await get("/auth/session");
 
   if (!response.success || (response.data && !response.data.valid)) {
     clearAuthToken();
@@ -72,7 +72,7 @@ export async function getCurrentUser(): Promise<ApiResponse<UserInfo>> {
 export async function logout(): Promise<
   ApiResponse<{ success: boolean; message: string }>
 > {
-  const response = await post("/auth/logout");
+  const response = await del("/auth/session");
 
   clearAuthToken();
 

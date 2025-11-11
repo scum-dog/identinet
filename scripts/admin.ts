@@ -38,7 +38,7 @@ export async function listAllCharacters(
 export async function getCharacterDetails(
   characterId: string,
 ): Promise<ApiResponse<{ character: AdminCharacter }>> {
-  return get(`/admin/character/${characterId}`);
+  return get(`/admin/characters/${characterId}`);
 }
 
 /**
@@ -71,7 +71,7 @@ export async function deleteCharacter(
     };
   }
 
-  return del(`/admin/character/${characterId}`, { reason });
+  return del(`/admin/characters/${characterId}`, { reason });
 }
 
 /**

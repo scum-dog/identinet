@@ -53,10 +53,11 @@ export async function updateUserCharacter(
 export async function getPlazaCharacters(
   filters?: PlazaFilters,
 ): Promise<ApiResponse<PlazaResponse>> {
-  let endpoint = "/characters/plaza";
+  let endpoint = "/characters?view=plaza";
 
   if (filters) {
     const params = new URLSearchParams();
+    params.append("view", "plaza");
 
     if (filters.country) {
       params.append("country", filters.country);
@@ -70,9 +71,7 @@ export async function getPlazaCharacters(
       params.append("limit", filters.limit.toString());
     }
 
-    if (params.toString()) {
-      endpoint += "?" + params.toString();
-    }
+    endpoint = "/characters?" + params.toString();
   }
 
   return get<PlazaResponse>(endpoint);
