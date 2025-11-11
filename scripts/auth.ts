@@ -1,4 +1,10 @@
-import { get, post, setAuthToken, clearAuthToken } from "./base/api-client.js";
+import {
+  get,
+  post,
+  del,
+  setAuthToken,
+  clearAuthToken,
+} from "./base/api-client.js";
 import {
   AuthResult,
   AuthUrlResult,
