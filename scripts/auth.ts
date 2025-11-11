@@ -36,7 +36,7 @@ export async function authenticateNewgrounds(
  * @returns oauth url and state for verification
  */
 export async function getItchOAuthUrl(): Promise<ApiResponse<AuthUrlResult>> {
-  return get<AuthUrlResult>("/auth/itchio/url");
+  return get<AuthUrlResult>("/auth/itchio/authorization-url");
 }
 
 /**
@@ -44,7 +44,7 @@ export async function getItchOAuthUrl(): Promise<ApiResponse<AuthUrlResult>> {
  * @returns oauth url and state for verification
  */
 export async function getGoogleOAuthUrl(): Promise<ApiResponse<AuthUrlResult>> {
-  return get<AuthUrlResult>("/auth/google/url");
+  return get<AuthUrlResult>("/auth/google/authorization-url");
 }
 
 /**
