@@ -7,6 +7,20 @@
 		},
 		{
 			"eventType": "comment",
+			"text": "Initialization flags"
+		},
+		{
+			"eventType": "variable",
+			"name": "GAME_init",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Is it the very start of the game?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 962947344301577
+		},
+		{
+			"eventType": "comment",
 			"text": "Game type flags"
 		},
 		{
@@ -27,7 +41,21 @@
 			"comment": "Is the game a standalone version?",
 			"isStatic": false,
 			"isConstant": false,
-			"sid": 554719297062832
+			"sid": 995685769201095
+		},
+		{
+			"eventType": "comment",
+			"text": "Loading flags"
+		},
+		{
+			"eventType": "variable",
+			"name": "LOAD_parts",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are parts loaded?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 598680214337881
 		},
 		{
 			"eventType": "comment",
@@ -66,6 +94,232 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 607851642029713
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Global - Initialization",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 335955915937430
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 811944159369598,
+							"parameters": {
+								"variable": "GAME_init"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 946704931859414,
+							"parameters": {
+								"variable": "GAME_init",
+								"value": "true"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Load arrays"
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 633887216409071,
+							"parameters": {
+								"tag": "\"parts\"",
+								"file": "parts.json"
+							}
+						}
+					],
+					"sid": 109141179522247,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "We're standalone"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-windows-webview2-export",
+									"objectClass": "PlatformInfo",
+									"sid": 224350974726437
+								},
+								{
+									"id": "is-macos-wkwebview-export",
+									"objectClass": "PlatformInfo",
+									"sid": 829602362622825
+								},
+								{
+									"id": "is-linux-cef-export",
+									"objectClass": "PlatformInfo",
+									"sid": 661404663321085
+								},
+								{
+									"id": "is-in-preview",
+									"objectClass": "System",
+									"sid": 703275823135534,
+									"disabled": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 746488863470078,
+									"parameters": {
+										"variable": "GAME_standalone",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 452062367688317,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "comment",
+							"text": "We're on mobile"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-on-mobile",
+									"objectClass": "PlatformInfo",
+									"sid": 810631885529324
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 422204368788419,
+									"parameters": {
+										"variable": "GAME_mobile",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 497561053059253
+						}
+					]
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Global - AJAX",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-completed",
+									"objectClass": "AJAX",
+									"sid": 440214056251527,
+									"parameters": {
+										"tag": "\"parts\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 711256605459936,
+									"parameters": {
+										"variable": "LOAD_parts",
+										"value": "true"
+									}
+								},
+								{
+									"id": "load",
+									"objectClass": "Parts",
+									"sid": 908042051702763,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								}
+							],
+							"sid": 511566996314262,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "This fixes issues in preview"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-in-preview",
+											"objectClass": "System",
+											"sid": 691837694681886
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 426376910506398,
+											"parameters": {
+												"first-value": "LayoutName",
+												"comparison": 1,
+												"second-value": "\"Loader\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "restart-layout",
+											"objectClass": "System",
+											"sid": 555879777036875
+										}
+									],
+									"sid": 714062772559661
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Project can't load when these arrays aren't initialized"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-any-error",
+									"objectClass": "AJAX",
+									"sid": 315439405438717
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "loadComplete",
+									"sid": 384208238951231,
+									"parameters": [
+										"1"
+									]
+								}
+							],
+							"sid": 507490482789908
+						}
+					],
+					"sid": 882930048962033
+				}
+			],
+			"sid": 867835330598309
 		},
 		{
 			"eventType": "group",
@@ -479,6 +733,147 @@
 						}
 					],
 					"sid": 848170105583906
+				},
+				{
+					"functionName": "getValue",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "part",
+							"type": "string",
+							"initialValue": "head",
+							"comment": "",
+							"sid": 600313353284238
+						},
+						{
+							"name": "parameter",
+							"type": "string",
+							"initialValue": "asset_id",
+							"comment": "",
+							"sid": 119809974082388
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 530881384694244,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Integer"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 415528483280939,
+									"parameters": {
+										"variable": "parameter",
+										"comparison": 0,
+										"value": "\"asset_id\""
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 365788242129981,
+									"parameters": {
+										"variable": "parameter",
+										"comparison": 0,
+										"value": "\"rotation\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 724644116214534,
+									"parameters": {
+										"value": "round(JSON.Get(\"character_data.\"&Parts.At(Parts.IndexOf(part), 1)&\".\"&part&\".\"&parameter))\n"
+									}
+								}
+							],
+							"sid": 553324754640402,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "comment",
+							"text": "Float"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 895277670414343
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 887310550677022,
+									"parameters": {
+										"value": "round(JSON.Get(\"character_data.\"&Parts.At(Parts.IndexOf(part), 1)&\".\"&part&\".\"&parameter)*10)/10\n"
+									}
+								}
+							],
+							"sid": 464108742595759
+						}
+					]
+				},
+				{
+					"functionName": "setValue",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "part",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 833501567843685
+						},
+						{
+							"name": "parameter",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 481017863678310
+						},
+						{
+							"name": "value",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 849586946700746
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-value",
+							"objectClass": "JSON",
+							"sid": 524061891251863,
+							"parameters": {
+								"path": "\"character_data.\"&Parts.At(Parts.IndexOf(part), 1)&\".\"&part&\".\"&parameter",
+								"value": "value"
+							}
+						}
+					],
+					"sid": 621690119288117
 				}
 			],
 			"sid": 105681604197051
@@ -1250,9 +1645,9 @@
 						{
 							"id": "set-animation-frame",
 							"objectClass": "CharacterHead",
-							"sid": 808969220666537,
+							"sid": 995767476003575,
 							"parameters": {
-								"frame-number": "JSON.Get(\"character_data.static.head.asset_id\")"
+								"frame-number": "Functions.getValue(\"head\", \"asset_id\")"
 							}
 						},
 						{
@@ -1359,7 +1754,6 @@
 											"callFunction": "createCharacterPart",
 											"sid": 443610831075317,
 											"parameters": [
-												"JSON.Path",
 												"JSON.CurrentKey",
 												"CharacterHead.UID",
 												"scale",
@@ -1403,7 +1797,6 @@
 													"callFunction": "createCharacterPart",
 													"sid": 698716121377109,
 													"parameters": [
-														"JSON.Path",
 														"JSON.CurrentKey",
 														"CharacterHead.UID",
 														"scale",
@@ -1430,14 +1823,7 @@
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
-							"name": "path",
-							"type": "string",
-							"initialValue": "",
-							"comment": "",
-							"sid": 221965785347236
-						},
-						{
-							"name": "name",
+							"name": "part",
 							"type": "string",
 							"initialValue": "head",
 							"comment": "",
@@ -1491,8 +1877,8 @@
 							"parameters": {
 								"object-to-create": "CharacterPart",
 								"layer": "\"Character\"",
-								"x": "CharacterHead.ImagePointX(name)",
-								"y": "CharacterHead.ImagePointY(name)",
+								"x": "CharacterHead.ImagePointX(part)",
+								"y": "CharacterHead.ImagePointY(part)",
 								"create-hierarchy": false,
 								"template-name": "\"\""
 							}
@@ -1502,7 +1888,7 @@
 							"objectClass": "CharacterPart",
 							"sid": 185047667464879,
 							"parameters": {
-								"animation": "name",
+								"animation": "part",
 								"from": "beginning"
 							}
 						},
@@ -1514,25 +1900,25 @@
 						{
 							"id": "set-animation-frame",
 							"objectClass": "CharacterPart",
-							"sid": 947444891794140,
+							"sid": 546633032164667,
 							"parameters": {
-								"frame-number": "JSON.Get(path&\".asset_id\")"
+								"frame-number": "Functions.getValue(part, \"asset_id\")"
 							}
 						},
 						{
 							"id": "set-scale",
 							"objectClass": "CharacterPart",
-							"sid": 178112147957874,
+							"sid": 408542988307603,
 							"parameters": {
-								"scale": "(JSON.Get(path&\".scale\") = 0 ? 1 : JSON.Get(path&\".scale\")) * scale"
+								"scale": "(Functions.getValue(part, \"scale\") = 0 ? 1 : Functions.getValue(part, \"scale\")) * scale"
 							}
 						},
 						{
 							"id": "set-angle",
 							"objectClass": "CharacterPart",
-							"sid": 807378041003759,
+							"sid": 152776851438656,
 							"parameters": {
-								"angle": "JSON.Get(JSON.Path&\".rotation\")"
+								"angle": "Functions.getValue(part, \"rotation\")"
 							}
 						},
 						{
@@ -1551,209 +1937,19 @@
 								"transform-visibility": false,
 								"destroy-with-parent": true
 							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "CharacterPart",
+							"sid": 578496613808085,
+							"parameters": {
+								"x": "Self.X+((Functions.getValue(part, \"offset_x\")*Parts.At(Parts.IndexOf(part), 2))*scale)",
+								"y": "Self.Y+((Functions.getValue(part, \"offset_y\")*Parts.At(Parts.IndexOf(part), 3))*scale)"
+							}
 						}
 					],
 					"sid": 676305223673531,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "Offsets are interpreted differently by different parts"
-						},
-						{
-							"eventType": "group",
-							"disabled": false,
-							"title": "Global - Character Rendering (Offsets)",
-							"description": "",
-							"isActiveOnStart": true,
-							"children": [
-								{
-									"eventType": "variable",
-									"name": "offsetScale",
-									"type": "number",
-									"initialValue": "1",
-									"comment": "",
-									"isStatic": false,
-									"isConstant": false,
-									"sid": 378286197433346
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 958008727897425,
-											"parameters": {
-												"variable": "name",
-												"comparison": 0,
-												"value": "\"eyes\""
-											}
-										},
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 467151586820504,
-											"parameters": {
-												"variable": "name",
-												"comparison": 0,
-												"value": "\"eyebrows\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 299867640046760,
-											"parameters": {
-												"variable": "offsetScale",
-												"value": "10"
-											}
-										}
-									],
-									"sid": 207703837776739,
-									"isOrBlock": true
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 534740635633497,
-											"parameters": {
-												"variable": "name",
-												"comparison": 0,
-												"value": "\"nose\""
-											}
-										},
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 270735342274659,
-											"parameters": {
-												"variable": "name",
-												"comparison": 0,
-												"value": "\"lips\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 977235300109205,
-											"parameters": {
-												"variable": "offsetScale",
-												"value": "20"
-											}
-										}
-									],
-									"sid": 812767083843640,
-									"isOrBlock": true
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 477894296092872,
-											"parameters": {
-												"variable": "name",
-												"comparison": 0,
-												"value": "\"glasses\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 965410418109041,
-											"parameters": {
-												"variable": "offsetScale",
-												"value": "25"
-											}
-										}
-									],
-									"sid": 724316632681991
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 109489733638854,
-											"parameters": {
-												"variable": "name",
-												"comparison": 0,
-												"value": "\"misc\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 648621146940442,
-											"parameters": {
-												"variable": "offsetScale",
-												"value": "70"
-											}
-										}
-									],
-									"sid": 651472867223379,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 544162919904722,
-													"parameters": {
-														"first-value": "find(path, \"offset_x\")",
-														"comparison": 4,
-														"second-value": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 211875598562017,
-													"parameters": {
-														"variable": "offsetScale",
-														"value": "35"
-													}
-												}
-											],
-											"sid": 418808186043048
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-position",
-											"objectClass": "CharacterPart",
-											"sid": 801726470731116,
-											"parameters": {
-												"x": "Self.X+((JSON.Get(path&\".offset_x\")*offsetScale)*scale)",
-												"y": "Self.Y+((JSON.Get(path&\".offset_y\")*offsetScale)*scale)"
-											}
-										}
-									],
-									"sid": 394647719774844
-								}
-							],
-							"sid": 544581437662270
-						},
 						{
 							"eventType": "comment",
 							"text": "If this part is mirrored, modify certain aspects of it accordingly"

@@ -501,6 +501,18 @@
 			"sid": 323907915475486,
 			"tags": "",
 			"instanceVariables": {}
+		},
+		{
+			"type": "Parts",
+			"properties": {
+				"width": 10,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 79,
+			"sid": 350879033517541,
+			"tags": "",
+			"instanceVariables": {}
 		}
 	],
 	"effectTypes": [],

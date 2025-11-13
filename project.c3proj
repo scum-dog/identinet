@@ -136,6 +136,13 @@
 		},
 		{
 			"type": "effect",
+			"id": "brightness",
+			"name": "Brightness",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "effect",
 			"id": "skymen_BetterOutline",
 			"name": "Better Outline",
 			"author": "skymen",
@@ -145,15 +152,7 @@
 	],
 	"uniqueId": "pjmdeerwb34",
 	"objectTypes": {
-		"items": [
-			"PlazaBackground",
-			"NavBar",
-			"CreateNew",
-			"9patch",
-			"TiledBackground",
-			"Sprite",
-			"Sprite2"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -191,7 +190,8 @@
 			{
 				"items": [
 					"ScumDog",
-					"Text"
+					"Text",
+					"NavBar"
 				],
 				"subfolders": [],
 				"name": "General"
@@ -200,10 +200,31 @@
 				"items": [
 					"CharacterHead",
 					"CharacterPart",
-					"CharacterCanvas"
+					"CharacterCanvas",
+					"Parts"
 				],
 				"subfolders": [],
 				"name": "Character"
+			},
+			{
+				"items": [
+					"PlazaBackground",
+					"PlazaCreateNew"
+				],
+				"subfolders": [],
+				"name": "Plaza"
+			},
+			{
+				"items": [
+					"CreatorBackground",
+					"CreatorNavButton",
+					"CreatorNavIcon",
+					"CreatorMenu",
+					"CreatorPartButton",
+					"CreatorPageButton"
+				],
+				"subfolders": [],
+				"name": "Creator"
 			}
 		]
 	},
@@ -379,6 +400,14 @@
 					"name": "character.json",
 					"type": "application/json",
 					"sid": 949877365663199,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "parts.json",
+					"type": "application/json",
+					"sid": 321524527481462,
 					"file-info": {
 						"purpose": "none"
 					}

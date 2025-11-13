@@ -1,12 +1,25 @@
 {
-	"name": "Sprite",
+	"name": "CreatorNavButton",
 	"plugin-id": "Sprite",
 	"sid": 798985309196089,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
-	"instanceVariables": [],
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 227414627925295
+		}
+	],
 	"behaviorTypes": [],
-	"effectTypes": [],
+	"effectTypes": [
+		{
+			"effectId": "brightness",
+			"name": "Brightness"
+		}
+	],
 	"animations": {
 		"items": [
 			{

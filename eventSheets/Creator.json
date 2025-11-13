@@ -6,10 +6,40 @@
 			"name": "CREATOR_page",
 			"type": "string",
 			"initialValue": "head",
-			"comment": "",
+			"comment": "Page of the creator we're on",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 669241709430264
+		},
+		{
+			"eventType": "variable",
+			"name": "CREATOR_properties",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are we in the properties menu?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 772901382273926
+		},
+		{
+			"eventType": "variable",
+			"name": "CREATOR_offset",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Offset, which will be multiplied by max entries per page",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 474668219767725
+		},
+		{
+			"eventType": "variable",
+			"name": "CREATOR_maxPerPage",
+			"type": "number",
+			"initialValue": "12",
+			"comment": "Max entries per page",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 645387753972695
 		},
 		{
 			"eventType": "include",
@@ -26,9 +56,11 @@
 			],
 			"actions": [
 				{
-					"id": "destroy",
-					"objectClass": "Character",
-					"sid": 540826311061842
+					"callFunction": "updateCreatorMenu",
+					"sid": 427816283525949,
+					"parameters": [
+						"CREATOR_page"
+					]
 				},
 				{
 					"id": "destroy",
@@ -38,7 +70,7 @@
 				{
 					"id": "request-project-file",
 					"objectClass": "AJAX",
-					"sid": 462865184833412,
+					"sid": 407949671944069,
 					"parameters": {
 						"tag": "\"json\"",
 						"file": "character.json"
@@ -74,44 +106,2053 @@
 			"sid": 221188305471193
 		},
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "Creator - Selection",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "on-key-pressed",
-					"objectClass": "Keyboard",
-					"sid": 774935033850399,
-					"parameters": {
-						"key": 32
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-value",
-					"objectClass": "JSON",
-					"sid": 765512009659272,
-					"parameters": {
-						"path": "\"character_data.placeable_movable.eyes.asset_id\"",
-						"value": "1"
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 159857699338535
+						}
+					],
+					"actions": [
+						{
+							"id": "set-cursor-style2",
+							"objectClass": "Mouse",
+							"sid": 324485633960064,
+							"parameters": {
+								"cursor-style": "normal"
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "CreatorNavButton",
+							"sid": 167830747835883,
+							"parameters": {
+								"mode": "disable",
+								"effect": "\"Brightness\""
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "CreatorPartButton",
+							"sid": 854588764419925,
+							"parameters": {
+								"mode": "disable",
+								"effect": "\"Brightness\""
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "CreatorPageButton",
+							"sid": 935963293207390,
+							"parameters": {
+								"mode": "disable",
+								"effect": "\"Brightness\""
+							}
+						}
+					],
+					"sid": 627645064419736
 				},
 				{
-					"id": "destroy",
-					"objectClass": "CharacterCanvas",
-					"sid": 630014871259120
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 672286310614680,
+							"parameters": {
+								"object": "CreatorNavButton"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 130012970764025,
+							"parameters": {
+								"object": "CreatorPartButton"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 411940153478944,
+							"parameters": {
+								"object": "CreatorPageButton"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-cursor-style2",
+							"objectClass": "Mouse",
+							"sid": 759355231864831,
+							"parameters": {
+								"cursor-style": "pointer"
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "CreatorNavButton",
+							"sid": 238173193962920,
+							"parameters": {
+								"mode": "enable",
+								"effect": "\"Brightness\""
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "CreatorPartButton",
+							"sid": 564285411700301,
+							"parameters": {
+								"mode": "enable",
+								"effect": "\"Brightness\""
+							}
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "CreatorPageButton",
+							"sid": 233103027379491,
+							"parameters": {
+								"mode": "enable",
+								"effect": "\"Brightness\""
+							}
+						}
+					],
+					"sid": 554961755484934,
+					"isOrBlock": true
 				},
 				{
-					"callFunction": "createCharacter",
-					"sid": 855400519019368,
-					"parameters": [
-						"JSON.ToCompactString",
-						"76",
-						"128",
-						"1"
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "CreatorNavButton",
+							"sid": 253502909578844,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "CREATOR_page"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "CreatorNavButton",
+							"sid": 807946303538031,
+							"parameters": {
+								"mode": "enable",
+								"effect": "\"Brightness\""
+							}
+						}
+					],
+					"sid": 792082954122688
+				},
+				{
+					"eventType": "comment",
+					"text": "temp start"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "CreatorNavButton",
+							"sid": 588885281142753
+						},
+						{
+							"id": "is-animation-playing",
+							"objectClass": "CreatorNavIcon",
+							"sid": 137511572895129,
+							"parameters": {
+								"animation": "CreatorNavButton.id"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-child",
+							"objectClass": "CreatorNavButton",
+							"sid": 669178820993366,
+							"parameters": {
+								"child": "CreatorNavIcon",
+								"transform-x": false,
+								"transform-y": false,
+								"transform-w": false,
+								"transform-h": false,
+								"transform-a": false,
+								"transform-o": true,
+								"transform-z-elevation": false,
+								"transform-visibility": true,
+								"destroy-with-parent": true
+							}
+						}
+					],
+					"sid": 289444247953824
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "CreatorNavButton",
+							"sid": 240668079664299,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"properties\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 263790839054873,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-at-xy",
+									"objectClass": "Parts",
+									"sid": 540858279326172,
+									"parameters": {
+										"x": "Self.IndexOf(CREATOR_page)",
+										"y": "1",
+										"comparison": 0,
+										"value": "\"static\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "CreatorNavButton",
+									"sid": 144708751193041,
+									"parameters": {
+										"opacity": "50"
+									}
+								}
+							],
+							"sid": 848925326549047
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 206039082061111
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "CreatorNavButton",
+									"sid": 192072438285478,
+									"parameters": {
+										"opacity": "100"
+									}
+								}
+							],
+							"sid": 550172722147853
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "temp end"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "CreatorPartButton",
+							"sid": 844686654648720,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"part\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 920521793664840,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "has-key",
+									"objectClass": "JSON",
+									"sid": 675314892473521,
+									"parameters": {
+										"path": "\"character_data.static.\"&CREATOR_page&\".asset_id\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 669338765780495,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 228460167525845,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "JSON.Get(\"character_data.static.\"&CREATOR_page&\".asset_id\")"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-effect-enabled",
+											"objectClass": "CreatorPartButton",
+											"sid": 511417778667959,
+											"parameters": {
+												"mode": "enable",
+												"effect": "\"Brightness\""
+											}
+										}
+									],
+									"sid": 946648769529925
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 739995812036643
+								},
+								{
+									"id": "has-key",
+									"objectClass": "JSON",
+									"sid": 913070088243018,
+									"parameters": {
+										"path": "\"character_data.placeable_movable.\"&CREATOR_page&\".asset_id\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 755473846398814,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 298311351109436,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "JSON.Get(\"character_data.placeable_movable.\"&CREATOR_page&\".asset_id\")"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-effect-enabled",
+											"objectClass": "CreatorPartButton",
+											"sid": 884366123327842,
+											"parameters": {
+												"mode": "enable",
+												"effect": "\"Brightness\""
+											}
+										}
+									],
+									"sid": 442210819210855
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 288210438619590
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "CreatorPartButton",
+									"sid": 223337094224247,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "CreatorPartButton",
+									"sid": 691743324340055,
+									"parameters": {
+										"mode": "enable",
+										"effect": "\"Brightness\""
+									}
+								}
+							],
+							"sid": 945994304896816
+						}
 					]
 				}
 			],
-			"sid": 920336834580851
+			"sid": 270142649582041
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Creator - Navigation",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Creator - Navigation (Buttons)",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 644259198722642,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "CreatorNavButton"
+									}
+								},
+								{
+									"id": "compare-opacity",
+									"objectClass": "CreatorNavButton",
+									"sid": 290045760017853,
+									"parameters": {
+										"comparison": 5,
+										"opacity": "100"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 251227346912888,
+									"parameters": {
+										"layer": "\"Parts\"",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 892229677933806,
+									"parameters": {
+										"layer": "\"Properties\"",
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 890503597178789,
+									"parameters": {
+										"layer": "\"Parts\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 418239986458605,
+									"parameters": {
+										"layer": "\"Properties\"",
+										"interactive": false
+									}
+								}
+							],
+							"sid": 311841887038155,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorNavButton",
+											"sid": 111344059704720,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 1,
+												"value": "\"properties\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 652554245329056,
+											"parameters": {
+												"variable": "CREATOR_properties",
+												"value": "false"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 923403329435819,
+											"parameters": {
+												"variable": "CREATOR_offset",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 933734026939464,
+											"parameters": {
+												"variable": "CREATOR_page",
+												"value": "CreatorNavButton.id"
+											}
+										}
+									],
+									"sid": 881889665085687
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 823353816183100
+										}
+									],
+									"actions": [
+										{
+											"id": "toggle-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 258119109556894,
+											"parameters": {
+												"variable": "CREATOR_properties"
+											}
+										}
+									],
+									"sid": 736369445841738,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 718082540706656,
+													"parameters": {
+														"variable": "CREATOR_properties"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-layer-visible",
+													"objectClass": "System",
+													"sid": 365859623808501,
+													"parameters": {
+														"layer": "\"Parts\"",
+														"visibility": "invisible"
+													}
+												},
+												{
+													"id": "set-layer-visible",
+													"objectClass": "System",
+													"sid": 735089022125860,
+													"parameters": {
+														"layer": "\"Properties\"",
+														"visibility": "visible"
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 235781047492322,
+													"parameters": {
+														"layer": "\"Parts\"",
+														"interactive": false
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 535887475432049,
+													"parameters": {
+														"layer": "\"Properties\"",
+														"interactive": true
+													}
+												}
+											],
+											"sid": 231936139573944,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "CreatorPartButton",
+															"sid": 881316492405394,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"property\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-opacity",
+															"objectClass": "CreatorPartButton",
+															"sid": 835894297689251,
+															"parameters": {
+																"opacity": "100"
+															}
+														}
+													],
+													"sid": 503073247119497,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-two-values",
+																	"objectClass": "System",
+																	"sid": 411959004795527,
+																	"parameters": {
+																		"first-value": "Parts.At(Parts.IndexOf(CREATOR_page), 2)",
+																		"comparison": 3,
+																		"second-value": "0"
+																	}
+																}
+															],
+															"actions": [],
+															"sid": 445480075009192,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 956219604859085,
+																			"parameters": {
+																				"instance-variable": "id",
+																				"comparison": 0,
+																				"value": "0"
+																			}
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 362920890300188,
+																			"parameters": {
+																				"instance-variable": "id",
+																				"comparison": 0,
+																				"value": "1"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-opacity",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 538880717098269,
+																			"parameters": {
+																				"opacity": "50"
+																			}
+																		}
+																	],
+																	"sid": 750718936140826,
+																	"isOrBlock": true
+																}
+															]
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-two-values",
+																	"objectClass": "System",
+																	"sid": 796491465170136,
+																	"parameters": {
+																		"first-value": "Parts.At(Parts.IndexOf(CREATOR_page), 3)",
+																		"comparison": 3,
+																		"second-value": "0"
+																	}
+																}
+															],
+															"actions": [],
+															"sid": 400413514740425,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 293541835506858,
+																			"parameters": {
+																				"instance-variable": "id",
+																				"comparison": 0,
+																				"value": "2"
+																			}
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 188761261333602,
+																			"parameters": {
+																				"instance-variable": "id",
+																				"comparison": 0,
+																				"value": "3"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-opacity",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 291289918051609,
+																			"parameters": {
+																				"opacity": "50"
+																			}
+																		}
+																	],
+																	"sid": 943265837707805,
+																	"isOrBlock": true
+																}
+															]
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-two-values",
+																	"objectClass": "System",
+																	"sid": 991015743523601,
+																	"parameters": {
+																		"first-value": "Parts.At(Parts.IndexOf(CREATOR_page), 4)",
+																		"comparison": 3,
+																		"second-value": "0"
+																	}
+																}
+															],
+															"actions": [],
+															"sid": 121231455161941,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 416776111633642,
+																			"parameters": {
+																				"instance-variable": "id",
+																				"comparison": 0,
+																				"value": "4"
+																			}
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 188700219392418,
+																			"parameters": {
+																				"instance-variable": "id",
+																				"comparison": 0,
+																				"value": "5"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-opacity",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 308054731945606,
+																			"parameters": {
+																				"opacity": "50"
+																			}
+																		}
+																	],
+																	"sid": 466500112004398,
+																	"isOrBlock": true
+																}
+															]
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-two-values",
+																	"objectClass": "System",
+																	"sid": 468693390954972,
+																	"parameters": {
+																		"first-value": "Parts.At(Parts.IndexOf(CREATOR_page), 5)",
+																		"comparison": 3,
+																		"second-value": "0"
+																	}
+																}
+															],
+															"actions": [],
+															"sid": 938717377887297,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 620934429429829,
+																			"parameters": {
+																				"instance-variable": "id",
+																				"comparison": 0,
+																				"value": "6"
+																			}
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 962408710075321,
+																			"parameters": {
+																				"instance-variable": "id",
+																				"comparison": 0,
+																				"value": "7"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-opacity",
+																			"objectClass": "CreatorPartButton",
+																			"sid": 424052831790880,
+																			"parameters": {
+																				"opacity": "50"
+																			}
+																		}
+																	],
+																	"sid": 809278889184349,
+																	"isOrBlock": true
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"callFunction": "updateCreatorMenu",
+											"sid": 776181957650565,
+											"parameters": [
+												"CREATOR_page"
+											]
+										}
+									],
+									"sid": 386759841543789
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Pagination"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 511432057446809,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "CreatorPageButton"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 456365105963149,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-animation-playing",
+											"objectClass": "CreatorPageButton",
+											"sid": 467433156580416,
+											"parameters": {
+												"animation": "\"left\""
+											}
+										},
+										{
+											"id": "compare-opacity",
+											"objectClass": "CreatorPageButton",
+											"sid": 396161240931028,
+											"parameters": {
+												"comparison": 2,
+												"opacity": "100"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "subtract-from-eventvar",
+											"objectClass": "System",
+											"sid": 743761718450509,
+											"parameters": {
+												"variable": "CREATOR_offset",
+												"value": "1"
+											}
+										}
+									],
+									"sid": 700583673459241
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-animation-playing",
+											"objectClass": "CreatorPageButton",
+											"sid": 147332016390181,
+											"parameters": {
+												"animation": "\"right\""
+											}
+										},
+										{
+											"id": "compare-opacity",
+											"objectClass": "CreatorPageButton",
+											"sid": 210390756897187,
+											"parameters": {
+												"comparison": 2,
+												"opacity": "100"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 728540636592510,
+											"parameters": {
+												"variable": "CREATOR_offset",
+												"value": "1"
+											}
+										}
+									],
+									"sid": 260722098494905
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"callFunction": "updateCreatorMenu",
+											"sid": 857554525499930,
+											"parameters": [
+												"CREATOR_page"
+											]
+										}
+									],
+									"sid": 934077360450731
+								}
+							]
+						}
+					],
+					"sid": 299458122543291
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Creator - Navigation (Parts)",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"functionName": "updateCreatorMenu",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "id",
+									"type": "string",
+									"initialValue": "head",
+									"comment": "",
+									"sid": 119823490537914
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "CharacterPart",
+									"sid": 825447327023182,
+									"parameters": {
+										"animation": "id",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 356062902679406,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Reset all created elements"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 727306119547450,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 5,
+												"value": "-1"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 878482442834272,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"part\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "CreatorPartButton",
+											"sid": 283051263042149
+										}
+									],
+									"sid": 499827908189054
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 748909573026881,
+											"parameters": {
+												"variable": "CREATOR_page",
+												"comparison": 1,
+												"value": "\"metadata\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "populateCreatorMenu",
+											"sid": 274912506326814,
+											"parameters": [
+												"id",
+												"CREATOR_page = \"head\" ? CharacterHead.AnimationFrameCount : CharacterPart.AnimationFrameCount"
+											]
+										}
+									],
+									"sid": 191070685794740
+								}
+							]
+						},
+						{
+							"functionName": "populateCreatorMenu",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
+								{
+									"name": "id",
+									"type": "string",
+									"initialValue": "",
+									"comment": "",
+									"sid": 450738326917059
+								},
+								{
+									"name": "total",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"sid": 219960644416299
+								}
+							],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 452525405467700,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "start",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 937525581013848
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 119295262702995,
+											"parameters": {
+												"variable": "CREATOR_properties"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Optional parts get an additional blank option, that removes them"
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 571276651135038,
+											"parameters": {
+												"variable": "start",
+												"value": "Parts.At(Parts.IndexOf(CREATOR_page), 7)"
+											}
+										},
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 700495949429196,
+											"parameters": {
+												"variable": "total",
+												"value": "abs(start)"
+											}
+										}
+									],
+									"sid": 919037436370044,
+									"children": [
+										{
+											"eventType": "variable",
+											"name": "created",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "",
+											"isStatic": false,
+											"isConstant": false,
+											"sid": 647859886636792
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 683710289276162,
+													"parameters": {
+														"name": "\"i\"",
+														"start-index": "start+CREATOR_offset*CREATOR_maxPerPage",
+														"end-index": "min((CREATOR_offset*CREATOR_maxPerPage)+CREATOR_maxPerPage-1, total-1)+start"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 332626875389493,
+													"parameters": {
+														"object-to-create": "CreatorPartButton",
+														"layer": "\"Parts\"",
+														"x": "156+CreatorPartButton.Width/2+(CreatorPartButton.Width+4)*(created%4)",
+														"y": "96+CreatorPartButton.Height/2+(CreatorPartButton.Height+4)*floor(created/4)",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "CreatorPartButton",
+													"sid": 474821814029575,
+													"parameters": {
+														"instance-variable": "id",
+														"value": "loopindex"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "CreatorPartButton",
+													"sid": 876936001058981,
+													"parameters": {
+														"instance-variable": "type",
+														"value": "\"part\""
+													}
+												},
+												{
+													"id": "add-to-eventvar",
+													"objectClass": "System",
+													"sid": 507924650871897,
+													"parameters": {
+														"variable": "created",
+														"value": "1"
+													}
+												}
+											],
+											"sid": 501466120001506,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 581173589890461,
+															"parameters": {
+																"variable": "id",
+																"comparison": 0,
+																"value": "\"head\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 404940447158934,
+															"parameters": {
+																"object-to-create": "CharacterHead",
+																"layer": "\"Parts\"",
+																"x": "CreatorPartButton.X",
+																"y": "CreatorPartButton.Y",
+																"create-hierarchy": false,
+																"template-name": "\"\""
+															}
+														},
+														{
+															"id": "add-child",
+															"objectClass": "CreatorPartButton",
+															"sid": 717300174421010,
+															"parameters": {
+																"child": "CharacterHead",
+																"transform-x": false,
+																"transform-y": false,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-o": false,
+																"transform-z-elevation": false,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "stop-animation",
+															"objectClass": "CharacterHead",
+															"sid": 835999099720089
+														},
+														{
+															"id": "set-animation-frame",
+															"objectClass": "CharacterHead",
+															"sid": 392982981184828,
+															"parameters": {
+																"frame-number": "CreatorPartButton.id"
+															}
+														},
+														{
+															"id": "set-size",
+															"objectClass": "CharacterHead",
+															"sid": 303153975526812,
+															"parameters": {
+																"width": "(Self.Width <= 32 & Self.Height <= 32) ? Self.Width : Self.Width * min(32 / Self.Width, 32 / Self.Height)",
+																"height": "(Self.Width <= 32 & Self.Height <= 32) ? Self.Height: Self.Height* min(32 / Self.Width, 32 / Self.Height)"
+															}
+														}
+													],
+													"sid": 940301941969851
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 195140732265113
+														},
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 352101057632851,
+															"parameters": {
+																"first-value": "loopindex",
+																"comparison": 4,
+																"second-value": "-1"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 282335968958848,
+															"parameters": {
+																"object-to-create": "CharacterPart",
+																"layer": "\"Parts\"",
+																"x": "CreatorPartButton.X",
+																"y": "CreatorPartButton.Y",
+																"create-hierarchy": false,
+																"template-name": "\"\""
+															}
+														},
+														{
+															"id": "add-child",
+															"objectClass": "CreatorPartButton",
+															"sid": 395705917653825,
+															"parameters": {
+																"child": "CharacterPart",
+																"transform-x": false,
+																"transform-y": false,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-o": false,
+																"transform-z-elevation": false,
+																"transform-visibility": false,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-animation",
+															"objectClass": "CharacterPart",
+															"sid": 530863745259035,
+															"parameters": {
+																"animation": "CREATOR_page",
+																"from": "beginning"
+															}
+														},
+														{
+															"id": "stop-animation",
+															"objectClass": "CharacterPart",
+															"sid": 645568562732778
+														},
+														{
+															"id": "set-animation-frame",
+															"objectClass": "CharacterPart",
+															"sid": 973610321399326,
+															"parameters": {
+																"frame-number": "CreatorPartButton.id"
+															}
+														},
+														{
+															"id": "set-size",
+															"objectClass": "CharacterPart",
+															"sid": 240400647428034,
+															"parameters": {
+																"width": "(Self.Width <= 32 & Self.Height <= 32) ? Self.Width : Self.Width * min(32 / Self.Width, 32 / Self.Height)\n",
+																"height": "(Self.Width <= 32 & Self.Height <= 32) ? Self.Height: Self.Height* min(32 / Self.Width, 32 / Self.Height)\n"
+															}
+														}
+													],
+													"sid": 371498925614599
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "group",
+									"disabled": false,
+									"title": "Creator - Navigation (Pagination)",
+									"description": "",
+									"isActiveOnStart": true,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "Page names"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Text",
+													"sid": 167830595716116,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"title\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-text",
+													"objectClass": "Text",
+													"sid": 933872736840096,
+													"parameters": {
+														"text": "Parts.At(Parts.IndexOf(CREATOR_page), 6)"
+													}
+												}
+											],
+											"sid": 304271057363563,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 995024579614243,
+															"parameters": {
+																"variable": "CREATOR_properties"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "append-text",
+															"objectClass": "Text",
+															"sid": 364346696485769,
+															"parameters": {
+																"text": "newline&\"(\"&total&\" Parts)\""
+															}
+														}
+													],
+													"sid": 142602881709061
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 916958573080702
+														}
+													],
+													"actions": [
+														{
+															"id": "append-text",
+															"objectClass": "Text",
+															"sid": 473521267490796,
+															"parameters": {
+																"text": "newline&\"(Properties)\""
+															}
+														}
+													],
+													"sid": 431912306562879
+												}
+											]
+										},
+										{
+											"eventType": "comment",
+											"text": "Update pagination"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Text",
+													"sid": 846348928479290,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"page\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-text",
+													"objectClass": "Text",
+													"sid": 479391292855757,
+													"parameters": {
+														"text": "\"Page \"&CREATOR_offset+1&\" of \"&ceil(total/12)"
+													}
+												}
+											],
+											"sid": 959070936158432
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-animation-playing",
+													"objectClass": "CreatorPageButton",
+													"sid": 696097937074395,
+													"parameters": {
+														"animation": "\"left\""
+													}
+												}
+											],
+											"actions": [],
+											"sid": 835982608839781,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 157815662242350,
+															"parameters": {
+																"variable": "CREATOR_offset",
+																"comparison": 4,
+																"value": "0"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-opacity",
+															"objectClass": "CreatorPageButton",
+															"sid": 314749041182951,
+															"parameters": {
+																"opacity": "100"
+															}
+														}
+													],
+													"sid": 650292767891513
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 824843646196539
+														}
+													],
+													"actions": [
+														{
+															"id": "set-opacity",
+															"objectClass": "CreatorPageButton",
+															"sid": 827413212862506,
+															"parameters": {
+																"opacity": "50"
+															}
+														}
+													],
+													"sid": 629536208525654
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-animation-playing",
+													"objectClass": "CreatorPageButton",
+													"sid": 275402658241883,
+													"parameters": {
+														"animation": "\"right\""
+													}
+												}
+											],
+											"actions": [],
+											"sid": 865789428011972,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 748643439912753,
+															"parameters": {
+																"variable": "CREATOR_offset",
+																"comparison": 2,
+																"value": "ceil(total/12)-1"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-opacity",
+															"objectClass": "CreatorPageButton",
+															"sid": 447130442534766,
+															"parameters": {
+																"opacity": "100"
+															}
+														}
+													],
+													"sid": 624120960683726
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 582601957440674
+														}
+													],
+													"actions": [
+														{
+															"id": "set-opacity",
+															"objectClass": "CreatorPageButton",
+															"sid": 512444453583729,
+															"parameters": {
+																"opacity": "50"
+															}
+														}
+													],
+													"sid": 604844866801960
+												}
+											]
+										}
+									],
+									"sid": 508175562384621
+								}
+							]
+						}
+					],
+					"sid": 612402056007660
+				}
+			],
+			"sid": 236042144896433
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Creator - Manipulation",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 237747497617026,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "CreatorPartButton"
+							}
+						},
+						{
+							"id": "compare-opacity",
+							"objectClass": "CreatorPartButton",
+							"sid": 789908348386157,
+							"parameters": {
+								"comparison": 5,
+								"opacity": "100"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 835524056857381,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "CreatorPartButton",
+									"sid": 151621210017915,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"part\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 828794008109964,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Delete an optional part"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 653045378781903,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 2,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "delete-key",
+											"objectClass": "JSON",
+											"sid": 359101024656886,
+											"parameters": {
+												"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_page), 1)&\".\"&CREATOR_page"
+											}
+										}
+									],
+									"sid": 290391395426373
+								},
+								{
+									"eventType": "comment",
+									"text": "Update part asset ID"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 407051625358448
+										}
+									],
+									"actions": [
+										{
+											"id": "set-value",
+											"objectClass": "JSON",
+											"sid": 722787791796866,
+											"parameters": {
+												"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_page), 1)&\".\"&CREATOR_page&\".asset_id\"",
+												"value": "CreatorPartButton.id"
+											}
+										}
+									],
+									"sid": 492250744429072
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "CreatorPartButton",
+									"sid": 638480596018305,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"property\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 874366369671854,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Move left"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 884937351525888,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 622085055522394,
+											"parameters": [
+												"CREATOR_page",
+												"\"offset_x\"",
+												"clamp(Functions.getValue(CREATOR_page, \"offset_x\")-0.1, -1, 1)"
+											]
+										}
+									],
+									"sid": 306766805929281
+								},
+								{
+									"eventType": "comment",
+									"text": "Move right"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 195391318877956,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 973026700963834,
+											"parameters": [
+												"CREATOR_page",
+												"\"offset_x\"",
+												"clamp(Functions.getValue(CREATOR_page, \"offset_x\")+0.1, -1, 1)"
+											]
+										}
+									],
+									"sid": 864645572348597
+								},
+								{
+									"eventType": "comment",
+									"text": "Move up"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 321155509212917,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "2"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 875577246811088,
+											"parameters": [
+												"CREATOR_page",
+												"\"offset_y\"",
+												"clamp(Functions.getValue(CREATOR_page, \"offset_y\")-0.1, -1, 1)"
+											]
+										}
+									],
+									"sid": 913509739613154
+								},
+								{
+									"eventType": "comment",
+									"text": "Move down"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 627538409111524,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "3"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 807663225714265,
+											"parameters": [
+												"CREATOR_page",
+												"\"offset_y\"",
+												"clamp(Functions.getValue(CREATOR_page, \"offset_y\")+0.1, -1, 1)"
+											]
+										}
+									],
+									"sid": 588432293281794
+								},
+								{
+									"eventType": "comment",
+									"text": "Shrink"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 230932487656562,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "4"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 115217321596958,
+											"parameters": [
+												"CREATOR_page",
+												"\"scale\"",
+												"clamp(Functions.getValue(CREATOR_page, \"scale\")-0.1, 0.5, 1.5)"
+											]
+										}
+									],
+									"sid": 617958845843744
+								},
+								{
+									"eventType": "comment",
+									"text": "Grow"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 372484482584343,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "5"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 858682566345285,
+											"parameters": [
+												"CREATOR_page",
+												"\"scale\"",
+												"clamp(Functions.getValue(CREATOR_page, \"scale\")+0.1, 0.5, 1.5)"
+											]
+										}
+									],
+									"sid": 869512067093941
+								},
+								{
+									"eventType": "comment",
+									"text": "Rotate left"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 528365685608458,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "6"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 387190111255493,
+											"parameters": [
+												"CREATOR_page",
+												"\"rotation\"",
+												"clamp(Functions.getValue(CREATOR_page, \"rotation\")-5, -Parts.At(Parts.IndexOf(CREATOR_page), 5), Parts.At(Parts.IndexOf(CREATOR_page), 5))"
+											]
+										}
+									],
+									"sid": 577495564770103
+								},
+								{
+									"eventType": "comment",
+									"text": "Rotate right"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPartButton",
+											"sid": 997549781067038,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "7"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 777057671290891,
+											"parameters": [
+												"CREATOR_page",
+												"\"rotation\"",
+												"clamp(Functions.getValue(CREATOR_page, \"rotation\")+5, -Parts.At(Parts.IndexOf(CREATOR_page), 5), Parts.At(Parts.IndexOf(CREATOR_page), 5))"
+											]
+										}
+									],
+									"sid": 549333451126464
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "CharacterCanvas",
+									"sid": 442025526484584
+								},
+								{
+									"callFunction": "createCharacter",
+									"sid": 551866127848837,
+									"parameters": [
+										"JSON.ToCompactString",
+										"76",
+										"152",
+										"1"
+									]
+								}
+							],
+							"sid": 371719695685632
+						}
+					]
+				}
+			],
+			"sid": 235943538340540
 		}
 	],
 	"sid": 247199195301411
