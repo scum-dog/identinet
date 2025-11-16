@@ -12,11 +12,11 @@
     },
     "static": {
       "head": {
-        "asset_id": 1,
+        "asset_id": 0,
         "skin_color": "medium"
       },
       "hair": {
-        "asset_id": 0,
+        "asset_id": 1,
         "hair_color": "red"
       },
       "beard": {

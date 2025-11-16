@@ -14,12 +14,7 @@
 		}
 	],
 	"behaviorTypes": [],
-	"effectTypes": [
-		{
-			"effectId": "brightness",
-			"name": "Brightness"
-		}
-	],
+	"effectTypes": [],
 	"animations": {
 		"items": [
 			{
@@ -33,14 +28,39 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 1806296,
+						"imageSpriteId": 2384491,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
 				"sid": 725859527932319,
-				"name": "Animation 1",
+				"name": "default",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 24,
+						"height": 24,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7997408,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 406077649477291,
+				"name": "selected",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,

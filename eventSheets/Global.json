@@ -866,10 +866,10 @@
 						{
 							"id": "set-value",
 							"objectClass": "JSON",
-							"sid": 524061891251863,
+							"sid": 462407105658300,
 							"parameters": {
 								"path": "\"character_data.\"&Parts.At(Parts.IndexOf(part), 1)&\".\"&part&\".\"&parameter",
-								"value": "value"
+								"value": "round(value*10)/10"
 							}
 						}
 					],
