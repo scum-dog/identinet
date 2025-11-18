@@ -4,11 +4,7 @@ export interface CharacterPersonalInfo {
   date_of_birth: string;
   height_in: number;
   weight_lb: number;
-  location: {
-    country: string;
-    region?: string;
-    city?: string;
-  };
+  location: string;
 }
 
 export interface CharacterStatic {
@@ -187,7 +183,6 @@ export interface PlazaResponse {
   count: number;
   filters: {
     country?: string;
-    region?: string;
   };
 }
 
@@ -246,7 +241,6 @@ export interface RequestOptions {
 
 export interface PlazaFilters {
   country?: string;
-  region?: string;
   limit?: number;
 }
 

@@ -62,11 +62,11 @@ export {
   hasCharacter,
   canEditCharacter,
   getCharactersByCountry,
-  getCharactersByRegion,
   getRandomCharacters,
-  getCharacterLocation,
   validateCharacterData,
 } from "./characters.js";
+
+export { isValidCountry, COUNTRIES } from "./base/constants.js";
 
 export {
   listAllCharacters,

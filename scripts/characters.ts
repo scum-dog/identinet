@@ -6,6 +6,7 @@ import {
   PlazaFilters,
   ApiResponse,
 } from "./base/types.js";
+import { isValidCountry } from "./base/constants.js";
 
 /**
  * get the current user's character data
@@ -63,10 +64,6 @@ export async function getPlazaCharacters(
       params.append("country", filters.country);
     }
 
-    if (filters.region) {
-      params.append("region", filters.region);
-    }
-
     if (filters.limit) {
       params.append("limit", filters.limit.toString());
     }
@@ -119,20 +116,6 @@ export async function getCharactersByCountry(
 }
 
 /**
- * get plaza characters by region filter
- * @param country - country code or name
- * @param region - region/state within country
- * @param limit - maximum number of characters to return (default 100)
- */
-export async function getCharactersByRegion(
-  country: string,
-  region: string,
-  limit: number = 100,
-): Promise<ApiResponse<PlazaResponse>> {
-  return getPlazaCharacters({ country, region, limit });
-}
-
-/**
  * get random plaza characters
  * @param limit - max number of characters to return (default 100)
  */
@@ -140,19 +123,6 @@ export async function getRandomCharacters(
   limit: number = 100,
 ): Promise<ApiResponse<PlazaResponse>> {
   return getPlazaCharacters({ limit });
-}
-
-/**
- * extract location info from character data
- * @param characterData - character data structure
- * @returns formatted location object
- */
-export function getCharacterLocation(characterData: CharacterDataStructure): {
-  country?: string;
-  region?: string;
-  city?: string;
-} {
-  return characterData.info.location || {};
 }
 
 /**
@@ -185,8 +155,10 @@ export function validateCharacterData(characterData: any): {
     if (!characterData.info.sex) {
       errors.push("Character sex is required");
     }
-    if (!characterData.info.location?.country) {
+    if (!characterData.info.location) {
       errors.push("Character country is required");
+    } else if (!isValidCountry(characterData.info.location)) {
+      errors.push("Invalid country selected");
     }
   }
 
