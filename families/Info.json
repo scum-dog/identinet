@@ -1,0 +1,21 @@
+{
+	"name": "Info",
+	"plugin-id": "Arr",
+	"sid": 897162578121479,
+	"instanceVariables": [
+		{
+			"name": "type",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 356332298042561
+		}
+	],
+	"members": [
+		"Ethnicities",
+		"EyeColors",
+		"HairColors",
+		"Races",
+		"Sexes"
+	]
+}

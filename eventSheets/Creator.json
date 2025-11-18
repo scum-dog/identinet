@@ -245,6 +245,16 @@
 								"comparison": 0,
 								"value": "CREATOR_part"
 							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "CreatorNavButton",
+							"sid": 676673991049991,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "CREATOR_menu"
+							}
 						}
 					],
 					"actions": [
@@ -258,7 +268,162 @@
 							}
 						}
 					],
-					"sid": 792082954122688
+					"sid": 792082954122688,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "CreatorNavButton",
+							"sid": 586962396812751,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"properties\""
+							}
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "CreatorNavButton",
+							"sid": 653827003664808,
+							"parameters": {
+								"child": "CreatorNavIcon",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 793042599534308,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 858206356591319,
+									"parameters": {
+										"variable": "CREATOR_menu",
+										"comparison": 0,
+										"value": "\"properties\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "CreatorNavIcon",
+									"sid": 455653578524901,
+									"parameters": {
+										"animation": "\"arrow_left\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 929174835357183
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 823457217802721
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "CreatorNavIcon",
+									"sid": 413266826267053,
+									"parameters": {
+										"animation": "\"properties\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 434995857195468
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "CreatorNavButton",
+							"sid": 979188471327421,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"biographic\""
+							}
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "CreatorNavButton",
+							"sid": 475910902249773,
+							"parameters": {
+								"child": "CreatorNavIcon",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 739059618175474,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 655900521564621,
+									"parameters": {
+										"variable": "CREATOR_menu",
+										"comparison": 0,
+										"value": "\"biographic\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "CreatorNavIcon",
+									"sid": 275823191785775,
+									"parameters": {
+										"animation": "\"arrow_left\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 703196819749870
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 586187258080282
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "CreatorNavIcon",
+									"sid": 550248948019235,
+									"parameters": {
+										"animation": "\"info\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 230356770714146
+						}
+					]
 				},
 				{
 					"eventType": "comment",
@@ -531,7 +696,7 @@
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "Info"
+							"text": "Physical"
 						},
 						{
 							"eventType": "block",
@@ -539,16 +704,52 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "CreatorNavButton",
-									"sid": 584552869263922,
+									"sid": 783742012628302,
 									"parameters": {
 										"instance-variable": "id",
 										"comparison": 0,
-										"value": "\"info\""
+										"value": "\"physical\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 145190002025478,
+									"parameters": {
+										"variable": "CREATOR_menu",
+										"value": "\"physical\""
+									}
+								}
+							],
+							"sid": 991293790099025
+						},
+						{
+							"eventType": "comment",
+							"text": "Biographic"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 517672668805982
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "CreatorNavButton",
+									"sid": 834219183666385,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"biographic\""
 									}
 								}
 							],
 							"actions": [],
-							"sid": 991293790099025,
+							"sid": 195746536623366,
 							"children": [
 								{
 									"eventType": "block",
@@ -556,11 +757,11 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 839358585461979,
+											"sid": 830034542408075,
 											"parameters": {
 												"variable": "CREATOR_menu",
 												"comparison": 1,
-												"value": "\"info\""
+												"value": "\"biographic\""
 											}
 										}
 									],
@@ -568,14 +769,14 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 866942758122961,
+											"sid": 144526440559009,
 											"parameters": {
 												"variable": "CREATOR_menu",
-												"value": "\"info\""
+												"value": "\"biographic\""
 											}
 										}
 									],
-									"sid": 346912073016176
+									"sid": 940904730426817
 								},
 								{
 									"eventType": "block",
@@ -583,21 +784,21 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 932057792441709
+											"sid": 246098356809670
 										}
 									],
 									"actions": [
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 605694862871241,
+											"sid": 865931509683133,
 											"parameters": {
 												"variable": "CREATOR_menu",
 												"value": "\"parts\""
 											}
 										}
 									],
-									"sid": 111752252969155
+									"sid": 132246638818260
 								}
 							]
 						},
@@ -924,6 +1125,148 @@
 									"sid": 716654946573423
 								},
 								{
+									"eventType": "comment",
+									"text": "Toggle various menus"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 280090285600120,
+											"parameters": {
+												"variable": "CREATOR_menu",
+												"comparison": 0,
+												"value": "\"biographic\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 778984691416895,
+											"parameters": {
+												"variable": "CREATOR_menu",
+												"comparison": 0,
+												"value": "\"physical\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "toggleLayer",
+											"sid": 325584056043535,
+											"parameters": [
+												"\"Character\"",
+												false
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 557690196587665,
+											"parameters": [
+												"\"Parts\"",
+												false
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 804826056363288,
+											"parameters": [
+												"\"Page\"",
+												false
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 140924145838165,
+											"parameters": [
+												"\"Properties\"",
+												false
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 735314446630090,
+											"parameters": [
+												"\"Info\"",
+												true
+											]
+										}
+									],
+									"sid": 731848083937607,
+									"isOrBlock": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 577876286278883
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "toggleLayer",
+											"sid": 439042072528996,
+											"parameters": [
+												"\"Character\"",
+												true
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 737775235795041,
+											"parameters": [
+												"\"Parts\"",
+												true
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 311534625298776,
+											"parameters": [
+												"\"Page\"",
+												true
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 971156509546946,
+											"parameters": [
+												"\"Properties\"",
+												true
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 301910984476314,
+											"parameters": [
+												"\"Info\"",
+												false
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 364014946734897,
+											"parameters": [
+												"\"Biographic\"",
+												false
+											]
+										},
+										{
+											"callFunction": "toggleLayer",
+											"sid": 758340654799111,
+											"parameters": [
+												"\"Physical\"",
+												false
+											]
+										}
+									],
+									"sid": 809783573859857
+								},
+								{
 									"eventType": "group",
 									"disabled": false,
 									"title": "Creator - Navigation (Parts)",
@@ -967,22 +1310,6 @@
 													"parameters": [
 														"\"Properties\"",
 														false
-													]
-												},
-												{
-													"callFunction": "toggleLayer",
-													"sid": 579244911403946,
-													"parameters": [
-														"\"Info\"",
-														false
-													]
-												},
-												{
-													"callFunction": "toggleLayer",
-													"sid": 999495488885182,
-													"parameters": [
-														"\"Character\"",
-														true
 													]
 												}
 											],
@@ -1535,7 +1862,7 @@
 								{
 									"eventType": "group",
 									"disabled": false,
-									"title": "Creator - Navigation (Info)",
+									"title": "Creator - Navigation (Biographic)",
 									"description": "",
 									"isActiveOnStart": true,
 									"children": [
@@ -1545,60 +1872,524 @@
 												{
 													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 911070158743500,
+													"sid": 302756230188879,
 													"parameters": {
 														"variable": "CREATOR_menu",
 														"comparison": 0,
-														"value": "\"info\""
+														"value": "\"biographic\""
 													}
 												}
 											],
 											"actions": [
 												{
 													"callFunction": "toggleLayer",
-													"sid": 184710572552772,
+													"sid": 428126915732531,
 													"parameters": [
-														"\"Parts\"",
-														false
-													]
-												},
-												{
-													"callFunction": "toggleLayer",
-													"sid": 638570686425006,
-													"parameters": [
-														"\"Page\"",
-														false
-													]
-												},
-												{
-													"callFunction": "toggleLayer",
-													"sid": 948860603332152,
-													"parameters": [
-														"\"Properties\"",
-														false
-													]
-												},
-												{
-													"callFunction": "toggleLayer",
-													"sid": 533859175056051,
-													"parameters": [
-														"\"Info\"",
+														"\"Biographic\"",
 														true
 													]
 												},
 												{
 													"callFunction": "toggleLayer",
-													"sid": 524174767852491,
+													"sid": 819954503776252,
 													"parameters": [
-														"\"Character\"",
+														"\"Physical\"",
 														false
 													]
 												}
 											],
-											"sid": 128826795431614
+											"sid": 128826795431614,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "Text",
+															"sid": 683572528710027,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"title\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-text",
+															"objectClass": "Text",
+															"sid": 507634088558419,
+															"parameters": {
+																"text": "\"Information\"&newline&\"(Biographic)\""
+															}
+														}
+													],
+													"sid": 240650756964811
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "TextInput2",
+															"sid": 723834971938386,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"name\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-text",
+															"objectClass": "TextInput2",
+															"sid": 369999725614859,
+															"parameters": {
+																"text": "JSON.Get(\"character_data.info.name\")"
+															}
+														}
+													],
+													"sid": 426075122806162
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "TextInput2",
+															"sid": 723125906969351,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"month\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-text",
+															"objectClass": "TextInput2",
+															"sid": 488793698350141,
+															"parameters": {
+																"text": "Date.GetMonth(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))+1"
+															}
+														}
+													],
+													"sid": 798439867927616
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "TextInput2",
+															"sid": 580185750116115,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"day\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-text",
+															"objectClass": "TextInput2",
+															"sid": 958123272943950,
+															"parameters": {
+																"text": "Date.GetDate(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))+1"
+															}
+														},
+														{
+															"id": "alert",
+															"objectClass": "Browser",
+															"sid": 118318079154366,
+															"disabled": true,
+															"parameters": {
+																"message": "Date.GetUTCDate(Date.Get(2024, 2, 0, 0, 0, 0, 0))\n"
+															}
+														}
+													],
+													"sid": 364536222608448
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "TextInput2",
+															"sid": 262179978139828,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"year\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-text",
+															"objectClass": "TextInput2",
+															"sid": 923513128681183,
+															"parameters": {
+																"text": "Date.GetYear(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))"
+															}
+														}
+													],
+													"sid": 860334916129107
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "List",
+															"sid": 876431598284345,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"sex\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "refreshInfo",
+															"sid": 114254474600332,
+															"parameters": [
+																"\"sex\""
+															]
+														},
+														{
+															"id": "set-selection",
+															"objectClass": "List",
+															"sid": 629488663920626,
+															"parameters": {
+																"index": "Sexes.IndexOf(JSON.Get(\"character_data.info.sex\"))"
+															}
+														}
+													],
+													"sid": 330638059922960
+												}
+											]
 										}
 									],
 									"sid": 627496059094262
+								},
+								{
+									"eventType": "group",
+									"disabled": false,
+									"title": "Creator - Navigation (Physical)",
+									"description": "",
+									"isActiveOnStart": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 455295842594972,
+													"parameters": {
+														"variable": "CREATOR_menu",
+														"comparison": 0,
+														"value": "\"physical\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "toggleLayer",
+													"sid": 734890011716600,
+													"parameters": [
+														"\"Biographic\"",
+														false
+													]
+												},
+												{
+													"callFunction": "toggleLayer",
+													"sid": 844244899161670,
+													"parameters": [
+														"\"Physical\"",
+														true
+													]
+												}
+											],
+											"sid": 246826336211430,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "Text",
+															"sid": 701831297256817,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"title\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-text",
+															"objectClass": "Text",
+															"sid": 411834176736015,
+															"parameters": {
+																"text": "\"Information\"&newline&\"(Physical)\""
+															}
+														}
+													],
+													"sid": 635168669552070
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "List",
+															"sid": 858075495461747,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"race#1\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "refreshInfo",
+															"sid": 441571049297621,
+															"parameters": [
+																"\"race#1\""
+															]
+														},
+														{
+															"id": "set-selection",
+															"objectClass": "List",
+															"sid": 362343304369057,
+															"parameters": {
+																"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.0\"))"
+															}
+														},
+														{
+															"id": "remove",
+															"objectClass": "List",
+															"sid": 641129383752783,
+															"parameters": {
+																"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.1\"))"
+															}
+														}
+													],
+													"sid": 573017284891033
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "List",
+															"sid": 166960834486892,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"race#2\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "refreshInfo",
+															"sid": 727562182478295,
+															"parameters": [
+																"\"race#2\""
+															]
+														},
+														{
+															"id": "add-item-at",
+															"objectClass": "List",
+															"sid": 934065409048437,
+															"parameters": {
+																"index": "0",
+																"text": "\"N/A\""
+															}
+														},
+														{
+															"id": "set-selection",
+															"objectClass": "List",
+															"sid": 670645736356559,
+															"parameters": {
+																"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.1\"))+1"
+															}
+														},
+														{
+															"id": "remove",
+															"objectClass": "List",
+															"sid": 265761811769447,
+															"parameters": {
+																"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.0\"))+1"
+															}
+														}
+													],
+													"sid": 626763400495321
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "List",
+															"sid": 118140389581256,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"ethnicity\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "refreshInfo",
+															"sid": 161283178651648,
+															"parameters": [
+																"\"ethnicity\""
+															]
+														},
+														{
+															"id": "set-selection",
+															"objectClass": "List",
+															"sid": 686793517324916,
+															"parameters": {
+																"index": "Ethnicities.IndexOf(JSON.Get(\"character_data.info.ethnicity\"))"
+															}
+														}
+													],
+													"sid": 799544082947417
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "TextInput2",
+															"sid": 537510176442458,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"height\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-text",
+															"objectClass": "TextInput2",
+															"sid": 792296892458683,
+															"parameters": {
+																"text": "JSON.Get(\"character_data.info.height_in\")"
+															}
+														}
+													],
+													"sid": 821958264962963
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "TextInput2",
+															"sid": 775589952192915,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"weight\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-text",
+															"objectClass": "TextInput2",
+															"sid": 932977658394145,
+															"parameters": {
+																"text": "JSON.Get(\"character_data.info.weight_lb\")"
+															}
+														}
+													],
+													"sid": 464131096408886
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "List",
+															"sid": 665328878392624,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"eye_color\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "refreshInfo",
+															"sid": 544166685640201,
+															"parameters": [
+																"\"eye_color\""
+															]
+														},
+														{
+															"id": "set-selection",
+															"objectClass": "List",
+															"sid": 483885216279349,
+															"parameters": {
+																"index": "EyeColors.IndexOf(JSON.Get(\"character_data.info.eye_color\"))"
+															}
+														}
+													],
+													"sid": 980471261009559
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "List",
+															"sid": 165148006696935,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"hair_color\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "refreshInfo",
+															"sid": 614157638521813,
+															"parameters": [
+																"\"hair_color\""
+															]
+														},
+														{
+															"id": "set-selection",
+															"objectClass": "List",
+															"sid": 801470525315818,
+															"parameters": {
+																"index": "HairColors.IndexOf(JSON.Get(\"character_data.info.hair_color\"))"
+															}
+														}
+													],
+													"sid": 321303291998202
+												}
+											]
+										}
+									],
+									"sid": 437475187164238
 								}
 							]
 						},
@@ -2264,6 +3055,92 @@
 								}
 							],
 							"sid": 187627809387179
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "Refresh info"
+				},
+				{
+					"functionName": "refreshInfo",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "type",
+							"type": "string",
+							"initialValue": "sex",
+							"comment": "",
+							"sid": 941802372517327
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 817227988760752,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "List",
+									"sid": 428845636519737,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "type"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "clear",
+									"objectClass": "List",
+									"sid": 588994054705846
+								}
+							],
+							"sid": 936763463569541,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Info",
+											"sid": 189991316835301,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "tokenat(type, 0, \"#\")"
+											}
+										},
+										{
+											"id": "for-each-element",
+											"objectClass": "Info",
+											"sid": 366666168663981,
+											"parameters": {
+												"axes": "x"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "add-item",
+											"objectClass": "List",
+											"sid": 433258555253482,
+											"parameters": {
+												"text": "Info.At(Info.CurX, 1)"
+											}
+										}
+									],
+									"sid": 958902119051960
+								}
+							]
 						}
 					]
 				}

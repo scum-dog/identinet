@@ -58,6 +58,56 @@
 			"sid": 598680214337881
 		},
 		{
+			"eventType": "variable",
+			"name": "LOAD_sexes",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are sexes loaded?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 835969294332132
+		},
+		{
+			"eventType": "variable",
+			"name": "LOAD_races",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are races loaded?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 189855118909528
+		},
+		{
+			"eventType": "variable",
+			"name": "LOAD_ethnicities",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are ethnicities loaded?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 133272725581331
+		},
+		{
+			"eventType": "variable",
+			"name": "LOAD_eye_colors",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are eye colors loaded?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 243214844638707
+		},
+		{
+			"eventType": "variable",
+			"name": "LOAD_hair_colors",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are hair colors loaded?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 460657613610345
+		},
+		{
 			"eventType": "comment",
 			"text": "Settings"
 		},
@@ -141,6 +191,51 @@
 							"parameters": {
 								"tag": "\"parts\"",
 								"file": "parts.json"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 979865291564138,
+							"parameters": {
+								"tag": "\"sexes\"",
+								"file": "sexes.json"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 591315807941256,
+							"parameters": {
+								"tag": "\"races\"",
+								"file": "races.json"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 924171500837348,
+							"parameters": {
+								"tag": "\"ethnicities\"",
+								"file": "ethnicities.json"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 373322275948110,
+							"parameters": {
+								"tag": "\"eye_colors\"",
+								"file": "eye_colors.json"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 899392515996778,
+							"parameters": {
+								"tag": "\"hair_colors\"",
+								"file": "hair_colors.json"
 							}
 						}
 					],
@@ -267,12 +362,12 @@
 										{
 											"id": "is-in-preview",
 											"objectClass": "System",
-											"sid": 691837694681886
+											"sid": 857395135634850
 										},
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 426376910506398,
+											"sid": 253296719154060,
 											"parameters": {
 												"first-value": "LayoutName",
 												"comparison": 1,
@@ -284,12 +379,177 @@
 										{
 											"id": "restart-layout",
 											"objectClass": "System",
-											"sid": 555879777036875
+											"sid": 375589941572949
 										}
 									],
-									"sid": 714062772559661
+									"sid": 964587710858472
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-completed",
+									"objectClass": "AJAX",
+									"sid": 833402496568727,
+									"parameters": {
+										"tag": "\"sexes\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 646244479287128,
+									"parameters": {
+										"variable": "LOAD_sexes",
+										"value": "true"
+									}
+								},
+								{
+									"id": "load",
+									"objectClass": "Sexes",
+									"sid": 454049657485859,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								}
+							],
+							"sid": 397300678169382
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-completed",
+									"objectClass": "AJAX",
+									"sid": 866230558232230,
+									"parameters": {
+										"tag": "\"races\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 547168026925035,
+									"parameters": {
+										"variable": "LOAD_races",
+										"value": "true"
+									}
+								},
+								{
+									"id": "load",
+									"objectClass": "Races",
+									"sid": 108612145966086,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								}
+							],
+							"sid": 952774965518345
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-completed",
+									"objectClass": "AJAX",
+									"sid": 136524525789930,
+									"parameters": {
+										"tag": "\"ethnicities\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 273055620802098,
+									"parameters": {
+										"variable": "LOAD_ethnicities",
+										"value": "true"
+									}
+								},
+								{
+									"id": "load",
+									"objectClass": "Ethnicities",
+									"sid": 309656027083758,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								}
+							],
+							"sid": 463923969504410
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-completed",
+									"objectClass": "AJAX",
+									"sid": 291254019743946,
+									"parameters": {
+										"tag": "\"eye_colors\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 381952536709604,
+									"parameters": {
+										"variable": "LOAD_eye_colors",
+										"value": "true"
+									}
+								},
+								{
+									"id": "load",
+									"objectClass": "EyeColors",
+									"sid": 321175646615614,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								}
+							],
+							"sid": 343960469626395
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-completed",
+									"objectClass": "AJAX",
+									"sid": 440050195492158,
+									"parameters": {
+										"tag": "\"hair_colors\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 876421401299350,
+									"parameters": {
+										"variable": "LOAD_hair_colors",
+										"value": "true"
+									}
+								},
+								{
+									"id": "load",
+									"objectClass": "HairColors",
+									"sid": 224638192916446,
+									"parameters": {
+										"json": "AJAX.LastData"
+									}
+								}
+							],
+							"sid": 539603419114076
 						},
 						{
 							"eventType": "comment",
@@ -993,7 +1253,7 @@
 							"actions": [
 								{
 									"id": "set-size",
-									"objectClass": "TransitionPixelateArr",
+									"objectClass": "TransitionSquareList",
 									"sid": 574419307005699,
 									"parameters": {
 										"width": "1",
@@ -1003,7 +1263,7 @@
 								},
 								{
 									"id": "clear",
-									"objectClass": "TransitionPixelateArr",
+									"objectClass": "TransitionSquareList",
 									"sid": 165310334802459,
 									"parameters": {
 										"value": "0"
@@ -1160,7 +1420,7 @@
 												},
 												{
 													"id": "push",
-													"objectClass": "TransitionPixelateArr",
+													"objectClass": "TransitionSquareList",
 													"sid": 896312526402651,
 													"parameters": {
 														"where": "back",
@@ -1237,7 +1497,7 @@
 													"actions": [
 														{
 															"id": "shuffle",
-															"objectClass": "TransitionPixelateArr",
+															"objectClass": "TransitionSquareList",
 															"sid": 485508096421154,
 															"parameters": {
 																"axis": "x"
@@ -1447,7 +1707,7 @@
 													"parameters": {
 														"name": "\"i\"",
 														"start-index": "0",
-														"end-index": "TransitionPixelateArr.Width-1"
+														"end-index": "TransitionSquareList.Width-1"
 													}
 												},
 												{
@@ -1455,7 +1715,7 @@
 													"objectClass": "TransitionSquare",
 													"sid": 164856463578671,
 													"parameters": {
-														"unique-id": "TransitionPixelateArr.At(loopindex(\"i\"))"
+														"unique-id": "TransitionSquareList.At(loopindex(\"i\"))"
 													}
 												}
 											],

@@ -1,0 +1,17 @@
+{
+	"name": "List",
+	"plugin-id": "List",
+	"sid": 524014825462332,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "type",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 315440882238314
+		}
+	],
+	"behaviorTypes": []
+}

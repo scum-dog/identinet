@@ -1,0 +1,58 @@
+{
+    "c2array": true,
+    "size": [
+        6,
+        2,
+        1
+    ],
+    "data": [
+        [
+            [
+                "ai_an"
+            ],
+            [
+                "American Indian or Alaska Native"
+            ]
+        ],
+        [
+            [
+                "asian"
+            ],
+            [
+                "Asian"
+            ]
+        ],
+        [
+            [
+                "black"
+            ],
+            [
+                "Black or African American"
+            ]
+        ],
+        [
+            [
+                "nh_pi"
+            ],
+            [
+                "Native Hawaiian or Other Pacific Islander"
+            ]
+        ],
+        [
+            [
+                "white"
+            ],
+            [
+                "White"
+            ]
+        ],
+        [
+            [
+                "other"
+            ],
+            [
+                "Other"
+            ]
+        ]
+    ]
+}

@@ -57,6 +57,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "List",
+			"name": "List",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Mouse",
 			"name": "Mouse",
 			"author": "Scirra",
@@ -87,6 +94,13 @@
 			"type": "plugin",
 			"id": "Spritefont2",
 			"name": "Sprite font",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "TextBox",
+			"name": "Text input",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -146,7 +160,8 @@
 	"uniqueId": "pjmdeerwb34",
 	"objectTypes": {
 		"items": [
-			"Sprite"
+			"List",
+			"TextInput2"
 		],
 		"subfolders": [
 			{
@@ -176,7 +191,7 @@
 			},
 			{
 				"items": [
-					"TransitionPixelateArr",
+					"TransitionSquareList",
 					"TransitionSquare"
 				],
 				"subfolders": [],
@@ -195,8 +210,7 @@
 				"items": [
 					"CharacterHead",
 					"CharacterPart",
-					"CharacterCanvas",
-					"Parts"
+					"CharacterCanvas"
 				],
 				"subfolders": [],
 				"name": "Character"
@@ -220,6 +234,18 @@
 				],
 				"subfolders": [],
 				"name": "Creator"
+			},
+			{
+				"items": [
+					"Parts",
+					"Sexes",
+					"Races",
+					"Ethnicities",
+					"EyeColors",
+					"HairColors"
+				],
+				"subfolders": [],
+				"name": "Arrays"
 			}
 		]
 	},
@@ -229,7 +255,8 @@
 	"families": {
 		"items": [
 			"HUD",
-			"Character"
+			"Character",
+			"Info"
 		],
 		"subfolders": []
 	},
@@ -403,6 +430,46 @@
 					"name": "parts.json",
 					"type": "application/json",
 					"sid": 321524527481462,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "sexes.json",
+					"type": "application/json",
+					"sid": 431885688543535,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "races.json",
+					"type": "application/json",
+					"sid": 978899600484055,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "ethnicities.json",
+					"type": "application/json",
+					"sid": 318218788784984,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "eye_colors.json",
+					"type": "application/json",
+					"sid": 886571750372855,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hair_colors.json",
+					"type": "application/json",
+					"sid": 554580562425426,
 					"file-info": {
 						"purpose": "none"
 					}

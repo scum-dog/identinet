@@ -483,7 +483,7 @@
 	"sid": 573213022035316,
 	"nonworld-instances": [
 		{
-			"type": "TransitionPixelateArr",
+			"type": "TransitionSquareList",
 			"properties": {
 				"width": 1,
 				"height": 1,
@@ -505,14 +505,84 @@
 		{
 			"type": "Parts",
 			"properties": {
-				"width": 10,
-				"height": 1,
-				"depth": 1
+				"width": 0,
+				"height": 0,
+				"depth": 0
 			},
 			"uid": 79,
 			"sid": 350879033517541,
 			"tags": "",
 			"instanceVariables": {}
+		},
+		{
+			"type": "Sexes",
+			"properties": {
+				"width": 0,
+				"height": 0,
+				"depth": 0
+			},
+			"uid": 110,
+			"sid": 837220953075528,
+			"tags": "",
+			"instanceVariables": {
+				"type": "sex"
+			}
+		},
+		{
+			"type": "Races",
+			"properties": {
+				"width": 0,
+				"height": 0,
+				"depth": 0
+			},
+			"uid": 111,
+			"sid": 980451652846562,
+			"tags": "",
+			"instanceVariables": {
+				"type": "race"
+			}
+		},
+		{
+			"type": "Ethnicities",
+			"properties": {
+				"width": 0,
+				"height": 0,
+				"depth": 0
+			},
+			"uid": 112,
+			"sid": 309245672370490,
+			"tags": "",
+			"instanceVariables": {
+				"type": "ethnicity"
+			}
+		},
+		{
+			"type": "EyeColors",
+			"properties": {
+				"width": 0,
+				"height": 0,
+				"depth": 0
+			},
+			"uid": 113,
+			"sid": 920801443777745,
+			"tags": "",
+			"instanceVariables": {
+				"type": "eye_color"
+			}
+		},
+		{
+			"type": "HairColors",
+			"properties": {
+				"width": 0,
+				"height": 0,
+				"depth": 0
+			},
+			"uid": 114,
+			"sid": 615611156383356,
+			"tags": "",
+			"instanceVariables": {
+				"type": "hair_color"
+			}
 		}
 	],
 	"effectTypes": [],

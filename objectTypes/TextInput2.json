@@ -1,0 +1,17 @@
+{
+	"name": "TextInput2",
+	"plugin-id": "TextBox",
+	"sid": 728616254085084,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "type",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 401395905202869
+		}
+	],
+	"behaviorTypes": []
+}
