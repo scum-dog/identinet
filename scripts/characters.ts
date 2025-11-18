@@ -100,7 +100,7 @@ export async function hasCharacter(): Promise<boolean> {
  */
 export async function canEditCharacter(): Promise<boolean> {
   const response = await getUserCharacter();
-  return Boolean(response.success && response.data?.can_edit);
+  return Boolean(response.success && response.data?.metadata?.can_edit);
 }
 
 /**
@@ -154,6 +154,22 @@ export function validateCharacterData(characterData: any): {
     }
     if (!characterData.info.sex) {
       errors.push("Character sex is required");
+    }
+    if (!characterData.info.eye_color) {
+      errors.push("Character eye color is required");
+    }
+    if (!characterData.info.hair_color) {
+      errors.push("Character hair color is required");
+    }
+    if (
+      !characterData.info.race ||
+      !Array.isArray(characterData.info.race) ||
+      characterData.info.race.length === 0
+    ) {
+      errors.push("Character race is required");
+    }
+    if (!characterData.info.ethnicity) {
+      errors.push("Character ethnicity is required");
     }
     if (!characterData.info.location) {
       errors.push("Character country is required");

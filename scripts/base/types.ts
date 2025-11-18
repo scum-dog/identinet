@@ -4,21 +4,22 @@ export interface CharacterPersonalInfo {
   date_of_birth: string;
   height_in: number;
   weight_lb: number;
+  eye_color: EyeColor;
+  hair_color: HairColor;
+  race: Race[];
+  ethnicity: Ethnicity;
   location: string;
 }
 
 export interface CharacterStatic {
   head: {
     asset_id: number;
-    skin_color: SkinColor;
   };
   hair: {
     asset_id: number;
-    hair_color: HairColor;
   };
   beard?: {
     asset_id: number;
-    facial_hair_color: HairColor;
   };
   age_lines?: {
     asset_id: number;
@@ -28,7 +29,6 @@ export interface CharacterStatic {
 export interface CharacterPlaceableMovable {
   eyes: {
     asset_id: number;
-    eye_color: EyeColor;
     offset_x: number;
     offset_y: number;
     scale: number;
@@ -75,38 +75,33 @@ export interface CharacterDataStructure {
   placeable_movable: CharacterPlaceableMovable;
 }
 
-export type SkinColor =
-  | "pale"
-  | "light"
-  | "medium"
-  | "medium-tan"
-  | "tan"
-  | "dark"
-  | "very-dark";
-
 export type EyeColor =
   | "black"
+  | "blue"
   | "brown"
   | "gray"
-  | "blue"
   | "green"
   | "hazel"
-  | "maroon";
+  | "maroon"
+  | "pink";
 
 export type HairColor =
   | "bald"
   | "black"
-  | "blonde"
-  | "blue"
+  | "blond"
   | "brown"
   | "gray"
-  | "green"
-  | "orange"
-  | "pink"
-  | "purple"
   | "red"
   | "sandy"
   | "white";
+
+export type Race = "ai_an" | "asian" | "black" | "nh_pi" | "white" | "other";
+
+export type Ethnicity = "hispanic_latino" | "not_hispanic_latino";
+
+export type Platform = "newgrounds" | "itch" | "google";
+
+export type Sex = "male" | "female" | "other";
 
 export interface AuthResult {
   user: {
@@ -123,7 +118,8 @@ export interface AuthResult {
 export interface AuthUrlResult {
   authUrl: string;
   state: string;
-  expiresAt: string;
+  codeVerifier?: string;
+  expiresAt: Date;
 }
 
 export interface UserInfo {
@@ -155,26 +151,15 @@ export interface CharacterMetadata {
 }
 
 export interface FullCharacterData {
-  character: {
-    upload_id: string;
-    user_id: string;
-    created_at: string;
-    last_edited_at: string | null;
-    location: object;
-    character_data: CharacterDataStructure;
-    is_edited: boolean;
-    is_deleted: boolean;
-    deleted_at: string | null;
-    deleted_by: string | null;
-  };
-  can_edit: boolean;
+  character_data: CharacterDataStructure;
+  metadata: CharacterMetadata;
 }
 
 export interface PlazaCharacter {
   upload_id: string;
   creation_time: string;
   edit_time: string | null;
-  location: object;
+  location: string;
   character_data: CharacterDataStructure;
 }
 
@@ -189,16 +174,21 @@ export interface PlazaResponse {
 export interface AdminCharacter {
   id: string;
   user_id: string;
-  character_data: CharacterDataStructure;
+  character_data: string | CharacterDataStructure;
   created_at: string;
   last_edited_at: string | null;
   is_edited: boolean;
   is_deleted: boolean;
   deleted_at: string | null;
   deleted_by: string | null;
+}
+
+export interface AdminCharacterWithUser extends AdminCharacter {
   username: string;
   platform: string;
   platform_user_id: string;
+  user_created_at?: string;
+  last_login?: string;
 }
 
 export interface AdminUser {
@@ -211,14 +201,16 @@ export interface AdminUser {
   is_admin: boolean;
 }
 
+export interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
 export interface PaginatedResponse<T> {
   data: T[];
-  pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPages: number;
-  };
+  pagination: Pagination;
 }
 
 export interface ApiResponse<T = any> {

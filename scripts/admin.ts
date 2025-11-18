@@ -1,7 +1,9 @@
 import { get, del } from "./base/api-client.js";
 import {
   AdminCharacter,
+  AdminCharacterWithUser,
   AdminUser,
+  Pagination,
   PaginatedResponse,
   ApiResponse,
 } from "./base/types.js";
@@ -17,7 +19,9 @@ export async function listAllCharacters(
   page: number = 1,
   limit: number = 50,
   showDeleted: boolean = false,
-): Promise<ApiResponse<{ characters: AdminCharacter[]; pagination: any }>> {
+): Promise<
+  ApiResponse<{ characters: AdminCharacterWithUser[]; pagination: Pagination }>
+> {
   const params = new URLSearchParams({
     page: page.toString(),
     limit: Math.min(limit, 100).toString(),
@@ -37,7 +41,7 @@ export async function listAllCharacters(
  */
 export async function getCharacterDetails(
   characterId: string,
-): Promise<ApiResponse<{ character: AdminCharacter }>> {
+): Promise<ApiResponse<{ character: AdminCharacterWithUser }>> {
   return get(`/admin/characters/${characterId}`);
 }
 
@@ -83,7 +87,7 @@ export async function deleteCharacter(
 export async function listAllUsers(
   page: number = 1,
   limit: number = 50,
-): Promise<ApiResponse<{ users: AdminUser[]; pagination: any }>> {
+): Promise<ApiResponse<{ users: AdminUser[]; pagination: Pagination }>> {
   const params = new URLSearchParams({
     page: page.toString(),
     limit: Math.min(limit, 100).toString(),
@@ -99,7 +103,9 @@ export async function listAllUsers(
  */
 export async function getRecentCharacters(
   limit: number = 20,
-): Promise<ApiResponse<{ characters: AdminCharacter[]; pagination: any }>> {
+): Promise<
+  ApiResponse<{ characters: AdminCharacterWithUser[]; pagination: Pagination }>
+> {
   return listAllCharacters(1, limit, false);
 }
 
@@ -110,7 +116,9 @@ export async function getRecentCharacters(
  */
 export async function getDeletedCharacters(
   limit: number = 50,
-): Promise<ApiResponse<{ characters: AdminCharacter[]; pagination: any }>> {
+): Promise<
+  ApiResponse<{ characters: AdminCharacterWithUser[]; pagination: Pagination }>
+> {
   const response = await listAllCharacters(1, limit, true);
 
   if (!response.success || !response.data) {
