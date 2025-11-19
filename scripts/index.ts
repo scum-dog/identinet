@@ -35,7 +35,6 @@ export type {
   PaginatedResponse,
 
   // color enums
-  SkinColor,
   EyeColor,
   HairColor,
 } from "./base/types.js";
