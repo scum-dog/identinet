@@ -43,7 +43,9 @@ export const validateAdminAccess = API.validateAdminAccess;
 
 // utils
 export const isValidCountry = API.isValidCountry;
-export const COUNTRIES = API.COUNTRIES;
+export function getCOUNTRIES() {
+  return API.COUNTRIES;
+}
 
 // main object & init
 export const IdentikitAPI = API.IdentikitAPI;
