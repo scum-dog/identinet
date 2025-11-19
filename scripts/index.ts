@@ -209,3 +209,17 @@ export async function initializeIdentikitAPI(config: {
 }
 
 export default IdentikitAPI;
+
+declare function runOnStartup(
+  callback: (runtime: any) => void | Promise<void>,
+): void;
+
+runOnStartup(async (runtime: any) => {
+  runtime.addEventListener("beforeprojectstart", () =>
+    OnBeforeProjectStart(runtime),
+  );
+});
+
+async function OnBeforeProjectStart(runtime: any) {
+  console.log("API ready");
+}
