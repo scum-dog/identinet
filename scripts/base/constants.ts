@@ -277,11 +277,7 @@ export const MONTHS = [
   "December",
 ] as const;
 
-export const SEXES = [
-  "male",
-  "female",
-  "other",
-] as const;
+export const SEXES = ["male", "female", "other"] as const;
 
 export const SEXES_MAP: Record<string, string> = {
   male: "Male",
@@ -307,10 +303,7 @@ export const RACES_MAP: Record<string, string> = {
   other: "Other",
 };
 
-export const ETHNICITIES = [
-  "not_hispanic_latino",
-  "hispanic_latino",
-] as const;
+export const ETHNICITIES = ["not_hispanic_latino", "hispanic_latino"] as const;
 
 export const ETHNICITIES_MAP: Record<string, string> = {
   not_hispanic_latino: "Not Hispanic or Latino",
@@ -318,21 +311,45 @@ export const ETHNICITIES_MAP: Record<string, string> = {
 };
 
 export const EYE_COLORS = [
-  "not_hispanic_latino",
-  "hispanic_latino",
+  "black",
+  "blue",
+  "brown",
+  "gray",
+  "green",
+  "hazel",
+  "maroon",
+  "pink",
 ] as const;
 
 export const EYE_COLORS_MAP: Record<string, string> = {
-  not_hispanic_latino: "Not Hispanic or Latino",
-  hispanic_latino: "Hispanic or Latino",
+  black: "Black",
+  blue: "Blue",
+  brown: "Brown",
+  gray: "Gray",
+  green: "Green",
+  hazel: "Hazel",
+  maroon: "Maroon",
+  pink: "Pink",
 };
 
 export const HAIR_COLORS = [
-  "not_hispanic_latino",
-  "hispanic_latino",
+  "bald",
+  "black",
+  "blond",
+  "brown",
+  "gray",
+  "red",
+  "sandy",
+  "white",
 ] as const;
 
 export const HAIR_COLORS_MAP: Record<string, string> = {
-  not_hispanic_latino: "Not Hispanic or Latino",
-  hispanic_latino: "Hispanic or Latino",
+  bald: "Bald",
+  black: "Black",
+  blond: "Blond",
+  brown: "Brown",
+  gray: "Gray",
+  red: "Red",
+  sandy: "Sandy",
+  white: "White",
 };
