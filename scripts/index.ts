@@ -188,26 +188,6 @@ export const IdentikitAPI = {
   },
 };
 
-// call this in runOnStartup function
-export async function initializeIdentikitAPI(config: {
-  baseUrl: string;
-  timeout?: number;
-  onAuthError?: () => void;
-}): Promise<void> {
-  const { configureApi } = await import("./base/api-client.js");
-
-  configureApi({
-    baseUrl: config.baseUrl,
-    timeout: config.timeout || 10 * 1000,
-    defaultHeaders: {
-      "Content-Type": "application/json",
-      "User-Agent": "SCUM-DOG-Identikit/1.0",
-    },
-  });
-
-  console.log("API initialized:", config.baseUrl);
-}
-
 export default IdentikitAPI;
 
 declare function runOnStartup(
@@ -220,6 +200,12 @@ runOnStartup(async (runtime: any) => {
   );
 });
 
-async function OnBeforeProjectStart(runtime: any) {
+async function initializeAPI(): Promise<void> {
+  const { configureApi } = await import("./base/api-client.js");
+  configureApi({});
   console.log("API ready");
+}
+
+async function OnBeforeProjectStart(runtime: any) {
+  await initializeAPI();
 }

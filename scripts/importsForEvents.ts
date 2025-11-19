@@ -45,6 +45,5 @@ export const validateAdminAccess = API.validateAdminAccess;
 export const isValidCountry = API.isValidCountry;
 export const COUNTRIES = API.COUNTRIES;
 
-// main object & init
+// main object
 export const IdentikitAPI = API.IdentikitAPI;
-export const initializeIdentikitAPI = API.initializeIdentikitAPI;
