@@ -1,6 +1,6 @@
 export interface CharacterPersonalInfo {
   name: string;
-  sex: "male" | "female" | "other";
+  sex: Sex;
   date_of_birth: string;
   height_in: number;
   weight_lb: number;
