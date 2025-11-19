@@ -277,51 +277,36 @@ export const MONTHS = [
   "December",
 ] as const;
 
-export const SEXES = ["male", "female", "other"] as const;
-
-export const SEXES_MAP: Record<string, string> = {
+export const SEXES = {
   male: "Male",
   female: "Female",
   other: "Other",
-};
+} as const;
 
-export const RACES = [
-  "ai_an",
-  "asian",
-  "black",
-  "nh_pi",
-  "white",
-  "other",
-] as const;
+export type Sex = keyof typeof SEXES;
+export const SEX_VALUES = Object.keys(SEXES) as Sex[];
 
-export const RACES_MAP: Record<string, string> = {
+export const RACES = {
   ai_an: "American Indian or Alaska Native",
   asian: "Asian",
   black: "Black or African American",
   nh_pi: "Native Hawaiian or Other Pacific Islander",
   white: "White",
   other: "Other",
-};
+} as const;
 
-export const ETHNICITIES = ["not_hispanic_latino", "hispanic_latino"] as const;
+export type Race = keyof typeof RACES;
+export const RACE_VALUES = Object.keys(RACES) as Race[];
 
-export const ETHNICITIES_MAP: Record<string, string> = {
+export const ETHNICITIES = {
   not_hispanic_latino: "Not Hispanic or Latino",
   hispanic_latino: "Hispanic or Latino",
-};
+} as const;
 
-export const EYE_COLORS = [
-  "black",
-  "blue",
-  "brown",
-  "gray",
-  "green",
-  "hazel",
-  "maroon",
-  "pink",
-] as const;
+export type Ethnicity = keyof typeof ETHNICITIES;
+export const ETHNICITY_VALUES = Object.keys(ETHNICITIES) as Ethnicity[];
 
-export const EYE_COLORS_MAP: Record<string, string> = {
+export const EYE_COLORS = {
   black: "Black",
   blue: "Blue",
   brown: "Brown",
@@ -330,20 +315,12 @@ export const EYE_COLORS_MAP: Record<string, string> = {
   hazel: "Hazel",
   maroon: "Maroon",
   pink: "Pink",
-};
+} as const;
 
-export const HAIR_COLORS = [
-  "bald",
-  "black",
-  "blond",
-  "brown",
-  "gray",
-  "red",
-  "sandy",
-  "white",
-] as const;
+export type EyeColor = keyof typeof EYE_COLORS;
+export const EYE_COLOR_VALUES = Object.keys(EYE_COLORS) as EyeColor[];
 
-export const HAIR_COLORS_MAP: Record<string, string> = {
+export const HAIR_COLORS = {
   bald: "Bald",
   black: "Black",
   blond: "Blond",
@@ -352,4 +329,7 @@ export const HAIR_COLORS_MAP: Record<string, string> = {
   red: "Red",
   sandy: "Sandy",
   white: "White",
-};
+} as const;
+
+export type HairColor = keyof typeof HAIR_COLORS;
+export const HAIR_COLOR_VALUES = Object.keys(HAIR_COLORS) as HairColor[];
