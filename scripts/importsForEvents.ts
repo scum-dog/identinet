@@ -43,6 +43,10 @@ export const validateAdminAccess = API.validateAdminAccess;
 
 // utils
 export const isValidCountry = API.isValidCountry;
+export const validateCharacterName = API.validateCharacterName;
+export const CHARACTER_NAME_MAX_LENGTH = API.CHARACTER_NAME_MAX_LENGTH;
+export const CHARACTER_NAME_REGEX = API.CHARACTER_NAME_REGEX;
+export const CHARACTER_NAME_ERROR_MESSAGE = API.CHARACTER_NAME_ERROR_MESSAGE;
 export const countries = API.COUNTRIES;
 export const months = API.MONTHS;
 export const sexes = API.SEXES;

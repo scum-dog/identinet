@@ -333,3 +333,36 @@ export const HAIR_COLORS = {
 
 export type HairColor = keyof typeof HAIR_COLORS;
 export const HAIR_COLOR_VALUES = Object.keys(HAIR_COLORS) as HairColor[];
+
+export const CHARACTER_NAME_MAX_LENGTH = 32;
+export const CHARACTER_NAME_REGEX =
+  /^(?=.*[A-Za-z])[A-Za-z]+(?:[' -][A-Za-z]+)*$/;
+export const CHARACTER_NAME_ERROR_MESSAGE =
+  "Name must start with a letter, contain only letters/spaces/hyphens/apostrophes, and have no consecutive punctuation or leading/trailing spaces";
+
+/**
+ * validate character name with error messages
+ * @param name - character name to validate
+ * @returns validation result with specific error message
+ */
+export function validateCharacterName(name: string): {
+  valid: boolean;
+  error?: string;
+} {
+  if (!name || name.length === 0) {
+    return { valid: false, error: "Character name is required" };
+  }
+
+  if (name.length > CHARACTER_NAME_MAX_LENGTH) {
+    return {
+      valid: false,
+      error: `Name must be ${CHARACTER_NAME_MAX_LENGTH} characters or less`,
+    };
+  }
+
+  if (!CHARACTER_NAME_REGEX.test(name)) {
+    return { valid: false, error: CHARACTER_NAME_ERROR_MESSAGE };
+  }
+
+  return { valid: true };
+}

@@ -67,18 +67,17 @@ export {
 
 export {
   isValidCountry,
+  validateCharacterName,
+  CHARACTER_NAME_MAX_LENGTH,
+  CHARACTER_NAME_REGEX,
+  CHARACTER_NAME_ERROR_MESSAGE,
   COUNTRIES,
   MONTHS,
   SEXES,
-  SEXES_MAP,
   RACES,
-  RACES_MAP,
   ETHNICITIES,
-  ETHNICITIES_MAP,
   EYE_COLORS,
-  EYE_COLORS_MAP,
   HAIR_COLORS,
-  HAIR_COLORS_MAP,
 } from "./base/constants.js";
 
 export {

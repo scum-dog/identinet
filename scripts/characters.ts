@@ -6,7 +6,11 @@ import {
   PlazaFilters,
   ApiResponse,
 } from "./base/types.js";
-import { isValidCountry } from "./base/constants.js";
+import {
+  isValidCountry,
+  validateCharacterName,
+  CHARACTER_NAME_ERROR_MESSAGE,
+} from "./base/constants.js";
 
 /**
  * get the current user's character data
@@ -151,6 +155,8 @@ export function validateCharacterData(characterData: any): {
   if (characterData.info) {
     if (!characterData.info.name) {
       errors.push("Character name is required");
+    } else if (!validateCharacterName(characterData.info.name).valid) {
+      errors.push(CHARACTER_NAME_ERROR_MESSAGE);
     }
     if (!characterData.info.sex) {
       errors.push("Character sex is required");
