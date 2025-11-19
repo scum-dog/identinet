@@ -583,6 +583,20 @@
 			"instanceVariables": {
 				"type": "hair_color"
 			}
+		},
+		{
+			"type": "Months",
+			"properties": {
+				"width": 0,
+				"height": 0,
+				"depth": 0
+			},
+			"uid": 86,
+			"sid": 952734465399616,
+			"tags": "",
+			"instanceVariables": {
+				"type": "month"
+			}
 		}
 	],
 	"effectTypes": [],

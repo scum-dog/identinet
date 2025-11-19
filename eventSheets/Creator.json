@@ -1931,7 +1931,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 723834971938386,
 															"parameters": {
 																"instance-variable": "type",
@@ -1943,7 +1943,7 @@
 													"actions": [
 														{
 															"id": "set-text",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 369999725614859,
 															"parameters": {
 																"text": "JSON.Get(\"character_data.info.name\")"
@@ -1957,7 +1957,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 723125906969351,
 															"parameters": {
 																"instance-variable": "type",
@@ -1969,7 +1969,7 @@
 													"actions": [
 														{
 															"id": "set-text",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 488793698350141,
 															"parameters": {
 																"text": "Date.GetMonth(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))+1"
@@ -1983,7 +1983,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 580185750116115,
 															"parameters": {
 																"instance-variable": "type",
@@ -1995,7 +1995,7 @@
 													"actions": [
 														{
 															"id": "set-text",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 958123272943950,
 															"parameters": {
 																"text": "Date.GetDate(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))+1"
@@ -2018,7 +2018,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 262179978139828,
 															"parameters": {
 																"instance-variable": "type",
@@ -2030,7 +2030,7 @@
 													"actions": [
 														{
 															"id": "set-text",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 923513128681183,
 															"parameters": {
 																"text": "Date.GetYear(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))"
@@ -2056,21 +2056,40 @@
 													"actions": [
 														{
 															"callFunction": "refreshInfo",
-															"sid": 114254474600332,
+															"sid": 307424865654055,
 															"parameters": [
-																"\"sex\""
+																"\"sex\"",
+																"\"character_data.info.sex\""
 															]
-														},
-														{
-															"id": "set-selection",
-															"objectClass": "List",
-															"sid": 629488663920626,
-															"parameters": {
-																"index": "Sexes.IndexOf(JSON.Get(\"character_data.info.sex\"))"
-															}
 														}
 													],
 													"sid": 330638059922960
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "List",
+															"sid": 754223135635324,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"location\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "refreshInfo",
+															"sid": 424085145151444,
+															"parameters": [
+																"\"location\"",
+																"JSON.Get(\"character_data.info.location\")"
+															]
+														}
+													],
+													"sid": 986095898649854
 												}
 											]
 										}
@@ -2161,26 +2180,11 @@
 													"actions": [
 														{
 															"callFunction": "refreshInfo",
-															"sid": 441571049297621,
+															"sid": 816662230952711,
 															"parameters": [
-																"\"race#1\""
+																"\"race#1\"",
+																"\"character_data.info.race.0\""
 															]
-														},
-														{
-															"id": "set-selection",
-															"objectClass": "List",
-															"sid": 362343304369057,
-															"parameters": {
-																"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.0\"))"
-															}
-														},
-														{
-															"id": "remove",
-															"objectClass": "List",
-															"sid": 641129383752783,
-															"parameters": {
-																"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.1\"))"
-															}
 														}
 													],
 													"sid": 573017284891033
@@ -2202,35 +2206,11 @@
 													"actions": [
 														{
 															"callFunction": "refreshInfo",
-															"sid": 727562182478295,
+															"sid": 583355672470088,
 															"parameters": [
-																"\"race#2\""
+																"\"race#2\"",
+																"\"character_data.info.race.1\""
 															]
-														},
-														{
-															"id": "add-item-at",
-															"objectClass": "List",
-															"sid": 934065409048437,
-															"parameters": {
-																"index": "0",
-																"text": "\"N/A\""
-															}
-														},
-														{
-															"id": "set-selection",
-															"objectClass": "List",
-															"sid": 670645736356559,
-															"parameters": {
-																"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.1\"))+1"
-															}
-														},
-														{
-															"id": "remove",
-															"objectClass": "List",
-															"sid": 265761811769447,
-															"parameters": {
-																"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.0\"))+1"
-															}
 														}
 													],
 													"sid": 626763400495321
@@ -2252,18 +2232,11 @@
 													"actions": [
 														{
 															"callFunction": "refreshInfo",
-															"sid": 161283178651648,
+															"sid": 614852969156850,
 															"parameters": [
-																"\"ethnicity\""
+																"\"ethnicity\"",
+																"\"character_data.info.ethnicity\""
 															]
-														},
-														{
-															"id": "set-selection",
-															"objectClass": "List",
-															"sid": 686793517324916,
-															"parameters": {
-																"index": "Ethnicities.IndexOf(JSON.Get(\"character_data.info.ethnicity\"))"
-															}
 														}
 													],
 													"sid": 799544082947417
@@ -2273,7 +2246,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 537510176442458,
 															"parameters": {
 																"instance-variable": "type",
@@ -2285,7 +2258,7 @@
 													"actions": [
 														{
 															"id": "set-text",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 792296892458683,
 															"parameters": {
 																"text": "JSON.Get(\"character_data.info.height_in\")"
@@ -2299,7 +2272,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 775589952192915,
 															"parameters": {
 																"instance-variable": "type",
@@ -2311,7 +2284,7 @@
 													"actions": [
 														{
 															"id": "set-text",
-															"objectClass": "TextInput2",
+															"objectClass": "TextInput",
 															"sid": 932977658394145,
 															"parameters": {
 																"text": "JSON.Get(\"character_data.info.weight_lb\")"
@@ -2337,18 +2310,11 @@
 													"actions": [
 														{
 															"callFunction": "refreshInfo",
-															"sid": 544166685640201,
+															"sid": 244274652405899,
 															"parameters": [
-																"\"eye_color\""
+																"\"eye_color\"",
+																"\"character_data.info.eye_color\""
 															]
-														},
-														{
-															"id": "set-selection",
-															"objectClass": "List",
-															"sid": 483885216279349,
-															"parameters": {
-																"index": "EyeColors.IndexOf(JSON.Get(\"character_data.info.eye_color\"))"
-															}
 														}
 													],
 													"sid": 980471261009559
@@ -2370,18 +2336,11 @@
 													"actions": [
 														{
 															"callFunction": "refreshInfo",
-															"sid": 614157638521813,
+															"sid": 870350513160031,
 															"parameters": [
-																"\"hair_color\""
+																"\"hair_color\"",
+																"\"character_data.info.hair_color\""
 															]
-														},
-														{
-															"id": "set-selection",
-															"objectClass": "List",
-															"sid": 801470525315818,
-															"parameters": {
-																"index": "HairColors.IndexOf(JSON.Get(\"character_data.info.hair_color\"))"
-															}
 														}
 													],
 													"sid": 321303291998202
@@ -3059,10 +3018,6 @@
 					]
 				},
 				{
-					"eventType": "comment",
-					"text": "Refresh info"
-				},
-				{
 					"functionName": "refreshInfo",
 					"functionDescription": "",
 					"functionCategory": "",
@@ -3076,6 +3031,13 @@
 							"initialValue": "sex",
 							"comment": "",
 							"sid": 941802372517327
+						},
+						{
+							"name": "index",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 635625115032336
 						}
 					],
 					"eventType": "function-block",
@@ -3111,34 +3073,193 @@
 									"conditions": [
 										{
 											"id": "compare-instance-variable",
-											"objectClass": "Info",
-											"sid": 189991316835301,
+											"objectClass": "List",
+											"sid": 122451077571478,
 											"parameters": {
 												"instance-variable": "type",
 												"comparison": 0,
-												"value": "tokenat(type, 0, \"#\")"
-											}
-										},
+												"value": "\"location\""
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [],
+									"sid": 804689877150666,
+									"children": [
 										{
-											"id": "for-each-element",
-											"objectClass": "Info",
-											"sid": 366666168663981,
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Info",
+													"sid": 364316460960314,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "tokenat(type, 0, \"#\")"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 763402838795279,
+													"parameters": {
+														"variable": "index",
+														"value": "Info.IndexOf(JSON.Get(index))"
+													}
+												}
+											],
+											"sid": 541141221554610,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "for-each-element",
+															"objectClass": "Info",
+															"sid": 121900203718335,
+															"parameters": {
+																"axes": "x"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-item",
+															"objectClass": "List",
+															"sid": 343963112295245,
+															"parameters": {
+																"text": "Info.At(Info.CurX, 1)"
+															}
+														}
+													],
+													"sid": 342229566390643
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "Location"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 524962574343193
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"language": "typescript",
+											"script": [
+												"const list = runtime.objects.List.getFirstPickedInstance();",
+												"",
+												"// Populate list",
+												"if (list) {",
+												"    for (const country of countries) {",
+												"        list.addItem(country);",
+												"    }",
+												"}",
+												"",
+												"alert(ethnicities.map(key => ethnicities_map[key])[1]);",
+												"",
+												"// Set index",
+												"//localVars.index = JSON.stringify(countries.indexOf(localVars.index as Country));"
+											]
+										}
+									],
+									"sid": 112322624090417
+								},
+								{
+									"eventType": "comment",
+									"text": "Select current item"
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-selection",
+											"objectClass": "List",
+											"sid": 179923571167477,
 											"parameters": {
-												"axes": "x"
+												"index": "int(index)"
+											}
+										}
+									],
+									"sid": 457788578703600
+								},
+								{
+									"eventType": "comment",
+									"text": "Races"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "List",
+											"sid": 559565576398354,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"race#1\""
 											}
 										}
 									],
 									"actions": [
 										{
-											"id": "add-item",
+											"id": "remove",
 											"objectClass": "List",
-											"sid": 433258555253482,
+											"sid": 573657898578087,
 											"parameters": {
-												"text": "Info.At(Info.CurX, 1)"
+												"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.1\"))"
 											}
 										}
 									],
-									"sid": 958902119051960
+									"sid": 898454217094145
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "List",
+											"sid": 348646108525769,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"race#2\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "remove",
+											"objectClass": "List",
+											"sid": 734364390686163,
+											"parameters": {
+												"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.0\"))"
+											}
+										},
+										{
+											"id": "add-item-at",
+											"objectClass": "List",
+											"sid": 704745986581857,
+											"parameters": {
+												"index": "0",
+												"text": "\"N/A\""
+											}
+										}
+									],
+									"sid": 317702891219715
 								}
 							]
 						}

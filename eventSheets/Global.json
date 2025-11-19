@@ -69,6 +69,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "LOAD_months",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are months loaded?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 612056251629181
+		},
+		{
+			"eventType": "variable",
 			"name": "LOAD_races",
 			"type": "boolean",
 			"initialValue": "false",
@@ -196,7 +206,16 @@
 						{
 							"id": "request-project-file",
 							"objectClass": "AJAX",
-							"sid": 979865291564138,
+							"sid": 113194123787250,
+							"parameters": {
+								"tag": "\"months\"",
+								"file": "months.json"
+							}
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 852804923725043,
 							"parameters": {
 								"tag": "\"sexes\"",
 								"file": "sexes.json"

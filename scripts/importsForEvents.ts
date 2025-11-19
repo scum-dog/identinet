@@ -43,7 +43,18 @@ export const validateAdminAccess = API.validateAdminAccess;
 
 // utils
 export const isValidCountry = API.isValidCountry;
-export const COUNTRIES = API.COUNTRIES;
+export const countries = API.COUNTRIES;
+export const months = API.MONTHS;
+export const sexes = API.SEXES;
+export const sexes_map = API.SEXES_MAP;
+export const races = API.RACES;
+export const races_map = API.RACES_MAP;
+export const ethnicities = API.ETHNICITIES;
+export const ethnicities_map = API.ETHNICITIES_MAP;
+export const eye_colors = API.EYE_COLORS;
+export const eye_colors_map = API.EYE_COLORS_MAP;
+export const hair_colors = API.HAIR_COLORS;
+export const hair_colors_map = API.HAIR_COLORS_MAP;
 
 // main object
 export const IdentikitAPI = API.IdentikitAPI;

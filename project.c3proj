@@ -159,10 +159,7 @@
 	],
 	"uniqueId": "pjmdeerwb34",
 	"objectTypes": {
-		"items": [
-			"List",
-			"TextInput2"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -230,7 +227,9 @@
 					"CreatorNavIcon",
 					"CreatorMenu",
 					"CreatorButton",
-					"CreatorPageButton"
+					"CreatorPageButton",
+					"List",
+					"TextInput"
 				],
 				"subfolders": [],
 				"name": "Creator"
@@ -242,7 +241,8 @@
 					"Races",
 					"Ethnicities",
 					"EyeColors",
-					"HairColors"
+					"HairColors",
+					"Months"
 				],
 				"subfolders": [],
 				"name": "Arrays"
@@ -312,6 +312,14 @@
 					"script-info": {
 						"purpose": "none"
 					}
+				},
+				{
+					"name": "importsForEvents.ts",
+					"type": "application/typescript",
+					"sid": 261516441775761,
+					"script-info": {
+						"purpose": "imports-for-events"
+					}
 				}
 			],
 			"subfolders": [
@@ -330,7 +338,15 @@
 							"type": "application/typescript",
 							"sid": 101711763115626,
 							"script-info": {
-								"purpose": "imports-for-events"
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "constants.ts",
+							"type": "application/typescript",
+							"sid": 855598445305463,
+							"script-info": {
+								"purpose": "none"
 							}
 						}
 					],
@@ -470,6 +486,14 @@
 					"name": "hair_colors.json",
 					"type": "application/json",
 					"sid": 554580562425426,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "months.json",
+					"type": "application/json",
+					"sid": 431249600201008,
 					"file-info": {
 						"purpose": "none"
 					}

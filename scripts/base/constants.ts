@@ -261,3 +261,78 @@ export type Country = (typeof COUNTRIES)[number];
 export function isValidCountry(country: string): boolean {
   return COUNTRIES.includes(country as Country);
 }
+
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+] as const;
+
+export const SEXES = [
+  "male",
+  "female",
+  "other",
+] as const;
+
+export const SEXES_MAP: Record<string, string> = {
+  male: "Male",
+  female: "Female",
+  other: "Other",
+};
+
+export const RACES = [
+  "ai_an",
+  "asian",
+  "black",
+  "nh_pi",
+  "white",
+  "other",
+] as const;
+
+export const RACES_MAP: Record<string, string> = {
+  ai_an: "American Indian or Alaska Native",
+  asian: "Asian",
+  black: "Black or African American",
+  nh_pi: "Native Hawaiian or Other Pacific Islander",
+  white: "White",
+  other: "Other",
+};
+
+export const ETHNICITIES = [
+  "not_hispanic_latino",
+  "hispanic_latino",
+] as const;
+
+export const ETHNICITIES_MAP: Record<string, string> = {
+  not_hispanic_latino: "Not Hispanic or Latino",
+  hispanic_latino: "Hispanic or Latino",
+};
+
+export const EYE_COLORS = [
+  "not_hispanic_latino",
+  "hispanic_latino",
+] as const;
+
+export const EYE_COLORS_MAP: Record<string, string> = {
+  not_hispanic_latino: "Not Hispanic or Latino",
+  hispanic_latino: "Hispanic or Latino",
+};
+
+export const HAIR_COLORS = [
+  "not_hispanic_latino",
+  "hispanic_latino",
+] as const;
+
+export const HAIR_COLORS_MAP: Record<string, string> = {
+  not_hispanic_latino: "Not Hispanic or Latino",
+  hispanic_latino: "Hispanic or Latino",
+};

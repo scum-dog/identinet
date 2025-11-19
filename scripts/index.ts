@@ -65,7 +65,21 @@ export {
   validateCharacterData,
 } from "./characters.js";
 
-export { isValidCountry, COUNTRIES } from "./base/constants.js";
+export {
+  isValidCountry,
+  COUNTRIES,
+  MONTHS,
+  SEXES,
+  SEXES_MAP,
+  RACES,
+  RACES_MAP,
+  ETHNICITIES,
+  ETHNICITIES_MAP,
+  EYE_COLORS,
+  EYE_COLORS_MAP,
+  HAIR_COLORS,
+  HAIR_COLORS_MAP,
+} from "./base/constants.js";
 
 export {
   listAllCharacters,
