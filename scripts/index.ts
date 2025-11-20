@@ -68,7 +68,7 @@ export {
 export {
   isValidCountry,
   validateCharacterName,
-  validateText,
+  validateTextInput,
   CHARACTER_NAME_MAX_LENGTH,
   CHARACTER_NAME_REGEX,
   CHARACTER_NAME_ERROR_MESSAGE,
@@ -212,6 +212,41 @@ runOnStartup(async (runtime: any) => {
   runtime.addEventListener("beforeprojectstart", () =>
     OnBeforeProjectStart(runtime),
   );
+
+  // Styling
+	var style = document.createElement("style");
+	style.innerText =`
+	/* Input styling */
+	.input {
+		background-color:#DDDDDD;
+    border:calc(1px * var(--construct-scale)) solid #000000;
+    padding:0px calc(3px * var(--construct-scale));
+    font-size:calc(8px * var(--construct-scale));
+    font-weight:bold;
+	}
+
+  /* Remove number input buttons */
+  input[type="number"], ::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+    -moz-appearance:textfield;
+    -webkit-appearance:none;
+    margin:0;
+  }
+
+  /* Restyle dropdown arrow */
+  select {
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    background-image:url(arrow.svg);
+    background-repeat:no-repeat;
+    background-position:right calc(3px * var(--construct-scale)) center;
+    background-size:calc(8px * var(--construct-scale));
+    cursor:pointer;
+  }
+	`;
+
+	document.head.appendChild(style);
 });
 
 async function initializeAPI(): Promise<void> {

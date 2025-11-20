@@ -1901,6 +1901,10 @@
 											"sid": 128826795431614,
 											"children": [
 												{
+													"eventType": "comment",
+													"text": "Update info contents"
+												},
+												{
 													"eventType": "block",
 													"conditions": [
 														{
@@ -2137,6 +2141,10 @@
 											],
 											"sid": 246826336211430,
 											"children": [
+												{
+													"eventType": "comment",
+													"text": "Update info contents"
+												},
 												{
 													"eventType": "block",
 													"conditions": [
@@ -3109,8 +3117,8 @@
 										"    break;",
 										"}",
 										"",
-										"const keys = Array.isArray(data) ? data : (Object.keys(data) as string[]);",
-										"const values = Array.isArray(data) ? data : (Object.values(data) as string[]);",
+										"const keys = Array.isArray(data) ? data : (Object.keys(data as string[]));",
+										"const values = Array.isArray(data) ? data : (Object.values(data as string[]));",
 										"",
 										"// Add all items to the list",
 										"if (list_object) {",
@@ -3133,6 +3141,52 @@
 								}
 							],
 							"sid": 936763463569541
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 466891924803161
+						}
+					],
+					"actions": [],
+					"sid": 117051206856365,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 968363773389289,
+									"parameters": {
+										"object": "TextInput"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"const text_object = runtime.objects.TextInput.getFirstPickedInstance();",
+										"",
+										"// Make all text inputs auto-sanitize",
+										"if (text_object) {",
+										"  const test1 = text_object.getElement() as HTMLInputElement;",
+										"  ",
+										"  test1.addEventListener(\"input\", function () {",
+										"    test1.value = validateTextInput(text_object);",
+										"  });",
+										"}"
+									]
+								}
+							],
+							"sid": 270847237008627
 						}
 					]
 				}

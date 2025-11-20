@@ -207,7 +207,8 @@
 				"items": [
 					"CharacterHead",
 					"CharacterPart",
-					"CharacterCanvas"
+					"CharacterCanvas",
+					"Parts"
 				],
 				"subfolders": [],
 				"name": "Character"
@@ -233,13 +234,6 @@
 				],
 				"subfolders": [],
 				"name": "Creator"
-			},
-			{
-				"items": [
-					"Parts"
-				],
-				"subfolders": [],
-				"name": "Arrays"
 			}
 		]
 	},
@@ -439,6 +433,14 @@
 					"name": "parts.json",
 					"type": "application/json",
 					"sid": 321524527481462,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "arrow.svg",
+					"type": "image/svg+xml",
+					"sid": 668051102174460,
 					"file-info": {
 						"purpose": "none"
 					}

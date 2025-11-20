@@ -367,37 +367,69 @@ export function validateCharacterName(name: string): {
   return { valid: true };
 }
 
+export const HEIGHT_MIN = 48;
+export const HEIGHT_MAX = 96;
+
+export const WEIGHT_MIN = 50;
+export const WEIGHT_MAX = 500;
+
 /**
- * sanitize text input to conform to CHARACTER_NAME_REGEX pattern
+ * sanitize text input to conform to type rules
  * @param runtime - C3 runtime instance
- * @param text - text to sanitize
- * @returns sanitized text that conforms to character name regex
+ * @returns sanitized text that conforms to type's rules
  */
-export function validateText(runtime: any, text: string): string {
-  if (!text || typeof text !== "string") {
+export function validateTextInput(runtime: any): string {
+  const input_type = runtime.instVars.type;
+  const input_text = (runtime.getElement() as HTMLInputElement).value;
+
+  if (!input_text || typeof input_text !== "string") {
     return "";
   }
 
-  // remove all invalid characters
-  let sanitized = text.replace(/[^A-Za-z' -]/g, "");
+  let sanitized = "";
 
-  // remove leading non-letters
-  sanitized = sanitized.replace(/^[^A-Za-z]+/, "");
+  switch (input_type) {
+    case "name":
+      // remove all invalid characters
+      sanitized = input_text.replace(/[^A-Za-z' -]/g, "");
 
-  // remove consecutive punctuation
-  sanitized = sanitized.replace(/([' -])[' -]+/g, "$1");
+      // remove leading non-letters
+      sanitized = sanitized.replace(/^[^A-Za-z]+/, "");
 
-  // trim leading/trailing whitespace
-  sanitized = sanitized.trim();
+      // remove consecutive punctuation
+      sanitized = sanitized.replace(/([' -])[' -]+/g, "$1");
 
-  // truncate to max length
-  if (sanitized.length > CHARACTER_NAME_MAX_LENGTH) {
-    sanitized = sanitized.substring(0, CHARACTER_NAME_MAX_LENGTH).trim();
-  }
+      // trim leading/trailing whitespace
+      //sanitized = sanitized.trim();
 
-  // if no letters remain, return empty string
-  if (!/[A-Za-z]/.test(sanitized)) {
-    return "";
+      // truncate to max length
+      if (sanitized.length > CHARACTER_NAME_MAX_LENGTH) {
+        sanitized = sanitized.substring(0, CHARACTER_NAME_MAX_LENGTH).trim();
+      }
+
+      // if no letters remain, return empty string
+      if (!/[A-Za-z]/.test(sanitized)) {
+        return "";
+      }
+
+      break;
+    case "day":
+    case "year":
+    case "height":
+    case "weight":
+      sanitized = input_text.replace(/[^0-9]/g, "");
+
+      // TEMP
+      if (input_type === "day") {
+        const day = parseInt(sanitized, 10);
+        if (!isNaN(day)) {
+          sanitized = Math.min(Math.max(day, 1), 31).toString();
+        }
+      }
+
+      break;
+    default:
+      break;
   }
 
   return sanitized;
