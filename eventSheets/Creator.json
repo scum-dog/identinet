@@ -1957,8 +1957,8 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput",
-															"sid": 723125906969351,
+															"objectClass": "List",
+															"sid": 402444678986849,
 															"parameters": {
 																"instance-variable": "type",
 																"comparison": 0,
@@ -1968,15 +1968,15 @@
 													],
 													"actions": [
 														{
-															"id": "set-text",
-															"objectClass": "TextInput",
-															"sid": 488793698350141,
-															"parameters": {
-																"text": "Date.GetMonth(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))+1"
-															}
+															"callFunction": "refreshInfo",
+															"sid": 856929400525414,
+															"parameters": [
+																"\"month\"",
+																"\"character_data.info.date_of_birth\""
+															]
 														}
 													],
-													"sid": 798439867927616
+													"sid": 805922845587088
 												},
 												{
 													"eventType": "block",
@@ -2082,10 +2082,10 @@
 													"actions": [
 														{
 															"callFunction": "refreshInfo",
-															"sid": 424085145151444,
+															"sid": 563721999684822,
 															"parameters": [
 																"\"location\"",
-																"JSON.Get(\"character_data.info.location\")"
+																"\"character_data.info.location\""
 															]
 														}
 													],
@@ -3061,207 +3061,57 @@
 							],
 							"actions": [
 								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 882523270080804,
+									"parameters": {
+										"variable": "index",
+										"value": "JSON.Get(index)"
+									}
+								},
+								{
 									"id": "clear",
 									"objectClass": "List",
 									"sid": 588994054705846
+								},
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"const list_object = runtime.objects.List.getFirstPickedInstance();",
+										"",
+										"const list_type = localVars.type.replace(/#.*/, \"\");",
+										"const type_map: Record<string, unknown> = {",
+										"    location: countries,",
+										"    month: months,",
+										"    sex: sexes,",
+										"    race: races,",
+										"    ethnicity: ethnicities,",
+										"    eye_color: eye_colors,",
+										"    hair_color: hair_colors,",
+										"};",
+										"const data = (type_map[list_type] as string[]) ?? [];",
+										"",
+										"const keys = Array.isArray(data) ? data : Object.keys(data) as string[];",
+										"const values = Array.isArray(data) ? data : Object.values(data) as string[];",
+										"",
+										"// Add all items to the list",
+										"if (list_object) {",
+										"    for (const item of values) {",
+										"        list_object.addItem(item);",
+										"    }",
+										"}",
+										"",
+										"// Set the selected item",
+										"const list_index = keys.indexOf(list_type === \"month\" ? new Date(localVars.index).toLocaleString(\"en-US\", { month: \"long\" }) : localVars.index);",
+										"",
+										"if (list_object) {",
+										"    list_object.selectedIndex = list_index;",
+										"}"
+									]
 								}
 							],
-							"sid": 936763463569541,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "List",
-											"sid": 122451077571478,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "\"location\""
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [],
-									"sid": 804689877150666,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "Info",
-													"sid": 364316460960314,
-													"parameters": {
-														"instance-variable": "type",
-														"comparison": 0,
-														"value": "tokenat(type, 0, \"#\")"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 763402838795279,
-													"parameters": {
-														"variable": "index",
-														"value": "Info.IndexOf(JSON.Get(index))"
-													}
-												}
-											],
-											"sid": 541141221554610,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "for-each-element",
-															"objectClass": "Info",
-															"sid": 121900203718335,
-															"parameters": {
-																"axes": "x"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "add-item",
-															"objectClass": "List",
-															"sid": 343963112295245,
-															"parameters": {
-																"text": "Info.At(Info.CurX, 1)"
-															}
-														}
-													],
-													"sid": 342229566390643
-												}
-											]
-										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "Location"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 524962574343193
-										}
-									],
-									"actions": [
-										{
-											"type": "script",
-											"language": "typescript",
-											"script": [
-												"const list = runtime.objects.List.getFirstPickedInstance();",
-												"",
-												"// Populate list",
-												"if (list) {",
-												"    for (const country of countries) {",
-												"        list.addItem(country);",
-												"    }",
-												"}",
-												"",
-												"alert(ethnicities.map(key => ethnicities_map[key])[1]);",
-												"",
-												"// Set index",
-												"//localVars.index = JSON.stringify(countries.indexOf(localVars.index as Country));"
-											]
-										}
-									],
-									"sid": 112322624090417
-								},
-								{
-									"eventType": "comment",
-									"text": "Select current item"
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-selection",
-											"objectClass": "List",
-											"sid": 179923571167477,
-											"parameters": {
-												"index": "int(index)"
-											}
-										}
-									],
-									"sid": 457788578703600
-								},
-								{
-									"eventType": "comment",
-									"text": "Races"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "List",
-											"sid": 559565576398354,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "\"race#1\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "remove",
-											"objectClass": "List",
-											"sid": 573657898578087,
-											"parameters": {
-												"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.1\"))"
-											}
-										}
-									],
-									"sid": 898454217094145
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "List",
-											"sid": 348646108525769,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "\"race#2\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "remove",
-											"objectClass": "List",
-											"sid": 734364390686163,
-											"parameters": {
-												"index": "Races.IndexOf(JSON.Get(\"character_data.info.race.0\"))"
-											}
-										},
-										{
-											"id": "add-item-at",
-											"objectClass": "List",
-											"sid": 704745986581857,
-											"parameters": {
-												"index": "0",
-												"text": "\"N/A\""
-											}
-										}
-									],
-									"sid": 317702891219715
-								}
-							]
+							"sid": 936763463569541
 						}
 					]
 				}

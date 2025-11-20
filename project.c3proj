@@ -236,13 +236,7 @@
 			},
 			{
 				"items": [
-					"Parts",
-					"Sexes",
-					"Races",
-					"Ethnicities",
-					"EyeColors",
-					"HairColors",
-					"Months"
+					"Parts"
 				],
 				"subfolders": [],
 				"name": "Arrays"
@@ -255,8 +249,7 @@
 	"families": {
 		"items": [
 			"HUD",
-			"Character",
-			"Info"
+			"Character"
 		],
 		"subfolders": []
 	},
@@ -449,54 +442,6 @@
 					"file-info": {
 						"purpose": "none"
 					}
-				},
-				{
-					"name": "sexes.json",
-					"type": "application/json",
-					"sid": 431885688543535,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
-					"name": "races.json",
-					"type": "application/json",
-					"sid": 978899600484055,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
-					"name": "ethnicities.json",
-					"type": "application/json",
-					"sid": 318218788784984,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
-					"name": "eye_colors.json",
-					"type": "application/json",
-					"sid": 886571750372855,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
-					"name": "hair_colors.json",
-					"type": "application/json",
-					"sid": 554580562425426,
-					"file-info": {
-						"purpose": "none"
-					}
-				},
-				{
-					"name": "months.json",
-					"type": "application/json",
-					"sid": 431249600201008,
-					"file-info": {
-						"purpose": "none"
-					}
 				}
 			],
 			"subfolders": []
@@ -553,7 +498,7 @@
 		"webgpu": "auto",
 		"multitexturing": "auto",
 		"gpuPreference": "high-performance",
-		"framerateMode": "unlimited-frame",
+		"framerateMode": "vsync",
 		"sampling": "nearest",
 		"downscaling": "low",
 		"renderingMode": "auto",

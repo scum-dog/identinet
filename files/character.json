@@ -1,83 +1,80 @@
 {
   "character_data": {
     "info": {
-      "name": "River",
-      "sex": "male",
-      "date_of_birth": "1989-01-07",
-      "height_in": 57,
-      "weight_lb": 215,
-      "eye_color": "pink",
-      "hair_color": "black",
+      "name": "Riley",
+      "sex": "female",
+      "date_of_birth": "1996-05-27",
+      "height_in": 90,
+      "weight_lb": 219,
+      "eye_color": "maroon",
+      "hair_color": "white",
       "race": [
-        "ai_an",
+        "white",
         "other"
       ],
-      "ethnicity": "not_hispanic_latino",
-      "location": "Gabon"
+      "ethnicity": "hispanic_latino",
+      "location": "Cocos (Keeling) Islands"
     },
     "static": {
       "head": {
-        "asset_id": 660
+        "asset_id": 771
       },
       "hair": {
-        "asset_id": 97
-      },
-      "beard": {
-        "asset_id": 684
+        "asset_id": 607
       },
       "age_lines": {
-        "asset_id": 279
+        "asset_id": 728
       }
     },
     "placeable_movable": {
       "eyes": {
-        "asset_id": 449,
-        "offset_x": 1,
-        "offset_y": 0.9,
-        "scale": 0.6,
-        "rotation": 15
+        "asset_id": 939,
+        "offset_x": 0.3,
+        "offset_y": 0.1,
+        "scale": 0.5,
+        "rotation": -30
       },
       "eyebrows": {
-        "asset_id": 56,
-        "offset_x": 0.4,
-        "offset_y": -0.5,
-        "scale": 0.6,
-        "rotation": -25
+        "asset_id": 364,
+        "offset_x": 0.9,
+        "offset_y": 0.9,
+        "scale": 1,
+        "rotation": 25
       },
       "nose": {
-        "asset_id": 406,
-        "offset_y": -0.2,
-        "scale": 1.2
+        "asset_id": 253,
+        "offset_y": -0.3,
+        "scale": 1
       },
       "lips": {
-        "asset_id": 251,
-        "offset_y": 0.9,
-        "scale": 0.7
+        "asset_id": 436,
+        "offset_y": 0.5,
+        "scale": 1.5
       },
       "glasses": {
-        "asset_id": 443,
-        "offset_y": -0.9,
-        "scale": 1.1
+        "asset_id": 327,
+        "offset_y": -0.8,
+        "scale": 1.3
       },
       "mustache": {
-        "asset_id": 486,
-        "offset_y": -0.1,
-        "scale": 1.2
+        "asset_id": 320,
+        "offset_y": 0.3,
+        "scale": 1.3
       },
       "misc": {
-        "asset_id": 67,
-        "offset_x": 0.2,
-        "offset_y": -0.6,
-        "scale": 1
+        "asset_id": 983,
+        "offset_x": 0.4,
+        "offset_y": -0.8,
+        "scale": 0.7
       }
     }
   },
   "metadata": {
-    "upload_id": "d99e85b0-6983-49c1-aba2-898285f8826e",
-    "user_id": "f247a201-a16c-4cc2-b514-9eb6a52d545b",
-    "created_at": "2023-04-25T10:36:11.018Z",
-    "last_edited_at": null,
-    "is_edited": false,
+    "upload_id": "0f115986-4178-4eae-ade4-b17385176594",
+    "user_id": "4c3def47-8438-4544-95bc-130e31452d62",
+    "created_at": "2024-07-27T22:34:52.846Z",
+    "last_edited_at": "2025-05-26T09:35:03.131Z",
+    "is_edited": true,
     "can_edit": true,
     "is_deleted": false,
     "deleted_at": null,
