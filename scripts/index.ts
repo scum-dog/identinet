@@ -68,6 +68,7 @@ export {
 export {
   isValidCountry,
   validateCharacterName,
+  validateText,
   CHARACTER_NAME_MAX_LENGTH,
   CHARACTER_NAME_REGEX,
   CHARACTER_NAME_ERROR_MESSAGE,

@@ -366,3 +366,39 @@ export function validateCharacterName(name: string): {
 
   return { valid: true };
 }
+
+/**
+ * sanitize text input to conform to CHARACTER_NAME_REGEX pattern
+ * @param runtime - C3 runtime instance
+ * @param text - text to sanitize
+ * @returns sanitized text that conforms to character name regex
+ */
+export function validateText(runtime: any, text: string): string {
+  if (!text || typeof text !== "string") {
+    return "";
+  }
+
+  // remove all invalid characters
+  let sanitized = text.replace(/[^A-Za-z' -]/g, "");
+
+  // remove leading non-letters
+  sanitized = sanitized.replace(/^[^A-Za-z]+/, "");
+
+  // remove consecutive punctuation
+  sanitized = sanitized.replace(/([' -])[' -]+/g, "$1");
+
+  // trim leading/trailing whitespace
+  sanitized = sanitized.trim();
+
+  // truncate to max length
+  if (sanitized.length > CHARACTER_NAME_MAX_LENGTH) {
+    sanitized = sanitized.substring(0, CHARACTER_NAME_MAX_LENGTH).trim();
+  }
+
+  // if no letters remain, return empty string
+  if (!/[A-Za-z]/.test(sanitized)) {
+    return "";
+  }
+
+  return sanitized;
+}
