@@ -31,6 +31,7 @@ export const getCharactersByCountry = API.getCharactersByCountry;
 export const getRandomCharacters = API.getRandomCharacters;
 export const validateCharacterData = API.validateCharacterData;
 export const validateInputName = API.validateInputName;
+export const getJSONValue = API.getJSONValue;
 export const setJSONValue = API.setJSONValue;
 
 // admin

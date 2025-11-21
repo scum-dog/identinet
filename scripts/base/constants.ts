@@ -287,6 +287,7 @@ export type Sex = keyof typeof SEXES;
 export const SEX_VALUES = Object.keys(SEXES) as Sex[];
 
 export const RACES = {
+  none: "N/A",
   ai_an: "American Indian or Alaska Native",
   asian: "Asian",
   black: "Black or African American",
@@ -402,7 +403,27 @@ export function validateInputName(runtime: any): string {
 }
 
 /**
- * attempt to set value of provided JSON key
+ * get the value of provided JSON key
+ * @param runtime - C3 runtime instance (JSON)
+ * @param key - JSON key path
+ */
+export function getJSONValue(runtime: any, key: string): string {
+  const json_object = runtime;
+  const json_data = json_object.getJsonDataCopy();
+
+  const parts = key.split(".");
+  let ref: any = json_data;
+
+  for (const p of parts) {
+    if (ref == null || typeof ref !== "object") return "";
+    ref = ref[p];
+  }
+
+  return ref;
+}
+
+/**
+ * set the value of provided JSON key
  * @param runtime - C3 runtime instance (JSON)
  * @param key - JSON key path
  * @param value - JSON value

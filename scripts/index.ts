@@ -69,7 +69,6 @@ export {
   isValidCountry,
   validateCharacterName,
   validateInputName,
-  setJSONValue,
   CHARACTER_NAME_MAX_LENGTH,
   CHARACTER_NAME_REGEX,
   CHARACTER_NAME_ERROR_MESSAGE,
@@ -80,6 +79,8 @@ export {
   ETHNICITIES,
   EYE_COLORS,
   HAIR_COLORS,
+  getJSONValue,
+  setJSONValue,
 } from "./base/constants.js";
 
 export {
