@@ -135,6 +135,13 @@
 			"sdkVersion": 2
 		},
 		{
+			"type": "plugin",
+			"id": "sliderbar",
+			"name": "Slider bar",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "Timer",
 			"name": "Timer",
@@ -229,8 +236,9 @@
 					"CreatorMenu",
 					"CreatorButton",
 					"CreatorPageButton",
-					"List",
-					"TextInput"
+					"InputDropdown",
+					"InputName",
+					"InputSlider"
 				],
 				"subfolders": [],
 				"name": "Creator"

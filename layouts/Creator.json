@@ -3955,7 +3955,7 @@
 					}
 				},
 				{
-					"type": "TextInput",
+					"type": "InputName",
 					"properties": {
 						"text": "",
 						"placeholder": "Enter name...",
@@ -3970,14 +3970,14 @@
 						"class": "input"
 					},
 					"uid": 87,
-					"sid": 412937157248760,
+					"sid": 945938261284341,
 					"tags": "",
 					"instanceVariables": {
 						"type": "name"
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
-						"sid": 412937157248760,
+						"sid": 945938261284341,
 						"expanded": true
 					},
 					"showing": true,
@@ -3998,29 +3998,68 @@
 					}
 				},
 				{
-					"type": "TextInput",
+					"type": "InputDropdown",
 					"properties": {
-						"text": "",
-						"placeholder": "Day...",
+						"items": "Month",
 						"tooltip": "",
 						"initially-visible": true,
 						"enabled": true,
-						"read-only": false,
-						"spell-check": false,
-						"type": "text",
+						"type": "dropdown-list",
+						"multi-select": false,
+						"auto-font-size": false,
+						"id": "",
+						"class": "input"
+					},
+					"uid": 105,
+					"sid": 468957782016013,
+					"tags": "",
+					"instanceVariables": {
+						"type": "month"
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 468957782016013,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 36,
+						"y": 120,
+						"width": 80,
+						"height": 16,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "InputDropdown",
+					"properties": {
+						"items": "Day",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"type": "dropdown-list",
+						"multi-select": false,
 						"auto-font-size": false,
 						"id": "",
 						"class": "input"
 					},
 					"uid": 106,
-					"sid": 201119409908561,
+					"sid": 827045906444902,
 					"tags": "",
 					"instanceVariables": {
 						"type": "day"
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
-						"sid": 201119409908561,
+						"sid": 827045906444902,
 						"expanded": true
 					},
 					"showing": true,
@@ -4041,29 +4080,27 @@
 					}
 				},
 				{
-					"type": "TextInput",
+					"type": "InputDropdown",
 					"properties": {
-						"text": "",
-						"placeholder": "Year...",
+						"items": "Year",
 						"tooltip": "",
 						"initially-visible": true,
 						"enabled": true,
-						"read-only": false,
-						"spell-check": false,
-						"type": "number",
+						"type": "dropdown-list",
+						"multi-select": false,
 						"auto-font-size": false,
 						"id": "",
 						"class": "input"
 					},
 					"uid": 107,
-					"sid": 300378729284770,
+					"sid": 976071111579212,
 					"tags": "",
 					"instanceVariables": {
 						"type": "year"
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
-						"sid": 300378729284770,
+						"sid": 976071111579212,
 						"expanded": true
 					},
 					"showing": true,
@@ -4084,7 +4121,7 @@
 					}
 				},
 				{
-					"type": "List",
+					"type": "InputDropdown",
 					"properties": {
 						"items": "Sex",
 						"tooltip": "",
@@ -4097,14 +4134,14 @@
 						"class": "input"
 					},
 					"uid": 108,
-					"sid": 146887031700419,
+					"sid": 520752233021474,
 					"tags": "",
 					"instanceVariables": {
 						"type": "sex"
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
-						"sid": 146887031700419,
+						"sid": 520752233021474,
 						"expanded": true
 					},
 					"showing": true,
@@ -4125,7 +4162,7 @@
 					}
 				},
 				{
-					"type": "List",
+					"type": "InputDropdown",
 					"properties": {
 						"items": "Location",
 						"tooltip": "",
@@ -4138,14 +4175,14 @@
 						"class": "input"
 					},
 					"uid": 100,
-					"sid": 487989428352977,
+					"sid": 912142975548053,
 					"tags": "",
 					"instanceVariables": {
 						"type": "location"
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
-						"sid": 487989428352977,
+						"sid": 912142975548053,
 						"expanded": true
 					},
 					"showing": true,
@@ -4154,47 +4191,6 @@
 						"x": 36,
 						"y": 200,
 						"width": 248,
-						"height": 16,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						]
-					}
-				},
-				{
-					"type": "List",
-					"properties": {
-						"items": "Month",
-						"tooltip": "",
-						"initially-visible": true,
-						"enabled": true,
-						"type": "dropdown-list",
-						"multi-select": false,
-						"auto-font-size": false,
-						"id": "",
-						"class": "input"
-					},
-					"uid": 105,
-					"sid": 118466382902507,
-					"tags": "",
-					"instanceVariables": {
-						"type": "month"
-					},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 118466382902507,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 36,
-						"y": 120,
-						"width": 80,
 						"height": 16,
 						"originX": 0,
 						"originY": 0,
@@ -4242,91 +4238,9 @@
 			"subLayers": [],
 			"instances": [
 				{
-					"type": "List",
-					"properties": {
-						"items": "Race 1",
-						"tooltip": "",
-						"initially-visible": true,
-						"enabled": true,
-						"type": "dropdown-list",
-						"multi-select": false,
-						"auto-font-size": false,
-						"id": "",
-						"class": "input"
-					},
-					"uid": 98,
-					"sid": 406552120130709,
-					"tags": "",
-					"instanceVariables": {
-						"type": "race#1"
-					},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 406552120130709,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 36,
-						"y": 80,
-						"width": 122,
-						"height": 16,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						]
-					}
-				},
-				{
-					"type": "List",
-					"properties": {
-						"items": "Race 2",
-						"tooltip": "",
-						"initially-visible": true,
-						"enabled": true,
-						"type": "dropdown-list",
-						"multi-select": false,
-						"auto-font-size": false,
-						"id": "",
-						"class": "input"
-					},
-					"uid": 104,
-					"sid": 831980729981917,
-					"tags": "",
-					"instanceVariables": {
-						"type": "race#2"
-					},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 831980729981917,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 162,
-						"y": 80,
-						"width": 122,
-						"height": 16,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						]
-					}
-				},
-				{
 					"type": "Text",
 					"properties": {
-						"text": "Height (in)",
+						"text": "Height (Inches)",
 						"enable-bbcode": true,
 						"character-width": 12,
 						"character-height": 12,
@@ -4390,91 +4304,9 @@
 					}
 				},
 				{
-					"type": "List",
-					"properties": {
-						"items": "Eye Color",
-						"tooltip": "",
-						"initially-visible": true,
-						"enabled": true,
-						"type": "dropdown-list",
-						"multi-select": false,
-						"auto-font-size": false,
-						"id": "",
-						"class": "input"
-					},
-					"uid": 93,
-					"sid": 682385616396512,
-					"tags": "",
-					"instanceVariables": {
-						"type": "eye_color"
-					},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 682385616396512,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 36,
-						"y": 200,
-						"width": 122,
-						"height": 16,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						]
-					}
-				},
-				{
-					"type": "List",
-					"properties": {
-						"items": "Hair Color",
-						"tooltip": "",
-						"initially-visible": true,
-						"enabled": true,
-						"type": "dropdown-list",
-						"multi-select": false,
-						"auto-font-size": false,
-						"id": "",
-						"class": "input"
-					},
-					"uid": 94,
-					"sid": 443151304925307,
-					"tags": "",
-					"instanceVariables": {
-						"type": "hair_color"
-					},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 443151304925307,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 162,
-						"y": 200,
-						"width": 122,
-						"height": 16,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						]
-					}
-				},
-				{
 					"type": "Text",
 					"properties": {
-						"text": "Weight (lbs)",
+						"text": "Weight (Pounds)",
 						"enable-bbcode": true,
 						"character-width": 12,
 						"character-height": 12,
@@ -4670,47 +4502,6 @@
 					}
 				},
 				{
-					"type": "List",
-					"properties": {
-						"items": "Ethnicity",
-						"tooltip": "",
-						"initially-visible": true,
-						"enabled": true,
-						"type": "dropdown-list",
-						"multi-select": false,
-						"auto-font-size": false,
-						"id": "",
-						"class": "input"
-					},
-					"uid": 99,
-					"sid": 325824437625353,
-					"tags": "",
-					"instanceVariables": {
-						"type": "ethnicity"
-					},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 325824437625353,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 36,
-						"y": 120,
-						"width": 248,
-						"height": 16,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						]
-					}
-				},
-				{
 					"type": "Text",
 					"properties": {
 						"text": "Ethnicity",
@@ -4777,92 +4568,6 @@
 					}
 				},
 				{
-					"type": "TextInput",
-					"properties": {
-						"text": "",
-						"placeholder": "Enter height...",
-						"tooltip": "",
-						"initially-visible": true,
-						"enabled": true,
-						"read-only": false,
-						"spell-check": false,
-						"type": "number",
-						"auto-font-size": false,
-						"id": "",
-						"class": "input"
-					},
-					"uid": 88,
-					"sid": 950444331844857,
-					"tags": "",
-					"instanceVariables": {
-						"type": "height"
-					},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 950444331844857,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 36,
-						"y": 160,
-						"width": 122,
-						"height": 16,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						]
-					}
-				},
-				{
-					"type": "TextInput",
-					"properties": {
-						"text": "",
-						"placeholder": "Enter weight...",
-						"tooltip": "",
-						"initially-visible": true,
-						"enabled": true,
-						"read-only": false,
-						"spell-check": false,
-						"type": "number",
-						"auto-font-size": false,
-						"id": "",
-						"class": "input"
-					},
-					"uid": 92,
-					"sid": 996630660944875,
-					"tags": "",
-					"instanceVariables": {
-						"type": "weight"
-					},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 996630660944875,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 162,
-						"y": 160,
-						"width": 122,
-						"height": 16,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						]
-					}
-				},
-				{
 					"type": "Text",
 					"properties": {
 						"text": "Race",
@@ -4926,6 +4631,425 @@
 						],
 						"angle": 0,
 						"zElevation": 0
+					}
+				},
+				{
+					"type": "Text",
+					"properties": {
+						"text": "5'10\"",
+						"enable-bbcode": true,
+						"character-width": 12,
+						"character-height": 12,
+						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
+						"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
+						"scale": 1,
+						"character-spacing": 0,
+						"line-height": -1,
+						"horizontal-alignment": "center",
+						"vertical-alignment": "bottom",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 92,
+					"sid": 793599379902333,
+					"tags": "",
+					"instanceVariables": {
+						"type": "height"
+					},
+					"behaviors": {},
+					"effects": {
+						"BetterOutline": {
+							"isEnabled": true,
+							"parameters": {
+								"color": [
+									0,
+									0,
+									0,
+									1
+								],
+								"width": 1,
+								"precision-step": 1,
+								"samples": 8,
+								"opacity": 1
+							}
+						}
+					},
+					"instanceFolderItem": {
+						"sid": 793599379902333,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 134,
+						"y": 160,
+						"width": 24,
+						"height": 16,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "Text",
+					"properties": {
+						"text": "500",
+						"enable-bbcode": true,
+						"character-width": 12,
+						"character-height": 12,
+						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
+						"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
+						"scale": 1,
+						"character-spacing": 0,
+						"line-height": -1,
+						"horizontal-alignment": "center",
+						"vertical-alignment": "bottom",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 110,
+					"sid": 564060844751974,
+					"tags": "",
+					"instanceVariables": {
+						"type": "weight"
+					},
+					"behaviors": {},
+					"effects": {
+						"BetterOutline": {
+							"isEnabled": true,
+							"parameters": {
+								"color": [
+									0,
+									0,
+									0,
+									1
+								],
+								"width": 1,
+								"precision-step": 1,
+								"samples": 8,
+								"opacity": 1
+							}
+						}
+					},
+					"instanceFolderItem": {
+						"sid": 564060844751974,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 260,
+						"y": 160,
+						"width": 24,
+						"height": 16,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "InputDropdown",
+					"properties": {
+						"items": "Race 1",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"type": "dropdown-list",
+						"multi-select": false,
+						"auto-font-size": false,
+						"id": "",
+						"class": "input"
+					},
+					"uid": 98,
+					"sid": 223423108819628,
+					"tags": "",
+					"instanceVariables": {
+						"type": "race#1"
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 223423108819628,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 36,
+						"y": 80,
+						"width": 122,
+						"height": 16,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "InputDropdown",
+					"properties": {
+						"items": "Race 2",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"type": "dropdown-list",
+						"multi-select": false,
+						"auto-font-size": false,
+						"id": "",
+						"class": "input"
+					},
+					"uid": 104,
+					"sid": 828860063020620,
+					"tags": "",
+					"instanceVariables": {
+						"type": "race#2"
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 828860063020620,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 162,
+						"y": 80,
+						"width": 122,
+						"height": 16,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "InputDropdown",
+					"properties": {
+						"items": "Ethnicity",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"type": "dropdown-list",
+						"multi-select": false,
+						"auto-font-size": false,
+						"id": "",
+						"class": "input"
+					},
+					"uid": 99,
+					"sid": 310813773496863,
+					"tags": "",
+					"instanceVariables": {
+						"type": "ethnicity"
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 310813773496863,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 36,
+						"y": 120,
+						"width": 248,
+						"height": 16,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "InputSlider",
+					"properties": {
+						"value": 48,
+						"minimum": 48,
+						"maximum": 96,
+						"step": 1,
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"id": "",
+						"class": ""
+					},
+					"uid": 86,
+					"sid": 847441470424682,
+					"tags": "",
+					"instanceVariables": {
+						"type": "height"
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 847441470424682,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 36,
+						"y": 164,
+						"width": 96,
+						"height": 8,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "InputSlider",
+					"properties": {
+						"value": 50,
+						"minimum": 50,
+						"maximum": 500,
+						"step": 1,
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"id": "",
+						"class": ""
+					},
+					"uid": 88,
+					"sid": 900177373687020,
+					"tags": "",
+					"instanceVariables": {
+						"type": "weight"
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 900177373687020,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 162,
+						"y": 164,
+						"width": 96,
+						"height": 8,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "InputDropdown",
+					"properties": {
+						"items": "Eye Color",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"type": "dropdown-list",
+						"multi-select": false,
+						"auto-font-size": false,
+						"id": "",
+						"class": "input"
+					},
+					"uid": 93,
+					"sid": 639393457986906,
+					"tags": "",
+					"instanceVariables": {
+						"type": "eye_color"
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 639393457986906,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 36,
+						"y": 200,
+						"width": 122,
+						"height": 16,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "InputDropdown",
+					"properties": {
+						"items": "Hair Color",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"type": "dropdown-list",
+						"multi-select": false,
+						"auto-font-size": false,
+						"id": "",
+						"class": "input"
+					},
+					"uid": 94,
+					"sid": 922710396185445,
+					"tags": "",
+					"instanceVariables": {
+						"type": "hair_color"
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 922710396185445,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 162,
+						"y": 200,
+						"width": 122,
+						"height": 16,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
 					}
 				}
 			],

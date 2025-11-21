@@ -1470,15 +1470,6 @@
 														"type": "once",
 														"tag": "\"transitionWait\""
 													}
-												},
-												{
-													"id": "log",
-													"objectClass": "Browser",
-													"sid": 637489199156969,
-													"parameters": {
-														"type": "log",
-														"message": "\"delete\""
-													}
 												}
 											],
 											"sid": 419729662348684
@@ -1884,6 +1875,23 @@
 							}
 						},
 						{
+							"id": "add-child",
+							"objectClass": "CharacterHead",
+							"sid": 696749175700863,
+							"parameters": {
+								"child": "CharacterPart",
+								"transform-x": false,
+								"transform-y": false,
+								"transform-w": false,
+								"transform-h": false,
+								"transform-a": false,
+								"transform-o": false,
+								"transform-z-elevation": false,
+								"transform-visibility": false,
+								"destroy-with-parent": true
+							}
+						},
+						{
 							"id": "set-animation",
 							"objectClass": "CharacterPart",
 							"sid": 185047667464879,
@@ -1919,23 +1927,6 @@
 							"sid": 152776851438656,
 							"parameters": {
 								"angle": "Functions.getValue(part, \"rotation\")"
-							}
-						},
-						{
-							"id": "add-child",
-							"objectClass": "CharacterHead",
-							"sid": 438921458422195,
-							"parameters": {
-								"child": "CharacterPart",
-								"transform-x": false,
-								"transform-y": false,
-								"transform-w": false,
-								"transform-h": false,
-								"transform-a": false,
-								"transform-o": false,
-								"transform-z-elevation": false,
-								"transform-visibility": false,
-								"destroy-with-parent": true
 							}
 						},
 						{
@@ -2004,28 +1995,28 @@
 								{
 									"id": "compare-child-count",
 									"objectClass": "CharacterHead",
-									"sid": 727633881579055,
+									"sid": 876956737201063,
 									"parameters": {
 										"which": "own",
 										"comparison": 0,
 										"count": "total"
 									}
+								},
+								{
+									"id": "pick-children",
+									"objectClass": "CharacterHead",
+									"sid": 989698251112475,
+									"parameters": {
+										"child": "Character",
+										"which": "own"
+									}
 								}
 							],
 							"actions": [
 								{
-									"type": "comment",
-									"text": "Despite absolutely no action up to this point being asynchronous, having this here solves a race condition... I hate this engine sometimes"
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 201279660701680
-								},
-								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 454481544927061,
+									"sid": 840718666409711,
 									"parameters": {
 										"object-to-create": "CharacterCanvas",
 										"layer": "\"Character\"",
@@ -2038,10 +2029,28 @@
 								{
 									"id": "set-size",
 									"objectClass": "CharacterCanvas",
-									"sid": 218640971418455,
+									"sid": 134275149062218,
 									"parameters": {
 										"width": "200*scale",
 										"height": "200*scale"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "Sprite image loading is asynchronous, so waiting here solves a race condition"
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 201279660701680
+								},
+								{
+									"id": "paste-object",
+									"objectClass": "CharacterCanvas",
+									"sid": 780228869186789,
+									"parameters": {
+										"object": "CharacterHead",
+										"effects": "without-effects"
 									}
 								},
 								{

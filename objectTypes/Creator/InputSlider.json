@@ -1,7 +1,7 @@
 {
-	"name": "TextInput",
-	"plugin-id": "TextBox",
-	"sid": 728616254085084,
+	"name": "InputSlider",
+	"plugin-id": "sliderbar",
+	"sid": 105334649986009,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [
@@ -10,7 +10,7 @@
 			"type": "string",
 			"desc": "",
 			"show": true,
-			"sid": 401395905202869
+			"sid": 166974941299286
 		}
 	],
 	"behaviorTypes": []

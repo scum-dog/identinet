@@ -1,7 +1,7 @@
 {
-	"name": "List",
-	"plugin-id": "List",
-	"sid": 524014825462332,
+	"name": "InputName",
+	"plugin-id": "TextBox",
+	"sid": 728616254085084,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [
@@ -10,7 +10,7 @@
 			"type": "string",
 			"desc": "",
 			"show": true,
-			"sid": 315440882238314
+			"sid": 401395905202869
 		}
 	],
 	"behaviorTypes": []

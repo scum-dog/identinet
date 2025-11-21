@@ -30,7 +30,7 @@ export const canEditCharacter = API.canEditCharacter;
 export const getCharactersByCountry = API.getCharactersByCountry;
 export const getRandomCharacters = API.getRandomCharacters;
 export const validateCharacterData = API.validateCharacterData;
-export const validateTextInput = API.validateTextInput;
+export const validateInputName = API.validateInputName;
 
 // admin
 export const listAllCharacters = API.listAllCharacters;

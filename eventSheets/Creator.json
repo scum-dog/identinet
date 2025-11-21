@@ -682,12 +682,11 @@
 							}
 						},
 						{
-							"id": "compare-opacity",
-							"objectClass": "CreatorNavButton",
-							"sid": 750901820764232,
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 708617130720100,
 							"parameters": {
-								"comparison": 5,
-								"opacity": "100"
+								"object": "CreatorNavButton"
 							}
 						}
 					],
@@ -695,73 +694,36 @@
 					"sid": 873783108410884,
 					"children": [
 						{
-							"eventType": "comment",
-							"text": "Physical"
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
+									"id": "compare-opacity",
 									"objectClass": "CreatorNavButton",
-									"sid": 783742012628302,
+									"sid": 814288764623889,
 									"parameters": {
-										"instance-variable": "id",
-										"comparison": 0,
-										"value": "\"physical\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 145190002025478,
-									"parameters": {
-										"variable": "CREATOR_menu",
-										"value": "\"physical\""
-									}
-								}
-							],
-							"sid": 991293790099025
-						},
-						{
-							"eventType": "comment",
-							"text": "Biographic"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 517672668805982
-								},
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "CreatorNavButton",
-									"sid": 834219183666385,
-									"parameters": {
-										"instance-variable": "id",
-										"comparison": 0,
-										"value": "\"biographic\""
+										"comparison": 5,
+										"opacity": "100"
 									}
 								}
 							],
 							"actions": [],
-							"sid": 195746536623366,
+							"sid": 985846952439885,
 							"children": [
+								{
+									"eventType": "comment",
+									"text": "Physical"
+								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 830034542408075,
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorNavButton",
+											"sid": 355421419143905,
 											"parameters": {
-												"variable": "CREATOR_menu",
-												"comparison": 1,
-												"value": "\"biographic\""
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"physical\""
 											}
 										}
 									],
@@ -769,14 +731,18 @@
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 144526440559009,
+											"sid": 238677679634965,
 											"parameters": {
 												"variable": "CREATOR_menu",
-												"value": "\"biographic\""
+												"value": "\"physical\""
 											}
 										}
 									],
-									"sid": 940904730426817
+									"sid": 686705327381353
+								},
+								{
+									"eventType": "comment",
+									"text": "Biographic"
 								},
 								{
 									"eventType": "block",
@@ -784,76 +750,76 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 246098356809670
-										}
-									],
-									"actions": [
+											"sid": 989973871732053
+										},
 										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 865931509683133,
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorNavButton",
+											"sid": 705311458218672,
 											"parameters": {
-												"variable": "CREATOR_menu",
-												"value": "\"parts\""
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"biographic\""
 											}
 										}
 									],
-									"sid": 132246638818260
-								}
-							]
-						},
-						{
-							"eventType": "comment",
-							"text": "Properties"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 169870614555042
+									"actions": [],
+									"sid": 781836382019156,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 301461935452121,
+													"parameters": {
+														"variable": "CREATOR_menu",
+														"comparison": 1,
+														"value": "\"biographic\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 518992114853707,
+													"parameters": {
+														"variable": "CREATOR_menu",
+														"value": "\"biographic\""
+													}
+												}
+											],
+											"sid": 553116019061927
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 433758238649899
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 640381199656462,
+													"parameters": {
+														"variable": "CREATOR_menu",
+														"value": "\"parts\""
+													}
+												}
+											],
+											"sid": 162050812396649
+										}
+									]
 								},
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "CreatorNavButton",
-									"sid": 476626512655341,
-									"parameters": {
-										"instance-variable": "id",
-										"comparison": 0,
-										"value": "\"properties\""
-									}
-								}
-							],
-							"actions": [],
-							"sid": 135251450842309,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 997799586691681,
-											"parameters": {
-												"variable": "CREATOR_menu",
-												"comparison": 1,
-												"value": "\"properties\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 426748052037105,
-											"parameters": {
-												"variable": "CREATOR_menu",
-												"value": "\"properties\""
-											}
-										}
-									],
-									"sid": 280410931936975
+									"eventType": "comment",
+									"text": "Properties"
 								},
 								{
 									"eventType": "block",
@@ -861,75 +827,127 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 366510127168070
+											"sid": 171696229116711
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorNavButton",
+											"sid": 451439485881018,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"properties\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 522062681816073,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 831053051831365,
+													"parameters": {
+														"variable": "CREATOR_menu",
+														"comparison": 1,
+														"value": "\"properties\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 404057625763155,
+													"parameters": {
+														"variable": "CREATOR_menu",
+														"value": "\"properties\""
+													}
+												}
+											],
+											"sid": 268874233137806
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 634787818474328
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 361903050426803,
+													"parameters": {
+														"variable": "CREATOR_menu",
+														"value": "\"parts\""
+													}
+												}
+											],
+											"sid": 864347174755207
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "Parts"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 785685310324964
 										}
 									],
 									"actions": [
 										{
 											"id": "set-eventvar-value",
 											"objectClass": "System",
-											"sid": 541396700714720,
+											"sid": 363907532366878,
+											"parameters": {
+												"variable": "CREATOR_part",
+												"value": "CreatorNavButton.id"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 209042266310079,
 											"parameters": {
 												"variable": "CREATOR_menu",
 												"value": "\"parts\""
 											}
 										}
 									],
-									"sid": 573362746914861
-								}
-							]
-						},
-						{
-							"eventType": "comment",
-							"text": "Parts"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 228010199956050
-								}
-							],
-							"actions": [
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 607501394690182,
-									"parameters": {
-										"variable": "CREATOR_part",
-										"value": "CreatorNavButton.id"
-									}
+									"sid": 555906778707755
 								},
 								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 618588108969409,
-									"parameters": {
-										"variable": "CREATOR_menu",
-										"value": "\"parts\""
-									}
-								}
-							],
-							"sid": 386619949397581
-						},
-						{
-							"eventType": "comment",
-							"text": "Update the menu"
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
+									"eventType": "comment",
+									"text": "Update the menu"
+								},
 								{
-									"callFunction": "updateCreatorMenu",
-									"sid": 924709083057983
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"callFunction": "updateCreatorMenu",
+											"sid": 738993206531737
+										}
+									],
+									"sid": 738134853297903
 								}
-							],
-							"sid": 292474745216776
+							]
 						}
-					]
+					],
+					"isOrBlock": true
 				},
 				{
 					"eventType": "comment",
@@ -946,6 +964,14 @@
 								"mouse-button": "left",
 								"click-type": "clicked",
 								"object-clicked": "CreatorPageButton"
+							}
+						},
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 826748927922358,
+							"parameters": {
+								"object": "CreatorPageButton"
 							}
 						}
 					],
@@ -1039,7 +1065,8 @@
 							],
 							"sid": 854472565482193
 						}
-					]
+					],
+					"isOrBlock": true
 				},
 				{
 					"eventType": "group",
@@ -1931,11 +1958,15 @@
 													"sid": 240650756964811
 												},
 												{
+													"eventType": "comment",
+													"text": "Update all inputs"
+												},
+												{
 													"eventType": "block",
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput",
+															"objectClass": "InputName",
 															"sid": 723834971938386,
 															"parameters": {
 																"instance-variable": "type",
@@ -1947,7 +1978,7 @@
 													"actions": [
 														{
 															"id": "set-text",
-															"objectClass": "TextInput",
+															"objectClass": "InputName",
 															"sid": 369999725614859,
 															"parameters": {
 																"text": "JSON.Get(\"character_data.info.name\")"
@@ -1961,7 +1992,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "List",
+															"objectClass": "InputDropdown",
 															"sid": 402444678986849,
 															"parameters": {
 																"instance-variable": "type",
@@ -1972,7 +2003,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshInfo",
+															"callFunction": "refreshList",
 															"sid": 856929400525414,
 															"parameters": [
 																"\"month\"",
@@ -1987,7 +2018,59 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput",
+															"objectClass": "InputDropdown",
+															"sid": 367391330490574,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"day\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "refreshList",
+															"sid": 590856376548043,
+															"parameters": [
+																"\"day\"",
+																"\"character_data.info.date_of_birth\""
+															]
+														}
+													],
+													"sid": 830368168665493
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "InputDropdown",
+															"sid": 629967766608927,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"year\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "refreshList",
+															"sid": 515991387135425,
+															"parameters": [
+																"\"year\"",
+																"\"character_data.info.date_of_birth\""
+															]
+														}
+													],
+													"sid": 966604121739649
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "InputName",
 															"sid": 580185750116115,
 															"parameters": {
 																"instance-variable": "type",
@@ -1999,7 +2082,7 @@
 													"actions": [
 														{
 															"id": "set-text",
-															"objectClass": "TextInput",
+															"objectClass": "InputName",
 															"sid": 958123272943950,
 															"parameters": {
 																"text": "Date.GetDate(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))+1"
@@ -2015,14 +2098,15 @@
 															}
 														}
 													],
-													"sid": 364536222608448
+													"sid": 364536222608448,
+													"disabled": true
 												},
 												{
 													"eventType": "block",
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput",
+															"objectClass": "InputName",
 															"sid": 262179978139828,
 															"parameters": {
 																"instance-variable": "type",
@@ -2034,21 +2118,22 @@
 													"actions": [
 														{
 															"id": "set-text",
-															"objectClass": "TextInput",
+															"objectClass": "InputName",
 															"sid": 923513128681183,
 															"parameters": {
 																"text": "Date.GetYear(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))"
 															}
 														}
 													],
-													"sid": 860334916129107
+													"sid": 860334916129107,
+													"disabled": true
 												},
 												{
 													"eventType": "block",
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "List",
+															"objectClass": "InputDropdown",
 															"sid": 876431598284345,
 															"parameters": {
 																"instance-variable": "type",
@@ -2059,7 +2144,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshInfo",
+															"callFunction": "refreshList",
 															"sid": 307424865654055,
 															"parameters": [
 																"\"sex\"",
@@ -2074,7 +2159,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "List",
+															"objectClass": "InputDropdown",
 															"sid": 754223135635324,
 															"parameters": {
 																"instance-variable": "type",
@@ -2085,7 +2170,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshInfo",
+															"callFunction": "refreshList",
 															"sid": 563721999684822,
 															"parameters": [
 																"\"location\"",
@@ -2172,11 +2257,15 @@
 													"sid": 635168669552070
 												},
 												{
+													"eventType": "comment",
+													"text": "Update all inputs"
+												},
+												{
 													"eventType": "block",
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "List",
+															"objectClass": "InputDropdown",
 															"sid": 858075495461747,
 															"parameters": {
 																"instance-variable": "type",
@@ -2187,7 +2276,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshInfo",
+															"callFunction": "refreshList",
 															"sid": 816662230952711,
 															"parameters": [
 																"\"race#1\"",
@@ -2202,7 +2291,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "List",
+															"objectClass": "InputDropdown",
 															"sid": 166960834486892,
 															"parameters": {
 																"instance-variable": "type",
@@ -2213,7 +2302,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshInfo",
+															"callFunction": "refreshList",
 															"sid": 583355672470088,
 															"parameters": [
 																"\"race#2\"",
@@ -2228,7 +2317,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "List",
+															"objectClass": "InputDropdown",
 															"sid": 118140389581256,
 															"parameters": {
 																"instance-variable": "type",
@@ -2239,7 +2328,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshInfo",
+															"callFunction": "refreshList",
 															"sid": 614852969156850,
 															"parameters": [
 																"\"ethnicity\"",
@@ -2254,59 +2343,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "TextInput",
-															"sid": 537510176442458,
-															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"height\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-text",
-															"objectClass": "TextInput",
-															"sid": 792296892458683,
-															"parameters": {
-																"text": "JSON.Get(\"character_data.info.height_in\")"
-															}
-														}
-													],
-													"sid": 821958264962963
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "TextInput",
-															"sid": 775589952192915,
-															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"weight\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-text",
-															"objectClass": "TextInput",
-															"sid": 932977658394145,
-															"parameters": {
-																"text": "JSON.Get(\"character_data.info.weight_lb\")"
-															}
-														}
-													],
-													"sid": 464131096408886
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "List",
+															"objectClass": "InputDropdown",
 															"sid": 665328878392624,
 															"parameters": {
 																"instance-variable": "type",
@@ -2317,7 +2354,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshInfo",
+															"callFunction": "refreshList",
 															"sid": 244274652405899,
 															"parameters": [
 																"\"eye_color\"",
@@ -2332,7 +2369,7 @@
 													"conditions": [
 														{
 															"id": "compare-instance-variable",
-															"objectClass": "List",
+															"objectClass": "InputDropdown",
 															"sid": 165148006696935,
 															"parameters": {
 																"instance-variable": "type",
@@ -2343,7 +2380,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshInfo",
+															"callFunction": "refreshList",
 															"sid": 870350513160031,
 															"parameters": [
 																"\"hair_color\"",
@@ -3024,171 +3061,6 @@
 							"sid": 187627809387179
 						}
 					]
-				},
-				{
-					"functionName": "refreshInfo",
-					"functionDescription": "",
-					"functionCategory": "",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "type",
-							"type": "string",
-							"initialValue": "sex",
-							"comment": "",
-							"sid": 941802372517327
-						},
-						{
-							"name": "index",
-							"type": "string",
-							"initialValue": "",
-							"comment": "",
-							"sid": 635625115032336
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 817227988760752,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "List",
-									"sid": 428845636519737,
-									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "type"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 882523270080804,
-									"parameters": {
-										"variable": "index",
-										"value": "JSON.Get(index)"
-									}
-								},
-								{
-									"id": "clear",
-									"objectClass": "List",
-									"sid": 588994054705846
-								},
-								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"const list_object = runtime.objects.List.getFirstPickedInstance();",
-										"const list_type = localVars.type.replace(/#.*/, \"\");",
-										"",
-										"let data: unknown;",
-										"switch (list_type) {",
-										"  case \"location\":",
-										"    data = countries;",
-										"    break;",
-										"  case \"month\":",
-										"    data = months;",
-										"    break;",
-										"  case \"sex\":",
-										"    data = sexes;",
-										"    break;",
-										"  case \"race\":",
-										"    data = races;",
-										"    break;",
-										"  case \"ethnicity\":",
-										"    data = ethnicities;",
-										"    break;",
-										"  case \"eye_color\":",
-										"    data = eye_colors;",
-										"    break;",
-										"  case \"hair_color\":",
-										"    data = hair_colors;",
-										"    break;",
-										"  default:",
-										"    data = [];",
-										"    break;",
-										"}",
-										"",
-										"const keys = Array.isArray(data) ? data : (Object.keys(data as string[]));",
-										"const values = Array.isArray(data) ? data : (Object.values(data as string[]));",
-										"",
-										"// Add all items to the list",
-										"if (list_object) {",
-										"  for (const item of values) {",
-										"    list_object.addItem(item);",
-										"  }",
-										"}",
-										"",
-										"// Set the selected item",
-										"const list_index = keys.indexOf(",
-										"  list_type === \"month\"",
-										"    ? new Date(localVars.index).toLocaleString(\"en-US\", { month: \"long\" })",
-										"    : localVars.index,",
-										");",
-										"",
-										"if (list_object) {",
-										"  list_object.selectedIndex = list_index;",
-										"}"
-									]
-								}
-							],
-							"sid": 936763463569541
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-start-of-layout",
-							"objectClass": "System",
-							"sid": 466891924803161
-						}
-					],
-					"actions": [],
-					"sid": 117051206856365,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "for-each",
-									"objectClass": "System",
-									"sid": 968363773389289,
-									"parameters": {
-										"object": "TextInput"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"const text_object = runtime.objects.TextInput.getFirstPickedInstance();",
-										"",
-										"// Make all text inputs auto-sanitize",
-										"if (text_object) {",
-										"  const test1 = text_object.getElement() as HTMLInputElement;",
-										"  ",
-										"  test1.addEventListener(\"input\", function () {",
-										"    test1.value = validateTextInput(text_object);",
-										"  });",
-										"}"
-									]
-								}
-							],
-							"sid": 270847237008627
-						}
-					]
 				}
 			],
 			"sid": 236042144896433
@@ -3214,12 +3086,11 @@
 							}
 						},
 						{
-							"id": "compare-opacity",
-							"objectClass": "CreatorButton",
-							"sid": 789908348386157,
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 972531731033008,
 							"parameters": {
-								"comparison": 5,
-								"opacity": "100"
+								"object": "CreatorButton"
 							}
 						}
 					],
@@ -3227,29 +3098,24 @@
 					"sid": 835524056857381,
 					"children": [
 						{
-							"eventType": "comment",
-							"text": "Part button"
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
+									"id": "compare-opacity",
 									"objectClass": "CreatorButton",
-									"sid": 151621210017915,
+									"sid": 179141847909476,
 									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"part\""
+										"comparison": 5,
+										"opacity": "100"
 									}
 								}
 							],
 							"actions": [],
-							"sid": 828794008109964,
+							"sid": 934446590267565,
 							"children": [
 								{
 									"eventType": "comment",
-									"text": "Delete an optional part"
+									"text": "Part button"
 								},
 								{
 									"eventType": "block",
@@ -3257,120 +3123,78 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "CreatorButton",
-											"sid": 653045378781903,
+											"sid": 842993754816493,
 											"parameters": {
-												"instance-variable": "id",
-												"comparison": 2,
-												"value": "0"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "delete-key",
-											"objectClass": "JSON",
-											"sid": 359101024656886,
-											"parameters": {
-												"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part"
-											}
-										}
-									],
-									"sid": 290391395426373
-								},
-								{
-									"eventType": "comment",
-									"text": "Update part asset ID, create optional part if it doesn't exist"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 407051625358448
-										}
-									],
-									"actions": [
-										{
-											"id": "set-value",
-											"objectClass": "JSON",
-											"sid": 722787791796866,
-											"parameters": {
-												"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part&\".asset_id\"",
-												"value": "CreatorButton.id"
-											}
-										}
-									],
-									"sid": 492250744429072
-								}
-							]
-						},
-						{
-							"eventType": "comment",
-							"text": "Property button"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "CreatorButton",
-									"sid": 638480596018305,
-									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"property\""
-									}
-								}
-							],
-							"actions": [],
-							"sid": 874366369671854,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Move left and right"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "CreatorButton",
-											"sid": 884937351525888,
-											"parameters": {
-												"instance-variable": "id",
+												"instance-variable": "type",
 												"comparison": 0,
-												"value": "0"
+												"value": "\"part\""
 											}
+										}
+									],
+									"actions": [],
+									"sid": 359471587455867,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "Delete an optional part"
 										},
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "CreatorButton",
-											"sid": 486253740305148,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "1"
-											}
-										}
-									],
-									"actions": [
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 601230213237465,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 2,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "delete-key",
+													"objectClass": "JSON",
+													"sid": 444123077713017,
+													"parameters": {
+														"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part"
+													}
+												}
+											],
+											"sid": 314072974076977
+										},
 										{
-											"callFunction": "setValue",
-											"sid": 595722793079140,
-											"parameters": [
-												"CREATOR_part",
-												"\"offset_x\"",
-												"Functions.getValue(CREATOR_part, \"offset_x\")+(((CreatorButton.id%2)*2-1)*0.1)"
-											]
+											"eventType": "comment",
+											"text": "Update part asset ID, create optional part if it doesn't exist"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 893839973522751
+												}
+											],
+											"actions": [
+												{
+													"id": "set-value",
+													"objectClass": "JSON",
+													"sid": 480351248648963,
+													"parameters": {
+														"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part&\".asset_id\"",
+														"value": "CreatorButton.id"
+													}
+												}
+											],
+											"sid": 636411042897833
 										}
-									],
-									"sid": 306766805929281,
-									"isOrBlock": true
+									]
 								},
 								{
 									"eventType": "comment",
-									"text": "Move up and down"
+									"text": "Property button"
 								},
 								{
 									"eventType": "block",
@@ -3378,165 +3202,231 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "CreatorButton",
-											"sid": 321155509212917,
+											"sid": 528882950289168,
 											"parameters": {
-												"instance-variable": "id",
+												"instance-variable": "type",
 												"comparison": 0,
-												"value": "2"
+												"value": "\"property\""
 											}
+										}
+									],
+									"actions": [],
+									"sid": 615477152749856,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "Move left and right"
 										},
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "CreatorButton",
-											"sid": 180822182287965,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "3"
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "setValue",
-											"sid": 102324043102534,
-											"parameters": [
-												"CREATOR_part",
-												"\"offset_y\"",
-												"Functions.getValue(CREATOR_part, \"offset_y\")+(((CreatorButton.id%2)*2-1)*0.1)"
-											]
-										}
-									],
-									"sid": 913509739613154,
-									"isOrBlock": true
-								},
-								{
-									"eventType": "comment",
-									"text": "Shrink and grow"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "CreatorButton",
-											"sid": 230932487656562,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "4"
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 762863963967677,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "0"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 316750871641391,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setValue",
+													"sid": 126972737028566,
+													"parameters": [
+														"CREATOR_part",
+														"\"offset_x\"",
+														"Functions.getValue(CREATOR_part, \"offset_x\")+(((CreatorButton.id%2)*2-1)*0.1)"
+													]
+												}
+											],
+											"sid": 157456297422718,
+											"isOrBlock": true
 										},
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "CreatorButton",
-											"sid": 246867824221058,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "5"
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "setValue",
-											"sid": 965980938060452,
-											"parameters": [
-												"CREATOR_part",
-												"\"scale\"",
-												"Functions.getValue(CREATOR_part, \"scale\")+(((CreatorButton.id%2)*2-1)*0.1)"
-											]
-										}
-									],
-									"sid": 617958845843744,
-									"isOrBlock": true
-								},
-								{
-									"eventType": "comment",
-									"text": "Rotate left and right"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "CreatorButton",
-											"sid": 528365685608458,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "6"
-											}
+											"eventType": "comment",
+											"text": "Move up and down"
 										},
 										{
-											"id": "compare-instance-variable",
-											"objectClass": "CreatorButton",
-											"sid": 818840508345241,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "7"
-											}
-										}
-									],
-									"actions": [
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 117726450795772,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "2"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 303141219941388,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "3"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setValue",
+													"sid": 401206443409365,
+													"parameters": [
+														"CREATOR_part",
+														"\"offset_y\"",
+														"Functions.getValue(CREATOR_part, \"offset_y\")+(((CreatorButton.id%2)*2-1)*0.1)"
+													]
+												}
+											],
+											"sid": 402409840612757,
+											"isOrBlock": true
+										},
 										{
-											"callFunction": "setValue",
-											"sid": 171929386870180,
-											"parameters": [
-												"CREATOR_part",
-												"\"rotation\"",
-												"Functions.getValue(CREATOR_part, \"rotation\")+(((CreatorButton.id%2)*2-1)*5)\n"
-											]
+											"eventType": "comment",
+											"text": "Shrink and grow"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 137742268516030,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "4"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 531657786745040,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "5"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setValue",
+													"sid": 734527682102322,
+													"parameters": [
+														"CREATOR_part",
+														"\"scale\"",
+														"Functions.getValue(CREATOR_part, \"scale\")+(((CreatorButton.id%2)*2-1)*0.1)"
+													]
+												}
+											],
+											"sid": 347863112921665,
+											"isOrBlock": true
+										},
+										{
+											"eventType": "comment",
+											"text": "Rotate left and right"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 811999953935952,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "6"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 720858347893868,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "7"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "setValue",
+													"sid": 948249335837859,
+													"parameters": [
+														"CREATOR_part",
+														"\"rotation\"",
+														"Functions.getValue(CREATOR_part, \"rotation\")+(((CreatorButton.id%2)*2-1)*5)\n"
+													]
+												}
+											],
+											"sid": 365682601863122,
+											"isOrBlock": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"callFunction": "refreshProperties",
+													"sid": 189426597703308
+												}
+											],
+											"sid": 702899498583405
 										}
-									],
-									"sid": 577495564770103,
-									"isOrBlock": true
+									]
 								},
 								{
 									"eventType": "block",
 									"conditions": [],
 									"actions": [
 										{
-											"callFunction": "refreshProperties",
-											"sid": 625097294234735
+											"callFunction": "verifyProperties",
+											"sid": 866090534399135,
+											"parameters": [
+												"CREATOR_part"
+											]
+										},
+										{
+											"id": "destroy",
+											"objectClass": "CharacterCanvas",
+											"sid": 580347582875249
+										},
+										{
+											"callFunction": "createCharacter",
+											"sid": 833456000672860,
+											"parameters": [
+												"JSON.ToCompactString",
+												"76",
+												"152",
+												"1"
+											]
 										}
 									],
-									"sid": 689499831958021
+									"sid": 968643799517290
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"callFunction": "verifyProperties",
-									"sid": 753485917364267,
-									"parameters": [
-										"CREATOR_part"
-									]
-								},
-								{
-									"id": "destroy",
-									"objectClass": "CharacterCanvas",
-									"sid": 442025526484584
-								},
-								{
-									"callFunction": "createCharacter",
-									"sid": 112143509639216,
-									"parameters": [
-										"JSON.ToCompactString",
-										"76",
-										"152",
-										"1"
-									]
-								}
-							],
-							"sid": 371719695685632
 						}
-					]
+					],
+					"isOrBlock": true
 				},
 				{
 					"eventType": "comment",
@@ -3864,6 +3754,282 @@
 				}
 			],
 			"sid": 235943538340540
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Creator - Info",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "refreshList",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "type",
+							"type": "string",
+							"initialValue": "sex",
+							"comment": "",
+							"sid": 941802372517327
+						},
+						{
+							"name": "index",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 635625115032336
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 560577100452800,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "InputDropdown",
+									"sid": 753589375481527,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "type"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 459137898941825,
+									"parameters": {
+										"variable": "index",
+										"value": "JSON.Get(index)"
+									}
+								},
+								{
+									"id": "clear",
+									"objectClass": "InputDropdown",
+									"sid": 205697421452029
+								},
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"const list_object = runtime.objects.InputDropdown.getFirstPickedInstance();",
+										"const list_type = localVars.type.replace(/#.*/, \"\");",
+										"",
+										"let data: unknown;",
+										"switch (list_type) {",
+										"  case \"location\":",
+										"    data = countries;",
+										"    break;",
+										"  case \"month\":",
+										"    data = months;",
+										"    break;",
+										"  case \"day\":",
+										"    const [year, month] = localVars.index.split(\"-\").map(Number);",
+										"    const daysInMonth = new Date(year, month, 0).getDate();",
+										"    data = Array.from({ length: daysInMonth }, (_, i) => String(i + 1).padStart(2, \"0\"));",
+										"    break;",
+										"  case \"year\":",
+										"    const currentYear = new Date().getFullYear();",
+										"    data = Array.from({ length: currentYear - 1900 + 1 }, (_, i) => String(currentYear - i));",
+										"    break;",
+										"  case \"sex\":",
+										"    data = sexes;",
+										"    break;",
+										"  case \"race\":",
+										"    data = races;",
+										"    break;",
+										"  case \"ethnicity\":",
+										"    data = ethnicities;",
+										"    break;",
+										"  case \"eye_color\":",
+										"    data = eye_colors;",
+										"    break;",
+										"  case \"hair_color\":",
+										"    data = hair_colors;",
+										"    break;",
+										"  default:",
+										"    data = [];",
+										"    break;",
+										"}",
+										"",
+										"const keys = Array.isArray(data) ? data : (Object.keys(data as string[]));",
+										"const values = Array.isArray(data) ? data : (Object.values(data as string[]));",
+										"",
+										"// Add all items to the list",
+										"if (list_object) {",
+										"  for (const item of values) {",
+										"    list_object.addItem(item);",
+										"  }",
+										"}",
+										"",
+										"// Set the selected item",
+										"let index = localVars.index;",
+										"",
+										"switch (list_type) {",
+										"  case \"month\":",
+										"    index = new Date(localVars.index).toLocaleString(\"en-US\", { month: \"long\" });",
+										"    break;",
+										"  case \"day\":",
+										"    index = String(new Date(localVars.index).getDate()+1).padStart(2, \"0\");",
+										"    break;",
+										"  case \"year\":",
+										"    index = String(new Date(localVars.index).getFullYear());",
+										"    break;",
+										"  default:",
+										"    break;",
+										"}",
+										"",
+										"const list_index = keys.indexOf(index);",
+										"",
+										"if (list_object) {",
+										"  list_object.selectedIndex = list_index;",
+										"}"
+									]
+								}
+							],
+							"sid": 231898708377890
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 379373252231602
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"const text_object = runtime.objects.InputName.getFirstPickedInstance();",
+								"",
+								"// Make all text inputs auto-sanitize",
+								"if (text_object) {",
+								"  const text_element = text_object.getElement() as HTMLInputElement;",
+								"  ",
+								"  text_element.addEventListener(\"input\", function () {",
+								"    text_element.value = validateInputName(text_object);",
+								"  });",
+								"}"
+							]
+						}
+					],
+					"sid": 704629442246832
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 209637569142227
+						},
+						{
+							"id": "on-changing",
+							"objectClass": "InputSlider",
+							"sid": 489253658215975
+						},
+						{
+							"id": "on-changed",
+							"objectClass": "InputSlider",
+							"sid": 941001818412472
+						}
+					],
+					"actions": [],
+					"sid": 562304946580413,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "InputSlider",
+									"sid": 151232140667831,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"height\""
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Text",
+									"sid": 376849925673854,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"height\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 245228173543950,
+									"parameters": {
+										"text": "floor(InputSlider.Value/12)&\"'\"&InputSlider.Value%12&\"\"\"\"\n"
+									}
+								}
+							],
+							"sid": 202663220477730
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "InputSlider",
+									"sid": 170482024274196,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"weight\""
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Text",
+									"sid": 691597655315663,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"weight\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 341394833367550,
+									"parameters": {
+										"text": "InputSlider.Value"
+									}
+								}
+							],
+							"sid": 852867969015727
+						}
+					],
+					"isOrBlock": true
+				}
+			],
+			"sid": 579922990624401
 		}
 	],
 	"sid": 247199195301411
