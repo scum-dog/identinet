@@ -214,8 +214,8 @@ runOnStartup(async (runtime: any) => {
   );
 
   // Styling
-	var style = document.createElement("style");
-	style.innerText =`
+  var style = document.createElement("style");
+  style.innerText = `
 	/* Input Name styling */
 	.input {
 		background-color:#DDDDDD;
@@ -273,7 +273,7 @@ runOnStartup(async (runtime: any) => {
   }
 	`;
 
-	document.head.appendChild(style);
+  document.head.appendChild(style);
 });
 
 async function initializeAPI(): Promise<void> {
