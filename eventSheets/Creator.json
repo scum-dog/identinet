@@ -3754,69 +3754,43 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "group",
-					"disabled": false,
-					"title": "Creator - Info (Name)",
-					"description": "",
-					"isActiveOnStart": true,
-					"children": [
+					"eventType": "comment",
+					"text": "Name Input"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
 						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-start-of-layout",
-									"objectClass": "System",
-									"sid": 279289068759572
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"const text_object = runtime.objects.InputName.getFirstPickedInstance();",
-										"",
-										"// Make all text inputs auto-sanitize",
-										"if (text_object) {",
-										"  const text_element = text_object.getElement() as HTMLInputElement;",
-										"  ",
-										"  text_element.addEventListener(\"input\", function () {",
-										"    text_element.value = validateInputName(text_object);",
-										"  });",
-										"",
-										"  text_element.addEventListener(\"blur\", function () {",
-										"    text_element.value = text_element.value.trim();",
-										"  });",
-										"}"
-									]
-								}
-							],
-							"sid": 641247469080353
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-text-changed",
-									"objectClass": "InputName",
-									"sid": 885081687038224
-								}
-							],
-							"actions": [
-								{
-									"id": "set-value",
-									"objectClass": "JSON",
-									"sid": 579633699403913,
-									"parameters": {
-										"path": "\"character_data.info.name\"",
-										"value": "InputName.Text"
-									}
-								}
-							],
-							"sid": 513791709793994
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 174920303050079
 						}
 					],
-					"sid": 744832494797774
+					"actions": [
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"const text_object = runtime.objects.InputName.getFirstPickedInstance();",
+								"const json_object = runtime.objects.JSON.getFirstInstance();",
+								"",
+								"// Make all text inputs auto-sanitize",
+								"if (text_object) {",
+								"  const text_element = text_object.getElement() as HTMLInputElement;",
+								"  ",
+								"  text_element.addEventListener(\"input\", function () {",
+								"    text_element.value = validateInputName(text_object);",
+								"    setJSONValue(json_object, \"character_data.info.name\", text_element.value.trim());",
+								"  });",
+								"",
+								"  text_element.addEventListener(\"blur\", function () {",
+								"    text_element.value = text_element.value.trim();",
+								"  });",
+								"}"
+							]
+						}
+					],
+					"sid": 945423661571351
 				},
 				{
 					"functionName": "updateDropdown",
@@ -3883,8 +3857,6 @@
 										"",
 										"const getDataForType = (listType: string, index?: string): DataType => {",
 										"  switch (listType) {",
-										"    case \"location\":",
-										"      return countries;",
 										"    case \"month\":",
 										"      return months;",
 										"    case \"day\":",
@@ -3901,6 +3873,8 @@
 										"      );",
 										"    case \"sex\":",
 										"      return sexes;",
+										"    case \"location\":",
+										"      return countries;",
 										"    case \"race\":",
 										"      return races;",
 										"    case \"ethnicity\":",
@@ -3956,6 +3930,77 @@
 							"sid": 767044556931300
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-selection-changed",
+							"objectClass": "InputDropdown",
+							"sid": 849798997304126
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"const list_object = runtime.objects.InputDropdown.getFirstPickedInstance();",
+								"let list_type = \"\";",
+								"let selected = 0;",
+								"if (list_object) {",
+								"  list_type = list_object.instVars.type;",
+								"  selected = list_object.selectedIndex;",
+								"}",
+								"",
+								"const json_object = runtime.objects.JSON.getFirstInstance();",
+								"let key = list_type;",
+								"let value = \"\";",
+								"",
+								"switch (list_type) {",
+								"  case \"month\":",
+								"  case \"day\":",
+								"  case \"year\":",
+								"    key = \"date_of_birth\";",
+								"    // TODO: write this",
+								"    value = \"\";",
+								"    break;",
+								"  case \"sex\":",
+								"    value = Object.keys(sexes)[selected];",
+								"    break;",
+								"  case \"location\":",
+								"    value = countries[selected];",
+								"    break;",
+								"  case \"race#1\":",
+								"    // TODO: needs to account for removed mutually exclusive option",
+								"    key = \"race.0\";",
+								"    value = Object.keys(races)[selected];",
+								"    break;",
+								"  case \"race#2\":",
+								"    // TODO: needs to account for removed mutually exclusive option; N/A",
+								"    key = \"race.1\";",
+								"    value = Object.keys(races)[selected];",
+								"    break;",
+								"  case \"ethnicity\":",
+								"    value = Object.keys(ethnicities)[selected];",
+								"    break;",
+								"  case \"eye_color\":",
+								"    value = Object.keys(eye_colors)[selected];",
+								"    break;",
+								"  case \"hair_color\":",
+								"    value = Object.keys(hair_colors)[selected];",
+								"    break;",
+								"  default:",
+								"    return;",
+								"}",
+								"",
+								"key = \"character_data.info.\" + key;",
+								"",
+								"setJSONValue(json_object, key, value);"
+							]
+						}
+					],
+					"sid": 760376380780918
 				},
 				{
 					"eventType": "group",

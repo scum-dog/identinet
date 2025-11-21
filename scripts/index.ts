@@ -69,6 +69,7 @@ export {
   isValidCountry,
   validateCharacterName,
   validateInputName,
+  setJSONValue,
   CHARACTER_NAME_MAX_LENGTH,
   CHARACTER_NAME_REGEX,
   CHARACTER_NAME_ERROR_MESSAGE,
@@ -214,8 +215,8 @@ runOnStartup(async (runtime: any) => {
   );
 
   // Styling
-  var style = document.createElement("style");
-  style.innerText = `
+	var style = document.createElement("style");
+	style.innerText =`
 	/* Input Name styling */
 	.input {
 		background-color:#DDDDDD;
@@ -273,7 +274,7 @@ runOnStartup(async (runtime: any) => {
   }
 	`;
 
-  document.head.appendChild(style);
+	document.head.appendChild(style);
 });
 
 async function initializeAPI(): Promise<void> {

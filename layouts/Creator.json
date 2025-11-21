@@ -4240,7 +4240,7 @@
 				{
 					"type": "Text",
 					"properties": {
-						"text": "Height (Inches)",
+						"text": "Height (Feet)",
 						"enable-bbcode": true,
 						"character-width": 12,
 						"character-height": 12,

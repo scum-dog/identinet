@@ -400,3 +400,26 @@ export function validateInputName(runtime: any): string {
 
   return sanitized;
 }
+
+/**
+ * attempt to set value of provided JSON key
+ * @param runtime - C3 runtime instance (JSON)
+ * @param key - JSON key path
+ * @param value - JSON value
+ */
+export function setJSONValue(runtime: any, key: string, value: string) {
+  const json_object = runtime;
+  let json_data = json_object.getJsonDataCopy();
+
+  const parts = key.split(".");
+  let ref: any = json_data;
+
+  for (let i = 0; i < parts.length - 1; i++) {
+    ref = ref[parts[i]];
+    if (ref === undefined) return; // or throw err
+  }
+
+  ref[parts[parts.length - 1]] = value;
+
+  json_object.setJsonDataCopy(json_data);
+}
