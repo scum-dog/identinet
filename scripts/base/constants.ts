@@ -388,9 +388,6 @@ export function validateInputName(runtime: any): string {
   // remove consecutive punctuation
   sanitized = sanitized.replace(/([' -])[' -]+/g, "$1");
 
-  // trim leading/trailing whitespace
-  //sanitized = sanitized.trim();
-
   // truncate to max length
   if (sanitized.length > CHARACTER_NAME_MAX_LENGTH) {
     sanitized = sanitized.substring(0, CHARACTER_NAME_MAX_LENGTH).trim();

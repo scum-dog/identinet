@@ -2003,7 +2003,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 856929400525414,
 															"parameters": [
 																"\"month\"",
@@ -2029,7 +2029,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 590856376548043,
 															"parameters": [
 																"\"day\"",
@@ -2055,7 +2055,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 515991387135425,
 															"parameters": [
 																"\"year\"",
@@ -2064,69 +2064,6 @@
 														}
 													],
 													"sid": 966604121739649
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "InputName",
-															"sid": 580185750116115,
-															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"day\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-text",
-															"objectClass": "InputName",
-															"sid": 958123272943950,
-															"parameters": {
-																"text": "Date.GetDate(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))+1"
-															}
-														},
-														{
-															"id": "alert",
-															"objectClass": "Browser",
-															"sid": 118318079154366,
-															"disabled": true,
-															"parameters": {
-																"message": "Date.GetUTCDate(Date.Get(2024, 2, 0, 0, 0, 0, 0))\n"
-															}
-														}
-													],
-													"sid": 364536222608448,
-													"disabled": true
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "InputName",
-															"sid": 262179978139828,
-															"parameters": {
-																"instance-variable": "type",
-																"comparison": 0,
-																"value": "\"year\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "set-text",
-															"objectClass": "InputName",
-															"sid": 923513128681183,
-															"parameters": {
-																"text": "Date.GetYear(Date.Parse(JSON.Get(\"character_data.info.date_of_birth\")))"
-															}
-														}
-													],
-													"sid": 860334916129107,
-													"disabled": true
 												},
 												{
 													"eventType": "block",
@@ -2144,7 +2081,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 307424865654055,
 															"parameters": [
 																"\"sex\"",
@@ -2170,7 +2107,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 563721999684822,
 															"parameters": [
 																"\"location\"",
@@ -2276,7 +2213,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 816662230952711,
 															"parameters": [
 																"\"race#1\"",
@@ -2302,7 +2239,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 583355672470088,
 															"parameters": [
 																"\"race#2\"",
@@ -2328,7 +2265,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 614852969156850,
 															"parameters": [
 																"\"ethnicity\"",
@@ -2337,6 +2274,60 @@
 														}
 													],
 													"sid": 799544082947417
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "InputSlider",
+															"sid": 912514474434597,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"height\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "updateSlider",
+															"sid": 318089658106628,
+															"parameters": [
+																"\"height\"",
+																"\"character_data.info.height_in\"",
+																false
+															]
+														}
+													],
+													"sid": 349056069440733
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "InputSlider",
+															"sid": 222226150462982,
+															"parameters": {
+																"instance-variable": "type",
+																"comparison": 0,
+																"value": "\"weight\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "updateSlider",
+															"sid": 476100151153744,
+															"parameters": [
+																"\"weight\"",
+																"\"character_data.info.weight_lb\"",
+																false
+															]
+														}
+													],
+													"sid": 545564788598216
 												},
 												{
 													"eventType": "block",
@@ -2354,7 +2345,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 244274652405899,
 															"parameters": [
 																"\"eye_color\"",
@@ -2380,7 +2371,7 @@
 													],
 													"actions": [
 														{
-															"callFunction": "refreshList",
+															"callFunction": "updateDropdown",
 															"sid": 870350513160031,
 															"parameters": [
 																"\"hair_color\"",
@@ -3763,7 +3754,72 @@
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"functionName": "refreshList",
+					"eventType": "group",
+					"disabled": false,
+					"title": "Creator - Info (Name)",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-start-of-layout",
+									"objectClass": "System",
+									"sid": 279289068759572
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"const text_object = runtime.objects.InputName.getFirstPickedInstance();",
+										"",
+										"// Make all text inputs auto-sanitize",
+										"if (text_object) {",
+										"  const text_element = text_object.getElement() as HTMLInputElement;",
+										"  ",
+										"  text_element.addEventListener(\"input\", function () {",
+										"    text_element.value = validateInputName(text_object);",
+										"  });",
+										"",
+										"  text_element.addEventListener(\"blur\", function () {",
+										"    text_element.value = text_element.value.trim();",
+										"  });",
+										"}"
+									]
+								}
+							],
+							"sid": 641247469080353
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-text-changed",
+									"objectClass": "InputName",
+									"sid": 885081687038224
+								}
+							],
+							"actions": [
+								{
+									"id": "set-value",
+									"objectClass": "JSON",
+									"sid": 579633699403913,
+									"parameters": {
+										"path": "\"character_data.info.name\"",
+										"value": "InputName.Text"
+									}
+								}
+							],
+							"sid": 513791709793994
+						}
+					],
+					"sid": 744832494797774
+				},
+				{
+					"functionName": "updateDropdown",
 					"functionDescription": "",
 					"functionCategory": "",
 					"functionReturnType": "none",
@@ -3788,7 +3844,7 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [],
-					"sid": 560577100452800,
+					"sid": 168563239972129,
 					"children": [
 						{
 							"eventType": "block",
@@ -3796,7 +3852,7 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "InputDropdown",
-									"sid": 753589375481527,
+									"sid": 490948555298172,
 									"parameters": {
 										"instance-variable": "type",
 										"comparison": 0,
@@ -3808,7 +3864,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 459137898941825,
+									"sid": 436595358993284,
 									"parameters": {
 										"variable": "index",
 										"value": "JSON.Get(index)"
@@ -3817,7 +3873,7 @@
 								{
 									"id": "clear",
 									"objectClass": "InputDropdown",
-									"sid": 205697421452029
+									"sid": 329528688699333
 								},
 								{
 									"type": "script",
@@ -3872,21 +3928,21 @@
 										"};",
 										"",
 										"const list_object = runtime.objects.InputDropdown.getFirstPickedInstance();",
-										"const list_type = localVars.type.replace(/#.*/, \"\");",
+										"const list_type = localVars.type;",
 										"",
-										"const data: DataType = getDataForType(list_type, localVars.index);",
+										"const data: DataType = getDataForType(list_type.replace(/#.*/, \"\"), localVars.index);",
 										"",
 										"const keys = Array.isArray(data) ? data : Object.keys(data);",
 										"const values = Array.isArray(data) ? data : Object.values(data);",
 										"",
-										"// Add all items to the list",
 										"if (list_object) {",
+										"  // Add all items to the list",
 										"  for (const item of values) {",
 										"    list_object.addItem(item);",
 										"  }",
 										"",
 										"  // Set selected item",
-										"  const selectedValue = getSelectedIndex(list_type, localVars.index);",
+										"  const selectedValue = getSelectedIndex(list_type.replace(/#.*/, \"\"), localVars.index);",
 										"  const selectedIndex = keys.indexOf(selectedValue);",
 										"",
 										"  if (selectedIndex !== -1) {",
@@ -3897,135 +3953,252 @@
 									]
 								}
 							],
-							"sid": 231898708377890
+							"sid": 767044556931300
 						}
 					]
 				},
 				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-start-of-layout",
-							"objectClass": "System",
-							"sid": 379373252231602
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"language": "typescript",
-							"script": [
-								"const text_object = runtime.objects.InputName.getFirstPickedInstance();",
-								"",
-								"// Make all text inputs auto-sanitize",
-								"if (text_object) {",
-								"  const text_element = text_object.getElement() as HTMLInputElement;",
-								"  ",
-								"  text_element.addEventListener(\"input\", function () {",
-								"    text_element.value = validateInputName(text_object);",
-								"  });",
-								"}"
-							]
-						}
-					],
-					"sid": 704629442246832
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-start-of-layout",
-							"objectClass": "System",
-							"sid": 209637569142227
-						},
-						{
-							"id": "on-changing",
-							"objectClass": "InputSlider",
-							"sid": 489253658215975
-						},
-						{
-							"id": "on-changed",
-							"objectClass": "InputSlider",
-							"sid": 941001818412472
-						}
-					],
-					"actions": [],
-					"sid": 562304946580413,
+					"eventType": "group",
+					"disabled": false,
+					"title": "Creator - Info (Slider)",
+					"description": "",
+					"isActiveOnStart": true,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
+									"id": "on-changing",
 									"objectClass": "InputSlider",
-									"sid": 151232140667831,
-									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"height\""
-									}
+									"sid": 167748690576968
 								},
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "Text",
-									"sid": 376849925673854,
-									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"height\""
-									}
+									"id": "on-changed",
+									"objectClass": "InputSlider",
+									"sid": 602794128437676
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 783014892563540,
+							"children": [
 								{
-									"id": "set-text",
-									"objectClass": "Text",
-									"sid": 245228173543950,
-									"parameters": {
-										"text": "floor(InputSlider.Value/12)&\"'\"&InputSlider.Value%12&\"\"\"\"\n"
-									}
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "InputSlider",
+											"sid": 643130450228351,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"height\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "updateSlider",
+											"sid": 179837563324727,
+											"parameters": [
+												"\"height\"",
+												"\"character_data.info.height_in\"",
+												true
+											]
+										}
+									],
+									"sid": 350599725511726
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "InputSlider",
+											"sid": 378618297959703,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"weight\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "updateSlider",
+											"sid": 127801690138275,
+											"parameters": [
+												"\"weight\"",
+												"\"character_data.info.weight_lb\"",
+												true
+											]
+										}
+									],
+									"sid": 273062326389617
 								}
 							],
-							"sid": 202663220477730
+							"isOrBlock": true
 						},
 						{
-							"eventType": "block",
-							"conditions": [
+							"functionName": "updateSlider",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "InputSlider",
-									"sid": 170482024274196,
-									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"weight\""
-									}
+									"name": "type",
+									"type": "string",
+									"initialValue": "height",
+									"comment": "",
+									"sid": 771486731787787
 								},
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "Text",
-									"sid": 691597655315663,
-									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"weight\""
-									}
-								}
-							],
-							"actions": [
+									"name": "index",
+									"type": "string",
+									"initialValue": "",
+									"comment": "",
+									"sid": 584670133931944
+								},
 								{
-									"id": "set-text",
-									"objectClass": "Text",
-									"sid": 341394833367550,
-									"parameters": {
-										"text": "InputSlider.Value"
-									}
+									"name": "set",
+									"type": "boolean",
+									"initialValue": "false",
+									"comment": "",
+									"sid": 686480533808707
 								}
 							],
-							"sid": 852867969015727
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [],
+							"sid": 745036607850046,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "InputSlider",
+											"sid": 179733931994094,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "type"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Text",
+											"sid": 980968260424970,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "type"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 106118976622341,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 412607053660397,
+													"parameters": {
+														"variable": "set"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-value",
+													"objectClass": "JSON",
+													"sid": 195751536208826,
+													"parameters": {
+														"path": "index",
+														"value": "InputSlider.Value"
+													}
+												}
+											],
+											"sid": 171763064958423
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 138473718243870
+												}
+											],
+											"actions": [
+												{
+													"id": "set-value",
+													"objectClass": "InputSlider",
+													"sid": 465566073670584,
+													"parameters": {
+														"value": "JSON.Get(index)"
+													}
+												}
+											],
+											"sid": 603589678963446
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 145772932931001,
+													"parameters": {
+														"variable": "type",
+														"comparison": 0,
+														"value": "\"height\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-text",
+													"objectClass": "Text",
+													"sid": 414997500128971,
+													"parameters": {
+														"text": "floor(InputSlider.Value/12)&\"'\"&InputSlider.Value%12&\"\"\"\"\n"
+													}
+												}
+											],
+											"sid": 229452877288580
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 165269264617991
+												}
+											],
+											"actions": [
+												{
+													"id": "set-text",
+													"objectClass": "Text",
+													"sid": 975101842522031,
+													"parameters": {
+														"text": "InputSlider.Value"
+													}
+												}
+											],
+											"sid": 166834136913948
+										}
+									]
+								}
+							]
 						}
 					],
-					"isOrBlock": true
+					"sid": 408845598878362
 				}
 			],
 			"sid": 579922990624401
