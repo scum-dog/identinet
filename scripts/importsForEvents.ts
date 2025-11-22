@@ -31,8 +31,6 @@ export const getCharactersByCountry = API.getCharactersByCountry;
 export const getRandomCharacters = API.getRandomCharacters;
 export const validateCharacterData = API.validateCharacterData;
 export const validateInputName = API.validateInputName;
-export const getJSONValue = API.getJSONValue;
-export const setJSONValue = API.setJSONValue;
 
 // admin
 export const listAllCharacters = API.listAllCharacters;
@@ -44,9 +42,7 @@ export const getDeletedCharacters = API.getDeletedCharacters;
 export const getAdminStats = API.getAdminStats;
 export const validateAdminAccess = API.validateAdminAccess;
 
-// utils
-export const isValidCountry = API.isValidCountry;
-export const validateCharacterName = API.validateCharacterName;
+// constants
 export const CHARACTER_NAME_MAX_LENGTH = API.CHARACTER_NAME_MAX_LENGTH;
 export const CHARACTER_NAME_REGEX = API.CHARACTER_NAME_REGEX;
 export const CHARACTER_NAME_ERROR_MESSAGE = API.CHARACTER_NAME_ERROR_MESSAGE;
@@ -57,6 +53,24 @@ export const races = API.RACES;
 export const ethnicities = API.ETHNICITIES;
 export const eye_colors = API.EYE_COLORS;
 export const hair_colors = API.HAIR_COLORS;
+
+// value arrays
+export const SEX_VALUES = API.SEX_VALUES;
+export const RACE_VALUES = API.RACE_VALUES;
+export const ETHNICITY_VALUES = API.ETHNICITY_VALUES;
+export const EYE_COLOR_VALUES = API.EYE_COLOR_VALUES;
+export const HAIR_COLOR_VALUES = API.HAIR_COLOR_VALUES;
+
+// utils
+export const isValidCountry = API.isValidCountry;
+export const validateCharacterName = API.validateCharacterName;
+export const getJSONValue = API.getJSONValue;
+export const setJSONValue = API.setJSONValue;
+export const deleteJSONValue = API.deleteJSONValue;
+export const buildDateFromComponents = API.buildDateFromComponents;
+export const mapDropdownValueToKey = API.mapDropdownValueToKey;
+export const shouldDeleteField = API.shouldDeleteField;
+export const handleRaceMutualExclusivity = API.handleRaceMutualExclusivity;
 
 // main object
 export const IdentikitAPI = API.IdentikitAPI;

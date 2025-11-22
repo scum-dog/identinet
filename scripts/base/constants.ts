@@ -251,17 +251,6 @@ export const COUNTRIES = [
   "Zimbabwe",
 ] as const;
 
-export type Country = (typeof COUNTRIES)[number];
-
-/**
- * checks if a given country is in the approved country list
- * @param country - country string to validate
- * @returns true if country is valid, false otherwise
- */
-export function isValidCountry(country: string): boolean {
-  return COUNTRIES.includes(country as Country);
-}
-
 export const MONTHS = [
   "January",
   "February",
@@ -283,9 +272,6 @@ export const SEXES = {
   other: "Other",
 } as const;
 
-export type Sex = keyof typeof SEXES;
-export const SEX_VALUES = Object.keys(SEXES) as Sex[];
-
 export const RACES = {
   none: "N/A",
   ai_an: "American Indian or Alaska Native",
@@ -296,16 +282,10 @@ export const RACES = {
   other: "Other",
 } as const;
 
-export type Race = keyof typeof RACES;
-export const RACE_VALUES = Object.keys(RACES) as Race[];
-
 export const ETHNICITIES = {
   not_hispanic_latino: "Not Hispanic or Latino",
   hispanic_latino: "Hispanic or Latino",
 } as const;
-
-export type Ethnicity = keyof typeof ETHNICITIES;
-export const ETHNICITY_VALUES = Object.keys(ETHNICITIES) as Ethnicity[];
 
 export const EYE_COLORS = {
   black: "Black",
@@ -318,9 +298,6 @@ export const EYE_COLORS = {
   pink: "Pink",
 } as const;
 
-export type EyeColor = keyof typeof EYE_COLORS;
-export const EYE_COLOR_VALUES = Object.keys(EYE_COLORS) as EyeColor[];
-
 export const HAIR_COLORS = {
   bald: "Bald",
   black: "Black",
@@ -332,115 +309,8 @@ export const HAIR_COLORS = {
   white: "White",
 } as const;
 
-export type HairColor = keyof typeof HAIR_COLORS;
-export const HAIR_COLOR_VALUES = Object.keys(HAIR_COLORS) as HairColor[];
-
 export const CHARACTER_NAME_MAX_LENGTH = 32;
 export const CHARACTER_NAME_REGEX =
   /^(?=.*[A-Za-z])[A-Za-z]+(?:[' -][A-Za-z]+)*$/;
 export const CHARACTER_NAME_ERROR_MESSAGE =
   "Name must start with a letter, contain only letters/spaces/hyphens/apostrophes, and have no consecutive punctuation or leading/trailing spaces";
-
-/**
- * validate character name with error messages
- * @param name - character name to validate
- * @returns validation result with specific error message
- */
-export function validateCharacterName(name: string): {
-  valid: boolean;
-  error?: string;
-} {
-  if (!name || name.length === 0) {
-    return { valid: false, error: "Character name is required" };
-  }
-
-  if (name.length > CHARACTER_NAME_MAX_LENGTH) {
-    return {
-      valid: false,
-      error: `Name must be ${CHARACTER_NAME_MAX_LENGTH} characters or less`,
-    };
-  }
-
-  if (!CHARACTER_NAME_REGEX.test(name)) {
-    return { valid: false, error: CHARACTER_NAME_ERROR_MESSAGE };
-  }
-
-  return { valid: true };
-}
-
-/**
- * sanitize text input to conform to type rules
- * @param runtime - C3 runtime instance
- * @returns sanitized text that conforms to type's rules
- */
-export function validateInputName(runtime: any): string {
-  const input_text = (runtime.getElement() as HTMLInputElement).value;
-
-  if (!input_text || typeof input_text !== "string") {
-    return "";
-  }
-
-  // remove all invalid characters
-  let sanitized = input_text.replace(/[^A-Za-z' -]/g, "");
-
-  // remove leading non-letters
-  sanitized = sanitized.replace(/^[^A-Za-z]+/, "");
-
-  // remove consecutive punctuation
-  sanitized = sanitized.replace(/([' -])[' -]+/g, "$1");
-
-  // truncate to max length
-  if (sanitized.length > CHARACTER_NAME_MAX_LENGTH) {
-    sanitized = sanitized.substring(0, CHARACTER_NAME_MAX_LENGTH).trim();
-  }
-
-  // if no letters remain, return empty string
-  if (!/[A-Za-z]/.test(sanitized)) {
-    return "";
-  }
-
-  return sanitized;
-}
-
-/**
- * get the value of provided JSON key
- * @param runtime - C3 runtime instance (JSON)
- * @param key - JSON key path
- */
-export function getJSONValue(runtime: any, key: string): string {
-  const json_object = runtime;
-  const json_data = json_object.getJsonDataCopy();
-
-  const parts = key.split(".");
-  let ref: any = json_data;
-
-  for (const p of parts) {
-    if (ref == null || typeof ref !== "object") return "";
-    ref = ref[p];
-  }
-
-  return ref;
-}
-
-/**
- * set the value of provided JSON key
- * @param runtime - C3 runtime instance (JSON)
- * @param key - JSON key path
- * @param value - JSON value
- */
-export function setJSONValue(runtime: any, key: string, value: string) {
-  const json_object = runtime;
-  let json_data = json_object.getJsonDataCopy();
-
-  const parts = key.split(".");
-  let ref: any = json_data;
-
-  for (let i = 0; i < parts.length - 1; i++) {
-    ref = ref[parts[i]];
-    if (ref === undefined) return; // or throw err
-  }
-
-  ref[parts[parts.length - 1]] = value;
-
-  json_object.setJsonDataCopy(json_data);
-}

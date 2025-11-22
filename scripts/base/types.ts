@@ -1,3 +1,27 @@
+import {
+  COUNTRIES,
+  SEXES,
+  RACES,
+  ETHNICITIES,
+  EYE_COLORS,
+  HAIR_COLORS,
+} from "./constants.js";
+
+// derived types from constants
+export type Country = (typeof COUNTRIES)[number];
+export type Sex = keyof typeof SEXES;
+export type Race = keyof typeof RACES;
+export type Ethnicity = keyof typeof ETHNICITIES;
+export type EyeColor = keyof typeof EYE_COLORS;
+export type HairColor = keyof typeof HAIR_COLORS;
+
+// value arrays
+export const SEX_VALUES = Object.keys(SEXES) as Sex[];
+export const RACE_VALUES = Object.keys(RACES) as Race[];
+export const ETHNICITY_VALUES = Object.keys(ETHNICITIES) as Ethnicity[];
+export const EYE_COLOR_VALUES = Object.keys(EYE_COLORS) as EyeColor[];
+export const HAIR_COLOR_VALUES = Object.keys(HAIR_COLORS) as HairColor[];
+
 export interface CharacterPersonalInfo {
   name: string;
   sex: Sex;
@@ -75,33 +99,7 @@ export interface CharacterDataStructure {
   placeable_movable: CharacterPlaceableMovable;
 }
 
-export type EyeColor =
-  | "black"
-  | "blue"
-  | "brown"
-  | "gray"
-  | "green"
-  | "hazel"
-  | "maroon"
-  | "pink";
-
-export type HairColor =
-  | "bald"
-  | "black"
-  | "blond"
-  | "brown"
-  | "gray"
-  | "red"
-  | "sandy"
-  | "white";
-
-export type Race = "ai_an" | "asian" | "black" | "nh_pi" | "white" | "other";
-
-export type Ethnicity = "hispanic_latino" | "not_hispanic_latino";
-
 export type Platform = "newgrounds" | "itch" | "google";
-
-export type Sex = "male" | "female" | "other";
 
 export interface AuthResult {
   user: {

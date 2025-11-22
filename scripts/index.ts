@@ -34,11 +34,25 @@ export type {
   AdminUser,
   PaginatedResponse,
 
-  // color enums
+  // types from constants
+  Country,
+  Sex,
+  Race,
+  Ethnicity,
   EyeColor,
   HairColor,
 } from "./base/types.js";
 
+// value arrays
+export {
+  SEX_VALUES,
+  RACE_VALUES,
+  ETHNICITY_VALUES,
+  EYE_COLOR_VALUES,
+  HAIR_COLOR_VALUES,
+} from "./base/types.js";
+
+//auth
 export {
   authenticateNewgrounds,
   getItchOAuthUrl,
@@ -52,6 +66,7 @@ export {
   loginWithGoogle,
 } from "./auth.js";
 
+// characters
 export {
   getUserCharacter,
   uploadCharacter,
@@ -65,10 +80,8 @@ export {
   validateCharacterData,
 } from "./characters.js";
 
+// constants
 export {
-  isValidCountry,
-  validateCharacterName,
-  validateInputName,
   CHARACTER_NAME_MAX_LENGTH,
   CHARACTER_NAME_REGEX,
   CHARACTER_NAME_ERROR_MESSAGE,
@@ -79,10 +92,23 @@ export {
   ETHNICITIES,
   EYE_COLORS,
   HAIR_COLORS,
-  getJSONValue,
-  setJSONValue,
 } from "./base/constants.js";
 
+// utils
+export {
+  getJSONValue,
+  setJSONValue,
+  deleteJSONValue,
+  isValidCountry,
+  validateCharacterName,
+  validateInputName,
+  buildDateFromComponents,
+  mapDropdownValueToKey,
+  shouldDeleteField,
+  handleRaceMutualExclusivity,
+} from "./base/utils.js";
+
+// admin
 export {
   listAllCharacters,
   getCharacterDetails,
@@ -216,8 +242,8 @@ runOnStartup(async (runtime: any) => {
   );
 
   // Styling
-	var style = document.createElement("style");
-	style.innerText =`
+  var style = document.createElement("style");
+  style.innerText = `
 	/* Input Name styling */
 	.input {
 		background-color:#DDDDDD;
@@ -275,7 +301,7 @@ runOnStartup(async (runtime: any) => {
   }
 	`;
 
-	document.head.appendChild(style);
+  document.head.appendChild(style);
 });
 
 async function initializeAPI(): Promise<void> {

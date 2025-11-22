@@ -6,11 +6,8 @@ import {
   PlazaFilters,
   ApiResponse,
 } from "./base/types.js";
-import {
-  isValidCountry,
-  validateCharacterName,
-  CHARACTER_NAME_ERROR_MESSAGE,
-} from "./base/constants.js";
+import { CHARACTER_NAME_ERROR_MESSAGE } from "./base/constants.js";
+import { isValidCountry, validateCharacterName } from "./base/utils.js";
 
 /**
  * get the current user's character data
