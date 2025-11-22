@@ -52,7 +52,7 @@ export {
   HAIR_COLOR_VALUES,
 } from "./base/types.js";
 
-//auth
+// auth
 export {
   authenticateNewgrounds,
   getItchOAuthUrl,
