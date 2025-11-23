@@ -285,7 +285,7 @@ runOnStartup(async (runtime: any) => {
     cursor:pointer;
     background:#999999;
     width:calc(8px * var(--construct-scale));
-    height:calc(12px * var(--construct-scale));
+    height:calc(16px * var(--construct-scale));
     border:calc(1px * var(--construct-scale)) solid #000000;
   }
 
@@ -296,7 +296,7 @@ runOnStartup(async (runtime: any) => {
     cursor:pointer;
     background:#999999;
     width:calc(8px * var(--construct-scale));
-    height:calc(12px * var(--construct-scale));
+    height:calc(16px * var(--construct-scale));
     border:calc(1px * var(--construct-scale)) solid #000000;
   }
 	`;

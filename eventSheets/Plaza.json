@@ -2,16 +2,6 @@
 	"name": "Plaza",
 	"events": [
 		{
-			"eventType": "variable",
-			"name": "NGIO_sessionID",
-			"type": "string",
-			"initialValue": "",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 536121950603561
-		},
-		{
 			"eventType": "include",
 			"includeSheet": "Global"
 		},
@@ -115,6 +105,24 @@
 									"parameters": {
 										"cursor-style": "grab"
 									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "NavButton",
+									"sid": 799416354941268,
+									"parameters": {
+										"animation": "\"default\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "PlazaButton",
+									"sid": 460006849935885,
+									"parameters": {
+										"animation": "\"default\"",
+										"from": "beginning"
+									}
 								}
 							],
 							"sid": 599725708890573,
@@ -196,11 +204,18 @@
 										{
 											"id": "cursor-is-over-object",
 											"objectClass": "Mouse",
-											"sid": 124039009293975,
+											"sid": 642387080005823,
 											"parameters": {
-												"object": "NavBar"
-											},
-											"isInverted": true
+												"object": "NavButton"
+											}
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 572861469683879,
+											"parameters": {
+												"object": "PlazaButton"
+											}
 										}
 									],
 									"actions": [
@@ -211,9 +226,28 @@
 											"parameters": {
 												"cursor-style": "pointer"
 											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "NavButton",
+											"sid": 735943326491423,
+											"parameters": {
+												"animation": "\"selected\"",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "PlazaButton",
+											"sid": 595459450205273,
+											"parameters": {
+												"animation": "\"selected\"",
+												"from": "beginning"
+											}
 										}
 									],
-									"sid": 536647248557085
+									"sid": 536647248557085,
+									"isOrBlock": true
 								},
 								{
 									"eventType": "block",
@@ -377,11 +411,19 @@
 						{
 							"id": "on-object-clicked",
 							"objectClass": "Mouse",
-							"sid": 545188688428286,
+							"sid": 281045564376861,
 							"parameters": {
 								"mouse-button": "left",
 								"click-type": "clicked",
-								"object-clicked": "PlazaCreateNew"
+								"object-clicked": "PlazaButton"
+							}
+						},
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 291763118304508,
+							"parameters": {
+								"object": "PlazaButton"
 							}
 						}
 					],
@@ -394,7 +436,8 @@
 							]
 						}
 					],
-					"sid": 587576778105027
+					"sid": 587576778105027,
+					"isOrBlock": true
 				}
 			]
 		}

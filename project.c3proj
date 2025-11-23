@@ -205,7 +205,10 @@
 				"items": [
 					"ScumDog",
 					"Text",
-					"NavBar"
+					"NavBar",
+					"NavButton",
+					"LoginBackground",
+					"LoginButton"
 				],
 				"subfolders": [],
 				"name": "General"
@@ -223,7 +226,7 @@
 			{
 				"items": [
 					"PlazaBackground",
-					"PlazaCreateNew"
+					"PlazaButton"
 				],
 				"subfolders": [],
 				"name": "Plaza"
@@ -238,7 +241,11 @@
 					"CreatorPageButton",
 					"InputDropdown",
 					"InputName",
-					"InputSlider"
+					"InputSlider",
+					"PartsBackground",
+					"PartsNavBackground",
+					"InformationBackground",
+					"Sprite"
 				],
 				"subfolders": [],
 				"name": "Creator"

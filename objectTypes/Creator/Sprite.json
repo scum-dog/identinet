@@ -1,7 +1,7 @@
 {
-	"name": "PlazaCreateNew",
+	"name": "Sprite",
 	"plugin-id": "Sprite",
-	"sid": 621406151496117,
+	"sid": 473508281056082,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -12,21 +12,21 @@
 			{
 				"frames": [
 					{
-						"width": 32,
+						"width": 128,
 						"height": 32,
-						"originX": 0.5,
-						"originY": 0.5,
+						"originX": 0,
+						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 4509452,
+						"imageSpriteId": 5395202,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 277380731158230,
+				"sid": 603716831601697,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

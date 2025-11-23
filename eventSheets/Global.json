@@ -874,6 +874,101 @@
 						}
 					],
 					"sid": 621690119288117
+				},
+				{
+					"functionName": "toggleLayer",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "layer",
+							"type": "string",
+							"initialValue": "Parts",
+							"comment": "",
+							"sid": 104599149785732
+						},
+						{
+							"name": "visible",
+							"type": "boolean",
+							"initialValue": "true",
+							"comment": "",
+							"sid": 267741797392413
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 762748252738227,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 300040469829425,
+									"parameters": {
+										"variable": "visible"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 349194172182518,
+									"parameters": {
+										"layer": "layer",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 727721400795647,
+									"parameters": {
+										"layer": "layer",
+										"interactive": true
+									}
+								}
+							],
+							"sid": 411067261361083
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 731480340993258
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 144107357914278,
+									"parameters": {
+										"layer": "layer",
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 472423593295037,
+									"parameters": {
+										"layer": "layer",
+										"interactive": false
+									}
+								}
+							],
+							"sid": 325504069054200
+						}
+					]
 				}
 			],
 			"sid": 105681604197051
@@ -2081,34 +2176,270 @@
 			"sid": 144180611067032
 		},
 		{
-			"eventType": "comment",
-			"text": "temp"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "Global - Navigation",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "compare-instance-variable",
-					"objectClass": "Text",
-					"sid": 987565913412552,
-					"parameters": {
-						"instance-variable": "type",
-						"comparison": 0,
-						"value": "\"time\""
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Text",
+							"sid": 339089937074020,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"time\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "Text",
+							"sid": 646792515953049,
+							"parameters": {
+								"text": "zeropad(Date.GetHours(Date.Now),2)&(Date.GetSeconds(Date.Now)%2 ? \":\" : \"•\")&zeropad(Date.GetMinutes(Date.Now),2)"
+							}
+						}
+					],
+					"sid": 300027364960475
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 679741994451093,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "NavButton"
+							}
+						},
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 585807024222409,
+							"parameters": {
+								"object": "NavButton"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 207115187201162,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "layer-is-visible",
+									"objectClass": "System",
+									"sid": 762171899309670,
+									"parameters": {
+										"layer": "\"Login\""
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "toggleLayer",
+									"sid": 874326010260986,
+									"parameters": [
+										"\"Login\"",
+										true
+									]
+								}
+							],
+							"sid": 857145635342627
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 800656563123844
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "toggleLayer",
+									"sid": 302926670204866,
+									"parameters": [
+										"\"Login\"",
+										false
+									]
+								}
+							],
+							"sid": 122502365648181
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 747784677995653,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "LoginButton"
+							}
+						},
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 433572845979834,
+							"parameters": {
+								"object": "LoginButton"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 430170263167780,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "LoginButton",
+									"sid": 937693947019879,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"google\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"// SHARKO -- google login",
+										"",
+										"loginWithGoogle();"
+									]
+								}
+							],
+							"sid": 510800744047401
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "LoginButton",
+									"sid": 189448575395492,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"itch\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"// SHARKO -- google login",
+										"",
+										"loginWithItch();"
+									]
+								}
+							],
+							"sid": 406202278516697
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "LoginButton",
+									"sid": 284316555531753,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"newgrounds\""
+									}
+								},
+								{
+									"id": "is-ready",
+									"objectClass": "NGIO",
+									"sid": 555091955899162
+								}
+							],
+							"actions": [
+								{
+									"id": "login",
+									"objectClass": "NGIO",
+									"sid": 535357720823928,
+									"parameters": {
+										"window-mode": "popup"
+									}
+								}
+							],
+							"sid": 624880101561969
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "variable",
+					"name": "NGIO_sessionID",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 430919158382749
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-login-success",
+							"objectClass": "NGIO",
+							"sid": 968075939041195
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 431405640795252,
+							"parameters": {
+								"variable": "NGIO_sessionID",
+								"value": "NGIO.SessionID"
+							}
+						},
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"// SHARKO -- ngio auth; broken. sID gets farther than an invalid one, but is still getting stopped (500) somehow",
+								"",
+								"const session_id = localVars.NGIO_sessionID as string;",
+								"console.log(session_id);",
+								"authenticateNewgrounds(session_id);"
+							]
+						}
+					],
+					"sid": 735219573116273
 				}
 			],
-			"actions": [
-				{
-					"id": "set-text",
-					"objectClass": "Text",
-					"sid": 499964652053378,
-					"parameters": {
-						"text": "zeropad(Date.GetHours(Date.Now),2)&(Date.GetSeconds(Date.Now)%2 ? \":\" : \"•\")&zeropad(Date.GetMinutes(Date.Now),2)"
-					}
-				}
-			],
-			"sid": 549201169076781
+			"sid": 878848367292974
 		}
 	],
 	"sid": 778792192564054
