@@ -74,7 +74,7 @@ export async function apiRequest<T = any>(
     };
 
     if (body && method !== "GET") {
-      requestOptions.body = JSON.stringify(body);
+      requestOptions.body = body;
     }
 
     const controller = new AbortController();
