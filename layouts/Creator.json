@@ -548,7 +548,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "page_left",
@@ -613,7 +613,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "page_right",
@@ -1393,7 +1393,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "left",
@@ -1458,7 +1458,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "right",
@@ -1523,7 +1523,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "up",
@@ -1588,7 +1588,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "down",
@@ -1653,7 +1653,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "grow",
@@ -1718,7 +1718,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "shrink",
@@ -1783,7 +1783,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "rotate_left",
@@ -1848,7 +1848,7 @@
 							}
 						},
 						{
-							"type": "CreatorNavIcon",
+							"type": "ButtonIcon",
 							"properties": {
 								"initially-visible": true,
 								"initial-animation": "rotate_right",
@@ -2227,7 +2227,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "properties",
@@ -2798,7 +2798,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "head",
@@ -2835,7 +2835,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "hair",
@@ -2872,7 +2872,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "eyebrows",
@@ -2909,7 +2909,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "eyes",
@@ -2946,7 +2946,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "nose",
@@ -2983,7 +2983,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "lips",
@@ -3020,7 +3020,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "glasses",
@@ -3057,7 +3057,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "mustache",
@@ -3094,7 +3094,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "beard",
@@ -3131,7 +3131,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "misc",
@@ -3168,7 +3168,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "age_lines",
@@ -3289,7 +3289,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "biographic",
@@ -6411,7 +6411,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "physical",
@@ -6560,7 +6560,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "biographic",
@@ -6709,7 +6709,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "card",
@@ -6858,7 +6858,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "head",

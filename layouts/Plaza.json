@@ -879,7 +879,7 @@
 					}
 				},
 				{
-					"type": "CreatorNavIcon",
+					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "create",

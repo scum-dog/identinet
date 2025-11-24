@@ -401,75 +401,6 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-any-button-pressed",
-							"objectClass": "Gamepad",
-							"sid": 345377304997760,
-							"parameters": {
-								"gamepad": "0"
-							}
-						},
-						{
-							"id": "compare-axis",
-							"objectClass": "Gamepad",
-							"sid": 288255676579172,
-							"parameters": {
-								"gamepad": "0",
-								"axis": "left-analog-x-axis",
-								"comparison": 1,
-								"value": "0"
-							}
-						},
-						{
-							"id": "compare-axis",
-							"objectClass": "Gamepad",
-							"sid": 234036461372792,
-							"parameters": {
-								"gamepad": "0",
-								"axis": "left-analog-y-axis",
-								"comparison": 1,
-								"value": "0"
-							}
-						},
-						{
-							"id": "compare-axis",
-							"objectClass": "Gamepad",
-							"sid": 127610234071055,
-							"parameters": {
-								"gamepad": "0",
-								"axis": "right-analog-x-axis",
-								"comparison": 1,
-								"value": "0"
-							}
-						},
-						{
-							"id": "compare-axis",
-							"objectClass": "Gamepad",
-							"sid": 906433205917106,
-							"parameters": {
-								"gamepad": "0",
-								"axis": "right-analog-y-axis",
-								"comparison": 1,
-								"value": "0"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "signal",
-							"objectClass": "System",
-							"sid": 859654476697312,
-							"parameters": {
-								"tag": "\"inputGamepad\""
-							}
-						}
-					],
-					"sid": 422176127192514,
-					"isOrBlock": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
 							"id": "on-any-key-released",
 							"objectClass": "Keyboard",
 							"sid": 434821225144844
@@ -485,14 +416,6 @@
 							"sid": 919252453008920,
 							"parameters": {
 								"direction": "any"
-							}
-						},
-						{
-							"id": "on-any-button-released",
-							"objectClass": "Gamepad",
-							"sid": 278062757147981,
-							"parameters": {
-								"gamepad": "0"
 							}
 						}
 					],
