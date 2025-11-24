@@ -4,8 +4,6 @@ import {
   del,
   setAuthToken,
   clearAuthToken,
-  generateSecureState,
-  storeOAuthState,
 } from "./base/api-client.js";
 import {
   AuthResult,
@@ -148,26 +146,6 @@ export async function handleOAuthPopup(
       cleanup();
       resolve(result);
     };
-
-    let state: string;
-    try {
-      state = generateSecureState();
-      storeOAuthState(state);
-    } catch (error) {
-      console.error("Error setting up OAuth state:", error);
-      resolveOnce({
-        success: false,
-        error: "state_setup_failed",
-        message: "Unable to set up secure authentication",
-        data: {
-          user: { id: "", username: "", platform: "", isAdmin: false },
-          sessionId: "",
-          tokenType: "Bearer" as const,
-          message: "Security setup failed",
-        },
-      });
-      return;
-    }
 
     try {
       popup = window.open(
