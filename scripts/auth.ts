@@ -109,13 +109,11 @@ export async function isLoggedIn(): Promise<boolean> {
 /**
  * handle popup flow for itch/google
  * @param authUrl - URL from getItchOAuthUrl() or getGoogleOAuthUrl()
- * @param provider - OAuth provider name for fallback redirect
  * @param windowName - name for popup window
  * @param timeoutMs - timeout in milliseconds (default 5 minutes)
  */
 export async function handleOAuthPopup(
   authUrl: string,
-  provider: string,
   windowName: string = "oauth_login",
   timeoutMs: number = 5 * 60 * 1000,
 ): Promise<ApiResponse<AuthResult>> {
@@ -299,7 +297,7 @@ export async function loginWithItch(): Promise<ApiResponse<AuthResult>> {
         continue;
       }
 
-      return handleOAuthPopup(urlResponse.data.authUrl, "itch", "itch_login");
+      return handleOAuthPopup(urlResponse.data.authUrl, "itch");
     } catch (error) {
       console.error(`Itch OAuth attempt ${attempt} failed:`, error);
 
@@ -384,11 +382,7 @@ export async function loginWithGoogle(): Promise<ApiResponse<AuthResult>> {
         continue;
       }
 
-      return handleOAuthPopup(
-        urlResponse.data.authUrl,
-        "google",
-        "google_login",
-      );
+      return handleOAuthPopup(urlResponse.data.authUrl, "google");
     } catch (error) {
       console.error(`Google OAuth attempt ${attempt} failed:`, error);
 
