@@ -3157,7 +3157,46 @@
 															}
 														}
 													],
-													"sid": 349178686573658
+													"sid": 349178686573658,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-eventvar",
+																	"objectClass": "System",
+																	"sid": 963365547964858,
+																	"parameters": {
+																		"variable": "CREATOR_part",
+																		"comparison": 0,
+																		"value": "\"hair\""
+																	}
+																},
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "CreatorButton",
+																	"sid": 639297926167078,
+																	"parameters": {
+																		"instance-variable": "id",
+																		"comparison": 0,
+																		"value": "0"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-value",
+																	"objectClass": "JSON",
+																	"sid": 277136209376734,
+																	"parameters": {
+																		"path": "\"character_data.info.hair_color\"",
+																		"value": "\"bald\""
+																	}
+																}
+															],
+															"sid": 679814358664861
+														}
+													]
 												}
 											]
 										},
