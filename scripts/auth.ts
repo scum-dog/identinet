@@ -4,6 +4,8 @@ import {
   del,
   setAuthToken,
   clearAuthToken,
+  generateSecureState,
+  storeOAuthState,
 } from "./base/api-client.js";
 import {
   AuthResult,
@@ -26,6 +28,19 @@ export async function authenticateNewgrounds(
 
   if (response.success && response.data?.sessionId) {
     setAuthToken(response.data.sessionId);
+  }
+
+  if (window.opener && window.opener !== window) {
+    try {
+      const message = {
+        ...response,
+        timestamp: Date.now(),
+      };
+      window.opener.postMessage(message, "*");
+      window.close();
+    } catch (error) {
+      console.warn("Could not post message to parent window:", error);
+    }
   }
 
   return response;
@@ -97,77 +112,166 @@ export async function isLoggedIn(): Promise<boolean> {
 /**
  * handle popup flow for itch/google
  * @param authUrl - URL from getItchOAuthUrl() or getGoogleOAuthUrl()
+ * @param provider - OAuth provider name for fallback redirect
  * @param windowName - name for popup window
+ * @param timeoutMs - timeout in milliseconds (default 5 minutes)
  */
 export async function handleOAuthPopup(
   authUrl: string,
+  provider: string,
   windowName: string = "oauth_login",
+  timeoutMs: number = 5 * 60 * 1000,
 ): Promise<ApiResponse<AuthResult>> {
   return new Promise((resolve) => {
-    // open popup window
-    const popup = window.open(
-      authUrl,
-      windowName,
-      "width=500,height=600,scrollbars=yes,resizable=yes",
-    );
+    let isResolved = false;
+    let popup: Window | null = null;
+    let timeoutId: number | null = null;
+    let checkClosedInterval: number | null = null;
 
-    if (!popup) {
-      resolve({
+    const cleanup = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (checkClosedInterval) clearInterval(checkClosedInterval);
+      window.removeEventListener("message", messageHandler);
+
+      if (popup && !popup.closed) {
+        try {
+          popup.close();
+        } catch (error) {
+          console.warn("Could not close popup:", error);
+        }
+      }
+    };
+
+    const resolveOnce = (result: ApiResponse<AuthResult>) => {
+      if (isResolved) return;
+      isResolved = true;
+      cleanup();
+      resolve(result);
+    };
+
+    let state: string;
+    try {
+      state = generateSecureState();
+      storeOAuthState(state);
+    } catch (error) {
+      console.error("Error setting up OAuth state:", error);
+      resolveOnce({
         success: false,
-        error: "popup_blocked",
+        error: "state_setup_failed",
+        message: "Unable to set up secure authentication",
         data: {
-          user: {
-            id: "",
-            username: "",
-            platform: "",
-            isAdmin: false,
-          },
+          user: { id: "", username: "", platform: "", isAdmin: false },
           sessionId: "",
           tokenType: "Bearer" as const,
-          message: "Popup was blocked. Please allow popups and try again.",
+          message: "Security setup failed",
         },
       });
+      return;
+    }
+
+    try {
+      popup = window.open(
+        authUrl,
+        windowName,
+        "width=500,height=600,scrollbars=yes,resizable=yes,location=yes",
+      );
+
+      if (!popup || popup.closed) {
+        throw new Error("Popup blocked or failed to open");
+      }
+
+      setTimeout(() => {
+        if (!popup || popup.closed) {
+          handlePopupBlocked();
+        }
+      }, 100);
+    } catch (error) {
+      console.warn("Popup failed to open:", error);
+      handlePopupBlocked();
+      return;
+    }
+
+    function handlePopupBlocked() {
+      console.log("Popup blocked, falling back to full page redirect");
+
+      try {
+        sessionStorage.setItem("oauth_return_url", window.location.href);
+      } catch (e) {
+        console.warn("Could not store return URL:", e);
+      }
+
+      window.location.href = authUrl;
 
       return;
     }
 
-    // listen for message from popup
     const messageHandler = (event: MessageEvent) => {
-      // check if message is our auth result
-      if (event.data && event.data.success !== undefined) {
-        window.removeEventListener("message", messageHandler);
-        popup.close();
+      if (!event.data || typeof event.data !== "object") {
+        return;
+      }
 
-        // set token if successful
-        if (event.data.success && event.data.sessionId) {
-          setAuthToken(event.data.sessionId);
+      if (event.data.success !== undefined && event.data.timestamp) {
+        console.log("Received auth message from popup:", event.data);
+
+        const messageAge = Date.now() - event.data.timestamp;
+        if (messageAge > 30000) {
+          console.warn("Auth message too old, ignoring");
+          return;
         }
 
-        resolve(event.data);
+        if (
+          event.data.success &&
+          event.data.data &&
+          event.data.data.sessionId
+        ) {
+          setAuthToken(event.data.data.sessionId);
+        }
+
+        const result: ApiResponse<AuthResult> = {
+          success: event.data.success,
+          error: event.data.error,
+          message: event.data.message,
+          data: event.data.data || {
+            user: { id: "", username: "", platform: "", isAdmin: false },
+            sessionId: "",
+            tokenType: "Bearer" as const,
+            message: event.data.message || "",
+          },
+        };
+
+        resolveOnce(result);
       }
     };
 
     window.addEventListener("message", messageHandler);
 
-    // handle popup being closed early by user
-    const checkClosed = setInterval(() => {
-      if (popup.closed) {
-        clearInterval(checkClosed);
-        window.removeEventListener("message", messageHandler);
-        resolve({
+    timeoutId = setTimeout(() => {
+      console.warn("OAuth popup timed out");
+      resolveOnce({
+        success: false,
+        error: "timeout",
+        message: "Authentication timed out. Please try again.",
+        data: {
+          user: { id: "", username: "", platform: "", isAdmin: false },
+          sessionId: "",
+          tokenType: "Bearer" as const,
+          message: "Login timed out",
+        },
+      });
+    }, timeoutMs);
+
+    checkClosedInterval = setInterval(() => {
+      if (popup && popup.closed) {
+        console.log("User closed popup manually");
+        resolveOnce({
           success: false,
           error: "popup_closed",
+          message: "Login window was closed before completing authentication.",
           data: {
-            user: {
-              id: "",
-              username: "",
-              platform: "",
-              isAdmin: false,
-            },
+            user: { id: "", username: "", platform: "", isAdmin: false },
             sessionId: "",
-            tokenType: "Bearer",
-            message:
-              "Login window was closed before completing authentication.",
+            tokenType: "Bearer" as const,
+            message: "Login cancelled by user",
           },
         });
       }
@@ -180,53 +284,169 @@ export async function handleOAuthPopup(
  * handles everything, including popups
  */
 export async function loginWithItch(): Promise<ApiResponse<AuthResult>> {
-  const urlResponse = await getItchOAuthUrl();
+  const maxRetries = 3;
+  const retryDelay = 1000;
 
-  if (!urlResponse.success || !urlResponse.data) {
-    return {
-      success: false,
-      error: urlResponse.error,
-      data: {
-        user: {
-          id: "",
-          username: "",
-          platform: "",
-          isAdmin: false,
-        },
-        sessionId: "",
-        tokenType: "Bearer" as const,
-        message: urlResponse.message || "Failed to get OAuth URL",
-      },
-    };
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const urlResponse = await getItchOAuthUrl();
+
+      if (!urlResponse.success || !urlResponse.data) {
+        if (attempt === maxRetries) {
+          return {
+            success: false,
+            error: urlResponse.error,
+            message:
+              urlResponse.message ||
+              "Failed to get OAuth URL after multiple attempts",
+            data: {
+              user: {
+                id: "",
+                username: "",
+                platform: "",
+                isAdmin: false,
+              },
+              sessionId: "",
+              tokenType: "Bearer" as const,
+              message: urlResponse.message || "Failed to get OAuth URL",
+            },
+          };
+        }
+
+        console.log(
+          `Itch OAuth URL request failed (attempt ${attempt}/${maxRetries}), retrying in ${retryDelay}ms...`,
+        );
+        await new Promise((resolve) =>
+          setTimeout(resolve, retryDelay * attempt),
+        );
+        continue;
+      }
+
+      return handleOAuthPopup(urlResponse.data.authUrl, "itch", "itch_login");
+    } catch (error) {
+      console.error(`Itch OAuth attempt ${attempt} failed:`, error);
+
+      if (attempt === maxRetries) {
+        return {
+          success: false,
+          error: "network_error",
+          message: "Failed to connect to Itch.io after multiple attempts",
+          data: {
+            user: {
+              id: "",
+              username: "",
+              platform: "",
+              isAdmin: false,
+            },
+            sessionId: "",
+            tokenType: "Bearer" as const,
+            message: "Network error - please check your connection",
+          },
+        };
+      }
+
+      await new Promise((resolve) =>
+        setTimeout(resolve, retryDelay * Math.pow(2, attempt - 1)),
+      );
+    }
   }
 
-  return handleOAuthPopup(urlResponse.data.authUrl, "itch_login");
+  return {
+    success: false,
+    error: "unknown_error",
+    message: "Unknown error occurred",
+    data: {
+      user: { id: "", username: "", platform: "", isAdmin: false },
+      sessionId: "",
+      tokenType: "Bearer" as const,
+      message: "Unknown error",
+    },
+  };
 }
 
 /**
  * complete oauth flow for google
- * same as itch, handles everything
+ * handles everything, including popups
  */
 export async function loginWithGoogle(): Promise<ApiResponse<AuthResult>> {
-  const urlResponse = await getGoogleOAuthUrl();
+  const maxRetries = 3;
+  const retryDelay = 1000;
 
-  if (!urlResponse.success || !urlResponse.data) {
-    return {
-      success: false,
-      error: urlResponse.error,
-      data: {
-        user: {
-          id: "",
-          username: "",
-          platform: "",
-          isAdmin: false,
-        },
-        sessionId: "",
-        tokenType: "Bearer" as const,
-        message: urlResponse.message || "Failed to get OAuth URL",
-      },
-    };
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const urlResponse = await getGoogleOAuthUrl();
+
+      if (!urlResponse.success || !urlResponse.data) {
+        if (attempt === maxRetries) {
+          return {
+            success: false,
+            error: urlResponse.error,
+            message:
+              urlResponse.message ||
+              "Failed to get OAuth URL after multiple attempts",
+            data: {
+              user: {
+                id: "",
+                username: "",
+                platform: "",
+                isAdmin: false,
+              },
+              sessionId: "",
+              tokenType: "Bearer" as const,
+              message: urlResponse.message || "Failed to get OAuth URL",
+            },
+          };
+        }
+
+        console.log(
+          `Google OAuth URL request failed (attempt ${attempt}/${maxRetries}), retrying...`,
+        );
+        await new Promise((resolve) =>
+          setTimeout(resolve, retryDelay * attempt),
+        );
+        continue;
+      }
+
+      return handleOAuthPopup(
+        urlResponse.data.authUrl,
+        "google",
+        "google_login",
+      );
+    } catch (error) {
+      console.error(`Google OAuth attempt ${attempt} failed:`, error);
+
+      if (attempt === maxRetries) {
+        return {
+          success: false,
+          error: "network_error",
+          message: "Failed to connect to Google after multiple attempts",
+          data: {
+            user: {
+              id: "",
+              username: "",
+              platform: "",
+              isAdmin: false,
+            },
+            sessionId: "",
+            tokenType: "Bearer" as const,
+            message: "Network error - please check your connection",
+          },
+        };
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, retryDelay * attempt));
+    }
   }
 
-  return handleOAuthPopup(urlResponse.data.authUrl, "google_login");
+  return {
+    success: false,
+    error: "unknown_error",
+    message: "Unknown error occurred",
+    data: {
+      user: { id: "", username: "", platform: "", isAdmin: false },
+      sessionId: "",
+      tokenType: "Bearer" as const,
+      message: "Unknown error",
+    },
+  };
 }

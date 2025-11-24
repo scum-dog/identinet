@@ -4,6 +4,10 @@ export {
   clearAuthToken,
   getAuthToken,
   isAuthenticated,
+  initializeAuth,
+  addAuthStateListener,
+  generateSecureState,
+  storeOAuthState,
 } from "./base/api-client.js";
 
 export type {

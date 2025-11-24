@@ -14,6 +14,107 @@ let config: ApiConfig = {
 };
 
 let authToken: string | null = null;
+let isInitialized = false;
+
+const TOKEN_STORAGE_KEY = "identikit_auth_token";
+const TOKEN_TIMESTAMP_KEY = "identikit_auth_timestamp";
+const TOKEN_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
+
+type AuthStateListener = (
+  isAuthenticated: boolean,
+  token: string | null,
+) => void;
+const authStateListeners: Set<AuthStateListener> = new Set();
+
+function isLocalStorageAvailable(): boolean {
+  try {
+    const test = "test";
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function loadPersistedToken(): string | null {
+  if (!isLocalStorageAvailable()) return null;
+
+  try {
+    const token = localStorage.getItem(TOKEN_STORAGE_KEY);
+    const timestamp = localStorage.getItem(TOKEN_TIMESTAMP_KEY);
+
+    if (!token || !timestamp) return null;
+
+    const tokenAge = Date.now() - parseInt(timestamp, 10);
+    if (tokenAge > TOKEN_MAX_AGE) {
+      localStorage.removeItem(TOKEN_STORAGE_KEY);
+      localStorage.removeItem(TOKEN_TIMESTAMP_KEY);
+      return null;
+    }
+
+    return token;
+  } catch (error) {
+    console.warn("Error loading persisted token:", error);
+    return null;
+  }
+}
+
+function persistToken(token: string): void {
+  if (!isLocalStorageAvailable()) return;
+
+  try {
+    localStorage.setItem(TOKEN_STORAGE_KEY, token);
+    localStorage.setItem(TOKEN_TIMESTAMP_KEY, Date.now().toString());
+  } catch (error) {
+    console.warn("Error persisting token:", error);
+  }
+}
+
+function clearPersistedToken(): void {
+  if (!isLocalStorageAvailable()) return;
+
+  try {
+    localStorage.removeItem(TOKEN_STORAGE_KEY);
+    localStorage.removeItem(TOKEN_TIMESTAMP_KEY);
+  } catch (error) {
+    console.warn("Error clearing persisted token:", error);
+  }
+}
+
+function notifyAuthStateChange(): void {
+  const isAuth = authToken !== null;
+  authStateListeners.forEach((listener) => {
+    try {
+      listener(isAuth, authToken);
+    } catch (error) {
+      console.error("Error in auth state listener:", error);
+    }
+  });
+}
+
+export function initializeAuth(): void {
+  if (isInitialized) return;
+
+  const persistedToken = loadPersistedToken();
+  if (persistedToken) {
+    authToken = persistedToken;
+    console.log("Restored persisted auth token");
+  }
+
+  isInitialized = true;
+  notifyAuthStateChange();
+}
+
+export function addAuthStateListener(listener: AuthStateListener): () => void {
+  authStateListeners.add(listener);
+
+  listener(authToken !== null, authToken);
+
+  return () => {
+    authStateListeners.delete(listener);
+  };
+}
 
 /**
  * configures api client with base settings
@@ -21,6 +122,8 @@ let authToken: string | null = null;
  */
 export function configureApi(newConfig: Partial<ApiConfig>): void {
   config = { ...config, ...newConfig };
+
+  initializeAuth();
 }
 
 /**
@@ -29,6 +132,8 @@ export function configureApi(newConfig: Partial<ApiConfig>): void {
  */
 export function setAuthToken(token: string): void {
   authToken = token;
+  persistToken(token);
+  notifyAuthStateChange();
 }
 
 /**
@@ -37,13 +142,37 @@ export function setAuthToken(token: string): void {
  */
 export function clearAuthToken(): void {
   authToken = null;
+  clearPersistedToken();
+  notifyAuthStateChange();
 }
 
 /**
  * get current auth token (for debugging or session checks)
  */
 export function getAuthToken(): string | null {
+  if (!isInitialized) {
+    initializeAuth();
+  }
   return authToken;
+}
+
+export function generateSecureState(): string {
+  const array = new Uint8Array(32);
+  crypto.getRandomValues(array);
+  return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join(
+    "",
+  );
+}
+
+export function storeOAuthState(state: string): void {
+  try {
+    sessionStorage.setItem("oauth_state", state);
+  } catch (error) {
+    console.error("Error storing OAuth state:", error);
+    throw new Error(
+      "Unable to store OAuth state - authentication cannot proceed",
+    );
+  }
 }
 
 /**

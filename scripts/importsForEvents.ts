@@ -6,6 +6,8 @@ export const setAuthToken = API.setAuthToken;
 export const clearAuthToken = API.clearAuthToken;
 export const getAuthToken = API.getAuthToken;
 export const isAuthenticated = API.isAuthenticated;
+export const initializeAuth = API.initializeAuth;
+export const addAuthStateListener = API.addAuthStateListener;
 
 // auth
 export const authenticateNewgrounds = API.authenticateNewgrounds;
