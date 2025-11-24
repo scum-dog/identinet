@@ -91,12 +91,13 @@
 			"actions": [
 				{
 					"callFunction": "createCharacter",
-					"sid": 617681095397910,
+					"sid": 272792340843555,
 					"parameters": [
 						"AJAX.LastData",
+						"1",
+						"\"Character\"",
 						"76",
-						"152",
-						"1"
+						"152"
 					]
 				}
 			],
@@ -2368,6 +2369,24 @@
 														}
 													],
 													"sid": 914989530710910
+												},
+												{
+													"eventType": "block",
+													"conditions": [],
+													"actions": [
+														{
+															"callFunction": "createCharacter",
+															"sid": 998342185618089,
+															"parameters": [
+																"JSON.ToCompactString",
+																"0.5",
+																"\"Card\"",
+																"Sprite2.ImagePointX(1)",
+																"Sprite2.ImagePointY(1)"
+															]
+														}
+													],
+													"sid": 794753608973955
 												}
 											]
 										}
@@ -3312,12 +3331,13 @@
 												},
 												{
 													"callFunction": "createCharacter",
-													"sid": 810721100868544,
+													"sid": 860833076876834,
 													"parameters": [
 														"JSON.ToCompactString",
+														"1",
+														"\"Character\"",
 														"76",
-														"152",
-														"1"
+														"152"
 													]
 												}
 											],
