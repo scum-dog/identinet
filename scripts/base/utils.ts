@@ -204,31 +204,33 @@ export function mapDropdownValueToKey(
       return selectedText;
     case "sex":
       return (
-        Object.entries(SEXES).find((entry) => entry[1] === selectedText)?.[0] ??
-        ""
+        Object.entries(SEXES).find(
+          (entry) => entry[1].label === selectedText,
+        )?.[0] ?? ""
       );
     case "race#1":
     case "race#2":
       return (
-        Object.entries(RACES).find((entry) => entry[1] === selectedText)?.[0] ??
-        ""
+        Object.entries(RACES).find(
+          (entry) => entry[1].label === selectedText,
+        )?.[0] ?? ""
       );
     case "ethnicity":
       return (
         Object.entries(ETHNICITIES).find(
-          (entry) => entry[1] === selectedText,
+          (entry) => entry[1].label === selectedText,
         )?.[0] ?? ""
       );
     case "eye_color":
       return (
         Object.entries(EYE_COLORS).find(
-          (entry) => entry[1] === selectedText,
+          (entry) => entry[1].label === selectedText,
         )?.[0] ?? ""
       );
     case "hair_color":
       return (
         Object.entries(HAIR_COLORS).find(
-          (entry) => entry[1] === selectedText,
+          (entry) => entry[1].label === selectedText,
         )?.[0] ?? ""
       );
     default:

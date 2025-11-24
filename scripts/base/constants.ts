@@ -267,46 +267,46 @@ export const MONTHS = [
 ] as const;
 
 export const SEXES = {
-  male: "Male",
-  female: "Female",
-  other: "Other",
+  male: { label: "Male", abbr: "M" },
+  female: { label: "Female", abbr: "F" },
+  other: { label: "Other", abbr: "O" },
 } as const;
 
 export const RACES = {
-  none: "N/A",
-  ai_an: "American Indian or Alaska Native",
-  asian: "Asian",
-  black: "Black or African American",
-  nh_pi: "Native Hawaiian or Other Pacific Islander",
-  white: "White",
-  other: "Other",
+  none: { label: "N/A", abbr: "N" },
+  ai_an: { label: "American Indian or Alaska Native", abbr: "A" },
+  asian: { label: "Asian", abbr: "S" },
+  black: { label: "Black or African American", abbr: "B" },
+  nh_pi: { label: "Native Hawaiian or Other Pacific Islander", abbr: "P" },
+  white: { label: "White", abbr: "W" },
+  other: { label: "Other", abbr: "O" },
 } as const;
 
 export const ETHNICITIES = {
-  not_hispanic_latino: "Not Hispanic or Latino",
-  hispanic_latino: "Hispanic or Latino",
+  not_hispanic_latino: { label: "Not Hispanic or Latino", abbr: "N" },
+  hispanic_latino: { label: "Hispanic or Latino", abbr: "H" },
 } as const;
 
 export const EYE_COLORS = {
-  black: "Black",
-  blue: "Blue",
-  brown: "Brown",
-  gray: "Gray",
-  green: "Green",
-  hazel: "Hazel",
-  maroon: "Maroon",
-  pink: "Pink",
+  black: { label: "Black", abbr: "BLK" },
+  blue: { label: "Blue", abbr: "BLU" },
+  brown: { label: "Brown", abbr: "BRN" },
+  gray: { label: "Gray", abbr: "GRY" },
+  green: { label: "Green", abbr: "GRN" },
+  hazel: { label: "Hazel", abbr: "HAZ" },
+  maroon: { label: "Maroon", abbr: "MAR" },
+  pink: { label: "Pink", abbr: "PNK" },
 } as const;
 
 export const HAIR_COLORS = {
-  bald: "Bald",
-  black: "Black",
-  blond: "Blond",
-  brown: "Brown",
-  gray: "Gray",
-  red: "Red",
-  sandy: "Sandy",
-  white: "White",
+  bald: { label: "Bald", abbr: "XXX" },
+  black: { label: "Black", abbr: "BLK" },
+  blond: { label: "Blond", abbr: "BLN" },
+  brown: { label: "Brown", abbr: "BRN" },
+  gray: { label: "Gray", abbr: "GRY" },
+  red: { label: "Red", abbr: "RED" },
+  sandy: { label: "Sandy", abbr: "SDY" },
+  white: { label: "White", abbr: "WHI" },
 } as const;
 
 export const CHARACTER_NAME_MAX_LENGTH = 32;
