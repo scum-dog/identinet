@@ -35,7 +35,6 @@ export async function authenticateNewgrounds(
         timestamp: Date.now(),
       };
       window.opener.postMessage(message, "*");
-      window.close();
     } catch (error) {
       console.warn("Could not post message to parent window:", error);
     }
