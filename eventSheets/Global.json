@@ -1674,6 +1674,20 @@
 							"sid": 715063372738345
 						},
 						{
+							"name": "scale",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "",
+							"sid": 223414682603978
+						},
+						{
+							"name": "layer",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 679469320812489
+						},
+						{
 							"name": "x",
 							"type": "number",
 							"initialValue": "0",
@@ -1686,13 +1700,6 @@
 							"initialValue": "0",
 							"comment": "",
 							"sid": 566747219068032
-						},
-						{
-							"name": "scale",
-							"type": "number",
-							"initialValue": "1",
-							"comment": "",
-							"sid": 223414682603978
 						}
 					],
 					"eventType": "function-block",
@@ -1713,10 +1720,10 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 348826955218250,
+							"sid": 687125218780377,
 							"parameters": {
 								"object-to-create": "CharacterHead",
-								"layer": "\"Character\"",
+								"layer": "layer",
 								"x": "x",
 								"y": "y",
 								"create-hierarchy": false,
@@ -1959,10 +1966,10 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 862972119670596,
+							"sid": 182124525410924,
 							"parameters": {
 								"object-to-create": "CharacterPart",
-								"layer": "\"Character\"",
+								"layer": "CharacterHead.LayerName",
 								"x": "CharacterHead.ImagePointX(part)",
 								"y": "CharacterHead.ImagePointY(part)",
 								"create-hierarchy": false,
@@ -2111,10 +2118,10 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 840718666409711,
+									"sid": 563876360632053,
 									"parameters": {
 										"object-to-create": "CharacterCanvas",
-										"layer": "\"Character\"",
+										"layer": "CharacterHead.LayerName",
 										"x": "CharacterHead.X",
 										"y": "CharacterHead.Y",
 										"create-hierarchy": false,
