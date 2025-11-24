@@ -169,6 +169,15 @@
 								"animation": "\"default\"",
 								"from": "beginning"
 							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "CardButton",
+							"sid": 550105336583929,
+							"parameters": {
+								"animation": "\"default\"",
+								"from": "beginning"
+							}
 						}
 					],
 					"sid": 627645064419736
@@ -227,6 +236,14 @@
 									"parameters": {
 										"object": "CreatorPageButton"
 									}
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 988353491049261,
+									"parameters": {
+										"object": "CardButton"
+									}
 								}
 							],
 							"actions": [
@@ -269,6 +286,15 @@
 									"id": "set-animation",
 									"objectClass": "CreatorPageButton",
 									"sid": 773419798759841,
+									"parameters": {
+										"animation": "\"selected\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "CardButton",
+									"sid": 658647206756597,
 									"parameters": {
 										"animation": "\"selected\"",
 										"from": "beginning"
@@ -4406,9 +4432,27 @@
 									"type": "script",
 									"language": "typescript",
 									"script": [
-										"// SHARKO -- character upload. we can incur some sanitization via event sheets before script is ran. message me!!",
+										"const button_object = runtime.objects.CardButton.getFirstPickedInstance();",
+										"if (!button_object) return;",
+										"const button_type = button_object.instVars.type;",
 										"",
-										"alert(\"this does things!\");"
+										"const json_object = runtime.objects.JSON.getFirstInstance();",
+										"if (!json_object) return;",
+										"",
+										"const errors = validateCharacterData(",
+										"  json_object.getJsonDataCopy().character_data",
+										").errors;",
+										"",
+										"// Reject with errors",
+										"if (errors.length > 0) {",
+										"  alert(errors.join(\"\\n\"));",
+										"} else {",
+										"  if (button_type === \"save\") {",
+										"    alert(\"save would be ok here!\");",
+										"  } else {",
+										"    alert(\"upload would be ok here!\");",
+										"  }",
+										"}"
 									]
 								}
 							],
