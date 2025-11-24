@@ -122,6 +122,9 @@ export async function handleOAuthPopup(
     let popup: Window | null = null;
     let timeoutId: number | null = null;
     let checkClosedInterval: number | null = null;
+    let messageReceived = false;
+    let messageReceivedTime: number | null = null;
+    const GRACE_PERIOD_MS = 2000;
 
     const cleanup = () => {
       if (timeoutId) clearTimeout(timeoutId);
@@ -188,8 +191,11 @@ export async function handleOAuthPopup(
       if (event.data.success !== undefined && event.data.timestamp) {
         console.log("Received auth message from popup:", event.data);
 
+        messageReceived = true;
+        messageReceivedTime = Date.now();
+
         const messageAge = Date.now() - event.data.timestamp;
-        if (messageAge > 30000) {
+        if (messageAge > 30 * 1000) {
           console.warn("Auth message too old, ignoring");
           return;
         }
@@ -199,6 +205,7 @@ export async function handleOAuthPopup(
           event.data.data &&
           event.data.data.sessionId
         ) {
+          console.log("Setting auth token from successful authentication");
           setAuthToken(event.data.data.sessionId);
         }
 
@@ -214,6 +221,10 @@ export async function handleOAuthPopup(
           },
         };
 
+        console.log("Resolving OAuth popup with result:", {
+          success: event.data.success,
+          hasSessionId: !!event.data.data?.sessionId,
+        });
         resolveOnce(result);
       }
     };
@@ -237,20 +248,38 @@ export async function handleOAuthPopup(
 
     checkClosedInterval = setInterval(() => {
       if (popup && popup.closed) {
-        console.log("User closed popup manually");
+        if (messageReceived && messageReceivedTime) {
+          const timeSinceMessage = Date.now() - messageReceivedTime;
+          if (timeSinceMessage < GRACE_PERIOD_MS) {
+            console.log(
+              `Popup closed within grace period (${timeSinceMessage}ms), allowing completion`,
+            );
+            return;
+          }
+        }
+
+        console.log(
+          messageReceived
+            ? "Popup closed after grace period"
+            : "User closed popup manually",
+        );
         resolveOnce({
           success: false,
           error: "popup_closed",
-          message: "Login window was closed before completing authentication.",
+          message: messageReceived
+            ? "Authentication window closed after completion."
+            : "Login window was closed before completing authentication.",
           data: {
             user: { id: "", username: "", platform: "", isAdmin: false },
             sessionId: "",
             tokenType: "Bearer" as const,
-            message: "Login cancelled by user",
+            message: messageReceived
+              ? "Window closed after auth"
+              : "Login cancelled by user",
           },
         });
       }
-    }, 1000);
+    }, 250);
   });
 }
 
