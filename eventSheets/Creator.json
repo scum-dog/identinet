@@ -65,6 +65,11 @@
 					"sid": 342927959376332
 				},
 				{
+					"id": "destroy",
+					"objectClass": "Card",
+					"sid": 714945940859381
+				},
+				{
 					"id": "request-project-file",
 					"objectClass": "AJAX",
 					"sid": 407949671944069,
@@ -94,10 +99,11 @@
 					"sid": 272792340843555,
 					"parameters": [
 						"AJAX.LastData",
-						"1",
 						"\"Character\"",
 						"76",
-						"152"
+						"152",
+						"1",
+						"0"
 					]
 				}
 			],
@@ -1189,6 +1195,53 @@
 										}
 									],
 									"sid": 809783573859857
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 908184581961587,
+											"parameters": {
+												"variable": "CREATOR_menu",
+												"comparison": 0,
+												"value": "\"card\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "toggleLayer",
+											"sid": 488240842349924,
+											"parameters": [
+												"\"InformationStatic\"",
+												false
+											]
+										}
+									],
+									"sid": 983783323749887
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 558397541618527
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "toggleLayer",
+											"sid": 162415127654593,
+											"parameters": [
+												"\"InformationStatic\"",
+												true
+											]
+										}
+									],
+									"sid": 286247836205329
 								},
 								{
 									"eventType": "group",
@@ -2336,6 +2389,21 @@
 														"\"Card\"",
 														true
 													]
+												},
+												{
+													"id": "destroy",
+													"objectClass": "Card",
+													"sid": 141985914026740
+												},
+												{
+													"callFunction": "createCard",
+													"sid": 858485426011210,
+													"parameters": [
+														"JSON.ToCompactString",
+														"40",
+														"28",
+														"\"Card\""
+													]
 												}
 											],
 											"sid": 856760900917372,
@@ -2369,24 +2437,6 @@
 														}
 													],
 													"sid": 914989530710910
-												},
-												{
-													"eventType": "block",
-													"conditions": [],
-													"actions": [
-														{
-															"callFunction": "createCharacter",
-															"sid": 998342185618089,
-															"parameters": [
-																"JSON.ToCompactString",
-																"0.5",
-																"\"Card\"",
-																"Sprite2.ImagePointX(1)",
-																"Sprite2.ImagePointY(1)"
-															]
-														}
-													],
-													"sid": 794753608973955
 												}
 											]
 										}
@@ -3334,10 +3384,11 @@
 													"sid": 860833076876834,
 													"parameters": [
 														"JSON.ToCompactString",
-														"1",
 														"\"Character\"",
 														"76",
-														"152"
+														"152",
+														"1",
+														"0"
 													]
 												}
 											],
@@ -4299,7 +4350,7 @@
 									"parameters": {
 										"mouse-button": "left",
 										"click-type": "clicked",
-										"object-clicked": "Sprite"
+										"object-clicked": "CardButton"
 									}
 								},
 								{
@@ -4307,7 +4358,7 @@
 									"objectClass": "Touch",
 									"sid": 734442980964009,
 									"parameters": {
-										"object": "Sprite"
+										"object": "CardButton"
 									}
 								}
 							],

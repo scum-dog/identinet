@@ -1,5 +1,5 @@
 {
-	"name": "Sprite",
+	"name": "CardButton",
 	"plugin-id": "Sprite",
 	"sid": 473508281056082,
 	"isGlobal": false,
@@ -12,22 +12,47 @@
 			{
 				"frames": [
 					{
-						"width": 128,
-						"height": 32,
+						"width": 132,
+						"height": 24,
 						"originX": 0,
 						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5395202,
+						"imageSpriteId": 4254072,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
 				"sid": 603716831601697,
-				"name": "Animation 1",
+				"name": "default",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 132,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4127732,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 559394350141571,
+				"name": "selected",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,

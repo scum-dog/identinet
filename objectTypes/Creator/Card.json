@@ -1,5 +1,5 @@
 {
-	"name": "Sprite2",
+	"name": "Card",
 	"plugin-id": "Sprite",
 	"sid": 262608921130691,
 	"isGlobal": false,
@@ -20,7 +20,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 8642541,
+						"imageSpriteId": 4598545,
 						"useCollisionPoly": true,
 						"imagePoints": [
 							{

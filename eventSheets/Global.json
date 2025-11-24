@@ -1674,13 +1674,6 @@
 							"sid": 715063372738345
 						},
 						{
-							"name": "scale",
-							"type": "number",
-							"initialValue": "1",
-							"comment": "",
-							"sid": 223414682603978
-						},
-						{
 							"name": "layer",
 							"type": "string",
 							"initialValue": "",
@@ -1700,6 +1693,20 @@
 							"initialValue": "0",
 							"comment": "",
 							"sid": 566747219068032
+						},
+						{
+							"name": "scale",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "",
+							"sid": 223414682603978
+						},
+						{
+							"name": "parent",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 703876970441906
 						}
 					],
 					"eventType": "function-block",
@@ -1749,6 +1756,15 @@
 							"sid": 219141233942691,
 							"parameters": {
 								"scale": "scale"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "CharacterHead",
+							"sid": 584799249623038,
+							"parameters": {
+								"instance-variable": "parent",
+								"value": "parent"
 							}
 						}
 					],
@@ -2175,12 +2191,211 @@
 									"sid": 907337970047555
 								}
 							],
-							"sid": 927720068444914
+							"sid": 927720068444914,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CharacterHead",
+											"sid": 135519221958764,
+											"parameters": {
+												"instance-variable": "parent",
+												"comparison": 4,
+												"value": "0"
+											}
+										},
+										{
+											"id": "pick-by-unique-id",
+											"objectClass": "Card",
+											"sid": 279153347967846,
+											"parameters": {
+												"unique-id": "CharacterHead.parent"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "add-child",
+											"objectClass": "Card",
+											"sid": 157568469662017,
+											"parameters": {
+												"child": "CharacterCanvas",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": true,
+												"transform-h": true,
+												"transform-a": true,
+												"transform-o": true,
+												"transform-z-elevation": true,
+												"transform-visibility": true,
+												"destroy-with-parent": true
+											}
+										}
+									],
+									"sid": 903907288005592
+								}
+							]
 						}
 					]
 				}
 			],
 			"sid": 144180611067032
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Global - Card Rendering",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "createCard",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "data",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 709402755381446
+						},
+						{
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 998943190076952
+						},
+						{
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 331937214651639
+						},
+						{
+							"name": "layer",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 344062662415152
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "parse",
+							"objectClass": "JSON",
+							"sid": 194904381338007,
+							"parameters": {
+								"data": "data"
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 680076447994066,
+							"parameters": {
+								"object-to-create": "Card",
+								"layer": "layer",
+								"x": "x",
+								"y": "y",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"callFunction": "createCharacter",
+							"sid": 943709651627730,
+							"parameters": [
+								"data",
+								"\"Card\"",
+								"Card.ImagePointX(1)",
+								"Card.ImagePointY(1)",
+								"0.5",
+								"Card.UID"
+							]
+						}
+					],
+					"sid": 230589321546343,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 942628611666191,
+									"parameters": {
+										"object": "Text"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"const text_object = runtime.objects.Text.getFirstPickedInstance();",
+										"if (!text_object) return;",
+										"",
+										"const text_type = text_object.instVars.type;",
+										"",
+										"const json_object = runtime.objects.JSON.getFirstInstance();",
+										"if (!json_object) return;",
+										"",
+										"const getCardText = (): string => {",
+										"  switch (text_type) {",
+										"    case \"cardName\":",
+										"      return getJSONValue(json_object, \"character_data.info.name\");",
+										"    case \"cardBirth\":",
+										"      return getJSONValue(json_object, \"character_data.info.date_of_birth\");",
+										"    case \"cardSex\":",
+										"      // sex abbreivation",
+										"      return \"\";",
+										"    case \"cardHair\":",
+										"      // hair color abbreivation",
+										"      return \"\";",
+										"    case \"cardEyes\":",
+										"      // eye color abbreivation",
+										"      return \"\";",
+										"    case \"cardHeight\":",
+										"      // fuck this shit",
+										"      const test1 = getJSONValue(json_object, \"character_data.info.height_in\");",
+										"      const test2 = Math.floor(test1/12)+\"'\"+test1%12+\"\\\"\";",
+										"      return test2;",
+										"    case \"cardWeight\":",
+										"      return getJSONValue(json_object, \"character_data.info.weight_lb\")+\" lbs\";",
+										"    case \"cardEthnicity\":",
+										"      // ethnicity abbreviation, optional second",
+										"      return \"\";",
+										"    case \"cardRace\":",
+										"      // race abbreviation, optional second",
+										"      return \"\";",
+										"    case \"cardCountry\":",
+										"      return getJSONValue(json_object, \"character_data.info.location\");",
+										"    default:",
+										"      return \"\";",
+										"  }",
+										"};",
+										"",
+										"text_object.text = getCardText();"
+									]
+								}
+							],
+							"sid": 145237772241172
+						}
+					]
+				}
+			],
+			"sid": 886199402061733
 		},
 		{
 			"eventType": "group",
@@ -2444,6 +2659,29 @@
 						}
 					],
 					"sid": 735219573116273
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 677966808084618,
+							"parameters": {
+								"key": 90
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"alert(getAuthToken());"
+							]
+						}
+					],
+					"sid": 694846230791246
 				}
 			],
 			"sid": 878848367292974
