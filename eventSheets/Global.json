@@ -20,6 +20,16 @@
 			"sid": 962947344301577
 		},
 		{
+			"eventType": "variable",
+			"name": "GAME_load",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Have we tried to load yet?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 400279535474701
+		},
+		{
 			"eventType": "comment",
 			"text": "Game type flags"
 		},
@@ -46,6 +56,16 @@
 		{
 			"eventType": "comment",
 			"text": "Loading flags"
+		},
+		{
+			"eventType": "variable",
+			"name": "LOAD_save",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Is the save file loaded?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 264794377819010
 		},
 		{
 			"eventType": "variable",
@@ -314,6 +334,44 @@
 								}
 							],
 							"sid": 507490482789908
+						},
+						{
+							"eventType": "comment",
+							"text": "Try to initiate load from local storage"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 426581602242972,
+									"parameters": {
+										"variable": "GAME_load"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 615712916398666,
+									"parameters": {
+										"variable": "GAME_load",
+										"value": "true"
+									}
+								},
+								{
+									"id": "check-item-exists",
+									"objectClass": "LocalStorage",
+									"sid": 227529304999915,
+									"parameters": {
+										"key": "\"saveData1\""
+									}
+								}
+							],
+							"sid": 432481568114169
 						}
 					],
 					"sid": 882930048962033
@@ -2636,6 +2694,168 @@
 				}
 			],
 			"sid": 878848367292974
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Global - Saving",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Save to local storage"
+				},
+				{
+					"functionName": "save",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-item",
+							"objectClass": "LocalStorage",
+							"sid": 817032022380085,
+							"parameters": {
+								"key": "\"saveData1\"",
+								"value": "Browser.ExecJS(\"btoa('\"&\"JSON HERE\"&\"')\")"
+							}
+						}
+					],
+					"sid": 299290097633204
+				}
+			],
+			"sid": 657993863465649
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Global - Loading",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "File read, good to go"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-exists",
+							"objectClass": "LocalStorage",
+							"sid": 393134836919461,
+							"parameters": {
+								"key": "\"saveData1\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "load",
+							"sid": 140733981211200,
+							"parameters": [
+								"Browser.ExecJS(\"atob('\"&LocalStorage.ItemValue&\"')\")"
+							]
+						}
+					],
+					"sid": 701741914507564
+				},
+				{
+					"eventType": "comment",
+					"text": "File not read, everything is terrible"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-missing",
+							"objectClass": "LocalStorage",
+							"sid": 820187789370605,
+							"parameters": {
+								"key": "\"saveData1\""
+							}
+						},
+						{
+							"id": "on-error",
+							"objectClass": "LocalStorage",
+							"sid": 300058939314668
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 633652903605531,
+							"parameters": {
+								"variable": "LOAD_save",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 177557763333435,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "comment",
+					"text": "Load from local storage"
+				},
+				{
+					"functionName": "load",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "data",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 947190901180219
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 146351803285833,
+							"parameters": {
+								"variable": "LOAD_save",
+								"value": "true"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 626827214531414,
+							"parameters": {
+								"type": "log",
+								"message": "\"Found save data, loading\""
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 685545165055856,
+							"parameters": {
+								"type": "log",
+								"message": "data"
+							}
+						}
+					],
+					"sid": 181876486771309
+				}
+			],
+			"sid": 883169455808167
 		}
 	],
 	"sid": 778792192564054

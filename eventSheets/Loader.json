@@ -13,7 +13,7 @@
 			"eventType": "variable",
 			"name": "LOADER_maxItems",
 			"type": "number",
-			"initialValue": "2",
+			"initialValue": "3",
 			"comment": "Total items to load",
 			"isStatic": true,
 			"isConstant": true,
@@ -134,10 +134,10 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 816733880379277,
+							"sid": 323724378971843,
 							"parameters": {
 								"variable": "LOADER_progress",
-								"value": "(loadingprogress+LOAD_parts)/LOADER_maxItems"
+								"value": "(loadingprogress+LOAD_parts+LOAD_save)/LOADER_maxItems"
 							}
 						},
 						{

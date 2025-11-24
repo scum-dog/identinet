@@ -3,7 +3,7 @@
 	"savedWithRelease": 45802,
 	"name": "IDENTI-NET",
 	"runtime": "c3",
-	"useWorker": "auto",
+	"useWorker": "dom",
 	"bundleAddons": true,
 	"usedAddons": [
 		{
@@ -59,6 +59,13 @@
 			"type": "plugin",
 			"id": "List",
 			"name": "List",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "LocalStorage",
+			"name": "Local storage",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -180,7 +187,9 @@
 					"Touch",
 					"PlatformInfo",
 					"Date",
-					"JSON"
+					"JSON",
+					"LocalStorage",
+					"SavedCharacters"
 				],
 				"subfolders": [],
 				"name": "Plugins"
