@@ -28,9 +28,7 @@ export async function getUserCharacter(): Promise<
 export async function uploadCharacter(
   characterData: CharacterDataStructure,
 ): Promise<ApiResponse<{ message: string; jobId: string; status: string }>> {
-  return post("/characters", {
-    character: characterData,
-  });
+  return post("/characters", characterData );
 }
 
 /**
