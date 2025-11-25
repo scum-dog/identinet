@@ -109,11 +109,13 @@ export async function isLoggedIn(): Promise<boolean> {
 /**
  * handle popup flow for itch/google
  * @param authUrl - URL from getItchOAuthUrl() or getGoogleOAuthUrl()
+ * @param pollId - polling ID from server
  * @param windowName - name for popup window
  * @param timeoutMs - timeout in milliseconds (default 5 minutes)
  */
 export async function handleOAuthPopup(
   authUrl: string,
+  pollId: string,
   windowName: string = "oauth_login",
   timeoutMs: number = 5 * 60 * 1000,
 ): Promise<ApiResponse<AuthResult>> {
@@ -121,22 +123,77 @@ export async function handleOAuthPopup(
     let isResolved = false;
     let popup: Window | null = null;
     let timeoutId: number | null = null;
-    let checkClosedInterval: number | null = null;
-    let messageReceived = false;
-    let messageReceivedTime: number | null = null;
-    const GRACE_PERIOD_MS = 2000;
+    let pollInterval: number | null = null;
+    const POLL_INTERVAL = 1000;
 
     const cleanup = () => {
       if (timeoutId) clearTimeout(timeoutId);
-      if (checkClosedInterval) clearInterval(checkClosedInterval);
-      window.removeEventListener("message", messageHandler);
+      if (pollInterval) clearInterval(pollInterval);
+    };
 
-      if (popup && !popup.closed) {
-        try {
-          popup.close();
-        } catch (error) {
-          console.warn("Could not close popup:", error);
+    const pollForResult = async () => {
+      try {
+        console.log(`[OAuth Poll] Checking server for result, pollId: ${pollId}`);
+
+        const cacheBuster = Date.now();
+        const response = await get(`/auth/oauth/poll/${pollId}?_=${cacheBuster}`);
+        console.log(`[OAuth Poll] Server response:`, response);
+
+        if (response.success && response.data?.status === "completed") {
+          console.log("OAuth completed successfully:", response.data);
+
+          if (response.data.success && response.data.sessionId) {
+            console.log(
+              "Setting auth token from server response:",
+              response.data.sessionId,
+            );
+            setAuthToken(response.data.sessionId);
+          }
+
+          resolveOnce({
+            success: response.data.success,
+            error: response.data.error,
+            message: response.data.message,
+            data: {
+              user: response.data.user || {
+                id: "",
+                username: "",
+                platform: "",
+                isAdmin: false,
+              },
+              sessionId: response.data.sessionId || "",
+              tokenType: "Bearer" as const,
+              message: response.data.message || "",
+            },
+          });
+          return true;
         }
+
+        if (response.data?.status === "pending") {
+          console.log(`Still pending...`);
+          return false;
+        }
+
+        if (!response.success) {
+          console.error("OAuth polling failed:", response);
+          resolveOnce({
+            success: false,
+            error: response.error || "polling_failed",
+            message: response.message || "OAuth polling failed",
+            data: {
+              user: { id: "", username: "", platform: "", isAdmin: false },
+              sessionId: "",
+              tokenType: "Bearer" as const,
+              message: "OAuth failed",
+            },
+          });
+          return true;
+        }
+
+        return false;
+      } catch (error) {
+        console.warn("OAuth polling error:", error);
+        return false;
       }
     };
 
@@ -174,6 +231,7 @@ export async function handleOAuthPopup(
 
       try {
         sessionStorage.setItem("oauth_return_url", window.location.href);
+        sessionStorage.setItem("oauth_poll_id", pollId);
       } catch (e) {
         console.warn("Could not store return URL:", e);
       }
@@ -183,56 +241,26 @@ export async function handleOAuthPopup(
       return;
     }
 
-    const messageHandler = (event: MessageEvent) => {
-      if (!event.data || typeof event.data !== "object") {
-        return;
-      }
+    pollInterval = setInterval(async () => {
+      await pollForResult();
+    }, POLL_INTERVAL);
 
-      if (event.data.success !== undefined && event.data.timestamp) {
-        console.log("Received auth message from popup:", event.data);
+    pollForResult();
 
-        messageReceived = true;
-        messageReceivedTime = Date.now();
-
-        const messageAge = Date.now() - event.data.timestamp;
-        if (messageAge > 30 * 1000) {
-          console.warn("Auth message too old, ignoring");
-          return;
-        }
-
-        if (
-          event.data.success &&
-          event.data.data &&
-          event.data.data.sessionId
-        ) {
-          console.log("Setting auth token from successful authentication");
-          setAuthToken(event.data.data.sessionId);
-        }
-
-        const result: ApiResponse<AuthResult> = {
-          success: event.data.success,
-          error: event.data.error,
-          message: event.data.message,
-          data: event.data.data || {
-            user: { id: "", username: "", platform: "", isAdmin: false },
-            sessionId: "",
-            tokenType: "Bearer" as const,
-            message: event.data.message || "",
-          },
-        };
-
-        console.log("Resolving OAuth popup with result:", {
-          success: event.data.success,
-          hasSessionId: !!event.data.data?.sessionId,
-        });
-        resolveOnce(result);
-      }
-    };
-
-    window.addEventListener("message", messageHandler);
+    console.log("OAuth popup flow started with server polling:", {
+      windowName,
+      timeoutMs,
+      pollId,
+      popupUrl: authUrl.substring(0, 100) + "...",
+      pollInterval: POLL_INTERVAL,
+    });
 
     timeoutId = setTimeout(() => {
-      console.warn("OAuth popup timed out");
+      console.warn("OAuth popup timed out after", timeoutMs + "ms", {
+        isResolved,
+        pollId,
+      });
+
       resolveOnce({
         success: false,
         error: "timeout",
@@ -245,41 +273,6 @@ export async function handleOAuthPopup(
         },
       });
     }, timeoutMs);
-
-    checkClosedInterval = setInterval(() => {
-      if (popup && popup.closed) {
-        if (messageReceived && messageReceivedTime) {
-          const timeSinceMessage = Date.now() - messageReceivedTime;
-          if (timeSinceMessage < GRACE_PERIOD_MS) {
-            console.log(
-              `Popup closed within grace period (${timeSinceMessage}ms), allowing completion`,
-            );
-            return;
-          }
-        }
-
-        console.log(
-          messageReceived
-            ? "Popup closed after grace period"
-            : "User closed popup manually",
-        );
-        resolveOnce({
-          success: false,
-          error: "popup_closed",
-          message: messageReceived
-            ? "Authentication window closed after completion."
-            : "Login window was closed before completing authentication.",
-          data: {
-            user: { id: "", username: "", platform: "", isAdmin: false },
-            sessionId: "",
-            tokenType: "Bearer" as const,
-            message: messageReceived
-              ? "Window closed after auth"
-              : "Login cancelled by user",
-          },
-        });
-      }
-    }, 250);
   });
 }
 
@@ -293,7 +286,15 @@ export async function loginWithItch(): Promise<ApiResponse<AuthResult>> {
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      const urlResponse = await getItchOAuthUrl();
+      const pollIdResponse = await get("/auth/oauth/poll-id");
+      if (!pollIdResponse.success || !pollIdResponse.data?.pollId) {
+        throw new Error("Failed to get polling ID");
+      }
+
+      const pollId = pollIdResponse.data.pollId;
+      console.log("Generated polling ID for Itch OAuth:", pollId);
+
+      const urlResponse = await get(`/auth/itchio/authorization-url?poll_id=${pollId}`);
 
       if (!urlResponse.success || !urlResponse.data) {
         if (attempt === maxRetries) {
@@ -326,7 +327,7 @@ export async function loginWithItch(): Promise<ApiResponse<AuthResult>> {
         continue;
       }
 
-      return handleOAuthPopup(urlResponse.data.authUrl, "itch");
+      return handleOAuthPopup(urlResponse.data.authUrl, pollId, "itch");
     } catch (error) {
       console.error(`Itch OAuth attempt ${attempt} failed:`, error);
 
@@ -378,7 +379,15 @@ export async function loginWithGoogle(): Promise<ApiResponse<AuthResult>> {
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      const urlResponse = await getGoogleOAuthUrl();
+      const pollIdResponse = await get("/auth/oauth/poll-id");
+      if (!pollIdResponse.success || !pollIdResponse.data?.pollId) {
+        throw new Error("Failed to get polling ID");
+      }
+
+      const pollId = pollIdResponse.data.pollId;
+      console.log("Generated polling ID for Google OAuth:", pollId);
+
+      const urlResponse = await get(`/auth/google/authorization-url?poll_id=${pollId}`);
 
       if (!urlResponse.success || !urlResponse.data) {
         if (attempt === maxRetries) {
@@ -411,7 +420,7 @@ export async function loginWithGoogle(): Promise<ApiResponse<AuthResult>> {
         continue;
       }
 
-      return handleOAuthPopup(urlResponse.data.authUrl, "google");
+      return handleOAuthPopup(urlResponse.data.authUrl, pollId, "google");
     } catch (error) {
       console.error(`Google OAuth attempt ${attempt} failed:`, error);
 
