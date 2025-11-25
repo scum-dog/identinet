@@ -212,38 +212,6 @@
 									"parameters": {
 										"object": "NavButton"
 									}
-								},
-								{
-									"id": "cursor-is-over-object",
-									"objectClass": "Mouse",
-									"sid": 904144325984547,
-									"parameters": {
-										"object": "CreatorNavButton"
-									}
-								},
-								{
-									"id": "cursor-is-over-object",
-									"objectClass": "Mouse",
-									"sid": 870644342813171,
-									"parameters": {
-										"object": "CreatorButton"
-									}
-								},
-								{
-									"id": "cursor-is-over-object",
-									"objectClass": "Mouse",
-									"sid": 156229647155416,
-									"parameters": {
-										"object": "CreatorPageButton"
-									}
-								},
-								{
-									"id": "cursor-is-over-object",
-									"objectClass": "Mouse",
-									"sid": 988353491049261,
-									"parameters": {
-										"object": "CardButton"
-									}
 								}
 							],
 							"actions": [
@@ -263,46 +231,112 @@
 										"animation": "\"selected\"",
 										"from": "beginning"
 									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "CreatorNavButton",
-									"sid": 858530390880220,
-									"parameters": {
-										"animation": "\"selected\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "CreatorButton",
-									"sid": 907599929956281,
-									"parameters": {
-										"animation": "\"selected\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "CreatorPageButton",
-									"sid": 773419798759841,
-									"parameters": {
-										"animation": "\"selected\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "CardButton",
-									"sid": 658647206756597,
-									"parameters": {
-										"animation": "\"selected\"",
-										"from": "beginning"
-									}
 								}
 							],
-							"sid": 741130695482104,
-							"isOrBlock": true
+							"sid": 741130695482104
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 129273404945821,
+									"parameters": {
+										"object": "HUD"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 810148831072892,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 125716098937689,
+											"parameters": {
+												"object": "CreatorNavButton"
+											}
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 825950128694907,
+											"parameters": {
+												"object": "CreatorButton"
+											}
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 611768322162464,
+											"parameters": {
+												"object": "CreatorPageButton"
+											}
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 258817133509124,
+											"parameters": {
+												"object": "CardButton"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-cursor-style2",
+											"objectClass": "Mouse",
+											"sid": 699255607091028,
+											"parameters": {
+												"cursor-style": "pointer"
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "CreatorNavButton",
+											"sid": 873526013424028,
+											"parameters": {
+												"animation": "\"selected\"",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "CreatorButton",
+											"sid": 709669592478015,
+											"parameters": {
+												"animation": "\"selected\"",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "CreatorPageButton",
+											"sid": 175956403403867,
+											"parameters": {
+												"animation": "\"selected\"",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "CardButton",
+											"sid": 801000300100811,
+											"parameters": {
+												"animation": "\"selected\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 767579610959106,
+									"isOrBlock": true
+								}
+							]
 						}
 					]
 				},
@@ -596,6 +630,15 @@
 							"sid": 103165004902160,
 							"parameters": {
 								"variable": "TRANSITION_running"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 792355246729835,
+							"parameters": {
+								"object": "HUD"
 							},
 							"isInverted": true
 						}
@@ -3062,6 +3105,15 @@
 								"variable": "TRANSITION_running"
 							},
 							"isInverted": true
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 562360226153844,
+							"parameters": {
+								"object": "HUD"
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [],
@@ -4409,21 +4461,131 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-object-clicked",
-									"objectClass": "Mouse",
-									"sid": 267727272268926,
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 981660174976178,
 									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "CardButton"
+										"variable": "TRANSITION_running"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 170546613649715,
+									"parameters": {
+										"object": "HUD"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 291852376709977,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-object-clicked",
+											"objectClass": "Mouse",
+											"sid": 405970630061305,
+											"parameters": {
+												"mouse-button": "left",
+												"click-type": "clicked",
+												"object-clicked": "CardButton"
+											}
+										},
+										{
+											"id": "on-tap-object",
+											"objectClass": "Touch",
+											"sid": 396808233203822,
+											"parameters": {
+												"object": "CardButton"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"language": "typescript",
+											"script": [
+												"const button_object = runtime.objects.CardButton.getFirstPickedInstance();",
+												"if (!button_object) return;",
+												"const button_type = button_object.instVars.type;",
+												"",
+												"const json_object = runtime.objects.JSON.getFirstInstance();",
+												"if (!json_object) return;",
+												"",
+												"const errors = validateCharacterData(",
+												"  json_object.getJsonDataCopy().character_data",
+												").errors;",
+												"",
+												"if (errors.length > 0) {",
+												"  // Reject with errors",
+												"  alert(errors.join(\"\\n\"));",
+												"} else {",
+												"  if (button_type === \"save\") {",
+												"    // Save",
+												"    runtime.signal(\"saveCharacter\");",
+												"  } else {",
+												"    // Upload",
+												"    runtime.signal(\"uploadCharacter\");",
+												"  }",
+												"}"
+											]
+										}
+									],
+									"sid": 291450923579680,
+									"isOrBlock": true
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-signal",
+									"objectClass": "System",
+									"sid": 734613799562582,
+									"parameters": {
+										"tag": "\"saveCharacter\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "push",
+									"objectClass": "SavedCharacters",
+									"sid": 142138618883029,
+									"parameters": {
+										"where": "back",
+										"value": "JSON.ToCompactString",
+										"axis": "x"
 									}
 								},
 								{
-									"id": "on-tap-object",
-									"objectClass": "Touch",
-									"sid": 734442980964009,
+									"callFunction": "save",
+									"sid": 744265071260717
+								},
+								{
+									"callFunction": "transition",
+									"sid": 250871485777518,
+									"parameters": [
+										"\"Plaza\""
+									]
+								}
+							],
+							"sid": 930331281788336
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-signal",
+									"objectClass": "System",
+									"sid": 570557355827747,
 									"parameters": {
-										"object": "CardButton"
+										"tag": "\"uploadCharacter\""
 									}
 								}
 							],
@@ -4432,32 +4594,14 @@
 									"type": "script",
 									"language": "typescript",
 									"script": [
-										"const button_object = runtime.objects.CardButton.getFirstPickedInstance();",
-										"if (!button_object) return;",
-										"const button_type = button_object.instVars.type;",
-										"",
 										"const json_object = runtime.objects.JSON.getFirstInstance();",
 										"if (!json_object) return;",
-										"",
-										"const errors = validateCharacterData(",
-										"  json_object.getJsonDataCopy().character_data",
-										").errors;",
-										"",
-										"// Reject with errors",
-										"if (errors.length > 0) {",
-										"  alert(errors.join(\"\\n\"));",
-										"} else {",
-										"  if (button_type === \"save\") {",
-										"    alert(\"save would be ok here!\");",
-										"  } else {",
-										"    alert(\"upload would be ok here!\");",
-										"  }",
-										"}"
+										"console.log(json_object.getJsonDataCopy());",
+										"uploadCharacter(json_object.getJsonDataCopy());"
 									]
 								}
 							],
-							"sid": 671998226890600,
-							"isOrBlock": true
+							"sid": 298525674925368
 						}
 					],
 					"sid": 182453861142727

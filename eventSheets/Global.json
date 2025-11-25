@@ -2720,10 +2720,10 @@
 						{
 							"id": "set-item",
 							"objectClass": "LocalStorage",
-							"sid": 817032022380085,
+							"sid": 376872884389106,
 							"parameters": {
 								"key": "\"saveData1\"",
-								"value": "Browser.ExecJS(\"btoa('\"&\"JSON HERE\"&\"')\")"
+								"value": "SavedCharacters.AsJSON"
 							}
 						}
 					],
@@ -2758,9 +2758,9 @@
 					"actions": [
 						{
 							"callFunction": "load",
-							"sid": 140733981211200,
+							"sid": 690574085580390,
 							"parameters": [
-								"Browser.ExecJS(\"atob('\"&LocalStorage.ItemValue&\"')\")"
+								"LocalStorage.ItemValue"
 							]
 						}
 					],
@@ -2843,12 +2843,11 @@
 							}
 						},
 						{
-							"id": "log",
-							"objectClass": "Browser",
-							"sid": 685545165055856,
+							"id": "load",
+							"objectClass": "SavedCharacters",
+							"sid": 781807282378436,
 							"parameters": {
-								"type": "log",
-								"message": "data"
+								"json": "data"
 							}
 						}
 					],

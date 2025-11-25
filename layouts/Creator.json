@@ -6957,14 +6957,14 @@
 			"overriden": 0,
 			"subLayers": [
 				{
-					"name": "Navigation",
+					"name": "Login",
 					"overriden": 1,
 					"subLayers": [],
 					"instances": [],
-					"sid": 950475209671660,
+					"sid": 326148170365774,
 					"effectTypes": [],
-					"isInitiallyVisible": true,
-					"isInitiallyInteractive": true,
+					"isInitiallyVisible": false,
+					"isInitiallyInteractive": false,
 					"isHTMLElementsLayer": false,
 					"color": [
 						1,
@@ -6991,14 +6991,14 @@
 					"global": false
 				},
 				{
-					"name": "Login",
+					"name": "Navigation",
 					"overriden": 1,
 					"subLayers": [],
 					"instances": [],
-					"sid": 326148170365774,
+					"sid": 950475209671660,
 					"effectTypes": [],
-					"isInitiallyVisible": false,
-					"isInitiallyInteractive": false,
+					"isInitiallyVisible": true,
+					"isInitiallyInteractive": true,
 					"isHTMLElementsLayer": false,
 					"color": [
 						1,

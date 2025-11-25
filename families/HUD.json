@@ -8,6 +8,8 @@
 	"members": [
 		"NavBar",
 		"PlazaButton",
-		"NavButton"
+		"NavButton",
+		"LoginBackground",
+		"Sprite"
 	]
 }

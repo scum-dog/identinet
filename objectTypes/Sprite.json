@@ -1,18 +1,10 @@
 {
-	"name": "LoginButton",
+	"name": "Sprite",
 	"plugin-id": "Sprite",
-	"sid": 776357775460365,
+	"sid": 997539540342444,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
-	"instanceVariables": [
-		{
-			"name": "type",
-			"type": "string",
-			"desc": "",
-			"show": true,
-			"sid": 973581605072869
-		}
-	],
+	"instanceVariables": [],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
@@ -20,21 +12,33 @@
 			{
 				"frames": [
 					{
-						"width": 136,
-						"height": 32,
+						"width": 1,
+						"height": 1,
 						"originX": 0,
 						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 4940682,
+						"imageSpriteId": 3098730,
+						"collisionPoly": {
+							"points": [
+								0.003968253968253968,
+								0.003968253968253968,
+								0.996031746031746,
+								0.003968253968253968,
+								0.996031746031746,
+								0.996031746031746,
+								0.003968253968253968,
+								0.996031746031746
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 705416229439390,
+				"sid": 494499651907754,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

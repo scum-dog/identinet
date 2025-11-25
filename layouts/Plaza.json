@@ -88,6 +88,496 @@
 			"overriden": 0,
 			"subLayers": [
 				{
+					"name": "Login",
+					"overriden": 0,
+					"subLayers": [],
+					"instances": [
+						{
+							"type": "Sprite",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 144,
+							"sid": 209711067447234,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"instanceFolderItem": {
+								"sid": 209711067447234,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 0,
+								"y": 0,
+								"width": 320,
+								"height": 240,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									0.5
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "LoginBackground",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 127,
+							"sid": 479880102174339,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"instanceFolderItem": {
+								"sid": 479880102174339,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 84,
+								"y": 60,
+								"width": 144,
+								"height": 144,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "LoginButton",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 120,
+							"sid": 167913951759971,
+							"tags": "",
+							"instanceVariables": {
+								"type": "google"
+							},
+							"behaviors": {},
+							"instanceFolderItem": {
+								"sid": 167913951759971,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 88,
+								"y": 88,
+								"width": 136,
+								"height": 32,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Text",
+							"properties": {
+								"text": "Log in with Google",
+								"enable-bbcode": true,
+								"character-width": 12,
+								"character-height": 12,
+								"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
+								"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
+								"scale": 1,
+								"character-spacing": 0,
+								"line-height": -1,
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"initially-visible": true,
+								"origin": "top-left",
+								"read-aloud": false
+							},
+							"uid": 122,
+							"sid": 937540928481615,
+							"tags": "",
+							"instanceVariables": {
+								"type": "text"
+							},
+							"behaviors": {},
+							"effects": {
+								"BetterOutline": {
+									"isEnabled": true,
+									"parameters": {
+										"color": [
+											0,
+											0,
+											0,
+											1
+										],
+										"width": 1,
+										"precision-step": 1,
+										"samples": 8,
+										"opacity": 1
+									}
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 937540928481615,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 88,
+								"y": 92,
+								"width": 136,
+								"height": 28,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "LoginButton",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 123,
+							"sid": 142067687868867,
+							"tags": "",
+							"instanceVariables": {
+								"type": "newgrounds"
+							},
+							"behaviors": {},
+							"instanceFolderItem": {
+								"sid": 142067687868867,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 88,
+								"y": 160,
+								"width": 136,
+								"height": 32,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Text",
+							"properties": {
+								"text": "Log in with Newgrounds",
+								"enable-bbcode": true,
+								"character-width": 12,
+								"character-height": 12,
+								"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
+								"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
+								"scale": 1,
+								"character-spacing": 0,
+								"line-height": -1,
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"initially-visible": true,
+								"origin": "top-left",
+								"read-aloud": false
+							},
+							"uid": 124,
+							"sid": 266010421097155,
+							"tags": "",
+							"instanceVariables": {
+								"type": "text"
+							},
+							"behaviors": {},
+							"effects": {
+								"BetterOutline": {
+									"isEnabled": true,
+									"parameters": {
+										"color": [
+											0,
+											0,
+											0,
+											1
+										],
+										"width": 1,
+										"precision-step": 1,
+										"samples": 8,
+										"opacity": 1
+									}
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 266010421097155,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 88,
+								"y": 164,
+								"width": 136,
+								"height": 28,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "LoginButton",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "Animation 1",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 125,
+							"sid": 787487691821643,
+							"tags": "",
+							"instanceVariables": {
+								"type": "itch"
+							},
+							"behaviors": {},
+							"instanceFolderItem": {
+								"sid": 787487691821643,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 88,
+								"y": 124,
+								"width": 136,
+								"height": 32,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Text",
+							"properties": {
+								"text": "Log in with Itch.io",
+								"enable-bbcode": true,
+								"character-width": 12,
+								"character-height": 12,
+								"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
+								"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
+								"scale": 1,
+								"character-spacing": 0,
+								"line-height": -1,
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"initially-visible": true,
+								"origin": "top-left",
+								"read-aloud": false
+							},
+							"uid": 126,
+							"sid": 250648433226375,
+							"tags": "",
+							"instanceVariables": {
+								"type": "text"
+							},
+							"behaviors": {},
+							"effects": {
+								"BetterOutline": {
+									"isEnabled": true,
+									"parameters": {
+										"color": [
+											0,
+											0,
+											0,
+											1
+										],
+										"width": 1,
+										"precision-step": 1,
+										"samples": 8,
+										"opacity": 1
+									}
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 250648433226375,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 88,
+								"y": 128,
+								"width": 136,
+								"height": 28,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Text",
+							"properties": {
+								"text": "Log in",
+								"enable-bbcode": true,
+								"character-width": 12,
+								"character-height": 12,
+								"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
+								"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
+								"scale": 1,
+								"character-spacing": 0,
+								"line-height": -1,
+								"horizontal-alignment": "left",
+								"vertical-alignment": "top",
+								"wrapping": "word",
+								"initially-visible": true,
+								"origin": "top-left",
+								"read-aloud": false
+							},
+							"uid": 128,
+							"sid": 646299310900629,
+							"tags": "",
+							"instanceVariables": {
+								"type": "text"
+							},
+							"behaviors": {},
+							"effects": {
+								"BetterOutline": {
+									"isEnabled": true,
+									"parameters": {
+										"color": [
+											0,
+											0,
+											0,
+											1
+										],
+										"width": 1,
+										"precision-step": 1,
+										"samples": 8,
+										"opacity": 1
+									}
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 646299310900629,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 88,
+								"y": 64,
+								"width": 136,
+								"height": 12,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						}
+					],
+					"sid": 211470311509029,
+					"effectTypes": [],
+					"isInitiallyVisible": false,
+					"isInitiallyInteractive": false,
+					"isHTMLElementsLayer": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						0.3686274509803922,
+						0.3686274509803922,
+						0.3686274509803922,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 0,
+					"parallaxY": 0,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": true
+				},
+				{
 					"name": "Navigation",
 					"overriden": 0,
 					"subLayers": [],
@@ -333,459 +823,6 @@
 					"effectTypes": [],
 					"isInitiallyVisible": true,
 					"isInitiallyInteractive": true,
-					"isHTMLElementsLayer": false,
-					"color": [
-						1,
-						1,
-						1,
-						1
-					],
-					"backgroundColor": [
-						0.3686274509803922,
-						0.3686274509803922,
-						0.3686274509803922,
-						1
-					],
-					"isTransparent": true,
-					"parallaxX": 0,
-					"parallaxY": 0,
-					"scaleRate": 1,
-					"forceOwnTexture": false,
-					"renderingMode": "3d",
-					"drawOrder": "z-order",
-					"useRenderCells": false,
-					"blendMode": "normal",
-					"zElevation": 0,
-					"global": true
-				},
-				{
-					"name": "Login",
-					"overriden": 0,
-					"subLayers": [],
-					"instances": [
-						{
-							"type": "LoginBackground",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 127,
-							"sid": 479880102174339,
-							"tags": "",
-							"instanceVariables": {},
-							"behaviors": {},
-							"instanceFolderItem": {
-								"sid": 479880102174339,
-								"expanded": true
-							},
-							"showing": true,
-							"locked": false,
-							"world": {
-								"x": 116,
-								"y": 60,
-								"width": 80,
-								"height": 128,
-								"originX": 0,
-								"originY": 0,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "LoginButton",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 120,
-							"sid": 167913951759971,
-							"tags": "",
-							"instanceVariables": {
-								"type": "google"
-							},
-							"behaviors": {},
-							"instanceFolderItem": {
-								"sid": 167913951759971,
-								"expanded": true
-							},
-							"showing": true,
-							"locked": false,
-							"world": {
-								"x": 120,
-								"y": 80,
-								"width": 72,
-								"height": 32,
-								"originX": 0,
-								"originY": 0,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "Text",
-							"properties": {
-								"text": "Log in with Google",
-								"enable-bbcode": true,
-								"character-width": 12,
-								"character-height": 12,
-								"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
-								"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
-								"scale": 1,
-								"character-spacing": 0,
-								"line-height": -1,
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"initially-visible": true,
-								"origin": "top-left",
-								"read-aloud": false
-							},
-							"uid": 122,
-							"sid": 937540928481615,
-							"tags": "",
-							"instanceVariables": {
-								"type": "text"
-							},
-							"behaviors": {},
-							"effects": {
-								"BetterOutline": {
-									"isEnabled": true,
-									"parameters": {
-										"color": [
-											0,
-											0,
-											0,
-											1
-										],
-										"width": 1,
-										"precision-step": 1,
-										"samples": 8,
-										"opacity": 1
-									}
-								}
-							},
-							"instanceFolderItem": {
-								"sid": 937540928481615,
-								"expanded": true
-							},
-							"showing": true,
-							"locked": false,
-							"world": {
-								"x": 120,
-								"y": 84,
-								"width": 72,
-								"height": 28,
-								"originX": 0,
-								"originY": 0,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "LoginButton",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 123,
-							"sid": 142067687868867,
-							"tags": "",
-							"instanceVariables": {
-								"type": "newgrounds"
-							},
-							"behaviors": {},
-							"instanceFolderItem": {
-								"sid": 142067687868867,
-								"expanded": true
-							},
-							"showing": true,
-							"locked": false,
-							"world": {
-								"x": 120,
-								"y": 152,
-								"width": 72,
-								"height": 32,
-								"originX": 0,
-								"originY": 0,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "Text",
-							"properties": {
-								"text": "Log in with Newgrounds",
-								"enable-bbcode": true,
-								"character-width": 12,
-								"character-height": 12,
-								"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
-								"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
-								"scale": 1,
-								"character-spacing": 0,
-								"line-height": -1,
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"initially-visible": true,
-								"origin": "top-left",
-								"read-aloud": false
-							},
-							"uid": 124,
-							"sid": 266010421097155,
-							"tags": "",
-							"instanceVariables": {
-								"type": "text"
-							},
-							"behaviors": {},
-							"effects": {
-								"BetterOutline": {
-									"isEnabled": true,
-									"parameters": {
-										"color": [
-											0,
-											0,
-											0,
-											1
-										],
-										"width": 1,
-										"precision-step": 1,
-										"samples": 8,
-										"opacity": 1
-									}
-								}
-							},
-							"instanceFolderItem": {
-								"sid": 266010421097155,
-								"expanded": true
-							},
-							"showing": true,
-							"locked": false,
-							"world": {
-								"x": 120,
-								"y": 156,
-								"width": 72,
-								"height": 28,
-								"originX": 0,
-								"originY": 0,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "LoginButton",
-							"properties": {
-								"initially-visible": true,
-								"initial-animation": "Animation 1",
-								"initial-frame": 0,
-								"enable-collisions": true,
-								"live-preview": false
-							},
-							"uid": 125,
-							"sid": 787487691821643,
-							"tags": "",
-							"instanceVariables": {
-								"type": "itch"
-							},
-							"behaviors": {},
-							"instanceFolderItem": {
-								"sid": 787487691821643,
-								"expanded": true
-							},
-							"showing": true,
-							"locked": false,
-							"world": {
-								"x": 120,
-								"y": 116,
-								"width": 72,
-								"height": 32,
-								"originX": 0,
-								"originY": 0,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "Text",
-							"properties": {
-								"text": "Log in with Itch.io",
-								"enable-bbcode": true,
-								"character-width": 12,
-								"character-height": 12,
-								"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
-								"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
-								"scale": 1,
-								"character-spacing": 0,
-								"line-height": -1,
-								"horizontal-alignment": "center",
-								"vertical-alignment": "center",
-								"wrapping": "word",
-								"initially-visible": true,
-								"origin": "top-left",
-								"read-aloud": false
-							},
-							"uid": 126,
-							"sid": 250648433226375,
-							"tags": "",
-							"instanceVariables": {
-								"type": "text"
-							},
-							"behaviors": {},
-							"effects": {
-								"BetterOutline": {
-									"isEnabled": true,
-									"parameters": {
-										"color": [
-											0,
-											0,
-											0,
-											1
-										],
-										"width": 1,
-										"precision-step": 1,
-										"samples": 8,
-										"opacity": 1
-									}
-								}
-							},
-							"instanceFolderItem": {
-								"sid": 250648433226375,
-								"expanded": true
-							},
-							"showing": true,
-							"locked": false,
-							"world": {
-								"x": 120,
-								"y": 120,
-								"width": 72,
-								"height": 28,
-								"originX": 0,
-								"originY": 0,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						},
-						{
-							"type": "Text",
-							"properties": {
-								"text": "Log in",
-								"enable-bbcode": true,
-								"character-width": 12,
-								"character-height": 12,
-								"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
-								"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
-								"scale": 1,
-								"character-spacing": 0,
-								"line-height": -1,
-								"horizontal-alignment": "left",
-								"vertical-alignment": "top",
-								"wrapping": "word",
-								"initially-visible": true,
-								"origin": "top-left",
-								"read-aloud": false
-							},
-							"uid": 128,
-							"sid": 646299310900629,
-							"tags": "",
-							"instanceVariables": {
-								"type": "text"
-							},
-							"behaviors": {},
-							"effects": {
-								"BetterOutline": {
-									"isEnabled": true,
-									"parameters": {
-										"color": [
-											0,
-											0,
-											0,
-											1
-										],
-										"width": 1,
-										"precision-step": 1,
-										"samples": 8,
-										"opacity": 1
-									}
-								}
-							},
-							"instanceFolderItem": {
-								"sid": 646299310900629,
-								"expanded": true
-							},
-							"showing": true,
-							"locked": false,
-							"world": {
-								"x": 120,
-								"y": 64,
-								"width": 72,
-								"height": 12,
-								"originX": 0,
-								"originY": 0,
-								"color": [
-									1,
-									1,
-									1,
-									1
-								],
-								"angle": 0,
-								"zElevation": 0
-							}
-						}
-					],
-					"sid": 211470311509029,
-					"effectTypes": [],
-					"isInitiallyVisible": false,
-					"isInitiallyInteractive": false,
 					"isHTMLElementsLayer": false,
 					"color": [
 						1,

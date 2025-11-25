@@ -166,7 +166,9 @@
 	],
 	"uniqueId": "pjmdeerwb34",
 	"objectTypes": {
-		"items": [],
+		"items": [
+			"Sprite"
+		],
 		"subfolders": [
 			{
 				"items": [

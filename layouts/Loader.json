@@ -517,9 +517,9 @@
 		{
 			"type": "SavedCharacters",
 			"properties": {
-				"width": 100,
+				"width": 0,
 				"height": 1,
-				"depth": 0
+				"depth": 1
 			},
 			"uid": 143,
 			"sid": 200638393797260,
