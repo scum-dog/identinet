@@ -133,20 +133,11 @@ export async function handleOAuthPopup(
 
     const pollForResult = async () => {
       try {
-        console.log(`[OAuth Poll] Checking server for result, pollId: ${pollId}`);
-
         const cacheBuster = Date.now();
         const response = await get(`/auth/oauth/poll/${pollId}?_=${cacheBuster}`);
-        console.log(`[OAuth Poll] Server response:`, response);
 
         if (response.success && response.data?.status === "completed") {
-          console.log("OAuth completed successfully:", response.data);
-
           if (response.data.success && response.data.sessionId) {
-            console.log(
-              "Setting auth token from server response:",
-              response.data.sessionId,
-            );
             setAuthToken(response.data.sessionId);
           }
 
@@ -170,7 +161,6 @@ export async function handleOAuthPopup(
         }
 
         if (response.data?.status === "pending") {
-          console.log(`Still pending...`);
           return false;
         }
 
@@ -227,7 +217,6 @@ export async function handleOAuthPopup(
     }
 
     function handlePopupBlocked() {
-      console.log("Popup blocked, falling back to full page redirect");
 
       try {
         sessionStorage.setItem("oauth_return_url", window.location.href);
@@ -247,13 +236,6 @@ export async function handleOAuthPopup(
 
     pollForResult();
 
-    console.log("OAuth popup flow started with server polling:", {
-      windowName,
-      timeoutMs,
-      pollId,
-      popupUrl: authUrl.substring(0, 100) + "...",
-      pollInterval: POLL_INTERVAL,
-    });
 
     timeoutId = setTimeout(() => {
       console.warn("OAuth popup timed out after", timeoutMs + "ms", {
@@ -292,7 +274,6 @@ export async function loginWithItch(): Promise<ApiResponse<AuthResult>> {
       }
 
       const pollId = pollIdResponse.data.pollId;
-      console.log("Generated polling ID for Itch OAuth:", pollId);
 
       const urlResponse = await get(`/auth/itchio/authorization-url?poll_id=${pollId}`);
 
@@ -318,9 +299,6 @@ export async function loginWithItch(): Promise<ApiResponse<AuthResult>> {
           };
         }
 
-        console.log(
-          `Itch OAuth URL request failed (attempt ${attempt}/${maxRetries}), retrying in ${retryDelay}ms...`,
-        );
         await new Promise((resolve) =>
           setTimeout(resolve, retryDelay * attempt),
         );
@@ -385,7 +363,6 @@ export async function loginWithGoogle(): Promise<ApiResponse<AuthResult>> {
       }
 
       const pollId = pollIdResponse.data.pollId;
-      console.log("Generated polling ID for Google OAuth:", pollId);
 
       const urlResponse = await get(`/auth/google/authorization-url?poll_id=${pollId}`);
 
@@ -411,9 +388,6 @@ export async function loginWithGoogle(): Promise<ApiResponse<AuthResult>> {
           };
         }
 
-        console.log(
-          `Google OAuth URL request failed (attempt ${attempt}/${maxRetries}), retrying...`,
-        );
         await new Promise((resolve) =>
           setTimeout(resolve, retryDelay * attempt),
         );
