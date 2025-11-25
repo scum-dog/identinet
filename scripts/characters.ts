@@ -183,10 +183,10 @@ export function validateCharacterData(characterData: any): {
 
   // check required static fields
   if (characterData.static) {
-    if (!characterData.static.head?.asset_id) {
+    if (characterData.static.head?.asset_id === undefined) {
       errors.push("Head asset_id is required");
     }
-    if (!characterData.static.hair?.asset_id) {
+    if (characterData.static.hair?.asset_id === undefined) {
       errors.push("Hair asset_id is required");
     }
   }
@@ -195,7 +195,7 @@ export function validateCharacterData(characterData: any): {
   if (characterData.placeable_movable) {
     const required = ["eyes", "eyebrows", "nose", "lips"];
     for (const field of required) {
-      if (!characterData.placeable_movable[field]?.asset_id) {
+      if (characterData.placeable_movable[field]?.asset_id === undefined) {
         errors.push(`${field} asset_id is required`);
       }
     }
