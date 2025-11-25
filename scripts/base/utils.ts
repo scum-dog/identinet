@@ -274,3 +274,10 @@ export function handleRaceMutualExclusivity(
     }
   }
 }
+
+/**
+ * prevent tabbing, when login screen is active
+ */
+export function preventTab(e: KeyboardEvent) {
+  if (e.key === "Tab") e.preventDefault();
+}

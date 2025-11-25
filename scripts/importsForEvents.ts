@@ -73,6 +73,7 @@ export const buildDateFromComponents = API.buildDateFromComponents;
 export const mapDropdownValueToKey = API.mapDropdownValueToKey;
 export const shouldDeleteField = API.shouldDeleteField;
 export const handleRaceMutualExclusivity = API.handleRaceMutualExclusivity;
+export const preventTab = API.preventTab;
 
 // main object
 export const IdentikitAPI = API.IdentikitAPI;

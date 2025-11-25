@@ -5,6 +5,11 @@ import {
   RequestOptions,
 } from "./types.js";
 
+let RUNTIME: IRuntime;
+runOnStartup(async (runtime) => {
+    RUNTIME = runtime;
+});
+
 let config: ApiConfig = {
   baseUrl: "https://api.scum.dog",
   timeout: 10 * 1000,
@@ -84,6 +89,8 @@ function clearPersistedToken(): void {
 
 function notifyAuthStateChange(): void {
   const isAuth = authToken !== null;
+  RUNTIME.signal("authStateChange");
+
   authStateListeners.forEach((listener) => {
     try {
       listener(isAuth, authToken);

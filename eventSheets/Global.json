@@ -872,7 +872,14 @@
 							"sid": 104599149785732
 						},
 						{
-							"name": "visible",
+							"name": "visibility",
+							"type": "boolean",
+							"initialValue": "true",
+							"comment": "",
+							"sid": 236202287376560
+						},
+						{
+							"name": "enabled",
 							"type": "boolean",
 							"initialValue": "true",
 							"comment": "",
@@ -892,20 +899,11 @@
 									"objectClass": "System",
 									"sid": 300040469829425,
 									"parameters": {
-										"variable": "visible"
+										"variable": "enabled"
 									}
 								}
 							],
 							"actions": [
-								{
-									"id": "set-layer-visible",
-									"objectClass": "System",
-									"sid": 349194172182518,
-									"parameters": {
-										"layer": "layer",
-										"visibility": "visible"
-									}
-								},
 								{
 									"id": "set-layer-interactive",
 									"objectClass": "System",
@@ -916,7 +914,34 @@
 									}
 								}
 							],
-							"sid": 411067261361083
+							"sid": 411067261361083,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 244249310935468,
+											"parameters": {
+												"variable": "visibility"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layer-visible",
+											"objectClass": "System",
+											"sid": 629217671919643,
+											"parameters": {
+												"layer": "layer",
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 505747564225257
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -929,15 +954,6 @@
 							],
 							"actions": [
 								{
-									"id": "set-layer-visible",
-									"objectClass": "System",
-									"sid": 144107357914278,
-									"parameters": {
-										"layer": "layer",
-										"visibility": "invisible"
-									}
-								},
-								{
 									"id": "set-layer-interactive",
 									"objectClass": "System",
 									"sid": 472423593295037,
@@ -947,7 +963,34 @@
 									}
 								}
 							],
-							"sid": 325504069054200
+							"sid": 325504069054200,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 679452036454115,
+											"parameters": {
+												"variable": "visibility"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-layer-visible",
+											"objectClass": "System",
+											"sid": 627436972893944,
+											"parameters": {
+												"layer": "layer",
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 833519381778579
+								}
+							]
 						}
 					]
 				}
@@ -2468,47 +2511,91 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "layer-is-visible",
-									"objectClass": "System",
-									"sid": 762171899309670,
+									"id": "compare-instance-variable",
+									"objectClass": "NavButton",
+									"sid": 916750561226569,
 									"parameters": {
-										"layer": "\"Login\""
-									},
-									"isInverted": true
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"login\""
+									}
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 178068958380315,
+							"children": [
 								{
-									"callFunction": "toggleLayer",
-									"sid": 874326010260986,
-									"parameters": [
-										"\"Login\"",
-										true
-									]
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 774891980859644,
+											"parameters": {
+												"layer": "\"Login\""
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 903421652772729,
+											"parameters": {
+												"tag": "\"openLogin\""
+											}
+										}
+									],
+									"sid": 488330773041300
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 619877971761508
+										}
+									],
+									"actions": [
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 792190321647991,
+											"parameters": {
+												"tag": "\"closeLogin\""
+											}
+										}
+									],
+									"sid": 971456858905008
 								}
-							],
-							"sid": 857145635342627
+							]
 						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 800656563123844
+									"id": "compare-instance-variable",
+									"objectClass": "NavButton",
+									"sid": 461846800658376,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"logout\""
+									}
 								}
 							],
 							"actions": [
 								{
-									"callFunction": "toggleLayer",
-									"sid": 302926670204866,
-									"parameters": [
-										"\"Login\"",
-										false
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"logout();"
 									]
 								}
 							],
-							"sid": 122502365648181
+							"sid": 164419641333692
 						}
 					],
 					"isOrBlock": true
@@ -2517,180 +2604,355 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-object-clicked",
-							"objectClass": "Mouse",
-							"sid": 747784677995653,
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 543036942685130,
 							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "LoginButton"
-							}
-						},
-						{
-							"id": "on-tap-object",
-							"objectClass": "Touch",
-							"sid": 433572845979834,
-							"parameters": {
-								"object": "LoginButton"
+								"tag": "\"openLogin\""
 							}
 						}
 					],
-					"actions": [],
-					"sid": 430170263167780,
+					"actions": [
+						{
+							"callFunction": "toggleLayer",
+							"sid": 461522949378251,
+							"parameters": [
+								"\"Login\"",
+								true,
+								true
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 553606179541594,
+							"parameters": [
+								"\"Information\"",
+								false,
+								false
+							]
+						},
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"document.addEventListener(\"keydown\", preventTab);"
+							]
+						}
+					],
+					"sid": 390738985847032
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 669182100103040,
+							"parameters": {
+								"tag": "\"closeLogin\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "toggleLayer",
+							"sid": 542565981885043,
+							"parameters": [
+								"\"Login\"",
+								true,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 205298488884084,
+							"parameters": [
+								"\"Information\"",
+								false,
+								true
+							]
+						},
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"document.removeEventListener(\"keydown\", preventTab);"
+							]
+						}
+					],
+					"sid": 848138534930410
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Global - Login",
+					"description": "",
+					"isActiveOnStart": true,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "LoginButton",
-									"sid": 937693947019879,
+									"id": "on-start-of-layout",
+									"objectClass": "System",
+									"sid": 388401019734137
+								},
+								{
+									"id": "on-signal",
+									"objectClass": "System",
+									"sid": 898401767597442,
 									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"google\""
+										"tag": "\"authStateChange\""
 									}
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 284829129017210,
+							"children": [
 								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"// SHARKO -- google login",
-										"",
-										"loginWithGoogle();"
-									]
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "NavButton",
+											"sid": 248334801873698,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"login\""
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "NavButton",
+											"sid": 621246337944858,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"logout\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 993290004815000,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Text",
+													"sid": 316297661589436,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"login\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"language": "typescript",
+													"script": [
+														"const button_object = runtime.objects.NavButton.getFirstPickedInstance();",
+														"const text_object = runtime.objects.Text.getFirstPickedInstance();",
+														"if (!button_object || !text_object) return;",
+														"",
+														"if (await isLoggedIn() === true) {",
+														"  runtime.signal(\"closeLogin\");",
+														"  button_object.instVars.id = \"logout\";",
+														"  text_object.text = \"Log out\";",
+														"} else {",
+														"  button_object.instVars.id = \"login\";",
+														"  text_object.text = \"Log in\";",
+														"}"
+													]
+												}
+											],
+											"sid": 769676121760229
+										}
+									],
+									"isOrBlock": true
 								}
 							],
-							"sid": 510800744047401
+							"isOrBlock": true
 						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-instance-variable",
-									"objectClass": "LoginButton",
-									"sid": 189448575395492,
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 925795324914412,
 									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"itch\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"// SHARKO -- google login",
-										"",
-										"loginWithItch();"
-									]
-								}
-							],
-							"sid": 406202278516697
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "LoginButton",
-									"sid": 284316555531753,
-									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"newgrounds\""
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "LoginButton"
 									}
 								},
 								{
-									"id": "is-ready",
+									"id": "on-tap-object",
+									"objectClass": "Touch",
+									"sid": 230878641276472,
+									"parameters": {
+										"object": "LoginButton"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 833583300588851,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "LoginButton",
+											"sid": 904469049708707,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"google\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"language": "typescript",
+											"script": [
+												"loginWithGoogle();"
+											]
+										}
+									],
+									"sid": 936394727205530
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "LoginButton",
+											"sid": 895398432764730,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"itch\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"language": "typescript",
+											"script": [
+												"loginWithItch();"
+											]
+										}
+									],
+									"sid": 202422837891616
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "LoginButton",
+											"sid": 890840695096516,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"newgrounds\""
+											}
+										},
+										{
+											"id": "is-ready",
+											"objectClass": "NGIO",
+											"sid": 946345751774983
+										}
+									],
+									"actions": [
+										{
+											"id": "login",
+											"objectClass": "NGIO",
+											"sid": 113839683071423,
+											"parameters": {
+												"window-mode": "popup"
+											}
+										}
+									],
+									"sid": 172017992510594
+								}
+							],
+							"isOrBlock": true
+						},
+						{
+							"eventType": "variable",
+							"name": "NGIO_sessionID",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 233241318949843
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-login-success",
 									"objectClass": "NGIO",
-									"sid": 555091955899162
+									"sid": 780101171932276
 								}
 							],
 							"actions": [
 								{
-									"id": "login",
-									"objectClass": "NGIO",
-									"sid": 535357720823928,
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 546158843282950,
 									"parameters": {
-										"window-mode": "popup"
+										"variable": "NGIO_sessionID",
+										"value": "NGIO.SessionID"
+									}
+								},
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"const session_id = localVars.NGIO_sessionID as string;",
+										"authenticateNewgrounds(session_id);"
+									]
+								}
+							],
+							"sid": 413859172867213
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 378562995831603,
+									"parameters": {
+										"key": 90
 									}
 								}
 							],
-							"sid": 624880101561969
+							"actions": [
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"console.log(getAuthToken());",
+										"console.log(isAuthenticated());"
+									]
+								}
+							],
+							"sid": 958781771128304
 						}
 					],
-					"isOrBlock": true
-				},
-				{
-					"eventType": "variable",
-					"name": "NGIO_sessionID",
-					"type": "string",
-					"initialValue": "",
-					"comment": "",
-					"isStatic": false,
-					"isConstant": false,
-					"sid": 430919158382749
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-login-success",
-							"objectClass": "NGIO",
-							"sid": 968075939041195
-						}
-					],
-					"actions": [
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 431405640795252,
-							"parameters": {
-								"variable": "NGIO_sessionID",
-								"value": "NGIO.SessionID"
-							}
-						},
-						{
-							"type": "script",
-							"language": "typescript",
-							"script": [
-								"// SHARKO -- ngio auth; broken. sID gets farther than an invalid one, but is still getting stopped (500) somehow",
-								"",
-								"const session_id = localVars.NGIO_sessionID as string;",
-								"console.log(session_id);",
-								"authenticateNewgrounds(session_id);"
-							]
-						}
-					],
-					"sid": 735219573116273
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-key-pressed",
-							"objectClass": "Keyboard",
-							"sid": 677966808084618,
-							"parameters": {
-								"key": 90
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"language": "typescript",
-							"script": [
-								"alert(getAuthToken());"
-							]
-						}
-					],
-					"sid": 694846230791246
+					"sid": 810685346559133
 				}
 			],
 			"sid": 878848367292974
