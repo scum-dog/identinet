@@ -99,7 +99,6 @@ export function initializeAuth(): void {
   const persistedToken = loadPersistedToken();
   if (persistedToken) {
     authToken = persistedToken;
-    console.log("Restored persisted auth token");
   }
 
   isInitialized = true;
