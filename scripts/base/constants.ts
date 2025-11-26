@@ -311,6 +311,6 @@ export const HAIR_COLORS = {
 
 export const CHARACTER_NAME_MAX_LENGTH = 32;
 export const CHARACTER_NAME_REGEX =
-  /^(?=.*[A-Za-z])[A-Za-z]+(?:[' -][A-Za-z]+)*$/;
+  /^(?=.*[A-Za-z])[A-Za-z]+(?:\.[A-Za-z])*(?:\. [A-Za-z]+|[' -][A-Za-z]+)*$/;
 export const CHARACTER_NAME_ERROR_MESSAGE =
-  "Name must start with a letter, contain only letters/spaces/hyphens/apostrophes, and have no consecutive punctuation or leading/trailing spaces";
+  "Name must start with a letter, contain only letters/spaces/hyphens/apostrophes/periods, and have no consecutive punctuation or leading/trailing spaces";

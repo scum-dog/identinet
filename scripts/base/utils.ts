@@ -46,6 +46,17 @@ export function validateCharacterName(name: string): {
     return { valid: false, error: CHARACTER_NAME_ERROR_MESSAGE };
   }
 
+  if (/[ ]{2,}|[-]{2,}|['][ ']/.test(name) || name.includes('..') || name.includes('--') || name.includes("''")) {
+    return { valid: false, error: "Name cannot have consecutive punctuation or spaces" };
+  }
+
+  if (/\./.test(name)) {
+    const invalidPeriodPattern = /[a-z]{2,}\.[a-z]/;
+    if (invalidPeriodPattern.test(name)) {
+      return { valid: false, error: "Periods can only be used for abbreviations (e.g., 'H. W.' or 'J.K.')" };
+    }
+  }
+
   return { valid: true };
 }
 
@@ -62,13 +73,13 @@ export function validateInputName(runtime: any): string {
   }
 
   // remove all invalid characters
-  let sanitized = input_text.replace(/[^A-Za-z' -]/g, "");
+  let sanitized = input_text.replace(/[^A-Za-z'. -]/g, "");
 
   // remove leading non-letters
   sanitized = sanitized.replace(/^[^A-Za-z]+/, "");
 
   // remove consecutive punctuation
-  sanitized = sanitized.replace(/([' -])[' -]+/g, "$1");
+  sanitized = sanitized.replace(/([.' -])[.' -]+/g, "$1");
 
   // truncate to max length
   if (sanitized.length > CHARACTER_NAME_MAX_LENGTH) {
