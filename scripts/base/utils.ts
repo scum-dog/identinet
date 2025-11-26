@@ -91,7 +91,10 @@ export function validateInputName(runtime: any): string {
   sanitized = sanitized.replace(/^[^A-Za-z]+/, "");
 
   // remove consecutive punctuation
-  sanitized = sanitized.replace(/([.' -])[.' -]+/g, "$1");
+  sanitized = sanitized.replace(/\s{2,}/g, " ");
+  sanitized = sanitized.replace(/-{2,}/g, "-");
+  sanitized = sanitized.replace(/'{2,}/g, "'");
+  sanitized = sanitized.replace(/\.{2,}/g, ".");
 
   // truncate to max length
   if (sanitized.length > CHARACTER_NAME_MAX_LENGTH) {
