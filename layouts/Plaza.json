@@ -88,6 +88,171 @@
 			"overriden": 0,
 			"subLayers": [
 				{
+					"name": "Buttons",
+					"overriden": 0,
+					"subLayers": [],
+					"instances": [
+						{
+							"type": "PlazaButton",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "default",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 121,
+							"sid": 883655970864273,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 121,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 883655970864273,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 22,
+								"y": 218,
+								"width": 36,
+								"height": 36,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "ButtonIcon",
+							"properties": {
+								"initially-visible": true,
+								"initial-animation": "create",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 20,
+							"sid": 486576276420538,
+							"tags": "",
+							"instanceVariables": {},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 20,
+								"flags": {
+									"x": false,
+									"y": false,
+									"z": false,
+									"w": false,
+									"h": false,
+									"a": false,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 486576276420538,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 22,
+								"y": 218,
+								"width": 32,
+								"height": 32,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						}
+					],
+					"sid": 441958001183262,
+					"effectTypes": [],
+					"isInitiallyVisible": true,
+					"isInitiallyInteractive": true,
+					"isHTMLElementsLayer": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						0.3686274509803922,
+						0.3686274509803922,
+						0.3686274509803922,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 0,
+					"parallaxY": 0,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
+				},
+				{
 					"name": "Login",
 					"overriden": 0,
 					"subLayers": [],
@@ -170,7 +335,7 @@
 							"type": "LoginButton",
 							"properties": {
 								"initially-visible": true,
-								"initial-animation": "Animation 1",
+								"initial-animation": "googleDefault",
 								"initial-frame": 0,
 								"enable-collisions": true,
 								"live-preview": false
@@ -275,7 +440,7 @@
 							"type": "LoginButton",
 							"properties": {
 								"initially-visible": true,
-								"initial-animation": "Animation 1",
+								"initial-animation": "newgroundsDefault",
 								"initial-frame": 0,
 								"enable-collisions": true,
 								"live-preview": false
@@ -380,7 +545,7 @@
 							"type": "LoginButton",
 							"properties": {
 								"initially-visible": true,
-								"initial-animation": "Animation 1",
+								"initial-animation": "itchDefault",
 								"initial-frame": 0,
 								"enable-collisions": true,
 								"live-preview": false
@@ -631,7 +796,7 @@
 								"scale": 1,
 								"character-spacing": 0,
 								"line-height": -1,
-								"horizontal-alignment": "left",
+								"horizontal-alignment": "center",
 								"vertical-alignment": "top",
 								"wrapping": "word",
 								"initially-visible": true,
@@ -669,9 +834,9 @@
 							"showing": true,
 							"locked": false,
 							"world": {
-								"x": 4,
+								"x": 56,
 								"y": 7,
-								"width": 128,
+								"width": 208,
 								"height": 16,
 								"originX": 0,
 								"originY": 0,
@@ -688,7 +853,7 @@
 						{
 							"type": "NavButton",
 							"properties": {
-								"initially-visible": true,
+								"initially-visible": false,
 								"initial-animation": "default",
 								"initial-frame": 0,
 								"enable-collisions": true,
@@ -704,6 +869,23 @@
 							"sceneGraphData": {
 								"parent-uid": null,
 								"uid": 111,
+								"children": [
+									{
+										"uid": 119,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": true,
+											"v": true,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
 								"flags": {
 									"x": true,
 									"y": true,
@@ -775,7 +957,7 @@
 							"sid": 427017629255553,
 							"tags": "",
 							"instanceVariables": {
-								"type": "login"
+								"type": "text"
 							},
 							"behaviors": {},
 							"effects": {
@@ -795,6 +977,34 @@
 									}
 								}
 							},
+							"sceneGraphData": {
+								"parent-uid": 111,
+								"uid": 119,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
 							"instanceFolderItem": {
 								"sid": 427017629255553,
 								"expanded": true
@@ -803,6 +1013,184 @@
 							"locked": false,
 							"world": {
 								"x": 272,
+								"y": 4,
+								"width": 40,
+								"height": 20,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "NavButton",
+							"properties": {
+								"initially-visible": false,
+								"initial-animation": "default",
+								"initial-frame": 0,
+								"enable-collisions": true,
+								"live-preview": false
+							},
+							"uid": 145,
+							"sid": 824778347798414,
+							"tags": "",
+							"instanceVariables": {
+								"id": "back"
+							},
+							"behaviors": {},
+							"sceneGraphData": {
+								"parent-uid": null,
+								"uid": 145,
+								"children": [
+									{
+										"uid": 146,
+										"flags": {
+											"x": true,
+											"y": true,
+											"z": true,
+											"w": true,
+											"h": true,
+											"a": true,
+											"o": true,
+											"v": true,
+											"d": true,
+											"sm": "normal"
+										}
+									}
+								],
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 824778347798414,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 28,
+								"y": 12,
+								"width": 48,
+								"height": 16,
+								"originX": 0.5,
+								"originY": 0.5,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						},
+						{
+							"type": "Text",
+							"properties": {
+								"text": "Back",
+								"enable-bbcode": true,
+								"character-width": 12,
+								"character-height": 12,
+								"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
+								"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
+								"scale": 1,
+								"character-spacing": 0,
+								"line-height": -1,
+								"horizontal-alignment": "center",
+								"vertical-alignment": "center",
+								"wrapping": "word",
+								"initially-visible": true,
+								"origin": "top-left",
+								"read-aloud": false
+							},
+							"uid": 146,
+							"sid": 209857672722738,
+							"tags": "",
+							"instanceVariables": {
+								"type": "text"
+							},
+							"behaviors": {},
+							"effects": {
+								"BetterOutline": {
+									"isEnabled": true,
+									"parameters": {
+										"color": [
+											0,
+											0,
+											0,
+											1
+										],
+										"width": 1,
+										"precision-step": 1,
+										"samples": 8,
+										"opacity": 1
+									}
+								}
+							},
+							"sceneGraphData": {
+								"parent-uid": 145,
+								"uid": 146,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": true,
+									"v": true,
+									"d": true,
+									"sm": "normal"
+								},
+								"preview": {
+									"transformX": 0,
+									"transformY": 0,
+									"transformZElevation": 0,
+									"transformW": 0,
+									"transformH": 0,
+									"transformA": 0,
+									"transformSX": 0,
+									"transformSY": 0,
+									"transformO": 0,
+									"previewSceneGraph": false
+								}
+							},
+							"instanceFolderItem": {
+								"sid": 209857672722738,
+								"expanded": true
+							},
+							"showing": true,
+							"locked": false,
+							"world": {
+								"x": 8,
 								"y": 4,
 								"width": 40,
 								"height": 20,
@@ -849,138 +1237,7 @@
 					"global": true
 				}
 			],
-			"instances": [
-				{
-					"type": "PlazaButton",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "default",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 121,
-					"sid": 883655970864273,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"sceneGraphData": {
-						"parent-uid": null,
-						"uid": 121,
-						"flags": {
-							"x": true,
-							"y": true,
-							"z": true,
-							"w": true,
-							"h": true,
-							"a": true,
-							"o": false,
-							"v": false,
-							"d": true,
-							"sm": "normal"
-						},
-						"preview": {
-							"transformX": 0,
-							"transformY": 0,
-							"transformZElevation": 0,
-							"transformW": 0,
-							"transformH": 0,
-							"transformA": 0,
-							"transformSX": 0,
-							"transformSY": 0,
-							"transformO": 0,
-							"previewSceneGraph": false
-						}
-					},
-					"instanceFolderItem": {
-						"sid": 883655970864273,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 22,
-						"y": 218,
-						"width": 36,
-						"height": 36,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
-					"type": "ButtonIcon",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "create",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 20,
-					"sid": 486576276420538,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"sceneGraphData": {
-						"parent-uid": null,
-						"uid": 20,
-						"flags": {
-							"x": false,
-							"y": false,
-							"z": false,
-							"w": false,
-							"h": false,
-							"a": false,
-							"o": true,
-							"v": true,
-							"d": true,
-							"sm": "normal"
-						},
-						"preview": {
-							"transformX": 0,
-							"transformY": 0,
-							"transformZElevation": 0,
-							"transformW": 0,
-							"transformH": 0,
-							"transformA": 0,
-							"transformSX": 0,
-							"transformSY": 0,
-							"transformO": 0,
-							"previewSceneGraph": false
-						}
-					},
-					"instanceFolderItem": {
-						"sid": 486576276420538,
-						"expanded": true
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 22,
-						"y": 218,
-						"width": 32,
-						"height": 32,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				}
-			],
+			"instances": [],
 			"sid": 972194808641824,
 			"effectTypes": [],
 			"isInitiallyVisible": true,

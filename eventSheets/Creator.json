@@ -56,6 +56,15 @@
 			],
 			"actions": [
 				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 149879889332073,
+					"parameters": {
+						"variable": "CREATOR_menu",
+						"value": "\"parts\""
+					}
+				},
+				{
 					"callFunction": "updateCreatorMenu",
 					"sid": 427816283525949
 				},
@@ -208,17 +217,22 @@
 								{
 									"id": "cursor-is-over-object",
 									"objectClass": "Mouse",
-									"sid": 596242059519046,
+									"sid": 949103262508303,
 									"parameters": {
 										"object": "NavButton"
 									}
+								},
+								{
+									"id": "is-visible",
+									"objectClass": "NavButton",
+									"sid": 660444796403338
 								}
 							],
 							"actions": [
 								{
 									"id": "set-cursor-style2",
 									"objectClass": "Mouse",
-									"sid": 437858764658752,
+									"sid": 577545797223150,
 									"parameters": {
 										"cursor-style": "pointer"
 									}
@@ -226,14 +240,39 @@
 								{
 									"id": "set-animation",
 									"objectClass": "NavButton",
-									"sid": 485428250659985,
+									"sid": 565356247129684,
 									"parameters": {
 										"animation": "\"selected\"",
 										"from": "beginning"
 									}
 								}
 							],
-							"sid": 741130695482104
+							"sid": 608270331871261
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 381867992529734,
+									"parameters": {
+										"object": "LoginButton"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 781352236777716,
+									"parameters": {
+										"cursor-style": "pointer"
+									}
+								}
+							],
+							"sid": 529963838734022,
+							"isOrBlock": true
 						},
 						{
 							"eventType": "block",

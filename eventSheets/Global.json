@@ -2486,26 +2486,18 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-object-clicked",
-							"objectClass": "Mouse",
-							"sid": 679741994451093,
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 258069252526475,
 							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "NavButton"
-							}
-						},
-						{
-							"id": "on-tap-object",
-							"objectClass": "Touch",
-							"sid": 585807024222409,
-							"parameters": {
-								"object": "NavButton"
+								"first-value": "LayoutName",
+								"comparison": 0,
+								"second-value": "\"Plaza\""
 							}
 						}
 					],
 					"actions": [],
-					"sid": 207115187201162,
+					"sid": 913413447335396,
 					"children": [
 						{
 							"eventType": "block",
@@ -2513,72 +2505,17 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "NavButton",
-									"sid": 916750561226569,
+									"sid": 821489887687942,
 									"parameters": {
 										"instance-variable": "id",
 										"comparison": 0,
 										"value": "\"login\""
 									}
-								}
-							],
-							"actions": [],
-							"sid": 178068958380315,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "layer-is-visible",
-											"objectClass": "System",
-											"sid": 774891980859644,
-											"parameters": {
-												"layer": "\"Login\""
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "signal",
-											"objectClass": "System",
-											"sid": 903421652772729,
-											"parameters": {
-												"tag": "\"openLogin\""
-											}
-										}
-									],
-									"sid": 488330773041300
 								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 619877971761508
-										}
-									],
-									"actions": [
-										{
-											"id": "signal",
-											"objectClass": "System",
-											"sid": 792190321647991,
-											"parameters": {
-												"tag": "\"closeLogin\""
-											}
-										}
-									],
-									"sid": 971456858905008
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "NavButton",
-									"sid": 461846800658376,
+									"sid": 264353392248132,
 									"parameters": {
 										"instance-variable": "id",
 										"comparison": 0,
@@ -2588,17 +2525,358 @@
 							],
 							"actions": [
 								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"logout();"
+									"id": "set-visible",
+									"objectClass": "NavButton",
+									"sid": 916441948534243,
+									"parameters": {
+										"visibility": "visible"
+									}
+								}
+							],
+							"sid": 290835926302046,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "NavButton",
+									"sid": 865867454297881,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"back\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "NavButton",
+									"sid": 784786417026433,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 308397463521112
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 403404277363736
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 332281607279249,
+							"parameters": {
+								"first-value": "LayoutName",
+								"comparison": 0,
+								"second-value": "\"Creator\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "NavButton",
+							"sid": 543137643739729,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 321488826690956,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 193412000824276,
+									"parameters": {
+										"variable": "CREATOR_menu",
+										"comparison": 0,
+										"value": "\"parts\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 203575829443271,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "NavButton",
+											"sid": 830100686186712,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"back\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "NavButton",
+											"sid": 666254448361672,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 214231906762994
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 153483361957718
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 838295367507120,
+									"parameters": {
+										"variable": "CREATOR_menu",
+										"comparison": 0,
+										"value": "\"card\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 457271465748617,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "NavButton",
+											"sid": 963828671798385,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"login\""
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "NavButton",
+											"sid": 724141196791496,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"logout\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "NavButton",
+											"sid": 374010915880743,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 812142841842765,
+									"isOrBlock": true
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 343250546589776,
+							"parameters": {
+								"variable": "TRANSITION_running"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [],
+					"sid": 182126197835825,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 694470116460880,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "NavButton"
+									}
+								},
+								{
+									"id": "on-tap-object",
+									"objectClass": "Touch",
+									"sid": 397530728640317,
+									"parameters": {
+										"object": "NavButton"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 799544353783164,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-visible",
+											"objectClass": "NavButton",
+											"sid": 317491801809731
+										}
+									],
+									"actions": [],
+									"sid": 660896856864740,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "NavButton",
+													"sid": 224502206750986,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"back\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "transition",
+													"sid": 974584419947385,
+													"parameters": [
+														"\"Plaza\""
+													]
+												}
+											],
+											"sid": 696417068933588
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "NavButton",
+													"sid": 973459338641523,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"login\""
+													}
+												}
+											],
+											"actions": [],
+											"sid": 957884067347897,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "layer-is-visible",
+															"objectClass": "System",
+															"sid": 610938304609366,
+															"parameters": {
+																"layer": "\"Login\""
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "signal",
+															"objectClass": "System",
+															"sid": 183553542043410,
+															"parameters": {
+																"tag": "\"openLogin\""
+															}
+														}
+													],
+													"sid": 200496584522139
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 170424153838313
+														}
+													],
+													"actions": [
+														{
+															"id": "signal",
+															"objectClass": "System",
+															"sid": 240542882748916,
+															"parameters": {
+																"tag": "\"closeLogin\""
+															}
+														}
+													],
+													"sid": 168978331333330
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "NavButton",
+													"sid": 716527247216549,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"logout\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"language": "typescript",
+													"script": [
+														"logout();"
+													]
+												}
+											],
+											"sid": 687066195603178
+										}
 									]
 								}
 							],
-							"sid": 164419641333692
+							"isOrBlock": true
 						}
-					],
-					"isOrBlock": true
+					]
 				},
 				{
 					"eventType": "block",
@@ -2624,7 +2902,16 @@
 						},
 						{
 							"callFunction": "toggleLayer",
-							"sid": 553606179541594,
+							"sid": 607764656991374,
+							"parameters": [
+								"\"Buttons\"",
+								false,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 682370977757963,
 							"parameters": [
 								"\"Information\"",
 								false,
@@ -2665,7 +2952,16 @@
 						},
 						{
 							"callFunction": "toggleLayer",
-							"sid": 205298488884084,
+							"sid": 480422381802037,
+							"parameters": [
+								"\"Buttons\"",
+								false,
+								true
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 775874305258457,
 							"parameters": [
 								"\"Information\"",
 								false,
@@ -2689,6 +2985,53 @@
 					"description": "",
 					"isActiveOnStart": true,
 					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 658819449008223
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "LoginButton",
+									"sid": 428973791354637,
+									"parameters": {
+										"animation": "Self.type&\"Default\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 330141036937631
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 252687066823652,
+									"parameters": {
+										"object": "LoginButton"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "LoginButton",
+									"sid": 835582553171206,
+									"parameters": {
+										"animation": "Self.type&\"Selected\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 475918638177048
+						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -2733,46 +3076,28 @@
 											}
 										}
 									],
-									"actions": [],
-									"sid": 993290004815000,
-									"children": [
+									"actions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "Text",
-													"sid": 316297661589436,
-													"parameters": {
-														"instance-variable": "type",
-														"comparison": 0,
-														"value": "\"login\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"type": "script",
-													"language": "typescript",
-													"script": [
-														"const button_object = runtime.objects.NavButton.getFirstPickedInstance();",
-														"const text_object = runtime.objects.Text.getFirstPickedInstance();",
-														"if (!button_object || !text_object) return;",
-														"",
-														"if (await isLoggedIn() === true) {",
-														"  runtime.signal(\"closeLogin\");",
-														"  button_object.instVars.id = \"logout\";",
-														"  text_object.text = \"Log out\";",
-														"} else {",
-														"  button_object.instVars.id = \"login\";",
-														"  text_object.text = \"Log in\";",
-														"}"
-													]
-												}
-											],
-											"sid": 769676121760229
+											"type": "script",
+											"language": "typescript",
+											"script": [
+												"const button_object = runtime.objects.NavButton.getFirstPickedInstance();",
+												"if (!button_object) return;",
+												"const text_object = button_object.getChildAt(0) as ISpriteFontInstance;",
+												"if (!text_object) return;",
+												"",
+												"if (await isLoggedIn() === true) {",
+												"  runtime.signal(\"closeLogin\");",
+												"  button_object.instVars.id = \"logout\";",
+												"  text_object.text = \"Log out\";",
+												"} else {",
+												"  button_object.instVars.id = \"login\";",
+												"  text_object.text = \"Log in\";",
+												"}"
+											]
 										}
 									],
+									"sid": 993290004815000,
 									"isOrBlock": true
 								}
 							],
@@ -2926,30 +3251,6 @@
 								}
 							],
 							"sid": 413859172867213
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-key-pressed",
-									"objectClass": "Keyboard",
-									"sid": 378562995831603,
-									"parameters": {
-										"key": 90
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"console.log(getAuthToken());",
-										"console.log(isAuthenticated());"
-									]
-								}
-							],
-							"sid": 958781771128304
 						}
 					],
 					"sid": 810685346559133

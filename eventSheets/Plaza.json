@@ -204,10 +204,45 @@
 										{
 											"id": "cursor-is-over-object",
 											"objectClass": "Mouse",
-											"sid": 642387080005823,
+											"sid": 317535095802960,
 											"parameters": {
 												"object": "NavButton"
 											}
+										},
+										{
+											"id": "is-visible",
+											"objectClass": "NavButton",
+											"sid": 603390798107786
+										}
+									],
+									"actions": [
+										{
+											"id": "set-cursor-style2",
+											"objectClass": "Mouse",
+											"sid": 411269489531773,
+											"parameters": {
+												"cursor-style": "pointer"
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "NavButton",
+											"sid": 639300315840652,
+											"parameters": {
+												"animation": "\"selected\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 688826619371322
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 526060162651901
 										},
 										{
 											"id": "cursor-is-over-object",
@@ -229,15 +264,6 @@
 										},
 										{
 											"id": "set-animation",
-											"objectClass": "NavButton",
-											"sid": 735943326491423,
-											"parameters": {
-												"animation": "\"selected\"",
-												"from": "beginning"
-											}
-										},
-										{
-											"id": "set-animation",
 											"objectClass": "PlazaButton",
 											"sid": 595459450205273,
 											"parameters": {
@@ -246,8 +272,36 @@
 											}
 										}
 									],
-									"sid": 536647248557085,
-									"isOrBlock": true
+									"sid": 536647248557085
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 277185666073304
+										},
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 367485773311306,
+											"parameters": {
+												"object": "LoginButton"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-cursor-style2",
+											"objectClass": "Mouse",
+											"sid": 836825930057796,
+											"parameters": {
+												"cursor-style": "pointer"
+											}
+										}
+									],
+									"sid": 112017354324358
 								},
 								{
 									"eventType": "block",

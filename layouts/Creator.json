@@ -6927,7 +6927,7 @@
 			"effectTypes": [],
 			"isInitiallyVisible": false,
 			"isInitiallyInteractive": false,
-			"isHTMLElementsLayer": true,
+			"isHTMLElementsLayer": false,
 			"color": [
 				1,
 				1,
