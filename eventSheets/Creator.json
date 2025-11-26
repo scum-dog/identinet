@@ -1491,9 +1491,9 @@
 																{
 																	"id": "append-text",
 																	"objectClass": "Text",
-																	"sid": 846836970331454,
+																	"sid": 903877702034338,
 																	"parameters": {
-																		"text": "newline&\"(\"&total&\" Types)\""
+																		"text": "newline&\"(\"&total+start&\" Types)\""
 																	}
 																}
 															],
