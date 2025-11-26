@@ -110,6 +110,7 @@ export {
   mapDropdownValueToKey,
   shouldDeleteField,
   handleRaceMutualExclusivity,
+  preventTab,
 } from "./base/utils.js";
 
 // admin

@@ -56,6 +56,15 @@
 			],
 			"actions": [
 				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 149879889332073,
+					"parameters": {
+						"variable": "CREATOR_menu",
+						"value": "\"parts\""
+					}
+				},
+				{
 					"callFunction": "updateCreatorMenu",
 					"sid": 427816283525949
 				},
@@ -208,17 +217,22 @@
 								{
 									"id": "cursor-is-over-object",
 									"objectClass": "Mouse",
-									"sid": 596242059519046,
+									"sid": 949103262508303,
 									"parameters": {
 										"object": "NavButton"
 									}
+								},
+								{
+									"id": "is-visible",
+									"objectClass": "NavButton",
+									"sid": 660444796403338
 								}
 							],
 							"actions": [
 								{
 									"id": "set-cursor-style2",
 									"objectClass": "Mouse",
-									"sid": 437858764658752,
+									"sid": 577545797223150,
 									"parameters": {
 										"cursor-style": "pointer"
 									}
@@ -226,14 +240,39 @@
 								{
 									"id": "set-animation",
 									"objectClass": "NavButton",
-									"sid": 485428250659985,
+									"sid": 565356247129684,
 									"parameters": {
 										"animation": "\"selected\"",
 										"from": "beginning"
 									}
 								}
 							],
-							"sid": 741130695482104
+							"sid": 608270331871261
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 381867992529734,
+									"parameters": {
+										"object": "LoginButton"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 781352236777716,
+									"parameters": {
+										"cursor-style": "pointer"
+									}
+								}
+							],
+							"sid": 529963838734022,
+							"isOrBlock": true
 						},
 						{
 							"eventType": "block",
@@ -1205,6 +1244,7 @@
 											"sid": 979542843688734,
 											"parameters": [
 												"\"Parts\"",
+												true,
 												true
 											]
 										},
@@ -1213,6 +1253,7 @@
 											"sid": 359189505536797,
 											"parameters": [
 												"\"Information\"",
+												true,
 												false
 											]
 										},
@@ -1221,6 +1262,7 @@
 											"sid": 730737413775441,
 											"parameters": [
 												"\"Character\"",
+												true,
 												true
 											]
 										}
@@ -1243,6 +1285,7 @@
 											"sid": 719261827954053,
 											"parameters": [
 												"\"Parts\"",
+												true,
 												false
 											]
 										},
@@ -1251,6 +1294,7 @@
 											"sid": 939689354493458,
 											"parameters": [
 												"\"Information\"",
+												true,
 												true
 											]
 										},
@@ -1259,6 +1303,7 @@
 											"sid": 466506295664149,
 											"parameters": [
 												"\"Character\"",
+												true,
 												false
 											]
 										}
@@ -1285,6 +1330,7 @@
 											"sid": 488240842349924,
 											"parameters": [
 												"\"InformationStatic\"",
+												true,
 												false
 											]
 										}
@@ -1306,6 +1352,7 @@
 											"sid": 162415127654593,
 											"parameters": [
 												"\"InformationStatic\"",
+												true,
 												true
 											]
 										}
@@ -1339,6 +1386,7 @@
 													"sid": 990699330105205,
 													"parameters": [
 														"\"Page\"",
+														true,
 														true
 													]
 												},
@@ -1347,6 +1395,7 @@
 													"sid": 729337130470235,
 													"parameters": [
 														"\"Properties\"",
+														true,
 														false
 													]
 												}
@@ -1848,6 +1897,7 @@
 													"sid": 144010831437271,
 													"parameters": [
 														"\"Page\"",
+														true,
 														false
 													]
 												},
@@ -1856,6 +1906,7 @@
 													"sid": 415279701121363,
 													"parameters": [
 														"\"Properties\"",
+														true,
 														true
 													]
 												},
@@ -1924,6 +1975,7 @@
 													"sid": 428126915732531,
 													"parameters": [
 														"\"Biographic\"",
+														true,
 														true
 													]
 												},
@@ -1932,6 +1984,7 @@
 													"sid": 819954503776252,
 													"parameters": [
 														"\"Physical\"",
+														true,
 														false
 													]
 												},
@@ -1940,6 +1993,7 @@
 													"sid": 390692533434660,
 													"parameters": [
 														"\"Card\"",
+														true,
 														false
 													]
 												}
@@ -2220,6 +2274,7 @@
 													"sid": 734890011716600,
 													"parameters": [
 														"\"Biographic\"",
+														true,
 														false
 													]
 												},
@@ -2228,6 +2283,7 @@
 													"sid": 844244899161670,
 													"parameters": [
 														"\"Physical\"",
+														true,
 														true
 													]
 												},
@@ -2236,6 +2292,7 @@
 													"sid": 889732583000806,
 													"parameters": [
 														"\"Card\"",
+														true,
 														false
 													]
 												}
@@ -2440,6 +2497,7 @@
 													"sid": 635143572624911,
 													"parameters": [
 														"\"Biographic\"",
+														true,
 														false
 													]
 												},
@@ -2448,6 +2506,7 @@
 													"sid": 978248215017776,
 													"parameters": [
 														"\"Physical\"",
+														true,
 														false
 													]
 												},
@@ -2456,6 +2515,7 @@
 													"sid": 723769904499827,
 													"parameters": [
 														"\"Card\"",
+														true,
 														true
 													]
 												},
@@ -4596,7 +4656,6 @@
 									"script": [
 										"const json_object = runtime.objects.JSON.getFirstInstance();",
 										"if (!json_object) return;",
-										"console.log(json_object.getJsonDataCopy());",
 										"uploadCharacter(json_object.getJsonDataCopy());"
 									]
 								}
