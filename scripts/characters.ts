@@ -28,7 +28,7 @@ export async function getUserCharacter(): Promise<
 export async function uploadCharacter(
   characterData: CharacterDataStructure,
 ): Promise<ApiResponse<{ message: string; jobId: string; status: string }>> {
-  return post("/characters", characterData );
+  return post("/characters", characterData);
 }
 
 /**
@@ -129,7 +129,7 @@ export async function getRandomCharacters(
  * @param characterData - character data to validate
  * @returns validation result with errors if any
  */
-export function validateCharacterData(characterData: any): {
+export function validateCharacterData(characterData: CharacterDataStructure): {
   valid: boolean;
   errors: string[];
 } {
@@ -177,6 +177,20 @@ export function validateCharacterData(characterData: any): {
     } else if (!isValidCountry(characterData.info.location)) {
       errors.push("Invalid country selected");
     }
+    if (!characterData.info.date_of_birth) {
+      errors.push("Character birth date is required");
+    } else {
+      const birthDate = new Date(characterData.info.date_of_birth);
+      const today = new Date();
+      const maxDate = new Date(
+        today.getFullYear() - 13,
+        today.getMonth(),
+        today.getDate(),
+      );
+      if (birthDate < new Date("1900-01-01") || birthDate > maxDate) {
+        errors.push("Character must be at least 13 years old");
+      }
+    }
   }
 
   // check required static fields
@@ -191,7 +205,12 @@ export function validateCharacterData(characterData: any): {
 
   // check required placeable/movable fields
   if (characterData.placeable_movable) {
-    const required = ["eyes", "eyebrows", "nose", "lips"];
+    const required: (keyof typeof characterData.placeable_movable)[] = [
+      "eyes",
+      "eyebrows",
+      "nose",
+      "lips",
+    ];
     for (const field of required) {
       if (characterData.placeable_movable[field]?.asset_id === undefined) {
         errors.push(`${field} asset_id is required`);
