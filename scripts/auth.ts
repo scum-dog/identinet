@@ -134,7 +134,9 @@ export async function handleOAuthPopup(
     const pollForResult = async () => {
       try {
         const cacheBuster = Date.now();
-        const response = await get(`/auth/oauth/poll/${pollId}?_=${cacheBuster}`);
+        const response = await get(
+          `/auth/oauth/poll/${pollId}?_=${cacheBuster}`,
+        );
 
         if (response.success && response.data?.status === "completed") {
           if (response.data.success && response.data.sessionId) {
@@ -217,7 +219,6 @@ export async function handleOAuthPopup(
     }
 
     function handlePopupBlocked() {
-
       try {
         sessionStorage.setItem("oauth_return_url", window.location.href);
         sessionStorage.setItem("oauth_poll_id", pollId);
@@ -235,7 +236,6 @@ export async function handleOAuthPopup(
     }, POLL_INTERVAL);
 
     pollForResult();
-
 
     timeoutId = setTimeout(() => {
       console.warn("OAuth popup timed out after", timeoutMs + "ms", {
@@ -275,7 +275,9 @@ export async function loginWithItch(): Promise<ApiResponse<AuthResult>> {
 
       const pollId = pollIdResponse.data.pollId;
 
-      const urlResponse = await get(`/auth/itchio/authorization-url?poll_id=${pollId}`);
+      const urlResponse = await get(
+        `/auth/itchio/authorization-url?poll_id=${pollId}`,
+      );
 
       if (!urlResponse.success || !urlResponse.data) {
         if (attempt === maxRetries) {
@@ -364,7 +366,9 @@ export async function loginWithGoogle(): Promise<ApiResponse<AuthResult>> {
 
       const pollId = pollIdResponse.data.pollId;
 
-      const urlResponse = await get(`/auth/google/authorization-url?poll_id=${pollId}`);
+      const urlResponse = await get(
+        `/auth/google/authorization-url?poll_id=${pollId}`,
+      );
 
       if (!urlResponse.success || !urlResponse.data) {
         if (attempt === maxRetries) {
