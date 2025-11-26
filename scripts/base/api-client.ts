@@ -7,7 +7,7 @@ import {
 
 let RUNTIME: IRuntime;
 runOnStartup(async (runtime) => {
-    RUNTIME = runtime;
+  RUNTIME = runtime;
 });
 
 let config: ApiConfig = {

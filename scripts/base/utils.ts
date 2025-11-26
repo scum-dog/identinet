@@ -190,6 +190,25 @@ export function buildDateFromComponents(
 }
 
 /**
+ * format date from YYYY-MM-DD to MM/DD/YYYY
+ * @param dateString - date in YYYY-MM-DD format
+ * @returns date in MM/DD/YYYY format, or empty string if invalid
+ */
+export function formatDateForDisplay(dateString: string): string {
+  if (!dateString || typeof dateString !== "string") {
+    return "";
+  }
+
+  const dateParts = dateString.split("-");
+  if (dateParts.length !== 3) {
+    return "";
+  }
+
+  const [year, month, day] = dateParts;
+  return `${month.padStart(2, "0")}/${day.padStart(2, "0")}/${year}`;
+}
+
+/**
  * map dropdown selected text to appropriate JSON value
  * @param listType - the dropdown type
  * @param selectedText - the selected dropdown text
