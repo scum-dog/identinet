@@ -507,19 +507,36 @@
 					}
 				}
 			],
-			"actions": [
+			"actions": [],
+			"sid": 555548098338234,
+			"children": [
 				{
-					"callFunction": "createCard",
-					"sid": 410290842432291,
-					"parameters": [
-						"SavedCharacters.At(0, 0)",
-						"10",
-						"10",
-						"\"Background\""
-					]
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each-element",
+							"objectClass": "SavedCharacters",
+							"sid": 704582925510678,
+							"parameters": {
+								"axes": "x"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "createCard",
+							"sid": 239081572951583,
+							"parameters": [
+								"SavedCharacters.CurValue",
+								"10",
+								"20+40*SavedCharacters.CurX",
+								"\"Background\""
+							]
+						}
+					],
+					"sid": 314507397041596
 				}
-			],
-			"sid": 555548098338234
+			]
 		}
 	],
 	"sid": 235165046402222

@@ -70,6 +70,7 @@ export const getJSONValue = API.getJSONValue;
 export const setJSONValue = API.setJSONValue;
 export const deleteJSONValue = API.deleteJSONValue;
 export const buildDateFromComponents = API.buildDateFromComponents;
+export const formatDateForDisplay = API.formatDateForDisplay;
 export const mapDropdownValueToKey = API.mapDropdownValueToKey;
 export const shouldDeleteField = API.shouldDeleteField;
 export const handleRaceMutualExclusivity = API.handleRaceMutualExclusivity;

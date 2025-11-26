@@ -4469,9 +4469,9 @@
 												{
 													"id": "set-text",
 													"objectClass": "Text",
-													"sid": 414997500128971,
+													"sid": 246749119132553,
 													"parameters": {
-														"text": "floor(InputSlider.Value/12)&\"'\"&InputSlider.Value%12&\"\"\"\"\n"
+														"text": "floor(InputSlider.Value/12)&\"'-\"&zeropad(InputSlider.Value%12, 2)&\"\"\"\"\n"
 													}
 												}
 											],
@@ -4495,9 +4495,9 @@
 												{
 													"id": "set-text",
 													"objectClass": "Text",
-													"sid": 868850688606046,
+													"sid": 211007588076110,
 													"parameters": {
-														"text": "InputSlider.Value&\" lbs\""
+														"text": "InputSlider.Value&\" lb\""
 													}
 												}
 											],

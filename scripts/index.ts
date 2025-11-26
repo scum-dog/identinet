@@ -107,6 +107,7 @@ export {
   validateCharacterName,
   validateInputName,
   buildDateFromComponents,
+  formatDateForDisplay,
   mapDropdownValueToKey,
   shouldDeleteField,
   handleRaceMutualExclusivity,
