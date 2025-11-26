@@ -2337,10 +2337,10 @@
 						},
 						{
 							"callFunction": "createCharacter",
-							"sid": 943709651627730,
+							"sid": 621060572888635,
 							"parameters": [
 								"data",
-								"\"Card\"",
+								"layer",
 								"Card.ImagePointX(1)",
 								"Card.ImagePointY(1)",
 								"0.5",

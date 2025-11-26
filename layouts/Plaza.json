@@ -52,6 +52,82 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+				},
+				{
+					"type": "CharacterHead",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "head",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 148,
+					"sid": 462837499368826,
+					"tags": "",
+					"instanceVariables": {
+						"parent": 0
+					},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 462837499368826,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 64,
+						"y": -120,
+						"width": 119,
+						"height": 156,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "CharacterPart",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "hair",
+						"initial-frame": 1,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 149,
+					"sid": 873989420038274,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 873989420038274,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 184,
+						"y": -152,
+						"width": 111,
+						"height": 85,
+						"originX": 0.4954954954954955,
+						"originY": 0.49411764705882355,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
 				}
 			],
 			"sid": 668275371453942,

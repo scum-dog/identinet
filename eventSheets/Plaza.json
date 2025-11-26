@@ -494,6 +494,32 @@
 					"isOrBlock": true
 				}
 			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 365026102453246,
+					"parameters": {
+						"key": 32
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "createCard",
+					"sid": 410290842432291,
+					"parameters": [
+						"SavedCharacters.At(0, 0)",
+						"10",
+						"10",
+						"\"Background\""
+					]
+				}
+			],
+			"sid": 555548098338234
 		}
 	],
 	"sid": 235165046402222
