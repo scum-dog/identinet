@@ -76,11 +76,11 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 64,
-						"y": -120,
-						"width": 119,
-						"height": 156,
-						"originX": 0.5,
+						"x": 56,
+						"y": -88,
+						"width": 118,
+						"height": 170,
+						"originX": 0.4915254237288136,
 						"originY": 0.5,
 						"color": [
 							1,
@@ -113,8 +113,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 184,
-						"y": -152,
+						"x": 176,
+						"y": -48,
 						"width": 111,
 						"height": 85,
 						"originX": 0.4954954954954955,
