@@ -46,14 +46,26 @@ export function validateCharacterName(name: string): {
     return { valid: false, error: CHARACTER_NAME_ERROR_MESSAGE };
   }
 
-  if (/[ ]{2,}|[-]{2,}|['][ ']/.test(name) || name.includes('..') || name.includes('--') || name.includes("''")) {
-    return { valid: false, error: "Name cannot have consecutive punctuation or spaces" };
+  if (
+    /[ ]{2,}|[-]{2,}|['][ ']/.test(name) ||
+    name.includes("..") ||
+    name.includes("--") ||
+    name.includes("''")
+  ) {
+    return {
+      valid: false,
+      error: "Name cannot have consecutive punctuation or spaces",
+    };
   }
 
   if (/\./.test(name)) {
     const invalidPeriodPattern = /[a-z]{2,}\.[a-z]/;
     if (invalidPeriodPattern.test(name)) {
-      return { valid: false, error: "Periods can only be used for abbreviations (e.g., 'H. W.' or 'J.K.')" };
+      return {
+        valid: false,
+        error:
+          "Periods can only be used for abbreviations (e.g., 'H. W.' or 'J.K.')",
+      };
     }
   }
 
