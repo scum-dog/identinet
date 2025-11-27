@@ -2607,6 +2607,16 @@
 										"comparison": 0,
 										"value": "\"parts\""
 									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 632645015064193,
+									"parameters": {
+										"variable": "CREATOR_menu",
+										"comparison": 0,
+										"value": "\"properties\""
+									}
 								}
 							],
 							"actions": [],
@@ -2638,7 +2648,8 @@
 									],
 									"sid": 214231906762994
 								}
-							]
+							],
+							"isOrBlock": true
 						},
 						{
 							"eventType": "block",

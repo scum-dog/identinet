@@ -1,19 +1,18 @@
 {
   "character_data": {
     "info": {
-      "name": "Riley",
-      "sex": "female",
-      "date_of_birth": "1996-05-27",
-      "height_in": 90,
-      "weight_lb": 219,
-      "eye_color": "maroon",
-      "hair_color": "white",
+      "name": "",
+      "sex": "male",
+      "date_of_birth": "1983-12-01",
+      "height_in": 67,
+      "weight_lb": 199,
+      "eye_color": "brown",
+      "hair_color": "black",
       "race": [
-        "white",
         "other"
       ],
-      "ethnicity": "hispanic_latino",
-      "location": "Cocos (Keeling) Islands"
+      "ethnicity": "not_hispanic_latino",
+      "location": "United States"
     },
     "static": {
       "head": {
@@ -21,12 +20,6 @@
       },
       "hair": {
         "asset_id": 1
-      },
-      "age_lines": {
-        "asset_id": 0
-      },
-      "beard": {
-        "asset_id": 0
       }
     },
     "placeable_movable": {
@@ -51,22 +44,6 @@
       },
       "lips": {
         "asset_id": 0,
-        "offset_y": 0,
-        "scale": 1
-      },
-      "glasses": {
-        "asset_id": 0,
-        "offset_y": 0,
-        "scale": 1
-      },
-      "mustache": {
-        "asset_id": 0,
-        "offset_y": 0,
-        "scale": 1
-      },
-      "misc": {
-        "asset_id": 0,
-        "offset_x": 0,
         "offset_y": 0,
         "scale": 1
       }
