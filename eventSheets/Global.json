@@ -54,6 +54,16 @@
 			"sid": 995685769201095
 		},
 		{
+			"eventType": "variable",
+			"name": "GAME_online",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are we online?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 399560700863166
+		},
+		{
 			"eventType": "comment",
 			"text": "Loading flags"
 		},
@@ -1678,6 +1688,167 @@
 		{
 			"eventType": "group",
 			"disabled": false,
+			"title": "Global - Saving",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Save to local storage"
+				},
+				{
+					"functionName": "save",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-item",
+							"objectClass": "LocalStorage",
+							"sid": 351796672039084,
+							"parameters": {
+								"key": "\"saveData1\"",
+								"value": "SavedCharacters.AsJSON"
+							}
+						}
+					],
+					"sid": 839513501978890
+				}
+			],
+			"sid": 189013203793669
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Global - Loading",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "File read, good to go"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-exists",
+							"objectClass": "LocalStorage",
+							"sid": 200814835939007,
+							"parameters": {
+								"key": "\"saveData1\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "load",
+							"sid": 590713153656908,
+							"parameters": [
+								"LocalStorage.ItemValue"
+							]
+						}
+					],
+					"sid": 779791538256751
+				},
+				{
+					"eventType": "comment",
+					"text": "File not read, everything is terrible"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-missing",
+							"objectClass": "LocalStorage",
+							"sid": 797172329625430,
+							"parameters": {
+								"key": "\"saveData1\""
+							}
+						},
+						{
+							"id": "on-error",
+							"objectClass": "LocalStorage",
+							"sid": 824570187723426
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 386802017530525,
+							"parameters": {
+								"variable": "LOAD_save",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 185639934971170,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "comment",
+					"text": "Load from local storage"
+				},
+				{
+					"functionName": "load",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "data",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 947190901180219
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 421307779320199,
+							"parameters": {
+								"variable": "LOAD_save",
+								"value": "true"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 201392012514706,
+							"parameters": {
+								"type": "log",
+								"message": "\"Found save data, loading\""
+							}
+						},
+						{
+							"id": "load",
+							"objectClass": "SavedCharacters",
+							"sid": 873654686859473,
+							"parameters": {
+								"json": "data"
+							}
+						}
+					],
+					"sid": 513821286862037
+				}
+			],
+			"sid": 713090861022777
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
 			"title": "Global - Character Rendering",
 			"description": "",
 			"isActiveOnStart": true,
@@ -2483,6 +2654,10 @@
 					"sid": 300027364960475
 				},
 				{
+					"eventType": "comment",
+					"text": "TODO: this is a bit of a mess"
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -2713,6 +2888,10 @@
 							]
 						}
 					]
+				},
+				{
+					"eventType": "comment",
+					"text": "END TODO"
 				},
 				{
 					"eventType": "block",
@@ -3272,163 +3451,347 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Global - Saving",
+			"title": "Global - Music",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "Save to local storage"
-				},
-				{
-					"functionName": "save",
-					"functionDescription": "",
-					"functionCategory": "",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-item",
-							"objectClass": "LocalStorage",
-							"sid": 376872884389106,
-							"parameters": {
-								"key": "\"saveData1\"",
-								"value": "SavedCharacters.AsJSON"
-							}
-						}
-					],
-					"sid": 299290097633204
-				}
-			],
-			"sid": 657993863465649
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Global - Loading",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "comment",
-					"text": "File read, good to go"
+					"text": "Intro"
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-item-exists",
-							"objectClass": "LocalStorage",
-							"sid": 393134836919461,
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 143581623933222
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 642581256239426,
 							"parameters": {
-								"key": "\"saveData1\""
+								"first-value": "LayoutName",
+								"comparison": 1,
+								"second-value": "\"Loader\""
 							}
+						},
+						{
+							"id": "is-tag-playing",
+							"objectClass": "Audio",
+							"sid": 453040255559080,
+							"parameters": {
+								"tag": "\"music\""
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [
 						{
-							"callFunction": "load",
-							"sid": 690574085580390,
-							"parameters": [
-								"LocalStorage.ItemValue"
-							]
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 327556902549819,
+							"parameters": {
+								"tag": "\"playMusicIntro\""
+							}
 						}
 					],
-					"sid": 701741914507564
-				},
-				{
-					"eventType": "comment",
-					"text": "File not read, everything is terrible"
+					"sid": 290668956681584
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-item-missing",
-							"objectClass": "LocalStorage",
-							"sid": 820187789370605,
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 458221582253925,
 							"parameters": {
-								"key": "\"saveData1\""
+								"tag": "\"playMusicIntro\""
 							}
-						},
-						{
-							"id": "on-error",
-							"objectClass": "LocalStorage",
-							"sid": 300058939314668
 						}
 					],
 					"actions": [
 						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 633652903605531,
+							"id": "stop",
+							"objectClass": "Audio",
+							"sid": 478391860215494,
 							"parameters": {
-								"variable": "LOAD_save",
-								"value": "true"
+								"tag": "\"music\""
+							}
+						},
+						{
+							"id": "remove-all-effects",
+							"objectClass": "Audio",
+							"sid": 414539130389288,
+							"parameters": {
+								"tag": "\"music\""
 							}
 						}
 					],
-					"sid": 177557763333435,
-					"isOrBlock": true
+					"sid": 126230298302416,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 611776736925312,
+									"parameters": {
+										"variable": "GAME_online"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 977381302881893,
+									"parameters": {
+										"audio-file": "offlineIntro",
+										"loop": "not-looping",
+										"volume": "-20",
+										"stereo-pan": "0",
+										"tag-optional": "\"music intro\""
+									}
+								}
+							],
+							"sid": 585182962354008
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 849090611709303
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 399375489424018,
+									"parameters": {
+										"audio-file": "onlineIntro",
+										"loop": "not-looping",
+										"volume": "-20",
+										"stereo-pan": "0",
+										"tag-optional": "\"music intro\""
+									}
+								}
+							],
+							"sid": 764553780189486
+						}
+					]
 				},
 				{
 					"eventType": "comment",
-					"text": "Load from local storage"
+					"text": "Loop"
 				},
 				{
-					"functionName": "load",
-					"functionDescription": "",
-					"functionCategory": "",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
+					"eventType": "block",
+					"conditions": [
 						{
-							"name": "data",
-							"type": "string",
-							"initialValue": "",
-							"comment": "",
-							"sid": 947190901180219
+							"id": "on-ended",
+							"objectClass": "Audio",
+							"sid": 969784578763948,
+							"parameters": {
+								"tag": "\"intro\""
+							}
 						}
 					],
-					"eventType": "function-block",
-					"conditions": [],
 					"actions": [
 						{
-							"id": "set-boolean-eventvar",
+							"id": "signal",
 							"objectClass": "System",
-							"sid": 146351803285833,
+							"sid": 380383771092328,
 							"parameters": {
-								"variable": "LOAD_save",
-								"value": "true"
-							}
-						},
-						{
-							"id": "log",
-							"objectClass": "Browser",
-							"sid": 626827214531414,
-							"parameters": {
-								"type": "log",
-								"message": "\"Found save data, loading\""
-							}
-						},
-						{
-							"id": "load",
-							"objectClass": "SavedCharacters",
-							"sid": 781807282378436,
-							"parameters": {
-								"json": "data"
+								"tag": "\"playMusicLoop\""
 							}
 						}
 					],
-					"sid": 181876486771309
+					"sid": 219484741970544
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 683492846994165,
+							"parameters": {
+								"tag": "\"playMusicLoop\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 905784459930105,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 687936744290488,
+									"parameters": {
+										"variable": "GAME_online"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 548449371194278,
+									"parameters": {
+										"audio-file": "offlineLoop",
+										"loop": "looping",
+										"volume": "-20",
+										"stereo-pan": "0",
+										"tag-optional": "\"music loop\""
+									}
+								}
+							],
+							"sid": 315586411669331
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 438489672302454
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 486836477152019,
+									"parameters": {
+										"audio-file": "onlineLoop",
+										"loop": "looping",
+										"volume": "-20",
+										"stereo-pan": "0",
+										"tag-optional": "\"music loop\""
+									}
+								}
+							],
+							"sid": 409552776239315
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "Swap"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 733663557936278,
+							"parameters": {
+								"tag": "\"swapMusic\""
+							}
+						},
+						{
+							"id": "is-timer-running",
+							"objectClass": "NavBar",
+							"sid": 213682034753622,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"musicFade\""
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "start-timer",
+							"objectClass": "NavBar",
+							"sid": 535156411729377,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "1.0",
+								"type": "once",
+								"tag": "\"musicFade\""
+							}
+						},
+						{
+							"id": "add-filter-effect",
+							"objectClass": "Audio",
+							"sid": 366502514055013,
+							"parameters": {
+								"tag": "\"music\"",
+								"type": "low-pass",
+								"frequency": "100",
+								"detune": "0",
+								"q": "1",
+								"gain": "0",
+								"mix": "0"
+							}
+						},
+						{
+							"id": "set-effect-parameter",
+							"objectClass": "Audio",
+							"sid": 376180307573329,
+							"parameters": {
+								"tag": "\"music\"",
+								"index": "0",
+								"parameter": "mix",
+								"value": "100",
+								"ramp": "linear",
+								"time": "1"
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 767315350423363,
+							"parameters": {
+								"tag": "\"music\"",
+								"db": "-100",
+								"duration": "1",
+								"ending": "stop"
+							}
+						}
+					],
+					"sid": 787918680898722
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "NavBar",
+							"sid": 239379933228753,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"musicFade\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 854285911627426,
+							"parameters": {
+								"tag": "\"playMusicIntro\""
+							}
+						}
+					],
+					"sid": 451747323516060
 				}
 			],
-			"sid": 883169455808167
+			"sid": 200835656243407
 		}
 	],
 	"sid": 778792192564054

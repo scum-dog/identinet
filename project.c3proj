@@ -22,6 +22,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Audio",
+			"name": "Audio",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Browser",
 			"name": "Browser",
 			"author": "Scirra",
@@ -167,7 +174,8 @@
 	"uniqueId": "pjmdeerwb34",
 	"objectTypes": {
 		"items": [
-			"Sprite"
+			"Sprite",
+			"Audio"
 		],
 		"subfolders": [
 			{
@@ -392,7 +400,40 @@
 			"subfolders": []
 		},
 		"music": {
-			"items": [],
+			"items": [
+				{
+					"name": "onlineLoop.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 968902317762404,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "onlineIntro.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 392047349420650,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "offlineIntro.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 955857576806980,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "offlineLoop.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 841292599573777,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"video": {
@@ -509,7 +550,7 @@
 	},
 	"properties": {
 		"description": "",
-		"version": "0.1.0",
+		"version": "1.0.0",
 		"autoIncrementVersion": false,
 		"author": "SCUM DOG GAMES",
 		"authorEmail": "contact@scum.dog",

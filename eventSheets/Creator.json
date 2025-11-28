@@ -15,7 +15,7 @@
 			"eventType": "variable",
 			"name": "CREATOR_part",
 			"type": "string",
-			"initialValue": "head",
+			"initialValue": "hair",
 			"comment": "The part we currently have selected",
 			"isStatic": false,
 			"isConstant": false,
@@ -1728,6 +1728,15 @@
 																			"parameters": {
 																				"width": "(Self.Width <= 32 & Self.Height <= 32) ? Self.Width : Self.Width * min(32 / Self.Width, 32 / Self.Height)\n",
 																				"height": "(Self.Width <= 32 & Self.Height <= 32) ? Self.Height: Self.Height* min(32 / Self.Width, 32 / Self.Height)\n"
+																			}
+																		},
+																		{
+																			"id": "set-position",
+																			"objectClass": "CharacterPart",
+																			"sid": 709939747585251,
+																			"parameters": {
+																				"x": "Self.X+(Self.ImagePointX(0)-Self.ImagePointX(1))",
+																				"y": "Self.Y+(Self.ImagePointY(0)-Self.ImagePointY(1))"
 																			}
 																		}
 																	],

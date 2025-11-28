@@ -52,6 +52,43 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+				},
+				{
+					"type": "Sprite",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 147,
+					"sid": 961273627994497,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 961273627994497,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 8,
+						"y": 64,
+						"width": 136,
+						"height": 172,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							0.5
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
 				}
 			],
 			"sid": 877007830768121,
@@ -184,12 +221,12 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 184,
-						"y": -152,
-						"width": 111,
-						"height": 85,
-						"originX": 0.4954954954954955,
-						"originY": 0.49411764705882355,
+						"x": 188,
+						"y": -116,
+						"width": 118,
+						"height": 93,
+						"originX": 0.5,
+						"originY": 0.053763440860215055,
 						"color": [
 							1,
 							1,

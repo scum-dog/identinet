@@ -2,10 +2,16 @@
 	"name": "NavBar",
 	"plugin-id": "Sprite",
 	"sid": 275739531445286,
-	"isGlobal": false,
+	"isGlobal": true,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
-	"behaviorTypes": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 176861836242358
+		}
+	],
 	"effectTypes": [],
 	"animations": {
 		"items": [

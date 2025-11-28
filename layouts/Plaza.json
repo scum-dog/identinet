@@ -113,12 +113,12 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 176,
-						"y": -48,
-						"width": 111,
-						"height": 85,
-						"originX": 0.4954954954954955,
-						"originY": 0.49411764705882355,
+						"x": 180,
+						"y": -92,
+						"width": 118,
+						"height": 93,
+						"originX": 0.5,
+						"originY": 0.053763440860215055,
 						"color": [
 							1,
 							1,
@@ -870,7 +870,11 @@
 							"sid": 215443344759623,
 							"tags": "",
 							"instanceVariables": {},
-							"behaviors": {},
+							"behaviors": {
+								"Timer": {
+									"properties": {}
+								}
+							},
 							"instanceFolderItem": {
 								"sid": 215443344759623,
 								"expanded": true
