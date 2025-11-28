@@ -57,8 +57,8 @@
 			"eventType": "variable",
 			"name": "GAME_online",
 			"type": "boolean",
-			"initialValue": "false",
-			"comment": "Are we online?",
+			"initialValue": "true",
+			"comment": "Are we 'online'?",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 399560700863166
