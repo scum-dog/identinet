@@ -77,7 +77,26 @@
 							"isInverted": true
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "NavButton",
+							"sid": 696065420489016,
+							"parameters": {
+								"animation": "\"default\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "PlazaButton",
+							"sid": 722328816320824,
+							"parameters": {
+								"animation": "\"default\"",
+								"from": "beginning"
+							}
+						}
+					],
 					"sid": 713041413504836,
 					"children": [
 						{
@@ -104,24 +123,6 @@
 									"sid": 563848615721658,
 									"parameters": {
 										"cursor-style": "grab"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "NavButton",
-									"sid": 799416354941268,
-									"parameters": {
-										"animation": "\"default\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "PlazaButton",
-									"sid": 460006849935885,
-									"parameters": {
-										"animation": "\"default\"",
-										"from": "beginning"
 									}
 								}
 							],
@@ -482,6 +483,18 @@
 						}
 					],
 					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 963929996797805,
+							"parameters": {
+								"audio-file": "select",
+								"loop": "not-looping",
+								"volume": "-20",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
 						{
 							"callFunction": "transition",
 							"sid": 766684914368511,

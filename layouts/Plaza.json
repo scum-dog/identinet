@@ -66,7 +66,8 @@
 					"sid": 462837499368826,
 					"tags": "",
 					"instanceVariables": {
-						"parent": 0
+						"parent": 0,
+						"totalParts": 0
 					},
 					"behaviors": {},
 					"instanceFolderItem": {

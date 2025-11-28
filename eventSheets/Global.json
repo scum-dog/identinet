@@ -899,7 +899,7 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [],
-					"sid": 762748252738227,
+					"sid": 404521152177923,
 					"children": [
 						{
 							"eventType": "block",
@@ -907,7 +907,7 @@
 								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 300040469829425,
+									"sid": 751423156907067,
 									"parameters": {
 										"variable": "enabled"
 									}
@@ -917,14 +917,14 @@
 								{
 									"id": "set-layer-interactive",
 									"objectClass": "System",
-									"sid": 727721400795647,
+									"sid": 610278873825385,
 									"parameters": {
 										"layer": "layer",
 										"interactive": true
 									}
 								}
 							],
-							"sid": 411067261361083,
+							"sid": 117617432061700,
 							"children": [
 								{
 									"eventType": "block",
@@ -932,7 +932,7 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 244249310935468,
+											"sid": 473379956930061,
 											"parameters": {
 												"variable": "visibility"
 											}
@@ -942,14 +942,14 @@
 										{
 											"id": "set-layer-visible",
 											"objectClass": "System",
-											"sid": 629217671919643,
+											"sid": 315200166136493,
 											"parameters": {
 												"layer": "layer",
 												"visibility": "visible"
 											}
 										}
 									],
-									"sid": 505747564225257
+									"sid": 859235861093399
 								}
 							]
 						},
@@ -959,21 +959,21 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 731480340993258
+									"sid": 483225336670293
 								}
 							],
 							"actions": [
 								{
 									"id": "set-layer-interactive",
 									"objectClass": "System",
-									"sid": 472423593295037,
+									"sid": 525237985779721,
 									"parameters": {
 										"layer": "layer",
 										"interactive": false
 									}
 								}
 							],
-							"sid": 325504069054200,
+							"sid": 568675387925692,
 							"children": [
 								{
 									"eventType": "block",
@@ -981,7 +981,7 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 679452036454115,
+											"sid": 140578114170660,
 											"parameters": {
 												"variable": "visibility"
 											}
@@ -991,18 +991,60 @@
 										{
 											"id": "set-layer-visible",
 											"objectClass": "System",
-											"sid": 627436972893944,
+											"sid": 504893809784506,
 											"parameters": {
 												"layer": "layer",
 												"visibility": "invisible"
 											}
 										}
 									],
-									"sid": 833519381778579
+									"sid": 514669363966215
 								}
 							]
 						}
 					]
+				},
+				{
+					"functionName": "error",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "text",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 923656045107121
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 245129945708990,
+							"parameters": {
+								"audio-file": "error",
+								"loop": "not-looping",
+								"volume": "-20",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "alert",
+							"objectClass": "Browser",
+							"sid": 457024904051535,
+							"parameters": {
+								"message": "text"
+							}
+						}
+					],
+					"sid": 533205646815653
 				}
 			],
 			"sid": 105681604197051
@@ -1592,10 +1634,10 @@
 												{
 													"id": "start-timer",
 													"objectClass": "TransitionSquare",
-													"sid": 637127220699581,
+													"sid": 774720513866378,
 													"behaviorType": "Timer",
 													"parameters": {
-														"duration": "dt*0.05*loopindex(\"i\")",
+														"duration": "0.001*loopindex(\"i\")",
 														"type": "once",
 														"tag": "\"transitionWait\""
 													}
@@ -1961,47 +2003,33 @@
 								"instance-variable": "parent",
 								"value": "parent"
 							}
+						},
+						{
+							"type": "comment",
+							"text": "Calculate the total number of parts expected"
+						},
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"const head_object = runtime.objects.CharacterHead.getFirstPickedInstance();",
+								"if (!head_object) return;",
+								"",
+								"const data = JSON.parse(localVars.data);",
+								"",
+								"var staticCount = Object.keys(data.character_data.static).length;",
+								"if (\"head\" in data.character_data.static) staticCount -= 1;",
+								"",
+								"var movableCount = Object.keys(data.character_data.placeable_movable).length;",
+								"if (\"eyes\" in data.character_data.placeable_movable) movableCount += 1;",
+								"if (\"eyebrows\" in data.character_data.placeable_movable) movableCount += 1;",
+								"",
+								"head_object.instVars.totalParts = (staticCount + movableCount);"
+							]
 						}
 					],
 					"sid": 376666166151287,
 					"children": [
-						{
-							"eventType": "variable",
-							"name": "total",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"isStatic": false,
-							"isConstant": false,
-							"sid": 715671487891147
-						},
-						{
-							"eventType": "comment",
-							"text": "Calculate the total number of parts"
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"const data = JSON.parse(localVars.data);",
-										"",
-										"var staticCount = Object.keys(data.character_data.static).length;",
-										"if (\"head\" in data.character_data.static) staticCount -= 1;",
-										"",
-										"var movableCount = Object.keys(data.character_data.placeable_movable).length;",
-										"if (\"eyes\" in data.character_data.placeable_movable) movableCount += 1;",
-										"if (\"eyebrows\" in data.character_data.placeable_movable) movableCount += 1;",
-										"",
-										"localVars.total = (staticCount + movableCount);"
-									]
-								}
-							],
-							"sid": 576296742432846
-						},
 						{
 							"eventType": "comment",
 							"text": "Iterate through character parts and create them"
@@ -2061,8 +2089,7 @@
 												"JSON.CurrentKey",
 												"CharacterHead.UID",
 												"scale",
-												false,
-												"total"
+												false
 											]
 										}
 									],
@@ -2104,8 +2131,7 @@
 														"JSON.CurrentKey",
 														"CharacterHead.UID",
 														"scale",
-														true,
-														"total"
+														true
 													]
 												}
 											],
@@ -2153,13 +2179,6 @@
 							"initialValue": "false",
 							"comment": "",
 							"sid": 916699683696727
-						},
-						{
-							"name": "total",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 857195558840523
 						}
 					],
 					"eventType": "function-block",
@@ -2308,20 +2327,11 @@
 								{
 									"id": "compare-child-count",
 									"objectClass": "CharacterHead",
-									"sid": 876956737201063,
+									"sid": 142550399317098,
 									"parameters": {
 										"which": "own",
 										"comparison": 0,
-										"count": "total"
-									}
-								},
-								{
-									"id": "pick-children",
-									"objectClass": "CharacterHead",
-									"sid": 989698251112475,
-									"parameters": {
-										"child": "Character",
-										"which": "own"
+										"count": "Self.totalParts"
 									}
 								}
 							],
@@ -2329,7 +2339,7 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 563876360632053,
+									"sid": 790444676323286,
 									"parameters": {
 										"object-to-create": "CharacterCanvas",
 										"layer": "CharacterHead.LayerName",
@@ -2342,51 +2352,14 @@
 								{
 									"id": "set-size",
 									"objectClass": "CharacterCanvas",
-									"sid": 134275149062218,
+									"sid": 753887314462480,
 									"parameters": {
 										"width": "200*scale",
 										"height": "200*scale"
 									}
-								},
-								{
-									"type": "comment",
-									"text": "Sprite image loading is asynchronous, so waiting here solves a race condition"
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 201279660701680
-								},
-								{
-									"id": "paste-object",
-									"objectClass": "CharacterCanvas",
-									"sid": 780228869186789,
-									"parameters": {
-										"object": "CharacterHead",
-										"effects": "without-effects"
-									}
-								},
-								{
-									"id": "paste-object",
-									"objectClass": "CharacterCanvas",
-									"sid": 131198939754078,
-									"parameters": {
-										"object": "Character",
-										"effects": "without-effects"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 958272994426915
-								},
-								{
-									"id": "destroy",
-									"objectClass": "CharacterHead",
-									"sid": 907337970047555
 								}
 							],
-							"sid": 927720068444914,
+							"sid": 734800391227679,
 							"children": [
 								{
 									"eventType": "block",
@@ -2394,7 +2367,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "CharacterHead",
-											"sid": 135519221958764,
+											"sid": 954316358776142,
 											"parameters": {
 												"instance-variable": "parent",
 												"comparison": 4,
@@ -2404,7 +2377,7 @@
 										{
 											"id": "pick-by-unique-id",
 											"objectClass": "Card",
-											"sid": 279153347967846,
+											"sid": 722124470381205,
 											"parameters": {
 												"unique-id": "CharacterHead.parent"
 											}
@@ -2414,7 +2387,7 @@
 										{
 											"id": "add-child",
 											"objectClass": "Card",
-											"sid": 157568469662017,
+											"sid": 761132047748120,
 											"parameters": {
 												"child": "CharacterCanvas",
 												"transform-x": true,
@@ -2429,7 +2402,52 @@
 											}
 										}
 									],
-									"sid": 903907288005592
+									"sid": 172300034808656
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-children",
+											"objectClass": "CharacterHead",
+											"sid": 696494833318664,
+											"parameters": {
+												"child": "Character",
+												"which": "own"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "paste-object",
+											"objectClass": "CharacterCanvas",
+											"sid": 903321216993766,
+											"parameters": {
+												"object": "CharacterHead",
+												"effects": "without-effects"
+											}
+										},
+										{
+											"id": "paste-object",
+											"objectClass": "CharacterCanvas",
+											"sid": 256430490519041,
+											"parameters": {
+												"object": "Character",
+												"effects": "without-effects"
+											}
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 676273076734030
+										},
+										{
+											"id": "destroy",
+											"objectClass": "CharacterHead",
+											"sid": 844495436424535
+										}
+									],
+									"sid": 899663690830825
 								}
 							]
 						}
@@ -2943,7 +2961,20 @@
 											"sid": 317491801809731
 										}
 									],
-									"actions": [],
+									"actions": [
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 920457253326292,
+											"parameters": {
+												"audio-file": "select",
+												"loop": "not-looping",
+												"volume": "-20",
+												"stereo-pan": "0",
+												"tag-optional": "\"\""
+											}
+										}
+									],
 									"sid": 660896856864740,
 									"children": [
 										{
@@ -3289,6 +3320,38 @@
 									],
 									"sid": 993290004815000,
 									"isOrBlock": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CardButton",
+											"sid": 417992449819535,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"upload\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"language": "typescript",
+											"script": [
+												"const button_object = runtime.objects.CardButton.getFirstPickedInstance();",
+												"if (!button_object) return;",
+												"",
+												"if (await isLoggedIn() === true) {",
+												"  button_object.opacity = 1;",
+												"} else {",
+												"  button_object.opacity = 0.5;",
+												"}"
+											]
+										}
+									],
+									"sid": 950564008548182
 								}
 							],
 							"isOrBlock": true
@@ -3315,7 +3378,20 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 768074702906107,
+									"parameters": {
+										"audio-file": "select",
+										"loop": "not-looping",
+										"volume": "-20",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								}
+							],
 							"sid": 833583300588851,
 							"children": [
 								{

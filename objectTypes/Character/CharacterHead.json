@@ -11,6 +11,13 @@
 			"desc": "",
 			"show": true,
 			"sid": 339529441892734
+		},
+		{
+			"name": "totalParts",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 991024166880184
 		}
 	],
 	"behaviorTypes": [],

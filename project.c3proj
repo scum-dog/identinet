@@ -396,7 +396,32 @@
 			]
 		},
 		"sound": {
-			"items": [],
+			"items": [
+				{
+					"name": "select.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 469299595798425,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "upload.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 544421665654106,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "error.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 350846007892488,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"music": {
@@ -583,7 +608,7 @@
 			0
 		],
 		"orientations": "any",
-		"webgpu": "auto",
+		"webgpu": "no",
 		"multitexturing": "auto",
 		"gpuPreference": "high-performance",
 		"framerateMode": "vsync",
