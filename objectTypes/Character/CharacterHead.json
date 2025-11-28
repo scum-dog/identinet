@@ -13,7 +13,7 @@
 			"sid": 339529441892734
 		},
 		{
-			"name": "totalParts",
+			"name": "total",
 			"type": "number",
 			"desc": "",
 			"show": true,

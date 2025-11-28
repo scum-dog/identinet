@@ -67,7 +67,7 @@
 					"tags": "",
 					"instanceVariables": {
 						"parent": 0,
-						"totalParts": 0
+						"total": 0
 					},
 					"behaviors": {},
 					"instanceFolderItem": {
@@ -78,7 +78,7 @@
 					"locked": false,
 					"world": {
 						"x": 56,
-						"y": -88,
+						"y": -116,
 						"width": 118,
 						"height": 170,
 						"originX": 0.4915254237288136,
@@ -115,11 +115,11 @@
 					"locked": false,
 					"world": {
 						"x": 180,
-						"y": -92,
-						"width": 118,
-						"height": 93,
-						"originX": 0.5,
-						"originY": 0.053763440860215055,
+						"y": -192,
+						"width": 119,
+						"height": 106,
+						"originX": 0.4789915966386555,
+						"originY": 0.07547169811320754,
 						"color": [
 							1,
 							1,

@@ -3220,7 +3220,7 @@
 								{
 									"id": "on-object-clicked",
 									"objectClass": "Mouse",
-									"sid": 136305952128588,
+									"sid": 726280210788634,
 									"parameters": {
 										"mouse-button": "left",
 										"click-type": "clicked",
@@ -3230,15 +3230,14 @@
 								{
 									"id": "on-tap-object",
 									"objectClass": "Touch",
-									"sid": 188012235793780,
+									"sid": 855773858246238,
 									"parameters": {
 										"object": "CreatorButton"
 									}
 								}
 							],
 							"actions": [],
-							"sid": 709475793423280,
-							"disabled": true,
+							"sid": 583219916948460,
 							"children": [
 								{
 									"eventType": "block",
@@ -3246,393 +3245,34 @@
 										{
 											"id": "compare-opacity",
 											"objectClass": "CreatorButton",
-											"sid": 870661792309458,
+											"sid": 679013760756392,
 											"parameters": {
 												"comparison": 5,
 												"opacity": "100"
 											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 119272452522724,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"property\""
+											},
+											"isInverted": true
 										}
 									],
 									"actions": [
 										{
-											"id": "play",
-											"objectClass": "Audio",
-											"sid": 197324609995928,
-											"parameters": {
-												"audio-file": "select",
-												"loop": "not-looping",
-												"volume": "-20",
-												"stereo-pan": "0",
-												"tag-optional": "\"\""
-											}
+											"callFunction": "modifyProperty",
+											"sid": 335199601326776,
+											"parameters": [
+												"CreatorButton.UID"
+											]
 										}
 									],
-									"sid": 923900984846985,
-									"disabled": true,
-									"children": [
-										{
-											"eventType": "comment",
-											"text": "Part button"
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "CreatorButton",
-													"sid": 634329625629198,
-													"parameters": {
-														"instance-variable": "type",
-														"comparison": 0,
-														"value": "\"part\""
-													}
-												}
-											],
-											"actions": [],
-											"sid": 209839579253404,
-											"disabled": true,
-											"children": [
-												{
-													"eventType": "comment",
-													"text": "Delete an optional part"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 600488468463321,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 2,
-																"value": "0"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "delete-key",
-															"objectClass": "JSON",
-															"sid": 681622927356455,
-															"parameters": {
-																"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part"
-															}
-														}
-													],
-													"sid": 527481411962216,
-													"disabled": true
-												},
-												{
-													"eventType": "comment",
-													"text": "Update part asset ID, create optional part if it doesn't exist"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 806253671883213
-														}
-													],
-													"actions": [
-														{
-															"id": "set-value",
-															"objectClass": "JSON",
-															"sid": 223394908814827,
-															"parameters": {
-																"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part&\".asset_id\"",
-																"value": "CreatorButton.id"
-															}
-														}
-													],
-													"sid": 349178686573658,
-													"disabled": true,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "compare-eventvar",
-																	"objectClass": "System",
-																	"sid": 963365547964858,
-																	"parameters": {
-																		"variable": "CREATOR_part",
-																		"comparison": 0,
-																		"value": "\"hair\""
-																	}
-																},
-																{
-																	"id": "compare-instance-variable",
-																	"objectClass": "CreatorButton",
-																	"sid": 639297926167078,
-																	"parameters": {
-																		"instance-variable": "id",
-																		"comparison": 0,
-																		"value": "0"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"id": "set-value",
-																	"objectClass": "JSON",
-																	"sid": 277136209376734,
-																	"parameters": {
-																		"path": "\"character_data.info.hair_color\"",
-																		"value": "\"bald\""
-																	}
-																}
-															],
-															"sid": 679814358664861,
-															"disabled": true
-														}
-													]
-												}
-											]
-										},
-										{
-											"eventType": "comment",
-											"text": "Property button"
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "CreatorButton",
-													"sid": 362695438569425,
-													"parameters": {
-														"instance-variable": "type",
-														"comparison": 0,
-														"value": "\"property\""
-													}
-												}
-											],
-											"actions": [],
-											"sid": 783953890202246,
-											"disabled": true,
-											"children": [
-												{
-													"eventType": "comment",
-													"text": "Move left and right"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 535966090935879,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "0"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 358211225267770,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "1"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "setValue",
-															"sid": 942851034765402,
-															"parameters": [
-																"CREATOR_part",
-																"\"offset_x\"",
-																"Functions.getValue(CREATOR_part, \"offset_x\")+(((CreatorButton.id%2)*2-1)*0.1)"
-															]
-														}
-													],
-													"sid": 145370428698943,
-													"disabled": true,
-													"isOrBlock": true
-												},
-												{
-													"eventType": "comment",
-													"text": "Move up and down"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 683294987867953,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "2"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 726994732881349,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "3"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "setValue",
-															"sid": 395092359522605,
-															"parameters": [
-																"CREATOR_part",
-																"\"offset_y\"",
-																"Functions.getValue(CREATOR_part, \"offset_y\")+(((CreatorButton.id%2)*2-1)*0.1)"
-															]
-														}
-													],
-													"sid": 194587662847825,
-													"disabled": true,
-													"isOrBlock": true
-												},
-												{
-													"eventType": "comment",
-													"text": "Shrink and grow"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 522579498777431,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "4"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 121291956305102,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "5"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "setValue",
-															"sid": 699898533328155,
-															"parameters": [
-																"CREATOR_part",
-																"\"scale\"",
-																"Functions.getValue(CREATOR_part, \"scale\")+(((CreatorButton.id%2)*2-1)*0.1)"
-															]
-														}
-													],
-													"sid": 819248996643375,
-													"disabled": true,
-													"isOrBlock": true
-												},
-												{
-													"eventType": "comment",
-													"text": "Rotate left and right"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 915932837358790,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "6"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 981236226991888,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "7"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "setValue",
-															"sid": 869453434623924,
-															"parameters": [
-																"CREATOR_part",
-																"\"rotation\"",
-																"Functions.getValue(CREATOR_part, \"rotation\")+(((CreatorButton.id%2)*2-1)*5)\n"
-															]
-														}
-													],
-													"sid": 798735176360004,
-													"disabled": true,
-													"isOrBlock": true
-												},
-												{
-													"eventType": "block",
-													"conditions": [],
-													"actions": [
-														{
-															"callFunction": "refreshProperties",
-															"sid": 819584291242433
-														}
-													],
-													"sid": 128319061107540,
-													"disabled": true
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"callFunction": "verifyProperties",
-													"sid": 556156772316645,
-													"parameters": [
-														"CREATOR_part"
-													]
-												},
-												{
-													"id": "destroy",
-													"objectClass": "CharacterCanvas",
-													"sid": 251538701802262
-												},
-												{
-													"callFunction": "createCharacter",
-													"sid": 860833076876834,
-													"parameters": [
-														"JSON.ToCompactString",
-														"\"Character\"",
-														"76",
-														"152",
-														"1",
-														"0"
-													]
-												}
-											],
-											"sid": 616727491855686,
-											"disabled": true
-										}
-									]
+									"sid": 372836925892684
 								}
 							],
 							"isOrBlock": true
@@ -3666,383 +3306,516 @@
 										{
 											"id": "compare-opacity",
 											"objectClass": "CreatorButton",
-											"sid": 521436250764804,
+											"sid": 942105897008384,
 											"parameters": {
 												"comparison": 5,
 												"opacity": "100"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 805544582118667,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"property\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 117438589691589,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "every-x-seconds",
+													"objectClass": "System",
+													"sid": 410212670338115,
+													"parameters": {
+														"interval-seconds": "0.15"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "modifyProperty",
+													"sid": 340523078572506,
+													"parameters": [
+														"CreatorButton.UID"
+													]
+												}
+											],
+											"sid": 209985078372963
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-touching-object",
+									"objectClass": "Touch",
+									"sid": 252943507395014,
+									"parameters": {
+										"object": "CreatorButton"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 707455467195389,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-opacity",
+											"objectClass": "CreatorButton",
+											"sid": 735597714919729,
+											"parameters": {
+												"comparison": 5,
+												"opacity": "100"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 884437996594301,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"property\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 787890825417662,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "every-x-seconds",
+													"objectClass": "System",
+													"sid": 923975199015849,
+													"parameters": {
+														"interval-seconds": "0.15"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "modifyProperty",
+													"sid": 578609383125691,
+													"parameters": [
+														"CreatorButton.UID"
+													]
+												}
+											],
+											"sid": 650026196125461
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"functionName": "modifyProperty",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "id",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 519976949759274
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "CreatorButton",
+							"sid": 423225024710486,
+							"parameters": {
+								"unique-id": "id"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 398621232151917,
+							"parameters": {
+								"audio-file": "select",
+								"loop": "not-looping",
+								"volume": "-20",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 259615198072419,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Part button"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "CreatorButton",
+									"sid": 439919307496010,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"part\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 403402936640901,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Delete an optional part"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 276554688117318,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 2,
+												"value": "0"
 											}
 										}
 									],
 									"actions": [
 										{
-											"id": "play",
-											"objectClass": "Audio",
-											"sid": 714175323209897,
+											"id": "delete-key",
+											"objectClass": "JSON",
+											"sid": 625687394217416,
 											"parameters": {
-												"audio-file": "select",
-												"loop": "not-looping",
-												"volume": "-20",
-												"stereo-pan": "0",
-												"tag-optional": "\"\""
+												"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part"
 											}
 										}
 									],
-									"sid": 936207752343109,
+									"sid": 295889086583094
+								},
+								{
+									"eventType": "comment",
+									"text": "Update part asset ID, create optional part if it doesn't exist"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 297407926175678
+										}
+									],
+									"actions": [
+										{
+											"id": "set-value",
+											"objectClass": "JSON",
+											"sid": 264597762952490,
+											"parameters": {
+												"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part&\".asset_id\"",
+												"value": "CreatorButton.id"
+											}
+										}
+									],
+									"sid": 579511532832839,
 									"children": [
 										{
-											"eventType": "comment",
-											"text": "Part button"
-										},
-										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-instance-variable",
-													"objectClass": "CreatorButton",
-													"sid": 210432913570140,
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 288093121081788,
 													"parameters": {
-														"instance-variable": "type",
+														"variable": "CREATOR_part",
 														"comparison": 0,
-														"value": "\"part\""
+														"value": "\"hair\""
 													}
-												}
-											],
-											"actions": [],
-											"sid": 981801097465702,
-											"children": [
-												{
-													"eventType": "comment",
-													"text": "Delete an optional part"
 												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 651354692018986,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 2,
-																"value": "0"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "delete-key",
-															"objectClass": "JSON",
-															"sid": 890230222784142,
-															"parameters": {
-																"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part"
-															}
-														}
-													],
-													"sid": 100891804010840
-												},
-												{
-													"eventType": "comment",
-													"text": "Update part asset ID, create optional part if it doesn't exist"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 280679030921669
-														}
-													],
-													"actions": [
-														{
-															"id": "set-value",
-															"objectClass": "JSON",
-															"sid": 282089735890088,
-															"parameters": {
-																"path": "\"character_data.\"&Parts.At(Parts.IndexOf(CREATOR_part), 1)&\".\"&CREATOR_part&\".asset_id\"",
-																"value": "CreatorButton.id"
-															}
-														}
-													],
-													"sid": 451711590384265,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "compare-eventvar",
-																	"objectClass": "System",
-																	"sid": 686761751487225,
-																	"parameters": {
-																		"variable": "CREATOR_part",
-																		"comparison": 0,
-																		"value": "\"hair\""
-																	}
-																},
-																{
-																	"id": "compare-instance-variable",
-																	"objectClass": "CreatorButton",
-																	"sid": 303382112836243,
-																	"parameters": {
-																		"instance-variable": "id",
-																		"comparison": 0,
-																		"value": "0"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"id": "set-value",
-																	"objectClass": "JSON",
-																	"sid": 985638266100554,
-																	"parameters": {
-																		"path": "\"character_data.info.hair_color\"",
-																		"value": "\"bald\""
-																	}
-																}
-															],
-															"sid": 285156813593527
-														}
-													]
-												}
-											]
-										},
-										{
-											"eventType": "comment",
-											"text": "Property button"
-										},
-										{
-											"eventType": "block",
-											"conditions": [
 												{
 													"id": "compare-instance-variable",
 													"objectClass": "CreatorButton",
-													"sid": 346728370347159,
+													"sid": 123576388231936,
 													"parameters": {
-														"instance-variable": "type",
+														"instance-variable": "id",
 														"comparison": 0,
-														"value": "\"property\""
+														"value": "0"
 													}
 												}
 											],
-											"actions": [],
-											"sid": 750902624194267,
-											"children": [
-												{
-													"eventType": "comment",
-													"text": "Move left and right"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 718276430023347,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "0"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 251373715538297,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "1"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "setValue",
-															"sid": 427896706584883,
-															"parameters": [
-																"CREATOR_part",
-																"\"offset_x\"",
-																"Functions.getValue(CREATOR_part, \"offset_x\")+(((CreatorButton.id%2)*2-1)*0.1)"
-															]
-														}
-													],
-													"sid": 400708487987552,
-													"isOrBlock": true
-												},
-												{
-													"eventType": "comment",
-													"text": "Move up and down"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 788796050874431,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "2"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 818770933898046,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "3"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "setValue",
-															"sid": 481621889022913,
-															"parameters": [
-																"CREATOR_part",
-																"\"offset_y\"",
-																"Functions.getValue(CREATOR_part, \"offset_y\")+(((CreatorButton.id%2)*2-1)*0.1)"
-															]
-														}
-													],
-													"sid": 399416851572529,
-													"isOrBlock": true
-												},
-												{
-													"eventType": "comment",
-													"text": "Shrink and grow"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 510854186766334,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "4"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 296991205929443,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "5"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "setValue",
-															"sid": 386119493852290,
-															"parameters": [
-																"CREATOR_part",
-																"\"scale\"",
-																"Functions.getValue(CREATOR_part, \"scale\")+(((CreatorButton.id%2)*2-1)*0.1)"
-															]
-														}
-													],
-													"sid": 275539873277797,
-													"isOrBlock": true
-												},
-												{
-													"eventType": "comment",
-													"text": "Rotate left and right"
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 433197071445432,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "6"
-															}
-														},
-														{
-															"id": "compare-instance-variable",
-															"objectClass": "CreatorButton",
-															"sid": 785727259782238,
-															"parameters": {
-																"instance-variable": "id",
-																"comparison": 0,
-																"value": "7"
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "setValue",
-															"sid": 628203877401388,
-															"parameters": [
-																"CREATOR_part",
-																"\"rotation\"",
-																"Functions.getValue(CREATOR_part, \"rotation\")+(((CreatorButton.id%2)*2-1)*5)\n"
-															]
-														}
-													],
-													"sid": 835967750565752,
-													"isOrBlock": true
-												},
-												{
-													"eventType": "block",
-													"conditions": [],
-													"actions": [
-														{
-															"callFunction": "refreshProperties",
-															"sid": 235531568780090
-														}
-													],
-													"sid": 816078596437080
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [],
 											"actions": [
 												{
-													"callFunction": "verifyProperties",
-													"sid": 310846213227619,
-													"parameters": [
-														"CREATOR_part"
-													]
-												},
-												{
-													"id": "destroy",
-													"objectClass": "CharacterCanvas",
-													"sid": 883281675711144
-												},
-												{
-													"callFunction": "createCharacter",
-													"sid": 175702180886641,
-													"parameters": [
-														"JSON.ToCompactString",
-														"\"Character\"",
-														"76",
-														"152",
-														"1",
-														"0"
-													]
+													"id": "set-value",
+													"objectClass": "JSON",
+													"sid": 432488596733235,
+													"parameters": {
+														"path": "\"character_data.info.hair_color\"",
+														"value": "\"bald\""
+													}
 												}
 											],
-											"sid": 330540614715579
+											"sid": 904273531341032
 										}
 									]
 								}
 							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Property button"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "CreatorButton",
+									"sid": 413034623088032,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"property\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 864705214553916,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Move left and right"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 485468408884934,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "0"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 417065028334925,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 588994137208335,
+											"parameters": [
+												"CREATOR_part",
+												"\"offset_x\"",
+												"Functions.getValue(CREATOR_part, \"offset_x\")+(((CreatorButton.id%2)*2-1)*0.1)"
+											]
+										}
+									],
+									"sid": 634916296444508,
+									"isOrBlock": true
+								},
+								{
+									"eventType": "comment",
+									"text": "Move up and down"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 808112367640685,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "2"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 344310133372274,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "3"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 856266765681601,
+											"parameters": [
+												"CREATOR_part",
+												"\"offset_y\"",
+												"Functions.getValue(CREATOR_part, \"offset_y\")+(((CreatorButton.id%2)*2-1)*0.1)"
+											]
+										}
+									],
+									"sid": 512844053928332,
+									"isOrBlock": true
+								},
+								{
+									"eventType": "comment",
+									"text": "Shrink and grow"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 430821018883010,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "4"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 325616718619463,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "5"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 218950702627520,
+											"parameters": [
+												"CREATOR_part",
+												"\"scale\"",
+												"Functions.getValue(CREATOR_part, \"scale\")+(((CreatorButton.id%2)*2-1)*0.1)"
+											]
+										}
+									],
+									"sid": 623981495944486,
+									"isOrBlock": true
+								},
+								{
+									"eventType": "comment",
+									"text": "Rotate left and right"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 345300262661570,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "6"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorButton",
+											"sid": 465682840989421,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "7"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "setValue",
+											"sid": 125849602426253,
+											"parameters": [
+												"CREATOR_part",
+												"\"rotation\"",
+												"Functions.getValue(CREATOR_part, \"rotation\")+(((CreatorButton.id%2)*2-1)*5)\n"
+											]
+										}
+									],
+									"sid": 977392029686676,
+									"isOrBlock": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"callFunction": "refreshProperties",
+											"sid": 488758858757184
+										}
+									],
+									"sid": 230993966290596
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "verifyProperties",
+									"sid": 708779946322050,
+									"parameters": [
+										"CREATOR_part"
+									]
+								},
+								{
+									"id": "destroy",
+									"objectClass": "CharacterCanvas",
+									"sid": 118975255674071
+								},
+								{
+									"callFunction": "createCharacter",
+									"sid": 594807417118594,
+									"parameters": [
+										"JSON.ToCompactString",
+										"\"Character\"",
+										"76",
+										"152",
+										"1",
+										"0"
+									]
+								}
+							],
+							"sid": 560036663160788
 						}
 					]
 				},
@@ -5092,10 +4865,16 @@
 											],
 											"actions": [
 												{
-													"callFunction": "error",
-													"sid": 653162804839789,
-													"parameters": [
-														"\"You must log in to perform this action.\""
+													"type": "script",
+													"language": "typescript",
+													"script": [
+														"if (await isLoggedIn() === false) {",
+														"  // Not logged in",
+														"  runtime.callFunction(\"error\", \"You must be logged in to perform this action\");",
+														"} else if (await hasCharacter() === true) {",
+														"  // Maximum amount of characters",
+														"  runtime.callFunction(\"error\", \"You have already uploaded a character\");",
+														"}"
 													]
 												}
 											],
@@ -5186,6 +4965,7 @@
 									"script": [
 										"const json_object = runtime.objects.JSON.getFirstInstance();",
 										"if (!json_object) return;",
+										"",
 										"uploadCharacter(json_object.getJsonDataCopy());"
 									]
 								}

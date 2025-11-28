@@ -2331,7 +2331,7 @@
 									"parameters": {
 										"which": "own",
 										"comparison": 0,
-										"count": "Self.totalParts"
+										"count": "Self.total"
 									}
 								}
 							],
@@ -3343,7 +3343,7 @@
 												"const button_object = runtime.objects.CardButton.getFirstPickedInstance();",
 												"if (!button_object) return;",
 												"",
-												"if (await isLoggedIn() === true) {",
+												"if (await isLoggedIn() === true && await hasCharacter() === false) {",
 												"  button_object.opacity = 1;",
 												"} else {",
 												"  button_object.opacity = 0.5;",
