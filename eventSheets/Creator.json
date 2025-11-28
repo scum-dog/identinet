@@ -3579,6 +3579,47 @@
 												}
 											],
 											"sid": 904273531341032
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 288093121081789,
+													"parameters": {
+														"variable": "CREATOR_part",
+														"comparison": 0,
+														"value": "\"hair\""
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CreatorButton",
+													"sid": 123576388231937,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 1,
+														"value": "0"
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"language": "typescript",
+													"script": [
+														"const json_object = runtime.objects.JSON.getFirstInstance();",
+														"if (!json_object) return;",
+														"",
+														"const previousHairColor = json_object.getJsonDataCopy().character_data?.info?.hair_color;",
+														"if (previousHairColor === \"bald\") {",
+														"  setJSONValue(json_object, \"character_data.info.hair_color\", \"black\");",
+														"}"
+													]
+												}
+											],
+											"sid": 904273531341033
 										}
 									]
 								}
@@ -4328,8 +4369,7 @@
 												"    json_object,",
 												"    \"character_data.info.hair_color\",",
 												"  );",
-												"  const isBald =",
-												"    Number(currentHairAssetId) === 0 || currentHairColor === \"bald\";",
+												"  const isBald = Number(currentHairAssetId) === 0;",
 												"",
 												"  if (isBald) {",
 												"    return { bald: hair_colors.bald.label };",
@@ -4469,8 +4509,7 @@
 										"    json_object,",
 										"    \"character_data.info.hair_color\",",
 										"  );",
-										"  const wasBald =",
-										"    Number(currentHairAssetId) === 0 || currentHairColor === \"bald\";",
+										"  const wasBald = Number(currentHairAssetId) === 0;",
 										"  const willBeBald = value === \"bald\";",
 										"",
 										"  if (wasBald && !willBeBald && value !== \"bald\") {",
