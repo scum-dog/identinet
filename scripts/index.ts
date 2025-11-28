@@ -114,6 +114,31 @@ export {
   preventTab,
 } from "./base/utils.js";
 
+/**
+ * display server error to user via C3 event system
+ * @param errorText - the error message from the server
+ * @param statusCode - HTTP status code from the server response
+ */
+export function displayServerError(
+  errorText: string,
+  statusCode: number,
+): void {
+  const userMessage = errorText || "Unknown error";
+
+  const lastErrorStatusCode: number = statusCode;
+  const lastErrorText: string = errorText;
+  const lastErrorUserMessage = userMessage;
+
+  console.error(`Upload failed - Status: ${statusCode}, Error: ${errorText}`);
+
+  if (RUNTIME && RUNTIME.signal) {
+    RUNTIME.signal("serverErrorOccurred");
+  }
+
+  // delete this once youre done implementing the menu for it
+  alert(`Upload failed: ${userMessage}`);
+}
+
 // admin
 export {
   listAllCharacters,
@@ -238,11 +263,14 @@ export const IdentikitAPI = {
 
 export default IdentikitAPI;
 
+let RUNTIME: any;
+
 declare function runOnStartup(
   callback: (runtime: any) => void | Promise<void>,
 ): void;
 
 runOnStartup(async (runtime: any) => {
+  RUNTIME = runtime;
   runtime.addEventListener("beforeprojectstart", () =>
     OnBeforeProjectStart(runtime),
   );

@@ -314,3 +314,7 @@ export const CHARACTER_NAME_REGEX =
   /^(?=.*[A-Za-z])[A-Za-z]+(?:\.[A-Za-z])*(?:\. [A-Za-z]+|[A-Za-z]\. [A-Za-z]+|[' -][A-Za-z]+)*$/;
 export const CHARACTER_NAME_ERROR_MESSAGE =
   "Name must start with a letter, contain only letters/spaces/hyphens/apostrophes/periods, and have no consecutive punctuation or leading/trailing spaces";
+
+export const TOKEN_STORAGE_KEY = "identikit_auth_token";
+export const TOKEN_TIMESTAMP_KEY = "identikit_auth_timestamp";
+export const TOKEN_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 1 week

@@ -4,8 +4,14 @@ import {
   ErrorResponse,
   RequestOptions,
 } from "./types.js";
+import {
+  TOKEN_STORAGE_KEY,
+  TOKEN_TIMESTAMP_KEY,
+  TOKEN_MAX_AGE,
+} from "./constants.js";
 
-let RUNTIME: IRuntime;
+let RUNTIME: any;
+
 runOnStartup(async (runtime) => {
   RUNTIME = runtime;
 });
@@ -20,10 +26,6 @@ let config: ApiConfig = {
 
 let authToken: string | null = null;
 let isInitialized = false;
-
-const TOKEN_STORAGE_KEY = "identikit_auth_token";
-const TOKEN_TIMESTAMP_KEY = "identikit_auth_timestamp";
-const TOKEN_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
 
 type AuthStateListener = (
   isAuthenticated: boolean,
@@ -234,10 +236,23 @@ export async function apiRequest<T = any>(
     }
 
     if (!response.ok) {
+      let errorMessage: string;
+      if (typeof responseData.error === "string") {
+        errorMessage = responseData.error;
+      } else if (responseData.error && typeof responseData.error === "object") {
+        errorMessage =
+          responseData.error.message ||
+          responseData.error.toString() ||
+          "Server error";
+      } else {
+        errorMessage = `HTTP ${response.status}`;
+      }
+
       const errorResponse: ErrorResponse = {
-        error: responseData.error || `HTTP ${response.status}`,
+        error: errorMessage,
         message: responseData.message || response.statusText,
         details: responseData,
+        statusCode: response.status,
       };
 
       if (response.status === 401) {
@@ -250,6 +265,7 @@ export async function apiRequest<T = any>(
         success: false,
         error: errorResponse.error,
         message: errorResponse.message,
+        statusCode: errorResponse.statusCode,
       };
     }
 

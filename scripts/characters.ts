@@ -8,6 +8,7 @@ import {
 } from "./base/types.js";
 import { CHARACTER_NAME_ERROR_MESSAGE } from "./base/constants.js";
 import { isValidCountry, validateCharacterName } from "./base/utils.js";
+import { displayServerError } from "./index.js";
 
 /**
  * get the current user's character data
@@ -28,7 +29,13 @@ export async function getUserCharacter(): Promise<
 export async function uploadCharacter(
   characterData: CharacterDataStructure,
 ): Promise<ApiResponse<{ message: string; jobId: string; status: string }>> {
-  return post("/characters", characterData);
+  const response = await post("/characters", characterData);
+
+  if (!response.success && response.statusCode) {
+    displayServerError(response.error || "Upload failed", response.statusCode);
+  }
+
+  return response;
 }
 
 /**
@@ -40,9 +47,15 @@ export async function uploadCharacter(
 export async function updateUserCharacter(
   characterData: CharacterDataStructure,
 ): Promise<ApiResponse<{ message: string; jobId: string; status: string }>> {
-  return put("/characters/me", {
+  const response = await put("/characters/me", {
     character_data: characterData,
   });
+
+  if (!response.success && response.statusCode) {
+    displayServerError(response.error || "Update failed", response.statusCode);
+  }
+
+  return response;
 }
 
 /**
