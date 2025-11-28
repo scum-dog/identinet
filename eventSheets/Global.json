@@ -2024,7 +2024,7 @@
 								"if (\"eyes\" in data.character_data.placeable_movable) movableCount += 1;",
 								"if (\"eyebrows\" in data.character_data.placeable_movable) movableCount += 1;",
 								"",
-								"head_object.instVars.totalParts = (staticCount + movableCount);"
+								"head_object.instVars.total = (staticCount + movableCount);"
 							]
 						}
 					],
