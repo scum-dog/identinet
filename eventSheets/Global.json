@@ -2350,6 +2350,14 @@
 									}
 								},
 								{
+									"id": "set-visible",
+									"objectClass": "CharacterCanvas",
+									"sid": 603702565067936,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								},
+								{
 									"id": "set-size",
 									"objectClass": "CharacterCanvas",
 									"sid": 753887314462480,
@@ -2440,6 +2448,14 @@
 											"id": "wait-for-previous-actions",
 											"objectClass": "System",
 											"sid": 676273076734030
+										},
+										{
+											"id": "set-visible",
+											"objectClass": "CharacterCanvas",
+											"sid": 293346325721548,
+											"parameters": {
+												"visibility": "visible"
+											}
 										},
 										{
 											"id": "destroy",
