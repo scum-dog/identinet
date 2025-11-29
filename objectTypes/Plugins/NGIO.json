@@ -6,11 +6,11 @@
 		"type": "NGIO",
 		"properties": {
 			"game-version": "1.0.0",
-			"appID": "60991:0bnKdK5C",
-			"aesKey": "XjgyZnXIqsssR8ny7XRF6A==",
+			"appID": "61151:lqxhsYpe",
+			"aesKey": "SK0lcbQ5unYJPzI++49wpQ==",
 			"checkHostLicense": false,
 			"autoLogNewView": false,
-			"native-notifications": true,
+			"native-notifications": false,
 			"native-suspend": false,
 			"prevent-default": false
 		},

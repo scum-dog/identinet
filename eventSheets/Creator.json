@@ -15,7 +15,7 @@
 			"eventType": "variable",
 			"name": "CREATOR_part",
 			"type": "string",
-			"initialValue": "hair",
+			"initialValue": "head",
 			"comment": "The part we currently have selected",
 			"isStatic": false,
 			"isConstant": false,
@@ -1027,26 +1027,24 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "on-object-clicked",
+									"id": "mouse-button-is-down",
 									"objectClass": "Mouse",
-									"sid": 603577322609916,
+									"sid": 897778707259319,
 									"parameters": {
-										"mouse-button": "left",
-										"click-type": "clicked",
-										"object-clicked": "CreatorPageButton"
+										"mouse-button": "left"
 									}
 								},
 								{
-									"id": "on-tap-object",
-									"objectClass": "Touch",
-									"sid": 232135254336777,
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 945379792275366,
 									"parameters": {
 										"object": "CreatorPageButton"
 									}
 								}
 							],
 							"actions": [],
-							"sid": 304612547228304,
+							"sid": 542907593857821,
 							"children": [
 								{
 									"eventType": "block",
@@ -1054,10 +1052,18 @@
 										{
 											"id": "compare-opacity",
 											"objectClass": "CreatorPageButton",
-											"sid": 870140936398873,
+											"sid": 624875282845135,
 											"parameters": {
 												"comparison": 5,
 												"opacity": "100"
+											}
+										},
+										{
+											"id": "every-x-seconds",
+											"objectClass": "System",
+											"sid": 860042284672565,
+											"parameters": {
+												"interval-seconds": "0.15"
 											}
 										}
 									],
@@ -1065,7 +1071,7 @@
 										{
 											"id": "play",
 											"objectClass": "Audio",
-											"sid": 322456577423612,
+											"sid": 241472517151823,
 											"parameters": {
 												"audio-file": "select",
 												"loop": "not-looping",
@@ -1073,83 +1079,167 @@
 												"stereo-pan": "0",
 												"tag-optional": "\"\""
 											}
+										},
+										{
+											"callFunction": "changeOffset",
+											"sid": 291724004013970,
+											"parameters": [
+												"CreatorPageButton.id"
+											]
 										}
 									],
-									"sid": 100406095535457,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "CreatorPageButton",
-													"sid": 449649357713359,
-													"parameters": {
-														"instance-variable": "id",
-														"comparison": 0,
-														"value": "\"left\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "subtract-from-eventvar",
-													"objectClass": "System",
-													"sid": 171777824462540,
-													"parameters": {
-														"variable": "CREATOR_offset",
-														"value": "1"
-													}
-												}
-											],
-											"sid": 425203788190822
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "CreatorPageButton",
-													"sid": 494973874481743,
-													"parameters": {
-														"instance-variable": "id",
-														"comparison": 0,
-														"value": "\"right\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "add-to-eventvar",
-													"objectClass": "System",
-													"sid": 773335307056425,
-													"parameters": {
-														"variable": "CREATOR_offset",
-														"value": "1"
-													}
-												}
-											],
-											"sid": 225369035619833
-										},
-										{
-											"eventType": "comment",
-											"text": "Update the menu"
-										},
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"callFunction": "updateCreatorMenu",
-													"sid": 756027746629830
-												}
-											],
-											"sid": 480538614030970
-										}
-									]
+									"sid": 193062505227592
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-touching-object",
+									"objectClass": "Touch",
+									"sid": 444661354285774,
+									"parameters": {
+										"object": "CreatorPageButton"
+									}
 								}
 							],
-							"isOrBlock": true
+							"actions": [],
+							"sid": 362092875250807,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-opacity",
+											"objectClass": "CreatorPageButton",
+											"sid": 115128697152713,
+											"parameters": {
+												"comparison": 5,
+												"opacity": "100"
+											}
+										},
+										{
+											"id": "every-x-seconds",
+											"objectClass": "System",
+											"sid": 399147547028311,
+											"parameters": {
+												"interval-seconds": "0.15"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 879245126335222,
+											"parameters": {
+												"audio-file": "select",
+												"loop": "not-looping",
+												"volume": "-20",
+												"stereo-pan": "0",
+												"tag-optional": "\"\""
+											}
+										},
+										{
+											"callFunction": "changeOffset",
+											"sid": 347113611204432,
+											"parameters": [
+												"CreatorPageButton.id"
+											]
+										}
+									],
+									"sid": 174209992219632
+								}
+							]
+						}
+					]
+				},
+				{
+					"functionName": "changeOffset",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "direction",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 827469345882242
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 359550765378229,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 664196716527050,
+									"parameters": {
+										"variable": "direction",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "subtract-from-eventvar",
+									"objectClass": "System",
+									"sid": 976843424328366,
+									"parameters": {
+										"variable": "CREATOR_offset",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 342252510015643
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 680862115696616,
+									"parameters": {
+										"variable": "direction",
+										"comparison": 0,
+										"value": "\"right\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 601867984702383,
+									"parameters": {
+										"variable": "CREATOR_offset",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 460077373639995
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "updateCreatorMenu",
+									"sid": 987225496494178
+								}
+							],
+							"sid": 610123931573630
 						}
 					]
 				},

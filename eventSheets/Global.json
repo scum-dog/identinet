@@ -57,7 +57,7 @@
 			"eventType": "variable",
 			"name": "GAME_online",
 			"type": "boolean",
-			"initialValue": "true",
+			"initialValue": "false",
 			"comment": "Are we 'online'?",
 			"isStatic": false,
 			"isConstant": false,
@@ -2444,7 +2444,7 @@
 										{
 											"id": "destroy",
 											"objectClass": "CharacterHead",
-											"sid": 844495436424535
+											"sid": 464605153403386
 										}
 									],
 									"sid": 899663690830825
