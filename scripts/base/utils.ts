@@ -9,6 +9,7 @@ import {
   CHARACTER_NAME_MAX_LENGTH,
   CHARACTER_NAME_REGEX,
   CHARACTER_NAME_ERROR_MESSAGE,
+  BANNED_WORDS,
 } from "./constants.js";
 
 import type { Country } from "./types";
@@ -325,4 +326,31 @@ export function handleRaceMutualExclusivity(
  */
 export function preventTab(e: KeyboardEvent) {
   if (e.key === "Tab") e.preventDefault();
+}
+
+/**
+ * sanitize character name by replacing profanities with asterisks
+ * @param name - character name to sanitize
+ * @returns sanitized name
+ */
+export function sanitizeCharacterName(name: string): string {
+  if (!name || typeof name !== "string") {
+    return "";
+  }
+
+  let sanitized = name;
+
+  for (const bannedWord of BANNED_WORDS) {
+    const regexPattern = bannedWord
+      .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+      .replace(/\\\*/g, ".*");
+
+    const regex = new RegExp(`\\b${regexPattern}\\b`, "gi");
+
+    sanitized = sanitized.replace(regex, (match) => {
+      return "*".repeat(match.length);
+    });
+  }
+
+  return sanitized;
 }

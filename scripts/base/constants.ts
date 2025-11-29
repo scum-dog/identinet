@@ -318,3 +318,22 @@ export const CHARACTER_NAME_ERROR_MESSAGE =
 export const TOKEN_STORAGE_KEY = "identikit_auth_token";
 export const TOKEN_TIMESTAMP_KEY = "identikit_auth_timestamp";
 export const TOKEN_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 1 week
+
+// can also add asterisks to words to act as wildcards
+// "L*NE" would catch LANE, LINE, LONE etc.
+export const BANNED_WORDS = [
+  "rape",
+  "die",
+  "kill",
+  "dox",
+  "doxx",
+  "nigg",
+  "nigga",
+  "nigger",
+  "fag",
+  "faggot",
+  "tranny",
+  "trannie",
+  "troon",
+  "kike",
+] as const;
