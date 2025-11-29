@@ -1,10 +1,25 @@
 {
-	"name": "PlazaButton",
+	"name": "CreatorButton2",
 	"plugin-id": "Sprite",
-	"sid": 670813215845825,
+	"sid": 672922435551807,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
-	"instanceVariables": [],
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 133570917443632
+		},
+		{
+			"name": "type",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 200126135953605
+		}
+	],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
@@ -12,21 +27,21 @@
 			{
 				"frames": [
 					{
-						"width": 36,
-						"height": 36,
+						"width": 60,
+						"height": 70,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 9670287,
+						"imageSpriteId": 3209041,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 676630554902034,
+				"sid": 670187735555865,
 				"name": "default",
 				"isLooping": false,
 				"isPingPong": false,
@@ -37,21 +52,21 @@
 			{
 				"frames": [
 					{
-						"width": 36,
-						"height": 36,
+						"width": 60,
+						"height": 70,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 2248570,
+						"imageSpriteId": 4176070,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 220318273777597,
+				"sid": 960684363407613,
 				"name": "selected",
 				"isLooping": false,
 				"isPingPong": false,

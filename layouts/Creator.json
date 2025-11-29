@@ -137,6 +137,7 @@
 					"sid": 723371250437325,
 					"tags": "",
 					"instanceVariables": {
+						"parentType": "",
 						"parent": 0,
 						"total": 0
 					},

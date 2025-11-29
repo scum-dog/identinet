@@ -173,10 +173,7 @@
 	],
 	"uniqueId": "pjmdeerwb34",
 	"objectTypes": {
-		"items": [
-			"Sprite",
-			"Audio"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -199,7 +196,8 @@
 					"Date",
 					"JSON",
 					"LocalStorage",
-					"SavedCharacters"
+					"SavedCharacters",
+					"Audio"
 				],
 				"subfolders": [],
 				"name": "Plugins"
@@ -220,7 +218,8 @@
 					"NavButton",
 					"LoginBackground",
 					"LoginButton",
-					"ButtonIcon"
+					"ButtonIcon",
+					"Fade"
 				],
 				"subfolders": [],
 				"name": "General"
@@ -238,7 +237,7 @@
 			{
 				"items": [
 					"PlazaBackground",
-					"PlazaButton"
+					"CreatorButton2"
 				],
 				"subfolders": [],
 				"name": "Plaza"

@@ -6,6 +6,13 @@
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [
 		{
+			"name": "parentType",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 375058783087233
+		},
+		{
 			"name": "parent",
 			"type": "number",
 			"desc": "",

@@ -112,6 +112,7 @@
 						"76",
 						"152",
 						"1",
+						"\"\"",
 						"0"
 					]
 				}
@@ -1884,9 +1885,9 @@
 														{
 															"id": "set-text",
 															"objectClass": "Text",
-															"sid": 982631505079916,
+															"sid": 901899893798142,
 															"parameters": {
-																"text": "\"Page \"&CREATOR_offset+1&\" of \"&ceil(total/12)"
+																"text": "\"Page \"&CREATOR_offset+1&\" of \"&ceil(total/CREATOR_maxPerPage)"
 															}
 														}
 													],
@@ -1968,11 +1969,11 @@
 																{
 																	"id": "compare-eventvar",
 																	"objectClass": "System",
-																	"sid": 944089358585757,
+																	"sid": 373538501243693,
 																	"parameters": {
 																		"variable": "CREATOR_offset",
 																		"comparison": 2,
-																		"value": "ceil(total/12)-1"
+																		"value": "ceil(total/CREATOR_maxPerPage)-1"
 																	}
 																}
 															],
@@ -3942,6 +3943,7 @@
 										"76",
 										"152",
 										"1",
+										"\"\"",
 										"0"
 									]
 								}

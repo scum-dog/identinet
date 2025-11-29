@@ -7,9 +7,8 @@
 	"effectTypes": [],
 	"members": [
 		"NavBar",
-		"PlazaButton",
 		"NavButton",
 		"LoginBackground",
-		"Sprite"
+		"Fade"
 	]
 }

@@ -1939,6 +1939,13 @@
 							"sid": 223414682603978
 						},
 						{
+							"name": "parentType",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 369231945898226
+						},
+						{
 							"name": "parent",
 							"type": "number",
 							"initialValue": "0",
@@ -1998,7 +2005,16 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "CharacterHead",
-							"sid": 584799249623038,
+							"sid": 472736640122848,
+							"parameters": {
+								"instance-variable": "parentType",
+								"value": "parentType"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "CharacterHead",
+							"sid": 178901387898454,
 							"parameters": {
 								"instance-variable": "parent",
 								"value": "parent"
@@ -2358,9 +2374,19 @@
 									}
 								},
 								{
+									"id": "set-resolution-mode",
+									"objectClass": "CharacterCanvas",
+									"sid": 872241728695809,
+									"parameters": {
+										"mode": "fixed",
+										"fixed-width": "200*scale",
+										"fixed-height": "200*scale"
+									}
+								},
+								{
 									"id": "set-size",
 									"objectClass": "CharacterCanvas",
-									"sid": 753887314462480,
+									"sid": 683847208253258,
 									"parameters": {
 										"width": "200*scale",
 										"height": "200*scale"
@@ -2381,36 +2407,117 @@
 												"comparison": 4,
 												"value": "0"
 											}
+										}
+									],
+									"actions": [],
+									"sid": 172300034808656,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CharacterHead",
+													"sid": 752049117149623,
+													"parameters": {
+														"instance-variable": "parentType",
+														"comparison": 0,
+														"value": "\"card\""
+													}
+												},
+												{
+													"id": "pick-by-unique-id",
+													"objectClass": "Card",
+													"sid": 316122247412460,
+													"parameters": {
+														"unique-id": "CharacterHead.parent"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "add-child",
+													"objectClass": "Card",
+													"sid": 957218348944044,
+													"parameters": {
+														"child": "CharacterCanvas",
+														"transform-x": true,
+														"transform-y": true,
+														"transform-w": true,
+														"transform-h": true,
+														"transform-a": true,
+														"transform-o": true,
+														"transform-z-elevation": true,
+														"transform-visibility": true,
+														"destroy-with-parent": true
+													}
+												}
+											],
+											"sid": 306781336862721
 										},
 										{
-											"id": "pick-by-unique-id",
-											"objectClass": "Card",
-											"sid": 722124470381205,
-											"parameters": {
-												"unique-id": "CharacterHead.parent"
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "CharacterHead",
+													"sid": 946963165033386,
+													"parameters": {
+														"instance-variable": "parentType",
+														"comparison": 0,
+														"value": "\"list\""
+													}
+												},
+												{
+													"id": "pick-by-unique-id",
+													"objectClass": "CreatorButton2",
+													"sid": 623883727858577,
+													"parameters": {
+														"unique-id": "CharacterHead.parent"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-resolution-mode",
+													"objectClass": "CharacterCanvas",
+													"sid": 375823614163933,
+													"parameters": {
+														"mode": "fixed",
+														"fixed-width": "CreatorButton2.Width-2",
+														"fixed-height": "CreatorButton2.Height-2"
+													}
+												},
+												{
+													"id": "set-size",
+													"objectClass": "CharacterCanvas",
+													"sid": 391058520971961,
+													"parameters": {
+														"width": "CreatorButton2.Width-2",
+														"height": "CreatorButton2.Height-2"
+													}
+												},
+												{
+													"id": "add-child",
+													"objectClass": "CreatorButton2",
+													"sid": 539470513982294,
+													"parameters": {
+														"child": "CharacterCanvas",
+														"transform-x": true,
+														"transform-y": true,
+														"transform-w": true,
+														"transform-h": true,
+														"transform-a": true,
+														"transform-o": true,
+														"transform-z-elevation": true,
+														"transform-visibility": true,
+														"destroy-with-parent": true
+													}
+												}
+											],
+											"sid": 142977784439483
 										}
-									],
-									"actions": [
-										{
-											"id": "add-child",
-											"objectClass": "Card",
-											"sid": 761132047748120,
-											"parameters": {
-												"child": "CharacterCanvas",
-												"transform-x": true,
-												"transform-y": true,
-												"transform-w": true,
-												"transform-h": true,
-												"transform-a": true,
-												"transform-o": true,
-												"transform-z-elevation": true,
-												"transform-visibility": true,
-												"destroy-with-parent": true
-											}
-										}
-									],
-									"sid": 172300034808656
+									]
 								},
 								{
 									"eventType": "block",
@@ -2542,13 +2649,14 @@
 						},
 						{
 							"callFunction": "createCharacter",
-							"sid": 621060572888635,
+							"sid": 849333549412969,
 							"parameters": [
 								"data",
 								"layer",
 								"Card.ImagePointX(1)",
 								"Card.ImagePointY(1)",
 								"0.5",
+								"\"card\"",
 								"Card.UID"
 							]
 						}
@@ -3139,7 +3247,16 @@
 						},
 						{
 							"callFunction": "toggleLayer",
-							"sid": 607764656991374,
+							"sid": 989250194586645,
+							"parameters": [
+								"\"List\"",
+								false,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 528933710111639,
 							"parameters": [
 								"\"Buttons\"",
 								false,
@@ -3189,11 +3306,20 @@
 						},
 						{
 							"callFunction": "toggleLayer",
-							"sid": 480422381802037,
+							"sid": 856488732729302,
+							"parameters": [
+								"\"List\"",
+								false,
+								true
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 962466933594636,
 							"parameters": [
 								"\"Buttons\"",
 								false,
-								true
+								false
 							]
 						},
 						{
@@ -3589,7 +3715,8 @@
 							}
 						}
 					],
-					"sid": 290668956681584
+					"sid": 290668956681584,
+					"disabled": true
 				},
 				{
 					"eventType": "block",

@@ -6,71 +6,475 @@
 			"includeSheet": "Global"
 		},
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-start-of-layout",
-					"objectClass": "System",
-					"sid": 452559337657283
-				}
-			],
-			"actions": [
-				{
-					"id": "scroll-to-position",
-					"objectClass": "System",
-					"sid": 524594682351745,
-					"parameters": {
-						"x": "LayoutWidth/2",
-						"y": "LayoutHeight/2"
-					}
-				}
-			],
-			"sid": 108488389426900
+			"eventType": "variable",
+			"name": "PLAZA_offset",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Offset, which will be multiplied by max entries per page",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 296670932321572
+		},
+		{
+			"eventType": "variable",
+			"name": "PLAZA_maxPerPage",
+			"type": "number",
+			"initialValue": "8",
+			"comment": "Max entries per page",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 232394668386598
 		},
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Scrolling",
+			"title": "Plaza - Unused",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "variable",
-					"name": "mouseOldX",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "",
-					"isStatic": true,
-					"isConstant": false,
-					"sid": 711956314382606
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 749071384163903
+						}
+					],
+					"actions": [
+						{
+							"id": "scroll-to-position",
+							"objectClass": "System",
+							"sid": 515637258699828,
+							"parameters": {
+								"x": "LayoutWidth/2",
+								"y": "LayoutHeight/2"
+							}
+						}
+					],
+					"sid": 627846378211785,
+					"disabled": true
 				},
 				{
-					"eventType": "variable",
-					"name": "mouseOldY",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "",
-					"isStatic": true,
-					"isConstant": false,
-					"sid": 665065107762481
-				},
-				{
-					"eventType": "variable",
-					"name": "scrolling",
-					"type": "boolean",
-					"initialValue": "false",
-					"comment": "",
-					"isStatic": true,
-					"isConstant": false,
-					"sid": 420098599979999
-				},
+					"eventType": "group",
+					"disabled": true,
+					"title": "Plaza - Scrolling",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "mouseOldX",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 497729006780033
+						},
+						{
+							"eventType": "variable",
+							"name": "mouseOldY",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 902121526998402
+						},
+						{
+							"eventType": "variable",
+							"name": "scrolling",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"isStatic": true,
+							"isConstant": false,
+							"sid": 417677559140705
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 488590945105519,
+									"parameters": {
+										"variable": "TRANSITION_running"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "NavButton",
+									"sid": 644213069997878,
+									"parameters": {
+										"animation": "\"default\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 881203458102253,
+							"disabled": true,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "We're not hovered over another object, so allow scrolling"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "cursor-is-over-object",
+											"objectClass": "Mouse",
+											"sid": 489840685432121,
+											"parameters": {
+												"object": "HUD"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-cursor-style2",
+											"objectClass": "Mouse",
+											"sid": 546222458673485,
+											"parameters": {
+												"cursor-style": "grab"
+											}
+										}
+									],
+									"sid": 543753226891034,
+									"disabled": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-click",
+													"objectClass": "Mouse",
+													"sid": 734133003331033,
+													"parameters": {
+														"mouse-button": "left",
+														"click-type": "clicked"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 100385745280773,
+													"parameters": {
+														"variable": "mouseOldX",
+														"value": "Mouse.X"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 753018594294155,
+													"parameters": {
+														"variable": "mouseOldY",
+														"value": "Mouse.Y"
+													}
+												},
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 781920883129971,
+													"parameters": {
+														"variable": "scrolling",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 781154375051194,
+											"disabled": true
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "We're hovered over another object, ignore"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 256652658768995
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 657027043940942,
+											"parameters": {
+												"variable": "scrolling"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [],
+									"sid": 182765333387630,
+									"disabled": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "Mouse",
+													"sid": 443088188055294,
+													"parameters": {
+														"object": "NavButton"
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "NavButton",
+													"sid": 388822009658399
+												}
+											],
+											"actions": [
+												{
+													"id": "set-cursor-style2",
+													"objectClass": "Mouse",
+													"sid": 605128216547067,
+													"parameters": {
+														"cursor-style": "pointer"
+													}
+												},
+												{
+													"id": "set-animation",
+													"objectClass": "NavButton",
+													"sid": 876625424662927,
+													"parameters": {
+														"animation": "\"selected\"",
+														"from": "beginning"
+													}
+												}
+											],
+											"sid": 724214257611336,
+											"disabled": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 841249057543256
+												}
+											],
+											"actions": [
+												{
+													"id": "set-cursor-style2",
+													"objectClass": "Mouse",
+													"sid": 414249592372907,
+													"parameters": {
+														"cursor-style": "pointer"
+													}
+												}
+											],
+											"sid": 855168280475072,
+											"disabled": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 103347165600990
+												},
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "Mouse",
+													"sid": 724543994897326,
+													"parameters": {
+														"object": "LoginButton"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-cursor-style2",
+													"objectClass": "Mouse",
+													"sid": 242091536747132,
+													"parameters": {
+														"cursor-style": "pointer"
+													}
+												}
+											],
+											"sid": 360368984867387,
+											"disabled": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 484968619062238
+												}
+											],
+											"actions": [
+												{
+													"id": "set-cursor-style2",
+													"objectClass": "Mouse",
+													"sid": 673263135145459,
+													"parameters": {
+														"cursor-style": "normal"
+													}
+												}
+											],
+											"sid": 698630305797989,
+											"disabled": true
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "If we're allowed to scroll, do it"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "mouse-button-is-down",
+											"objectClass": "Mouse",
+											"sid": 699836293695444,
+											"parameters": {
+												"mouse-button": "left"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 758912478584043,
+									"disabled": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 181156105677768,
+													"parameters": {
+														"variable": "scrolling"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "scroll",
+													"sid": 883782645552873
+												}
+											],
+											"sid": 167683549301014,
+											"disabled": true
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 198504751000287
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 811280649427341,
+											"parameters": {
+												"variable": "scrolling",
+												"value": "false"
+											}
+										}
+									],
+									"sid": 701553464492146,
+									"disabled": true
+								}
+							]
+						},
+						{
+							"functionName": "scroll",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "scroll-to-position",
+									"objectClass": "System",
+									"sid": 916646379216527,
+									"parameters": {
+										"x": "scrollx-(Mouse.X-mouseOldX)",
+										"y": "scrolly-(Mouse.Y-mouseOldY)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 949239528820657,
+									"parameters": {
+										"variable": "mouseOldX",
+										"value": "Mouse.X"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 972889064167383,
+									"parameters": {
+										"variable": "mouseOldY",
+										"value": "Mouse.Y"
+									}
+								},
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 670678301856805,
+									"parameters": {
+										"cursor-style": "grabbing"
+									}
+								}
+							],
+							"sid": 278214514609779,
+							"disabled": true
+						}
+					],
+					"sid": 688865955388071
+				}
+			],
+			"sid": 269593153103213
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Plaza - Selection",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
 							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 334835742689212,
+							"sid": 556420584388750,
 							"parameters": {
 								"variable": "TRANSITION_running"
 							},
@@ -81,7 +485,7 @@
 						{
 							"id": "set-animation",
 							"objectClass": "NavButton",
-							"sid": 696065420489016,
+							"sid": 298702420497270,
 							"parameters": {
 								"animation": "\"default\"",
 								"from": "beginning"
@@ -89,94 +493,101 @@
 						},
 						{
 							"id": "set-animation",
-							"objectClass": "PlazaButton",
-							"sid": 722328816320824,
+							"objectClass": "CreatorNavButton",
+							"sid": 366710257160103,
+							"parameters": {
+								"animation": "\"default\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "CreatorButton2",
+							"sid": 418245798801851,
+							"parameters": {
+								"animation": "\"default\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "CreatorPageButton",
+							"sid": 397123847817286,
 							"parameters": {
 								"animation": "\"default\"",
 								"from": "beginning"
 							}
 						}
 					],
-					"sid": 713041413504836,
+					"sid": 134108997573965,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "We're not hovered over another object, so allow scrolling"
-						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "cursor-is-over-object",
 									"objectClass": "Mouse",
-									"sid": 642414414798601,
+									"sid": 462534376892646,
 									"parameters": {
-										"object": "HUD"
-									},
-									"isInverted": true
+										"object": "CreatorNavButton"
+									}
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 650600479398261,
+									"parameters": {
+										"object": "CreatorButton2"
+									}
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 647706482397367,
+									"parameters": {
+										"object": "CreatorPageButton"
+									}
 								}
 							],
 							"actions": [
 								{
 									"id": "set-cursor-style2",
 									"objectClass": "Mouse",
-									"sid": 563848615721658,
+									"sid": 858805175338553,
 									"parameters": {
-										"cursor-style": "grab"
+										"cursor-style": "pointer"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "CreatorNavButton",
+									"sid": 763272491464828,
+									"parameters": {
+										"animation": "\"selected\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "CreatorButton2",
+									"sid": 387844582203715,
+									"parameters": {
+										"animation": "\"selected\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "CreatorPageButton",
+									"sid": 545047637712507,
+									"parameters": {
+										"animation": "\"selected\"",
+										"from": "beginning"
 									}
 								}
 							],
-							"sid": 599725708890573,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "on-click",
-											"objectClass": "Mouse",
-											"sid": 941799323211793,
-											"parameters": {
-												"mouse-button": "left",
-												"click-type": "clicked"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 151818726982636,
-											"parameters": {
-												"variable": "mouseOldX",
-												"value": "Mouse.X"
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 429020680566354,
-											"parameters": {
-												"variable": "mouseOldY",
-												"value": "Mouse.Y"
-											}
-										},
-										{
-											"id": "set-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 134359938862594,
-											"parameters": {
-												"variable": "scrolling",
-												"value": "true"
-											}
-										}
-									],
-									"sid": 571477744430632
-								}
-							]
-						},
-						{
-							"eventType": "comment",
-							"text": "We're hovered over another object, ignore"
+							"sid": 597442026935336,
+							"isOrBlock": true
 						},
 						{
 							"eventType": "block",
@@ -184,152 +595,237 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 771539171123210
+									"sid": 186073564018595
 								},
 								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 730785912360647,
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 929179409980038,
 									"parameters": {
-										"variable": "scrolling"
-									},
-									"isInverted": true
+										"object": "NavButton"
+									}
+								},
+								{
+									"id": "is-visible",
+									"objectClass": "NavButton",
+									"sid": 671908629826720
 								}
 							],
-							"actions": [],
-							"sid": 325570730390865,
-							"children": [
+							"actions": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "Mouse",
-											"sid": 317535095802960,
-											"parameters": {
-												"object": "NavButton"
-											}
-										},
-										{
-											"id": "is-visible",
-											"objectClass": "NavButton",
-											"sid": 603390798107786
-										}
-									],
-									"actions": [
-										{
-											"id": "set-cursor-style2",
-											"objectClass": "Mouse",
-											"sid": 411269489531773,
-											"parameters": {
-												"cursor-style": "pointer"
-											}
-										},
-										{
-											"id": "set-animation",
-											"objectClass": "NavButton",
-											"sid": 639300315840652,
-											"parameters": {
-												"animation": "\"selected\"",
-												"from": "beginning"
-											}
-										}
-									],
-									"sid": 688826619371322
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 270829557882324,
+									"parameters": {
+										"cursor-style": "pointer"
+									}
 								},
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 526060162651901
-										},
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "Mouse",
-											"sid": 572861469683879,
-											"parameters": {
-												"object": "PlazaButton"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-cursor-style2",
-											"objectClass": "Mouse",
-											"sid": 366359354113652,
-											"parameters": {
-												"cursor-style": "pointer"
-											}
-										},
-										{
-											"id": "set-animation",
-											"objectClass": "PlazaButton",
-											"sid": 595459450205273,
-											"parameters": {
-												"animation": "\"selected\"",
-												"from": "beginning"
-											}
-										}
-									],
-									"sid": 536647248557085
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 277185666073304
-										},
-										{
-											"id": "cursor-is-over-object",
-											"objectClass": "Mouse",
-											"sid": 367485773311306,
-											"parameters": {
-												"object": "LoginButton"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-cursor-style2",
-											"objectClass": "Mouse",
-											"sid": 836825930057796,
-											"parameters": {
-												"cursor-style": "pointer"
-											}
-										}
-									],
-									"sid": 112017354324358
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 224253330178612
-										}
-									],
-									"actions": [
-										{
-											"id": "set-cursor-style2",
-											"objectClass": "Mouse",
-											"sid": 425633268287740,
-											"parameters": {
-												"cursor-style": "normal"
-											}
-										}
-									],
-									"sid": 899084190997999
+									"id": "set-animation",
+									"objectClass": "NavButton",
+									"sid": 877229094075772,
+									"parameters": {
+										"animation": "\"selected\"",
+										"from": "beginning"
+									}
 								}
-							]
+							],
+							"sid": 200365875239323
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 461664953595262
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 848460804852932,
+									"parameters": {
+										"object": "LoginButton"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 339138593082110,
+									"parameters": {
+										"cursor-style": "pointer"
+									}
+								}
+							],
+							"sid": 651817426249714
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 785226775147623
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 457783961965429,
+									"parameters": {
+										"cursor-style": "normal"
+									}
+								}
+							],
+							"sid": 504746765551353
+						}
+					]
+				}
+			],
+			"sid": 444622194220664
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Plaza - Buttons",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 588496212902255,
+							"parameters": {
+								"variable": "TRANSITION_running"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [],
+					"sid": 757023711763654,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 659944223933115,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "CreatorButton2"
+									}
+								},
+								{
+									"id": "on-tap-object",
+									"objectClass": "Touch",
+									"sid": 129195515345406,
+									"parameters": {
+										"object": "CreatorButton2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 223143164042620,
+									"parameters": {
+										"audio-file": "select",
+										"loop": "not-looping",
+										"volume": "-20",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
+									"callFunction": "toggleLayer",
+									"sid": 198887580462796,
+									"parameters": [
+										"\"List\"",
+										true,
+										false
+									]
+								},
+								{
+									"callFunction": "toggleLayer",
+									"sid": 380451994719832,
+									"parameters": [
+										"\"Card\"",
+										true,
+										true
+									]
+								},
+								{
+									"callFunction": "createCard",
+									"sid": 262548890095877,
+									"parameters": [
+										"SavedCharacters.At(CreatorButton2.id, 0)",
+										"40",
+										"28",
+										"\"Card\""
+									]
+								}
+							],
+							"sid": 900429061417482,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 667739098420938,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "CreatorNavButton"
+									}
+								},
+								{
+									"id": "on-tap-object",
+									"objectClass": "Touch",
+									"sid": 110395315700920,
+									"parameters": {
+										"object": "CreatorNavButton"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 147040951121640,
+									"parameters": {
+										"audio-file": "select",
+										"loop": "not-looping",
+										"volume": "-20",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
+									"callFunction": "transition",
+									"sid": 940535440289547,
+									"parameters": [
+										"\"Creator\""
+									]
+								}
+							],
+							"sid": 233554765692359,
+							"isOrBlock": true
 						},
 						{
 							"eventType": "comment",
-							"text": "If we're allowed to scroll, do it"
+							"text": "Page buttons"
 						},
 						{
 							"eventType": "block",
@@ -337,34 +833,66 @@
 								{
 									"id": "mouse-button-is-down",
 									"objectClass": "Mouse",
-									"sid": 554861985852266,
+									"sid": 297077621708904,
 									"parameters": {
 										"mouse-button": "left"
+									}
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 696984041309062,
+									"parameters": {
+										"object": "CreatorPageButton"
 									}
 								}
 							],
 							"actions": [],
-							"sid": 877436005215348,
+							"sid": 275284269780583,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 876552446766733,
+											"id": "compare-opacity",
+											"objectClass": "CreatorPageButton",
+											"sid": 791426724025620,
 											"parameters": {
-												"variable": "scrolling"
+												"comparison": 5,
+												"opacity": "100"
+											}
+										},
+										{
+											"id": "every-x-seconds",
+											"objectClass": "System",
+											"sid": 990453097447751,
+											"parameters": {
+												"interval-seconds": "0.15"
 											}
 										}
 									],
 									"actions": [
 										{
-											"callFunction": "scroll",
-											"sid": 285899651176284
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 256796057447108,
+											"parameters": {
+												"audio-file": "select",
+												"loop": "not-looping",
+												"volume": "-20",
+												"stereo-pan": "0",
+												"tag-optional": "\"\""
+											}
+										},
+										{
+											"callFunction": "changeOffset2",
+											"sid": 765519271102572,
+											"parameters": [
+												"CreatorPageButton.id"
+											]
 										}
 									],
-									"sid": 170849575189436
+									"sid": 526931713922150
 								}
 							]
 						},
@@ -372,184 +900,433 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 112611487596805
-								}
-							],
-							"actions": [
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 415071247545272,
+									"id": "is-touching-object",
+									"objectClass": "Touch",
+									"sid": 212172266910868,
 									"parameters": {
-										"variable": "scrolling",
-										"value": "false"
+										"object": "CreatorPageButton"
 									}
 								}
 							],
-							"sid": 633841516198976
+							"actions": [],
+							"sid": 608220849138741,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-opacity",
+											"objectClass": "CreatorPageButton",
+											"sid": 554448926888683,
+											"parameters": {
+												"comparison": 5,
+												"opacity": "100"
+											}
+										},
+										{
+											"id": "every-x-seconds",
+											"objectClass": "System",
+											"sid": 925803890161795,
+											"parameters": {
+												"interval-seconds": "0.15"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 262697977641581,
+											"parameters": {
+												"audio-file": "select",
+												"loop": "not-looping",
+												"volume": "-20",
+												"stereo-pan": "0",
+												"tag-optional": "\"\""
+											}
+										},
+										{
+											"callFunction": "changeOffset2",
+											"sid": 902727229765238,
+											"parameters": [
+												"CreatorPageButton.id"
+											]
+										}
+									],
+									"sid": 141271820653825
+								}
+							]
 						}
 					]
 				},
 				{
-					"functionName": "scroll",
+					"functionName": "changeOffset2",
 					"functionDescription": "",
 					"functionCategory": "",
 					"functionReturnType": "none",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
-					"functionParameters": [],
+					"functionParameters": [
+						{
+							"name": "direction",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 174392066926156
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 582028428592889,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 722689104652341,
+									"parameters": {
+										"variable": "direction",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "subtract-from-eventvar",
+									"objectClass": "System",
+									"sid": 254666927310753,
+									"parameters": {
+										"variable": "PLAZA_offset",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 906493186683337
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 426402784269927,
+									"parameters": {
+										"variable": "direction",
+										"comparison": 0,
+										"value": "\"right\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 824616347977303,
+									"parameters": {
+										"variable": "PLAZA_offset",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 700313612747619
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "populateList",
+									"sid": 385849869154029,
+									"parameters": [
+										"\"\"",
+										"SavedCharacters.Width"
+									]
+								}
+							],
+							"sid": 728731837736868
+						}
+					]
+				}
+			],
+			"sid": 451786550103390
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Plaza - List",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 269905171730139
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "populateList",
+							"sid": 881642503495558,
+							"parameters": [
+								"\"\"",
+								"SavedCharacters.Width"
+							]
+						}
+					],
+					"sid": 593728496203585
+				},
+				{
+					"functionName": "populateList",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "data",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 516410953324871
+						},
+						{
+							"name": "total",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 383742325530315
+						}
+					],
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
 						{
-							"id": "scroll-to-position",
-							"objectClass": "System",
-							"sid": 739702915821974,
-							"parameters": {
-								"x": "scrollx-(Mouse.X-mouseOldX)",
-								"y": "scrolly-(Mouse.Y-mouseOldY)"
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 831156597046693,
-							"parameters": {
-								"variable": "mouseOldX",
-								"value": "Mouse.X"
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 470688736847827,
-							"parameters": {
-								"variable": "mouseOldY",
-								"value": "Mouse.Y"
-							}
-						},
-						{
-							"id": "set-cursor-style2",
-							"objectClass": "Mouse",
-							"sid": 994797378902634,
-							"parameters": {
-								"cursor-style": "grabbing"
-							}
+							"id": "destroy",
+							"objectClass": "CreatorButton2",
+							"sid": 694029389893969
 						}
 					],
-					"sid": 968523805563949
-				}
-			],
-			"sid": 355935260737114
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 321385736829153,
-					"parameters": {
-						"variable": "TRANSITION_running"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [],
-			"sid": 538712431605535,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
+					"sid": 924418567312062,
+					"children": [
 						{
-							"id": "on-object-clicked",
-							"objectClass": "Mouse",
-							"sid": 281045564376861,
-							"parameters": {
-								"mouse-button": "left",
-								"click-type": "clicked",
-								"object-clicked": "PlazaButton"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Text",
+									"sid": 650853720004977,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"count\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 595078904781254,
+									"parameters": {
+										"text": "SavedCharacters.Width&\"/100\""
+									}
+								}
+							],
+							"sid": 759684463888310
 						},
 						{
-							"id": "on-tap-object",
-							"objectClass": "Touch",
-							"sid": 291763118304508,
-							"parameters": {
-								"object": "PlazaButton"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "play",
-							"objectClass": "Audio",
-							"sid": 963929996797805,
-							"parameters": {
-								"audio-file": "select",
-								"loop": "not-looping",
-								"volume": "-20",
-								"stereo-pan": "0",
-								"tag-optional": "\"\""
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 811872247430117,
+									"parameters": {
+										"name": "\"i\"",
+										"start-index": "PLAZA_offset*PLAZA_maxPerPage",
+										"end-index": "min((PLAZA_offset*PLAZA_maxPerPage)+PLAZA_maxPerPage-1, total-1)"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 493266929125798,
+									"parameters": {
+										"object-to-create": "CreatorButton2",
+										"layer": "\"List\"",
+										"x": "69+(CreatorButton2.Width+10)*(loopindex%4)",
+										"y": "102+(CreatorButton2.Height+3)*floor((loopindex%8)/4)",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "CreatorButton2",
+									"sid": 310906342576548,
+									"parameters": {
+										"instance-variable": "id",
+										"value": "loopindex"
+									}
+								},
+								{
+									"callFunction": "createCharacter",
+									"sid": 817939877517240,
+									"parameters": [
+										"SavedCharacters.At(loopindex, 0)",
+										"\"List\"",
+										"CreatorButton2.X",
+										"CreatorButton2.Y",
+										"0.33",
+										"\"list\"",
+										"CreatorButton2.UID"
+									]
+								}
+							],
+							"sid": 561053960346699
 						},
 						{
-							"callFunction": "transition",
-							"sid": 766684914368511,
-							"parameters": [
-								"\"Creator\""
+							"eventType": "comment",
+							"text": "Update page controls"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Text",
+									"sid": 771366168965831,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"page\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 384117266287414,
+									"parameters": {
+										"text": "\"Page \"&PLAZA_offset+1&\" of \"&ceil(total/PLAZA_maxPerPage)"
+									}
+								}
+							],
+							"sid": 337207796579967
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 168078477747481,
+									"parameters": {
+										"object": "CreatorPageButton"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "CreatorPageButton",
+									"sid": 596181312470576,
+									"parameters": {
+										"opacity": "35"
+									}
+								}
+							],
+							"sid": 812234307577575,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPageButton",
+											"sid": 396032936099825,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"left\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 655839116090521,
+											"parameters": {
+												"variable": "PLAZA_offset",
+												"comparison": 4,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-opacity",
+											"objectClass": "CreatorPageButton",
+											"sid": 246223238388353,
+											"parameters": {
+												"opacity": "100"
+											}
+										}
+									],
+									"sid": 603123115263198
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "CreatorPageButton",
+											"sid": 608446782459695,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"right\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 956346266930249,
+											"parameters": {
+												"variable": "PLAZA_offset",
+												"comparison": 2,
+												"value": "ceil(total/PLAZA_maxPerPage)-1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-opacity",
+											"objectClass": "CreatorPageButton",
+											"sid": 757036789194808,
+											"parameters": {
+												"opacity": "100"
+											}
+										}
+									],
+									"sid": 369487893390936
+								}
 							]
 						}
-					],
-					"sid": 587576778105027,
-					"isOrBlock": true
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-key-pressed",
-					"objectClass": "Keyboard",
-					"sid": 365026102453246,
-					"parameters": {
-						"key": 32
-					}
+					]
 				}
 			],
-			"actions": [],
-			"sid": 555548098338234,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "for-each-element",
-							"objectClass": "SavedCharacters",
-							"sid": 704582925510678,
-							"parameters": {
-								"axes": "x"
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "createCard",
-							"sid": 239081572951583,
-							"parameters": [
-								"SavedCharacters.CurValue",
-								"10",
-								"20+40*SavedCharacters.CurX",
-								"\"Background\""
-							]
-						}
-					],
-					"sid": 314507397041596
-				}
-			]
+			"sid": 260342813731159
 		}
 	],
 	"sid": 235165046402222
