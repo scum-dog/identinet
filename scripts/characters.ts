@@ -80,6 +80,10 @@ export async function getPlazaCharacters(
       params.append("limit", filters.limit.toString());
     }
 
+    if (filters.offset) {
+      params.append("offset", filters.offset.toString());
+    }
+
     endpoint = "/characters?" + params.toString();
   }
 
@@ -135,6 +139,26 @@ export async function getRandomCharacters(
   limit: number = 100,
 ): Promise<ApiResponse<PlazaResponse>> {
   return getPlazaCharacters({ limit });
+}
+
+/**
+ * get online character page with pagination support
+ * designed for plaza list view with offset-based pagination
+ * @param offset - number of characters to skip (page * limit)
+ * @param limit - max number of characters to return per page (default 8)
+ * @param filters - optional additional filters like country
+ * @returns paginated plaza characters for list view
+ */
+export async function getOnlineCharacterPage(
+  offset: number,
+  limit: number = 8,
+  filters?: Omit<PlazaFilters, 'offset' | 'limit'>,
+): Promise<ApiResponse<PlazaResponse>> {
+  return getPlazaCharacters({
+    ...filters,
+    limit,
+    offset
+  });
 }
 
 /**

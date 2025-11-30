@@ -164,6 +164,7 @@ export interface PlazaCharacter {
 export interface PlazaResponse {
   characters: PlazaCharacter[];
   count: number;
+  total: number;
   filters: {
     country?: string;
   };
@@ -234,6 +235,7 @@ export interface RequestOptions {
 export interface PlazaFilters {
   country?: string;
   limit?: number;
+  offset?: number;
 }
 
 export interface ApiConfig {

@@ -81,6 +81,7 @@ export {
   canEditCharacter,
   getCharactersByCountry,
   getRandomCharacters,
+  getOnlineCharacterPage,
   validateCharacterData,
 } from "./characters.js";
 
