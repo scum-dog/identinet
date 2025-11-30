@@ -555,6 +555,22 @@
 					"file-info": {
 						"purpose": "none"
 					}
+				},
+				{
+					"name": "main.css",
+					"type": "text/css",
+					"sid": 238806185455318,
+					"file-info": {
+						"purpose": "stylesheet"
+					}
+				},
+				{
+					"name": "border.png",
+					"type": "image/png",
+					"sid": 115107328133870,
+					"file-info": {
+						"purpose": "none"
+					}
 				}
 			],
 			"subfolders": []

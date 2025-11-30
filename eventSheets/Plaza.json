@@ -1181,7 +1181,7 @@
 											"callFunction": "populateList",
 											"sid": 345952933771007,
 											"parameters": [
-												"\"\"",
+												"\"local\"",
 												"LocalCharacters.Width"
 											]
 										}
@@ -1410,7 +1410,7 @@
 									"callFunction": "populateList",
 									"sid": 926196268634446,
 									"parameters": [
-										"\"\"",
+										"\"local\"",
 										"LocalCharacters.Width"
 									]
 								}
@@ -1470,7 +1470,7 @@
 							"callFunction": "populateList",
 							"sid": 703148441797689,
 							"parameters": [
-								"\"\"",
+								"\"local\"",
 								"LocalCharacters.Width"
 							]
 						}
@@ -1486,11 +1486,11 @@
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
-							"name": "data",
+							"name": "dataSet",
 							"type": "string",
-							"initialValue": "",
+							"initialValue": "local",
 							"comment": "",
-							"sid": 516410953324871
+							"sid": 780043071923843
 						},
 						{
 							"name": "total",
@@ -1585,82 +1585,157 @@
 											}
 										}
 									],
-									"actions": [
-										{
-											"id": "create-object",
-											"objectClass": "System",
-											"sid": 397264050822446,
-											"parameters": {
-												"object-to-create": "CreatorButton2",
-												"layer": "\"List\"",
-												"x": "69+(CreatorButton2.Width+10)*(loopindex%4)",
-												"y": "102+(CreatorButton2.Height+3)*floor((loopindex%8)/4)",
-												"create-hierarchy": false,
-												"template-name": "\"\""
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "CreatorButton2",
-											"sid": 771692536322864,
-											"parameters": {
-												"instance-variable": "id",
-												"value": "loopindex"
-											}
-										},
-										{
-											"callFunction": "createCharacter",
-											"sid": 920897158394549,
-											"parameters": [
-												"LocalCharacters.At(loopindex, 0)",
-												"\"List\"",
-												"CreatorButton2.X",
-												"CreatorButton2.Y",
-												"0.33",
-												"\"list\"",
-												"CreatorButton2.UID"
-											]
-										}
-									],
+									"actions": [],
 									"sid": 238076132088180,
 									"children": [
-										{
-											"eventType": "comment",
-											"text": "Test"
-										},
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-boolean-eventvar",
+													"id": "compare-eventvar",
 													"objectClass": "System",
-													"sid": 902444175336100,
+													"sid": 839894477177848,
 													"parameters": {
-														"variable": "GAME_hasUploadedCharacter"
-													}
-												},
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 146284846733364,
-													"parameters": {
-														"first-value": "loopindex",
+														"variable": "dataSet",
 														"comparison": 0,
-														"second-value": "0"
+														"value": "\"local\""
 													}
 												}
 											],
 											"actions": [
 												{
-													"id": "set-default-color",
-													"objectClass": "CreatorButton2",
-													"sid": 689008000991262,
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 153439234289669,
 													"parameters": {
-														"color": "rgbEx(255, 0, 0)"
+														"object-to-create": "CreatorButton2",
+														"layer": "\"List\"",
+														"x": "69+(CreatorButton2.Width+10)*(loopindex%4)",
+														"y": "102+(CreatorButton2.Height+3)*floor((loopindex%8)/4)",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "CreatorButton2",
+													"sid": 950193893227675,
+													"parameters": {
+														"instance-variable": "id",
+														"value": "loopindex"
+													}
+												},
+												{
+													"callFunction": "createCharacter",
+													"sid": 169855399775838,
+													"parameters": [
+														"LocalCharacters.At(loopindex, 0)",
+														"\"List\"",
+														"CreatorButton2.X",
+														"CreatorButton2.Y",
+														"0.33",
+														"\"list\"",
+														"CreatorButton2.UID"
+													]
+												}
+											],
+											"sid": 718861505318383,
+											"children": [
+												{
+													"eventType": "comment",
+													"text": "Test"
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 131185990174035,
+															"parameters": {
+																"variable": "GAME_hasUploadedCharacter"
+															}
+														},
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 547057692683733,
+															"parameters": {
+																"first-value": "loopindex",
+																"comparison": 0,
+																"second-value": "0"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-default-color",
+															"objectClass": "CreatorButton2",
+															"sid": 375990088604954,
+															"parameters": {
+																"color": "rgbEx(255, 0, 0)"
+															}
+														}
+													],
+													"sid": 566517192289187
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 382223580198083,
+													"parameters": {
+														"variable": "dataSet",
+														"comparison": 0,
+														"value": "\"online\""
 													}
 												}
 											],
-											"sid": 161528468004051
+											"actions": [
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 366992532013254,
+													"disabled": true,
+													"parameters": {
+														"object-to-create": "CreatorButton2",
+														"layer": "\"List\"",
+														"x": "69+(CreatorButton2.Width+10)*(loopindex%4)",
+														"y": "102+(CreatorButton2.Height+3)*floor((loopindex%8)/4)",
+														"create-hierarchy": false,
+														"template-name": "\"\""
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "CreatorButton2",
+													"sid": 254824798610635,
+													"disabled": true,
+													"parameters": {
+														"instance-variable": "id",
+														"value": "loopindex"
+													}
+												},
+												{
+													"callFunction": "createCharacter",
+													"sid": 609737394495928,
+													"disabled": true,
+													"parameters": [
+														"LocalCharacters.At(loopindex, 0)",
+														"\"List\"",
+														"CreatorButton2.X",
+														"CreatorButton2.Y",
+														"0.33",
+														"\"list\"",
+														"CreatorButton2.UID"
+													]
+												}
+											],
+											"sid": 804558349155427
 										}
 									]
 								}
@@ -1795,6 +1870,29 @@
 							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 779042500584689,
+							"parameters": {
+								"key": 90
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"getOnlineCharacterPage(0, 8);"
+							]
+						}
+					],
+					"sid": 771841378913880
 				}
 			],
 			"sid": 260342813731159

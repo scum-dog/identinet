@@ -3438,7 +3438,7 @@
 																	"callFunction": "populateList",
 																	"sid": 586649965355801,
 																	"parameters": [
-																		"\"\"",
+																		"\"local\"",
 																		"LocalCharacters.Width"
 																	]
 																}
@@ -3842,7 +3842,7 @@
 											"callFunction": "populateList",
 											"sid": 829614608395755,
 											"parameters": [
-												"\"\"",
+												"\"local\"",
 												"LocalCharacters.Width"
 											]
 										}
