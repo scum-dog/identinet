@@ -42,6 +42,16 @@
 			"sid": 645387753972695
 		},
 		{
+			"eventType": "variable",
+			"name": "CREATOR_mode",
+			"type": "string",
+			"initialValue": "create",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 748897575366710
+		},
+		{
 			"eventType": "include",
 			"includeSheet": "Global"
 		},
@@ -77,18 +87,105 @@
 					"id": "destroy",
 					"objectClass": "Card",
 					"sid": 714945940859381
-				},
-				{
-					"id": "request-project-file",
-					"objectClass": "AJAX",
-					"sid": 407949671944069,
-					"parameters": {
-						"tag": "\"json\"",
-						"file": "character.json"
-					}
 				}
 			],
-			"sid": 915152436072914
+			"sid": 915152436072914,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 656878418039870,
+							"parameters": {
+								"variable": "CREATOR_mode",
+								"comparison": 0,
+								"value": "\"create\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "toggleLayer",
+							"sid": 776736368700149,
+							"parameters": [
+								"\"Create\"",
+								true,
+								true
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 316650760823855,
+							"parameters": [
+								"\"Edit\"",
+								true,
+								false
+							]
+						},
+						{
+							"id": "request-project-file",
+							"objectClass": "AJAX",
+							"sid": 571538240484158,
+							"parameters": {
+								"tag": "\"json\"",
+								"file": "character.json"
+							}
+						}
+					],
+					"sid": 415855805329650
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 278175156360796,
+							"parameters": {
+								"variable": "CREATOR_mode",
+								"comparison": 0,
+								"value": "\"edit\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "toggleLayer",
+							"sid": 171580736748609,
+							"parameters": [
+								"\"Create\"",
+								true,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 896788919052466,
+							"parameters": [
+								"\"Edit\"",
+								true,
+								true
+							]
+						},
+						{
+							"callFunction": "createCharacter",
+							"sid": 419404877954804,
+							"parameters": [
+								"LocalCharacters.At(PLAZA_selectedLocal, 0)",
+								"\"Character\"",
+								"76",
+								"152",
+								"1",
+								"\"\"",
+								"0"
+							]
+						}
+					],
+					"sid": 372708968800775
+				}
+			]
 		},
 		{
 			"eventType": "block",
@@ -4975,9 +5072,12 @@
 														"  if (button_type === \"save\") {",
 														"    // Save",
 														"    runtime.signal(\"saveCharacter\");",
-														"  } else {",
+														"  } else if (button_type === \"upload\") {",
 														"    // Upload",
 														"    runtime.signal(\"uploadCharacter\");",
+														"  } else {",
+														"    // Update",
+														"    runtime.signal(\"updateCharacter\");",
 														"  }",
 														"}"
 													]
@@ -5040,30 +5140,88 @@
 										"stereo-pan": "0",
 										"tag-optional": "\"\""
 									}
-								},
-								{
-									"id": "push",
-									"objectClass": "SavedCharacters",
-									"sid": 142138618883029,
-									"parameters": {
-										"where": "back",
-										"value": "JSON.ToCompactString",
-										"axis": "x"
-									}
-								},
-								{
-									"callFunction": "save",
-									"sid": 744265071260717
-								},
-								{
-									"callFunction": "transition",
-									"sid": 250871485777518,
-									"parameters": [
-										"\"Plaza\""
-									]
 								}
 							],
-							"sid": 930331281788336
+							"sid": 930331281788336,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 170110055352355,
+											"parameters": {
+												"variable": "CREATOR_mode",
+												"comparison": 0,
+												"value": "\"create\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "push",
+											"objectClass": "LocalCharacters",
+											"sid": 486353631870981,
+											"parameters": {
+												"where": "back",
+												"value": "JSON.ToCompactString",
+												"axis": "x"
+											}
+										},
+										{
+											"callFunction": "save",
+											"sid": 218228564279276
+										},
+										{
+											"callFunction": "transition",
+											"sid": 939731184233486,
+											"parameters": [
+												"\"Plaza\""
+											]
+										}
+									],
+									"sid": 378517069900477
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 986874693521589,
+											"parameters": {
+												"variable": "CREATOR_mode",
+												"comparison": 0,
+												"value": "\"edit\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-at-x",
+											"objectClass": "LocalCharacters",
+											"sid": 933383794486314,
+											"parameters": {
+												"x": "PLAZA_selectedLocal",
+												"value": "JSON.ToCompactString"
+											}
+										},
+										{
+											"callFunction": "save",
+											"sid": 261664725809626
+										},
+										{
+											"callFunction": "transition",
+											"sid": 992381307696752,
+											"parameters": [
+												"\"Plaza\""
+											]
+										}
+									],
+									"sid": 914994786154085
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -5079,18 +5237,6 @@
 							],
 							"actions": [
 								{
-									"id": "play",
-									"objectClass": "Audio",
-									"sid": 808412461275094,
-									"parameters": {
-										"audio-file": "upload",
-										"loop": "not-looping",
-										"volume": "-20",
-										"stereo-pan": "0",
-										"tag-optional": "\"\""
-									}
-								},
-								{
 									"type": "script",
 									"language": "typescript",
 									"script": [
@@ -5102,6 +5248,76 @@
 								}
 							],
 							"sid": 298525674925368
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-signal",
+									"objectClass": "System",
+									"sid": 493608062354624,
+									"parameters": {
+										"tag": "\"updateCharacter\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"const json_object = runtime.objects.JSON.getFirstInstance();",
+										"if (!json_object) return;",
+										"",
+										"updateUserCharacter(json_object.getJsonDataCopy());"
+									]
+								}
+							],
+							"sid": 335966411594589
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-signal",
+									"objectClass": "System",
+									"sid": 394895509948398,
+									"parameters": {
+										"tag": "\"uploadSuccess\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 178727905071340,
+									"parameters": {
+										"audio-file": "upload",
+										"loop": "not-looping",
+										"volume": "-20",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 246306055795637,
+									"parameters": {
+										"variable": "GAME_uploadedCharacter",
+										"value": "JSON.ToCompactString"
+									}
+								},
+								{
+									"callFunction": "transition",
+									"sid": 197300401771108,
+									"parameters": [
+										"\"Plaza\""
+									]
+								}
+							],
+							"sid": 629112729321892
 						}
 					],
 					"sid": 182453861142727

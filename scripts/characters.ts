@@ -10,6 +10,12 @@ import { CHARACTER_NAME_ERROR_MESSAGE } from "./base/constants.js";
 import { isValidCountry, validateCharacterName } from "./base/utils.js";
 import { displayServerError } from "./index.js";
 
+let RUNTIME: any;
+
+runOnStartup(async (runtime) => {
+  RUNTIME = runtime;
+});
+
 /**
  * get the current user's character data
  * @returns full character with metadata, 404 if no character
@@ -33,6 +39,8 @@ export async function uploadCharacter(
 
   if (!response.success && response.statusCode) {
     displayServerError(response.error || "Upload failed", response.statusCode);
+  } else {
+    RUNTIME.signal("uploadSuccess");
   }
 
   return response;
@@ -53,6 +61,8 @@ export async function updateUserCharacter(
 
   if (!response.success && response.statusCode) {
     displayServerError(response.error || "Update failed", response.statusCode);
+  } else {
+    RUNTIME.signal("uploadSuccess");
   }
 
   return response;

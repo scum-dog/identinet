@@ -126,6 +126,30 @@
 			"sid": 607851642029713
 		},
 		{
+			"eventType": "comment",
+			"text": "Server stuff"
+		},
+		{
+			"eventType": "variable",
+			"name": "GAME_hasUploadedCharacter",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 375404259329599
+		},
+		{
+			"eventType": "variable",
+			"name": "GAME_uploadedCharacter",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 813620232087040
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Global - Initialization",
@@ -1750,16 +1774,58 @@
 					"conditions": [],
 					"actions": [
 						{
-							"id": "set-item",
-							"objectClass": "LocalStorage",
-							"sid": 351796672039084,
+							"id": "load",
+							"objectClass": "SavedCharacters",
+							"sid": 777198347356256,
 							"parameters": {
-								"key": "\"saveData1\"",
-								"value": "SavedCharacters.AsJSON"
+								"json": "LocalCharacters.AsJSON"
 							}
 						}
 					],
-					"sid": 839513501978890
+					"sid": 839513501978890,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 498232449763117,
+									"parameters": {
+										"variable": "GAME_hasUploadedCharacter"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "delete",
+									"objectClass": "SavedCharacters",
+									"sid": 153204298340177,
+									"parameters": {
+										"index": "0",
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 387115650982821
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-item",
+									"objectClass": "LocalStorage",
+									"sid": 168437250490674,
+									"parameters": {
+										"key": "\"saveData1\"",
+										"value": "SavedCharacters.AsJSON"
+									}
+								}
+							],
+							"sid": 692939775706956
+						}
+					]
 				}
 			],
 			"sid": 189013203793669
@@ -1880,6 +1946,14 @@
 							"sid": 873654686859473,
 							"parameters": {
 								"json": "data"
+							}
+						},
+						{
+							"id": "load",
+							"objectClass": "LocalCharacters",
+							"sid": 497918813298637,
+							"parameters": {
+								"json": "SavedCharacters.AsJSON"
 							}
 						}
 					],
@@ -2691,7 +2765,7 @@
 										"const getCardText = (): string => {",
 										"  switch (text_type) {",
 										"    case \"cardName\":",
-										"      return getJSONValue(json_object, \"character_data.info.name\");",
+										"      return sanitizeCharacterName(getJSONValue(json_object, \"character_data.info.name\"));",
 										"    case \"cardBirth\":",
 										"      return formatDateForDisplay(getJSONValue(json_object, \"character_data.info.date_of_birth\"));",
 										"    case \"cardSex\":",
@@ -2803,141 +2877,39 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-two-values",
+							"id": "every-tick",
 							"objectClass": "System",
-							"sid": 258069252526475,
-							"parameters": {
-								"first-value": "LayoutName",
-								"comparison": 0,
-								"second-value": "\"Plaza\""
-							}
-						}
-					],
-					"actions": [],
-					"sid": 913413447335396,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "NavButton",
-									"sid": 821489887687942,
-									"parameters": {
-										"instance-variable": "id",
-										"comparison": 0,
-										"value": "\"login\""
-									}
-								},
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "NavButton",
-									"sid": 264353392248132,
-									"parameters": {
-										"instance-variable": "id",
-										"comparison": 0,
-										"value": "\"logout\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-visible",
-									"objectClass": "NavButton",
-									"sid": 916441948534243,
-									"parameters": {
-										"visibility": "visible"
-									}
-								}
-							],
-							"sid": 290835926302046,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "NavButton",
-									"sid": 865867454297881,
-									"parameters": {
-										"instance-variable": "id",
-										"comparison": 0,
-										"value": "\"back\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-visible",
-									"objectClass": "NavButton",
-									"sid": 784786417026433,
-									"parameters": {
-										"visibility": "invisible"
-									}
-								}
-							],
-							"sid": 308397463521112
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 403404277363736
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 332281607279249,
-							"parameters": {
-								"first-value": "LayoutName",
-								"comparison": 0,
-								"second-value": "\"Creator\""
-							}
+							"sid": 121870053721185
 						}
 					],
 					"actions": [
 						{
 							"id": "set-visible",
 							"objectClass": "NavButton",
-							"sid": 543137643739729,
+							"sid": 860684904330766,
 							"parameters": {
 								"visibility": "invisible"
 							}
 						}
 					],
-					"sid": 321488826690956,
+					"sid": 889602686966994,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-eventvar",
+									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 193412000824276,
+									"sid": 896591924036506,
 									"parameters": {
-										"variable": "CREATOR_menu",
+										"first-value": "LayoutName",
 										"comparison": 0,
-										"value": "\"parts\""
-									}
-								},
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 632645015064193,
-									"parameters": {
-										"variable": "CREATOR_menu",
-										"comparison": 0,
-										"value": "\"properties\""
+										"second-value": "\"Plaza\""
 									}
 								}
 							],
 							"actions": [],
-							"sid": 203575829443271,
+							"sid": 807571141359323,
 							"children": [
 								{
 									"eventType": "block",
@@ -2945,58 +2917,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "NavButton",
-											"sid": 830100686186712,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "\"back\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-visible",
-											"objectClass": "NavButton",
-											"sid": 666254448361672,
-											"parameters": {
-												"visibility": "visible"
-											}
-										}
-									],
-									"sid": 214231906762994
-								}
-							],
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 153483361957718
-								},
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 838295367507120,
-									"parameters": {
-										"variable": "CREATOR_menu",
-										"comparison": 0,
-										"value": "\"card\""
-									}
-								}
-							],
-							"actions": [],
-							"sid": 457271465748617,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "NavButton",
-											"sid": 963828671798385,
+											"sid": 235285438691998,
 											"parameters": {
 												"instance-variable": "id",
 												"comparison": 0,
@@ -3006,7 +2927,7 @@
 										{
 											"id": "compare-instance-variable",
 											"objectClass": "NavButton",
-											"sid": 724141196791496,
+											"sid": 970434953706499,
 											"parameters": {
 												"instance-variable": "id",
 												"comparison": 0,
@@ -3018,14 +2939,190 @@
 										{
 											"id": "set-visible",
 											"objectClass": "NavButton",
-											"sid": 374010915880743,
+											"sid": 509457618055145,
 											"parameters": {
 												"visibility": "visible"
 											}
 										}
 									],
-									"sid": 812142841842765,
+									"sid": 874509379046688,
 									"isOrBlock": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 556761235519010,
+											"parameters": {
+												"variable": "PLAZA_menu",
+												"comparison": 0,
+												"value": "\"card\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 750551941724246,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "NavButton",
+													"sid": 730960522954807,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"back\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "NavButton",
+													"sid": 638623569416037,
+													"parameters": {
+														"visibility": "visible"
+													}
+												}
+											],
+											"sid": 780023003778418
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 947136860487064,
+									"parameters": {
+										"first-value": "LayoutName",
+										"comparison": 0,
+										"second-value": "\"Creator\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 500160681991782,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 872235384109071,
+											"parameters": {
+												"variable": "CREATOR_menu",
+												"comparison": 0,
+												"value": "\"parts\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 859897448773768,
+											"parameters": {
+												"variable": "CREATOR_menu",
+												"comparison": 0,
+												"value": "\"properties\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 821034560209017,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "NavButton",
+													"sid": 386956105014915,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"back\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "NavButton",
+													"sid": 594837300923850,
+													"parameters": {
+														"visibility": "visible"
+													}
+												}
+											],
+											"sid": 645125152601212
+										}
+									],
+									"isOrBlock": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 360882936084593,
+											"parameters": {
+												"variable": "CREATOR_menu",
+												"comparison": 0,
+												"value": "\"card\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 635598366295865,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "NavButton",
+													"sid": 250614436243041,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"login\""
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "NavButton",
+													"sid": 165067500151393,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"logout\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "NavButton",
+													"sid": 553597277650494,
+													"parameters": {
+														"visibility": "visible"
+													}
+												}
+											],
+											"sid": 700935639158399,
+											"isOrBlock": true
+										}
+									]
 								}
 							]
 						}
@@ -3115,16 +3212,80 @@
 													}
 												}
 											],
-											"actions": [
+											"actions": [],
+											"sid": 696417068933588,
+											"children": [
 												{
-													"callFunction": "transition",
-													"sid": 974584419947385,
-													"parameters": [
-														"\"Plaza\""
-													]
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 860407626309565,
+															"parameters": {
+																"first-value": "LayoutName",
+																"comparison": 0,
+																"second-value": "\"Plaza\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 610618670195711,
+															"parameters": {
+																"variable": "PLAZA_menu",
+																"value": "\"list\""
+															}
+														},
+														{
+															"callFunction": "toggleLayer",
+															"sid": 536761122496479,
+															"parameters": [
+																"\"List\"",
+																true,
+																true
+															]
+														},
+														{
+															"callFunction": "toggleLayer",
+															"sid": 691418832107379,
+															"parameters": [
+																"\"Card\"",
+																true,
+																false
+															]
+														}
+													],
+													"sid": 639545537816536
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 370104220535486,
+															"parameters": {
+																"first-value": "LayoutName",
+																"comparison": 0,
+																"second-value": "\"Creator\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "transition",
+															"sid": 652374161888814,
+															"parameters": [
+																"\"Plaza\""
+															]
+														}
+													],
+													"sid": 543450615949719
 												}
-											],
-											"sid": 696417068933588
+											]
 										},
 										{
 											"eventType": "block",
@@ -3214,7 +3375,79 @@
 													]
 												}
 											],
-											"sid": 687066195603178
+											"sid": 687066195603178,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 917921070411115,
+															"parameters": {
+																"variable": "GAME_hasUploadedCharacter"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 495785864957406,
+															"parameters": {
+																"variable": "GAME_hasUploadedCharacter",
+																"value": "false"
+															}
+														},
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 705634064393484,
+															"parameters": {
+																"variable": "GAME_uploadedCharacter",
+																"value": "\"\""
+															}
+														},
+														{
+															"id": "load",
+															"objectClass": "LocalCharacters",
+															"sid": 767510623287115,
+															"parameters": {
+																"json": "SavedCharacters.AsJSON"
+															}
+														}
+													],
+													"sid": 793323843329708,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-two-values",
+																	"objectClass": "System",
+																	"sid": 937942185033149,
+																	"parameters": {
+																		"first-value": "LayoutName",
+																		"comparison": 0,
+																		"second-value": "\"Plaza\""
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"callFunction": "populateList",
+																	"sid": 586649965355801,
+																	"parameters": [
+																		"\"\"",
+																		"LocalCharacters.Width"
+																	]
+																}
+															],
+															"sid": 412346223535776
+														}
+													]
+												}
+											]
 										}
 									]
 								}
@@ -3315,11 +3548,11 @@
 						},
 						{
 							"callFunction": "toggleLayer",
-							"sid": 962466933594636,
+							"sid": 587183453707059,
 							"parameters": [
 								"\"Buttons\"",
 								false,
-								false
+								true
 							]
 						},
 						{
@@ -3497,6 +3730,126 @@
 								}
 							],
 							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-signal",
+									"objectClass": "System",
+									"sid": 112386555298050,
+									"parameters": {
+										"tag": "\"authStateChange\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 131114064192706,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 859607223612272,
+											"parameters": {
+												"variable": "GAME_uploadedCharacter",
+												"comparison": 0,
+												"value": "\"\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "script",
+											"language": "typescript",
+											"script": [
+												"runtime.globalVars.GAME_uploadedCharacter = \"placeholder\";",
+												"",
+												"if (await hasCharacter()) {",
+												"  getUserCharacter().then(result => {",
+												"    if (result.data) {",
+												"      runtime.globalVars.GAME_uploadedCharacter = JSON.stringify(result.data);",
+												"      runtime.signal(\"storeUploadedCharacter\");",
+												"    }",
+												"  });",
+												"} else {",
+												"  runtime.globalVars.GAME_uploadedCharacter = \"\";",
+												"}"
+											]
+										}
+									],
+									"sid": 856593191410981
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Set our uploaded character, if it exists"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-signal",
+									"objectClass": "System",
+									"sid": 258352297741031,
+									"parameters": {
+										"tag": "\"storeUploadedCharacter\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 977059230812207,
+									"parameters": {
+										"variable": "GAME_hasUploadedCharacter",
+										"value": "true"
+									}
+								},
+								{
+									"id": "insert",
+									"objectClass": "LocalCharacters",
+									"sid": 947177417414940,
+									"parameters": {
+										"value": "GAME_uploadedCharacter",
+										"index": "0",
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 165947122056251,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 674180793823478,
+											"parameters": {
+												"first-value": "LayoutName",
+												"comparison": 0,
+												"second-value": "\"Plaza\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "populateList",
+											"sid": 829614608395755,
+											"parameters": [
+												"\"\"",
+												"LocalCharacters.Width"
+											]
+										}
+									],
+									"sid": 950168164999525
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -3715,8 +4068,7 @@
 							}
 						}
 					],
-					"sid": 290668956681584,
-					"disabled": true
+					"sid": 290668956681584
 				},
 				{
 					"eventType": "block",

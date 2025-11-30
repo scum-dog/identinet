@@ -113,6 +113,7 @@ export {
   shouldDeleteField,
   handleRaceMutualExclusivity,
   preventTab,
+  sanitizeCharacterName,
 } from "./base/utils.js";
 
 /**
@@ -132,12 +133,9 @@ export function displayServerError(
 
   console.error(`Upload failed - Status: ${statusCode}, Error: ${errorText}`);
 
-  if (RUNTIME && RUNTIME.signal) {
-    RUNTIME.signal("serverErrorOccurred");
+  if (RUNTIME) {
+    RUNTIME.callFunction("error", `Upload failed:\n${userMessage}`);
   }
-
-  // delete this once youre done implementing the menu for it
-  alert(`Upload failed: ${userMessage}`);
 }
 
 // admin
@@ -265,10 +263,6 @@ export const IdentikitAPI = {
 export default IdentikitAPI;
 
 let RUNTIME: any;
-
-declare function runOnStartup(
-  callback: (runtime: any) => void | Promise<void>,
-): void;
 
 runOnStartup(async (runtime: any) => {
   RUNTIME = runtime;

@@ -525,6 +525,18 @@
 			"sid": 200638393797260,
 			"tags": "",
 			"instanceVariables": {}
+		},
+		{
+			"type": "LocalCharacters",
+			"properties": {
+				"width": 0,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 163,
+			"sid": 154348881792512,
+			"tags": "",
+			"instanceVariables": {}
 		}
 	],
 	"effectTypes": [],

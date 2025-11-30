@@ -31,6 +31,7 @@ export const hasCharacter = API.hasCharacter;
 export const canEditCharacter = API.canEditCharacter;
 export const getCharactersByCountry = API.getCharactersByCountry;
 export const getRandomCharacters = API.getRandomCharacters;
+export const getOnlineCharacterPage = API.getOnlineCharacterPage;
 export const validateCharacterData = API.validateCharacterData;
 export const validateInputName = API.validateInputName;
 export const displayServerError = API.displayServerError;
@@ -76,6 +77,7 @@ export const mapDropdownValueToKey = API.mapDropdownValueToKey;
 export const shouldDeleteField = API.shouldDeleteField;
 export const handleRaceMutualExclusivity = API.handleRaceMutualExclusivity;
 export const preventTab = API.preventTab;
+export const sanitizeCharacterName = API.sanitizeCharacterName;
 
 // main object
 export const IdentikitAPI = API.IdentikitAPI;

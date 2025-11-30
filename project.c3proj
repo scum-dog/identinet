@@ -196,7 +196,6 @@
 					"Date",
 					"JSON",
 					"LocalStorage",
-					"SavedCharacters",
 					"Audio"
 				],
 				"subfolders": [],
@@ -229,7 +228,9 @@
 					"CharacterHead",
 					"CharacterPart",
 					"CharacterCanvas",
-					"Parts"
+					"Parts",
+					"SavedCharacters",
+					"LocalCharacters"
 				],
 				"subfolders": [],
 				"name": "Character"
