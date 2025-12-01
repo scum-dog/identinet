@@ -55,9 +55,7 @@ export async function uploadCharacter(
 export async function updateUserCharacter(
   characterData: CharacterDataStructure,
 ): Promise<ApiResponse<{ message: string; jobId: string; status: string }>> {
-  const response = await put("/characters/me", {
-    character_data: characterData,
-  });
+  const response = await put("/characters/me", characterData);
 
   if (!response.success && response.statusCode) {
     displayServerError(response.error || "Update failed", response.statusCode);
