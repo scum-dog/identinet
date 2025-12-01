@@ -806,19 +806,23 @@
 							"sid": 624493371184917,
 							"children": [
 								{
+									"eventType": "comment",
+									"text": "TODO: Triggers twice"
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
 											"id": "is-ready",
 											"objectClass": "NGIO",
-											"sid": 326087571129192
+											"sid": 503103418348402
 										}
 									],
 									"actions": [
 										{
 											"id": "play",
 											"objectClass": "Audio",
-											"sid": 111512714799711,
+											"sid": 854742396570222,
 											"parameters": {
 												"audio-file": "select",
 												"loop": "not-looping",
@@ -830,13 +834,13 @@
 										{
 											"id": "login",
 											"objectClass": "NGIO",
-											"sid": 586576115537018,
+											"sid": 979596566168596,
 											"parameters": {
 												"window-mode": "popup"
 											}
 										}
 									],
-									"sid": 171586128272714
+									"sid": 101049714806460
 								},
 								{
 									"eventType": "block",

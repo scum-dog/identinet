@@ -75,7 +75,7 @@
 			"eventType": "variable",
 			"name": "SETTING_volumeMusic",
 			"type": "number",
-			"initialValue": "0",
+			"initialValue": "0.25",
 			"comment": "Music volume",
 			"isStatic": false,
 			"isConstant": false,

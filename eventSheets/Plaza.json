@@ -475,6 +475,32 @@
 									"sid": 616019100222345
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Text",
+									"sid": 923929031417735,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"version\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 615548477108381,
+									"parameters": {
+										"text": "\"v\"&projectversion"
+									}
+								}
+							],
+							"sid": 673553681986103
 						}
 					]
 				},
@@ -894,7 +920,87 @@
 							]
 						}
 					],
-					"sid": 955019283010439
+					"sid": 955019283010439,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Uploaded  and online characters get a special color"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 366669669318433,
+									"parameters": {
+										"variable": "PLAZA_state",
+										"comparison": 0,
+										"value": "\"local\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 376128681002820,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 851524586113631,
+											"parameters": {
+												"variable": "SERVER_hasUploadedCharacter"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 741801089772309,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-default-color",
+											"objectClass": "Button",
+											"sid": 134796989751784,
+											"parameters": {
+												"color": "rgbEx255(192, 192, 255)"
+											}
+										}
+									],
+									"sid": 187831987596955
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 212682133977777
+								}
+							],
+							"actions": [
+								{
+									"id": "set-default-color",
+									"objectClass": "Button",
+									"sid": 480084675516676,
+									"parameters": {
+										"color": "rgbEx255(192, 192, 255)"
+									}
+								}
+							],
+							"sid": 246921165854924
+						}
+					]
 				},
 				{
 					"functionName": "updatePlazaArrows",

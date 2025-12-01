@@ -1283,6 +1283,65 @@
 								}
 							],
 							"sid": 961734081320414
+						},
+						{
+							"eventType": "comment",
+							"text": "Disable the properties button if this part has none"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 873348233498669,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"properties\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "Button",
+									"sid": 426726125814559,
+									"parameters": {
+										"instance-variable": "disabled",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 664574963025564,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "has-key",
+											"objectClass": "JSON",
+											"sid": 338650797639864,
+											"parameters": {
+												"path": "\"character_data.placeable_movable.\"&CREATOR_part&\".asset_id\""
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Button",
+											"sid": 850764208758187,
+											"parameters": {
+												"instance-variable": "disabled",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 381998397837750
+								}
+							]
 						}
 					]
 				},
@@ -2706,7 +2765,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Creator - Information for realsies",
+			"title": "Creator - Information (Buttons)",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -3722,6 +3781,13 @@
 							}
 						},
 						{
+							"callFunction": "switchOverlayMenu",
+							"sid": 969663192388346,
+							"parameters": [
+								"\"\""
+							]
+						},
+						{
 							"callFunction": "transition",
 							"sid": 847253079071342,
 							"parameters": [
@@ -3737,7 +3803,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Creator - Information",
+			"title": "Creator - Information (Inputs)",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
