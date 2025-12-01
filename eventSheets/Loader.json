@@ -383,35 +383,18 @@
 							"parameters": {
 								"text": "\"CLICK ANYWHERE TO BEGIN\""
 							}
+						},
+						{
+							"id": "set-cursor-style2",
+							"objectClass": "Mouse",
+							"sid": 568096484213313,
+							"parameters": {
+								"cursor-style": "pointer"
+							}
 						}
 					],
 					"sid": 678832989372234,
 					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 980989802869140,
-									"parameters": {
-										"variable": "GAME_standalone"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"id": "set-cursor-style2",
-									"objectClass": "Mouse",
-									"sid": 314589727164940,
-									"parameters": {
-										"cursor-style": "pointer"
-									}
-								}
-							],
-							"sid": 623026736364633
-						},
 						{
 							"eventType": "comment",
 							"text": "Errors:\n1 - AJAX error\n2 - Took too long"

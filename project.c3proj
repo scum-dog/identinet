@@ -214,11 +214,11 @@
 					"ScumDog",
 					"Text",
 					"NavBar",
-					"NavButton",
-					"LoginBackground",
-					"LoginButton",
+					"Fade",
+					"Button",
 					"ButtonIcon",
-					"Fade"
+					"MenuBackground",
+					"Logo"
 				],
 				"subfolders": [],
 				"name": "General"
@@ -230,55 +230,28 @@
 					"CharacterCanvas",
 					"Parts",
 					"SavedCharacters",
-					"LocalCharacters"
+					"LocalCharacters",
+					"Card"
 				],
 				"subfolders": [],
 				"name": "Character"
 			},
 			{
 				"items": [
-					"PlazaBackground",
-					"CreatorButton2"
+					"InputDropdown",
+					"InputName",
+					"InputSlider"
 				],
 				"subfolders": [],
-				"name": "Plaza"
+				"name": "Information"
 			},
 			{
 				"items": [
 					"CreatorBackground",
-					"CreatorNavButton",
-					"CreatorButton"
+					"PlazaBackground"
 				],
-				"subfolders": [
-					{
-						"items": [
-							"Card",
-							"CardButton"
-						],
-						"subfolders": [],
-						"name": "Card"
-					},
-					{
-						"items": [
-							"CreatorPageButton",
-							"PartsBackground",
-							"PartsNavBackground"
-						],
-						"subfolders": [],
-						"name": "Parts"
-					},
-					{
-						"items": [
-							"InformationBackground",
-							"InputDropdown",
-							"InputName",
-							"InputSlider"
-						],
-						"subfolders": [],
-						"name": "Information"
-					}
-				],
-				"name": "Creator"
+				"subfolders": [],
+				"name": "Backgrounds"
 			}
 		]
 	},
@@ -287,7 +260,6 @@
 	"containers": [],
 	"families": {
 		"items": [
-			"HUD",
 			"Character"
 		],
 		"subfolders": []
@@ -296,7 +268,8 @@
 		"items": [
 			"Loader",
 			"Plaza",
-			"Creator"
+			"Creator",
+			"Repo"
 		],
 		"subfolders": []
 	},
@@ -304,9 +277,10 @@
 		"items": [
 			"Loader",
 			"Global",
-			"Server",
 			"Plaza",
-			"Creator"
+			"Creator",
+			"Menus",
+			"Server"
 		],
 		"subfolders": []
 	},

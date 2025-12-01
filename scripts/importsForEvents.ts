@@ -76,7 +76,6 @@ export const formatDateForDisplay = API.formatDateForDisplay;
 export const mapDropdownValueToKey = API.mapDropdownValueToKey;
 export const shouldDeleteField = API.shouldDeleteField;
 export const handleRaceMutualExclusivity = API.handleRaceMutualExclusivity;
-export const preventTab = API.preventTab;
 export const sanitizeCharacterName = API.sanitizeCharacterName;
 
 // main object

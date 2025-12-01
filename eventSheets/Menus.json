@@ -1,0 +1,2233 @@
+{
+	"name": "Menus",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "MENU_menu",
+			"type": "string",
+			"initialValue": "List",
+			"comment": "What menu are we showing?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 221397809106405
+		},
+		{
+			"eventType": "variable",
+			"name": "MENU_overlayMenu",
+			"type": "string",
+			"initialValue": "",
+			"comment": "What overlay menu are we showing?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 882934337228183
+		},
+		{
+			"eventType": "variable",
+			"name": "MENU_offset",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "What offset do we have, if any?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 180794212390867
+		},
+		{
+			"eventType": "variable",
+			"name": "MENU_clicked",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are we in a click vs a hold?",
+			"isStatic": true,
+			"isConstant": false,
+			"sid": 519286769715199
+		},
+		{
+			"eventType": "variable",
+			"name": "MENU_buttonID",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "What was the ID of the button we clicked?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 726520226165610
+		},
+		{
+			"functionName": "switchMenu",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "name",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 966283679211335
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "Disable old menu"
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 452557628909013,
+					"parameters": {
+						"layer": "MENU_menu",
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 542461065442365,
+					"parameters": {
+						"layer": "MENU_menu",
+						"interactive": false
+					}
+				},
+				{
+					"type": "comment",
+					"text": "Enable new menu"
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 342088787711405,
+					"parameters": {
+						"variable": "MENU_menu",
+						"value": "name"
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 759185713168138,
+					"parameters": {
+						"layer": "name",
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 192069267937759,
+					"parameters": {
+						"layer": "name",
+						"interactive": true
+					}
+				}
+			],
+			"sid": 529447598416815,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Conditionally show navigation buttons and layers, as needed"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-on-layer",
+							"objectClass": "Button",
+							"sid": 842605052738091,
+							"parameters": {
+								"layer": "\"Navigation\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "Button",
+							"sid": 743222315121240,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 157342754821435
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 887655415555818,
+							"parameters": {
+								"first-value": "LayoutName",
+								"comparison": 0,
+								"second-value": "\"Plaza\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 144380696349414,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 633584578111272,
+									"parameters": {
+										"variable": "name",
+										"comparison": 0,
+										"value": "\"List\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 503876985893405,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 906253865765611,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"login\""
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 638177771944720,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"settings\""
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 519363662797825,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"credits\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 655130056837325,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 898513660258914,
+									"isOrBlock": true
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 761164094767030,
+									"parameters": {
+										"variable": "name",
+										"comparison": 0,
+										"value": "\"Card\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 925899684451842,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 818458487851072,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"back\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 429843619224266,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 802444655160486
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 851471373456083,
+							"parameters": {
+								"first-value": "LayoutName",
+								"comparison": 0,
+								"second-value": "\"Creator\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 776835109957105,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 374932475446519,
+									"parameters": {
+										"variable": "name",
+										"comparison": 0,
+										"value": "\"Parts\""
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 822089611712479,
+									"parameters": {
+										"variable": "name",
+										"comparison": 0,
+										"value": "\"Properties\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "toggleLayer",
+									"sid": 314382073728862,
+									"parameters": [
+										"\"Character\"",
+										true,
+										true
+									]
+								}
+							],
+							"sid": 879251076567316,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 759263470016991,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"back\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 233835505908979,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 933997733065915
+								}
+							],
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 991747153039836
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "toggleLayer",
+									"sid": 961066579839687,
+									"parameters": [
+										"\"Character\"",
+										true,
+										false
+									]
+								}
+							],
+							"sid": 249068621141597
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 195326015993513,
+									"parameters": {
+										"variable": "name",
+										"comparison": 0,
+										"value": "\"Card\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 606025538668046,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 791339603870126,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"login\""
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 262653935204033,
+											"parameters": {
+												"variable": "CREATOR_editing"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 952205760752639,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 303427450650846
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"functionName": "switchCardButtons",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "double",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "",
+					"sid": 951619731727544
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"callFunction": "toggleLayer",
+					"sid": 358463018879702,
+					"parameters": [
+						"\"CardSingle\"",
+						true,
+						false
+					]
+				},
+				{
+					"callFunction": "toggleLayer",
+					"sid": 600431260969019,
+					"parameters": [
+						"\"CardDouble\"",
+						true,
+						false
+					]
+				}
+			],
+			"sid": 696281588234720,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 103952924447208,
+							"parameters": {
+								"variable": "double"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "toggleLayer",
+							"sid": 316367170421966,
+							"parameters": [
+								"\"CardDouble\"",
+								true,
+								true
+							]
+						}
+					],
+					"sid": 811930420817705
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 312212078611445
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "toggleLayer",
+							"sid": 292550631149562,
+							"parameters": [
+								"\"CardSingle\"",
+								true,
+								true
+							]
+						}
+					],
+					"sid": 742596893792296
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Button",
+							"sid": 671830260327100,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"wildcard\""
+							}
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "Button",
+							"sid": 221076621161321,
+							"parameters": {
+								"child": "Text",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Button",
+							"sid": 650336249507206,
+							"parameters": {
+								"instance-variable": "disabled",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 443555531362535,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 519791136970610,
+									"parameters": {
+										"first-value": "LayoutName",
+										"comparison": 0,
+										"second-value": "\"Plaza\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 502924414467408,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 998366115564848,
+											"parameters": {
+												"variable": "PLAZA_state",
+												"comparison": 0,
+												"value": "\"local\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "Text",
+											"sid": 866574695490723,
+											"parameters": {
+												"text": "\"Edit Person\""
+											}
+										}
+									],
+									"sid": 764880598757607
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 141925499666335,
+											"parameters": {
+												"variable": "PLAZA_state",
+												"comparison": 0,
+												"value": "\"online\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "Text",
+											"sid": 576146917187458,
+											"parameters": {
+												"text": "\"Copy Person\""
+											}
+										}
+									],
+									"sid": 319094318390451,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 602948316074394,
+													"parameters": {
+														"first-value": "SavedCharacters.Width",
+														"comparison": 5,
+														"second-value": "PLAZA_maxLocalCharacters"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 732505248004159,
+													"parameters": {
+														"instance-variable": "disabled",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 429188765262924
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 912045047657571,
+									"parameters": {
+										"first-value": "LayoutName",
+										"comparison": 0,
+										"second-value": "\"Creator\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 914683968275042,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 702544447969531,
+											"parameters": {
+												"variable": "CREATOR_editing"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "Text",
+											"sid": 683371772578481,
+											"parameters": {
+												"text": "\"Update Person\""
+											}
+										}
+									],
+									"sid": 885401319516794
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 420854059956843
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "Text",
+											"sid": 869227986750553,
+											"parameters": {
+												"text": "\"Save Person\""
+											}
+										}
+									],
+									"sid": 273123117395671
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"functionName": "switchOverlayMenu",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "name",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 206306057173608
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "Disable old menu"
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 753592662684636,
+					"parameters": {
+						"layer": "MENU_overlayMenu",
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 305824030300069,
+					"parameters": {
+						"layer": "MENU_overlayMenu",
+						"interactive": false
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 319694402778286,
+					"parameters": {
+						"variable": "MENU_overlayMenu",
+						"value": "name"
+					}
+				}
+			],
+			"sid": 495496636879848,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 607492828758484,
+							"parameters": {
+								"variable": "name",
+								"comparison": 1,
+								"value": "\"\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Enable new menu"
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 387300933864313,
+							"parameters": {
+								"layer": "name",
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 211121892216503,
+							"parameters": {
+								"layer": "name",
+								"interactive": true
+							}
+						}
+					],
+					"sid": 915728176575462
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Button",
+							"sid": 941668035122927,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"login\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 427636861296671,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 435332584393081,
+									"parameters": {
+										"variable": "MENU_overlayMenu",
+										"comparison": 0,
+										"value": "\"Disclaimer\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "Button",
+									"sid": 267565116241396,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 778168439166589
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 832708427484652
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "Button",
+									"sid": 658741351531010,
+									"parameters": {
+										"visibility": "visible"
+									}
+								}
+							],
+							"sid": 591484546310571
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Menus - Buttons",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Menus - Buttons (Selection)",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 443140456776697,
+									"parameters": {
+										"first-value": "LayoutName",
+										"comparison": 0,
+										"second-value": "\"Loader\""
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 539537294923318,
+									"parameters": {
+										"cursor-style": "normal"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "Button",
+									"sid": 395181155684748,
+									"parameters": {
+										"animation": "Self.animation",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "Button",
+									"sid": 189743549435284,
+									"parameters": {
+										"instance-variable": "selected",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 353299893223471,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Check button validity"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 151081992230071,
+											"parameters": {
+												"variable": "MENU_overlayMenu",
+												"comparison": 0,
+												"value": "\"\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Button",
+											"sid": 367991248790021,
+											"parameters": {
+												"instance-variable": "valid",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 681038883518824
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 884088018084257
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Button",
+											"sid": 385251287737041,
+											"parameters": {
+												"instance-variable": "valid",
+												"value": "false"
+											}
+										}
+									],
+									"sid": 382819892762990,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-on-layer",
+													"objectClass": "Button",
+													"sid": 104905002286663,
+													"parameters": {
+														"layer": "\"Navigation\""
+													}
+												},
+												{
+													"id": "is-on-layer",
+													"objectClass": "Button",
+													"sid": 404378725646098,
+													"parameters": {
+														"layer": "MENU_overlayMenu"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 225993275907670,
+													"parameters": {
+														"instance-variable": "valid",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 365081047357814,
+											"isOrBlock": true
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "Allow selecting buttons"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 807002656113599,
+											"parameters": {
+												"variable": "TRANSITION_running"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [],
+									"sid": 525572387675903,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "Button",
+													"sid": 772655946571331,
+													"parameters": {
+														"instance-variable": "valid"
+													}
+												},
+												{
+													"id": "is-visible",
+													"objectClass": "Button",
+													"sid": 942872292210468
+												}
+											],
+											"actions": [],
+											"sid": 800153516470278,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "cursor-is-over-object",
+															"objectClass": "Mouse",
+															"sid": 303256930275836,
+															"parameters": {
+																"object": "Button"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 350848239820806,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "is-boolean-instance-variable-set",
+																	"objectClass": "Button",
+																	"sid": 735124779800336,
+																	"parameters": {
+																		"instance-variable": "disabled"
+																	},
+																	"isInverted": true
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-cursor-style2",
+																	"objectClass": "Mouse",
+																	"sid": 292277656988663,
+																	"parameters": {
+																		"cursor-style": "pointer"
+																	}
+																}
+															],
+															"sid": 165008793329973
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "else",
+																	"objectClass": "System",
+																	"sid": 979725772976639
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-cursor-style2",
+																	"objectClass": "Mouse",
+																	"sid": 936873361274578,
+																	"parameters": {
+																		"cursor-style": "not-allowed"
+																	}
+																}
+															],
+															"sid": 420135219709968
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-boolean-instance-variable-set",
+															"objectClass": "Button",
+															"sid": 947862072386168,
+															"parameters": {
+																"instance-variable": "disabled"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [],
+													"sid": 578470383568122,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "cursor-is-over-object",
+																	"objectClass": "Mouse",
+																	"sid": 721399105877697,
+																	"parameters": {
+																		"object": "Button"
+																	}
+																},
+																{
+																	"id": "is-touching-object",
+																	"objectClass": "Touch",
+																	"sid": 188115036211107,
+																	"parameters": {
+																		"object": "Button"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-animation",
+																	"objectClass": "Button",
+																	"sid": 931374128428136,
+																	"parameters": {
+																		"animation": "Self.animation&\"S\"",
+																		"from": "beginning"
+																	}
+																}
+															],
+															"sid": 407724292275592,
+															"isOrBlock": true
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "Reflect button states"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "Button",
+											"sid": 140568988708694,
+											"parameters": {
+												"instance-variable": "disabled"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-opacity",
+											"objectClass": "Button",
+											"sid": 494477737421948,
+											"parameters": {
+												"opacity": "100"
+											}
+										}
+									],
+									"sid": 854960211369134
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "Button",
+											"sid": 941086104044693,
+											"parameters": {
+												"instance-variable": "disabled"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-opacity",
+											"objectClass": "Button",
+											"sid": 227745622078965,
+											"parameters": {
+												"opacity": "50"
+											}
+										}
+									],
+									"sid": 699399941439817
+								},
+								{
+									"eventType": "comment",
+									"text": "Reflect permanently selected buttons"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 247499559047028,
+											"parameters": {
+												"first-value": "LayoutName",
+												"comparison": 0,
+												"second-value": "\"Plaza\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 940300438804336,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "Local"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Button",
+													"sid": 375468600739847,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"local\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 774937557248670,
+													"parameters": {
+														"variable": "PLAZA_state",
+														"comparison": 0,
+														"value": "\"local\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 498207090453365,
+													"parameters": {
+														"instance-variable": "selected",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 655490867312233
+										},
+										{
+											"eventType": "comment",
+											"text": "Online"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Button",
+													"sid": 438868630977020,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"online\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 323747957436704,
+													"parameters": {
+														"variable": "PLAZA_state",
+														"comparison": 0,
+														"value": "\"online\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 234034460038050,
+													"parameters": {
+														"instance-variable": "selected",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 531357637842565
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 243521436470757,
+											"parameters": {
+												"first-value": "LayoutName",
+												"comparison": 0,
+												"second-value": "\"Creator\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 612769844671686,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "Category"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Button",
+													"sid": 417569982121820,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"category\""
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Button",
+													"sid": 787735808602642,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "Parts.IndexOf(CREATOR_part)"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 465923367549147,
+													"parameters": {
+														"instance-variable": "selected",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 318743104127093
+										},
+										{
+											"eventType": "comment",
+											"text": "Part"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Button",
+													"sid": 937371445214009,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"part\""
+													}
+												}
+											],
+											"actions": [],
+											"sid": 849620311704346,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "has-key",
+															"objectClass": "JSON",
+															"sid": 908632405014864,
+															"parameters": {
+																"path": "\"character_data.static.\"&CREATOR_part&\".asset_id\""
+															}
+														}
+													],
+													"actions": [],
+													"sid": 710962258930986,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "Button",
+																	"sid": 433574591478950,
+																	"parameters": {
+																		"instance-variable": "id",
+																		"comparison": 0,
+																		"value": "JSON.Get(\"character_data.static.\"&CREATOR_part&\".asset_id\")"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "Button",
+																	"sid": 795120416852172,
+																	"parameters": {
+																		"instance-variable": "selected",
+																		"value": "true"
+																	}
+																}
+															],
+															"sid": 180705923339556
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 713303226473127
+														},
+														{
+															"id": "has-key",
+															"objectClass": "JSON",
+															"sid": 660616577793821,
+															"parameters": {
+																"path": "\"character_data.placeable_movable.\"&CREATOR_part&\".asset_id\""
+															}
+														}
+													],
+													"actions": [],
+													"sid": 797602678256147,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "Button",
+																	"sid": 831058134036600,
+																	"parameters": {
+																		"instance-variable": "id",
+																		"comparison": 0,
+																		"value": "JSON.Get(\"character_data.placeable_movable.\"&CREATOR_part&\".asset_id\")"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "Button",
+																	"sid": 480172260394858,
+																	"parameters": {
+																		"instance-variable": "selected",
+																		"value": "true"
+																	}
+																}
+															],
+															"sid": 427615317985628
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 305755828361538
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "Button",
+															"sid": 827490758190064,
+															"parameters": {
+																"instance-variable": "id",
+																"comparison": 0,
+																"value": "-1"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "Button",
+															"sid": 387062591041190,
+															"parameters": {
+																"instance-variable": "selected",
+																"value": "true"
+															}
+														}
+													],
+													"sid": 744668103639554
+												}
+											]
+										},
+										{
+											"eventType": "comment",
+											"text": "Properties"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Button",
+													"sid": 590301977645441,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"properties\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 730444466260878,
+													"parameters": {
+														"variable": "MENU_menu",
+														"comparison": 0,
+														"value": "\"Properties\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 665562719868716,
+													"parameters": {
+														"instance-variable": "selected",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 526676633140865
+										},
+										{
+											"eventType": "comment",
+											"text": "Biographic"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Button",
+													"sid": 151519688745690,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"biographic\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 568944320572551,
+													"parameters": {
+														"variable": "MENU_menu",
+														"comparison": 0,
+														"value": "\"Biographic\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 248271127478795,
+													"parameters": {
+														"instance-variable": "selected",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 564771857052608
+										},
+										{
+											"eventType": "comment",
+											"text": "Physical"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Button",
+													"sid": 262402645377360,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"physical\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 419089731869741,
+													"parameters": {
+														"variable": "MENU_menu",
+														"comparison": 0,
+														"value": "\"Physical\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 949589492397989,
+													"parameters": {
+														"instance-variable": "selected",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 764090230692192
+										},
+										{
+											"eventType": "comment",
+											"text": "Card"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Button",
+													"sid": 519233628705740,
+													"parameters": {
+														"instance-variable": "type",
+														"comparison": 0,
+														"value": "\"card\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 359800815267781,
+													"parameters": {
+														"variable": "MENU_menu",
+														"comparison": 0,
+														"value": "\"Card\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 371126072896359,
+													"parameters": {
+														"instance-variable": "selected",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 228801029836186
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "Button",
+											"sid": 996540872724162,
+											"parameters": {
+												"instance-variable": "selected"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "Button",
+											"sid": 318502364985615,
+											"parameters": {
+												"animation": "Self.animation&\"S\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 822718802345652
+								}
+							]
+						}
+					],
+					"sid": 662483736800382
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Menus - Buttons (Interacting)",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 156910463819320,
+									"parameters": {
+										"variable": "TRANSITION_running"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 295749572522972,
+							"children": [
+								{
+									"eventType": "group",
+									"disabled": false,
+									"title": "Menus - Buttons (Clickable)",
+									"description": "",
+									"isActiveOnStart": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-object-clicked",
+													"objectClass": "Mouse",
+													"sid": 677910288172967,
+													"parameters": {
+														"mouse-button": "left",
+														"click-type": "clicked",
+														"object-clicked": "Button"
+													}
+												},
+												{
+													"id": "on-tap-object",
+													"objectClass": "Touch",
+													"sid": 595009583773620,
+													"parameters": {
+														"object": "Button"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 941157592191011,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-boolean-instance-variable-set",
+															"objectClass": "Button",
+															"sid": 236048881304383,
+															"parameters": {
+																"instance-variable": "holdable"
+															},
+															"isInverted": true
+														},
+														{
+															"id": "is-boolean-instance-variable-set",
+															"objectClass": "Button",
+															"sid": 622669289551853,
+															"parameters": {
+																"instance-variable": "valid"
+															}
+														},
+														{
+															"id": "is-visible",
+															"objectClass": "Button",
+															"sid": 118167546941615
+														}
+													],
+													"actions": [
+														{
+															"id": "set-boolean-eventvar",
+															"objectClass": "System",
+															"sid": 739567287298592,
+															"parameters": {
+																"variable": "MENU_clicked",
+																"value": "true"
+															}
+														},
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 309906814333173,
+															"parameters": {
+																"variable": "MENU_buttonID",
+																"value": "Button.id"
+															}
+														}
+													],
+													"sid": 179931972584508,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "is-boolean-instance-variable-set",
+																	"objectClass": "Button",
+																	"sid": 861441850356019,
+																	"parameters": {
+																		"instance-variable": "disabled"
+																	},
+																	"isInverted": true
+																}
+															],
+															"actions": [
+																{
+																	"id": "signal",
+																	"objectClass": "System",
+																	"sid": 408789107797702,
+																	"parameters": {
+																		"tag": "\"button_\"&Button.type"
+																	}
+																}
+															],
+															"sid": 129704302043780
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "else",
+																	"objectClass": "System",
+																	"sid": 478592972246624
+																}
+															],
+															"actions": [
+																{
+																	"id": "signal",
+																	"objectClass": "System",
+																	"sid": 155012244497019,
+																	"parameters": {
+																		"tag": "\"buttonE_\"&Button.type"
+																	}
+																}
+															],
+															"sid": 744934363934414
+														}
+													]
+												}
+											],
+											"isOrBlock": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "on-button-released",
+													"objectClass": "Mouse",
+													"sid": 825382192737762,
+													"parameters": {
+														"mouse-button": "left"
+													}
+												},
+												{
+													"id": "on-any-touch-end",
+													"objectClass": "Touch",
+													"sid": 583888806421297
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 299969020005722,
+													"parameters": {
+														"variable": "MENU_clicked",
+														"value": "false"
+													}
+												}
+											],
+											"sid": 546805566405533,
+											"isOrBlock": true
+										}
+									],
+									"sid": 310105274261736
+								},
+								{
+									"eventType": "group",
+									"disabled": false,
+									"title": "Menus - Buttons (Holdable)",
+									"description": "",
+									"isActiveOnStart": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "cursor-is-over-object",
+													"objectClass": "Mouse",
+													"sid": 318952265275472,
+													"parameters": {
+														"object": "Button"
+													}
+												},
+												{
+													"id": "is-touching-object",
+													"objectClass": "Touch",
+													"sid": 656244240278924,
+													"parameters": {
+														"object": "Button"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 536804013198053,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "mouse-button-is-down",
+															"objectClass": "Mouse",
+															"sid": 621519952220601,
+															"parameters": {
+																"mouse-button": "left"
+															}
+														},
+														{
+															"id": "is-in-touch",
+															"objectClass": "Touch",
+															"sid": 537175557369064
+														}
+													],
+													"actions": [],
+													"sid": 549719948126522,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "is-boolean-instance-variable-set",
+																	"objectClass": "Button",
+																	"sid": 423785081301433,
+																	"parameters": {
+																		"instance-variable": "valid"
+																	}
+																},
+																{
+																	"id": "is-visible",
+																	"objectClass": "Button",
+																	"sid": 469945533381561
+																},
+																{
+																	"id": "is-boolean-instance-variable-set",
+																	"objectClass": "Button",
+																	"sid": 897961874702450,
+																	"parameters": {
+																		"instance-variable": "holdable"
+																	}
+																},
+																{
+																	"id": "compare-boolean-eventvar",
+																	"objectClass": "System",
+																	"sid": 505587037583153,
+																	"parameters": {
+																		"variable": "MENU_clicked"
+																	},
+																	"isInverted": true
+																},
+																{
+																	"id": "is-timer-running",
+																	"objectClass": "Button",
+																	"sid": 922478581715541,
+																	"behaviorType": "Timer",
+																	"parameters": {
+																		"tag": "\"cooldown\""
+																	},
+																	"isInverted": true
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 565919287390967,
+																	"parameters": {
+																		"variable": "MENU_buttonID",
+																		"value": "Button.id"
+																	}
+																}
+															],
+															"sid": 303436026051672,
+															"children": [
+																{
+																	"eventType": "comment",
+																	"text": "Properties get a faster cooldown"
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "Button",
+																			"sid": 538747941708928,
+																			"parameters": {
+																				"instance-variable": "type",
+																				"comparison": 0,
+																				"value": "\"property\""
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "start-timer",
+																			"objectClass": "Button",
+																			"sid": 297196440045844,
+																			"behaviorType": "Timer",
+																			"parameters": {
+																				"duration": "0.1",
+																				"type": "once",
+																				"tag": "\"cooldown\""
+																			}
+																		}
+																	],
+																	"sid": 925295720394974
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
+																			"objectClass": "System",
+																			"sid": 184118516548731
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "start-timer",
+																			"objectClass": "Button",
+																			"sid": 491802707762846,
+																			"behaviorType": "Timer",
+																			"parameters": {
+																				"duration": "0.25",
+																				"type": "once",
+																				"tag": "\"cooldown\""
+																			}
+																		}
+																	],
+																	"sid": 351511986627975
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "is-boolean-instance-variable-set",
+																			"objectClass": "Button",
+																			"sid": 228470860606626,
+																			"parameters": {
+																				"instance-variable": "disabled"
+																			},
+																			"isInverted": true
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "signal",
+																			"objectClass": "System",
+																			"sid": 519806228111151,
+																			"parameters": {
+																				"tag": "\"button_\"&Button.type"
+																			}
+																		}
+																	],
+																	"sid": 959891143379445
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
+																			"objectClass": "System",
+																			"sid": 888307770660618
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "signal",
+																			"objectClass": "System",
+																			"sid": 226941782925587,
+																			"parameters": {
+																				"tag": "\"buttonE_\"&Button.type"
+																			}
+																		}
+																	],
+																	"sid": 752247387283424
+																}
+															]
+														}
+													],
+													"isOrBlock": true
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 649691049776258
+														}
+													],
+													"actions": [
+														{
+															"id": "stop-all-timers",
+															"objectClass": "Button",
+															"sid": 498432923598785,
+															"behaviorType": "Timer"
+														}
+													],
+													"sid": 580883609850421
+												}
+											],
+											"isOrBlock": true
+										}
+									],
+									"sid": 141211981597342
+								}
+							]
+						}
+					],
+					"sid": 534989145678427
+				}
+			],
+			"sid": 769542039953001
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Text",
+					"sid": 892951129135336,
+					"parameters": {
+						"instance-variable": "type",
+						"comparison": 0,
+						"value": "\"time\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "Text",
+					"sid": 716261421984986,
+					"parameters": {
+						"text": "zeropad(Date.GetHours(Date.Now),2)&(Date.GetSeconds(Date.Now)%2 ? \":\" : \"•\")&zeropad(Date.GetMinutes(Date.Now),2)"
+					}
+				}
+			],
+			"sid": 122993464901505
+		}
+	],
+	"sid": 353135059416559
+}

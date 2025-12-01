@@ -112,7 +112,6 @@ export {
   mapDropdownValueToKey,
   shouldDeleteField,
   handleRaceMutualExclusivity,
-  preventTab,
   sanitizeCharacterName,
 } from "./base/utils.js";
 
@@ -286,7 +285,7 @@ runOnStartup(async (runtime: any) => {
 
 	/* Border frame */
 	canvas {
-		box-shadow:0px 0px 0px calc(2px * var(--construct-scale)) #000000;
+		box-shadow:0px 0px 0px calc(1px * var(--construct-scale)) #000000;
 		background:#000000;
 		opacity:0;
 		animation:fadeBorder 0.25s forwards;

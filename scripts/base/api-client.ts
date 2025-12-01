@@ -91,7 +91,7 @@ function clearPersistedToken(): void {
 
 function notifyAuthStateChange(): void {
   const isAuth = authToken !== null;
-  RUNTIME.signal("authStateChange");
+  RUNTIME.callFunction("authStateChange", isAuth);
 
   authStateListeners.forEach((listener) => {
     try {

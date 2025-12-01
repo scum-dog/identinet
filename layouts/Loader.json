@@ -294,61 +294,32 @@
 					}
 				},
 				{
-					"type": "Text",
+					"type": "Logo",
 					"properties": {
-						"text": "ESTABLISHING CONNECTION TO SERVER...",
-						"enable-bbcode": true,
-						"character-width": 12,
-						"character-height": 12,
-						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|\\/@+=*$<>%•",
-						"spacing-data": "[[5,\" \"],\n[2,\".:!'|•\"],\n[3,\",;\"],\n[4,\"iIl1\\\"()\\\\/\"],\n[5,\"fjt[]<>\"],[6,\"ABCDEFGHJKLMNOPQRSTUVWXYZabcdeghkmnopqrsuvwxyz023456789?-_~#&@+=*$\"],\n[8,\"%\"]]",
-						"scale": 1,
-						"character-spacing": 0,
-						"line-height": -1,
-						"horizontal-alignment": "left",
-						"vertical-alignment": "top",
-						"wrapping": "word",
 						"initially-visible": true,
-						"origin": "top-left",
-						"read-aloud": false
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
 					},
-					"uid": 9,
-					"sid": 537946200702282,
+					"uid": 250,
+					"sid": 421924548967838,
 					"tags": "",
-					"instanceVariables": {
-						"type": "server"
-					},
+					"instanceVariables": {},
 					"behaviors": {},
-					"effects": {
-						"BetterOutline": {
-							"isEnabled": true,
-							"parameters": {
-								"color": [
-									0,
-									0,
-									0,
-									1
-								],
-								"width": 1,
-								"precision-step": 1,
-								"samples": 8,
-								"opacity": 1
-							}
-						}
-					},
 					"instanceFolderItem": {
-						"sid": 537946200702282,
+						"sid": 421924548967838,
 						"expanded": true
 					},
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 7,
-						"y": 8,
-						"width": 304,
-						"height": 180,
-						"originX": 0,
-						"originY": 0,
+						"x": 160,
+						"y": 24,
+						"width": 163,
+						"height": 30,
+						"originX": 0.5030674846625767,
+						"originY": 0.5,
 						"color": [
 							1,
 							1,

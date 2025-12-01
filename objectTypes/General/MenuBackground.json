@@ -1,18 +1,10 @@
 {
-	"name": "LoginButton",
+	"name": "MenuBackground",
 	"plugin-id": "Sprite",
-	"sid": 776357775460365,
+	"sid": 564125946194534,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
-	"instanceVariables": [
-		{
-			"name": "type",
-			"type": "string",
-			"desc": "",
-			"show": true,
-			"sid": 973581605072869
-		}
-	],
+	"instanceVariables": [],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
@@ -20,22 +12,22 @@
 			{
 				"frames": [
 					{
-						"width": 136,
-						"height": 32,
+						"width": 284,
+						"height": 208,
 						"originX": 0,
 						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 2793456,
+						"imageSpriteId": 2164618,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 705416229439390,
-				"name": "googleDefault",
+				"sid": 370653328152321,
+				"name": "plaza",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -45,22 +37,22 @@
 			{
 				"frames": [
 					{
-						"width": 136,
-						"height": 32,
+						"width": 284,
+						"height": 208,
 						"originX": 0,
 						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 4760499,
+						"imageSpriteId": 8020167,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 242648122007341,
-				"name": "googleSelected",
+				"sid": 957001021158967,
+				"name": "creator",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -70,22 +62,22 @@
 			{
 				"frames": [
 					{
-						"width": 136,
-						"height": 32,
+						"width": 164,
+						"height": 172,
 						"originX": 0,
 						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 8612693,
+						"imageSpriteId": 7369745,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 643050609231997,
-				"name": "itchDefault",
+				"sid": 964999659751572,
+				"name": "parts",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -95,7 +87,7 @@
 			{
 				"frames": [
 					{
-						"width": 136,
+						"width": 312,
 						"height": 32,
 						"originX": 0,
 						"originY": 0,
@@ -103,14 +95,14 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 8660615,
+						"imageSpriteId": 5538770,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 867031363683673,
-				"name": "itchSelected",
+				"sid": 977138227845012,
+				"name": "categories",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -120,22 +112,22 @@
 			{
 				"frames": [
 					{
-						"width": 136,
-						"height": 32,
+						"width": 144,
+						"height": 144,
 						"originX": 0,
 						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 7304856,
+						"imageSpriteId": 7107372,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 907889414576017,
-				"name": "newgroundsDefault",
+				"sid": 924516725762749,
+				"name": "login",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -145,22 +137,47 @@
 			{
 				"frames": [
 					{
-						"width": 136,
-						"height": 32,
+						"width": 300,
+						"height": 192,
 						"originX": 0,
 						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5597903,
+						"imageSpriteId": 2768300,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 951181439058690,
-				"name": "newgroundsSelected",
+				"sid": 571568386353198,
+				"name": "credits",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 276,
+						"height": 184,
+						"originX": 0,
+						"originY": 0,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8920536,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 816040069160674,
+				"name": "disclaimer",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
