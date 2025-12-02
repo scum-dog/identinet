@@ -28,7 +28,6 @@ export async function getUserCharacter(): Promise<
 
 /**
  * upload character for the current user
- * users can only have one character. use updateUserCharacter() to modify existing
  * @param characterData - complete character data structure
  * @returns job id for async processing
  */
@@ -48,7 +47,6 @@ export async function uploadCharacter(
 
 /**
  * update the current user's existing character
- * character must already exist. use uploadCharacter() for new characters
  * @param characterData - updated character data structure
  * @returns job id for async processing
  */
@@ -99,8 +97,8 @@ export async function getPlazaCharacters(
 }
 
 /**
- * get a specific character by its uuid
- * @param characterId - unique character identifier
+ * get a specific character by id
+ * @param characterId - unique character id
  * @returns character data for display
  */
 export async function getCharacterById(
@@ -160,12 +158,12 @@ export async function getRandomCharacters(
 export async function getOnlineCharacterPage(
   offset: number,
   limit: number = 8,
-  filters?: Omit<PlazaFilters, 'offset' | 'limit'>,
+  filters?: Omit<PlazaFilters, "offset" | "limit">,
 ): Promise<ApiResponse<PlazaResponse>> {
   return getPlazaCharacters({
     ...filters,
     limit,
-    offset
+    offset,
   });
 }
 

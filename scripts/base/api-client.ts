@@ -126,7 +126,6 @@ export function addAuthStateListener(listener: AuthStateListener): () => void {
 
 /**
  * configures api client with base settings
- * call this once when initializing the game
  */
 export function configureApi(newConfig: Partial<ApiConfig>): void {
   config = { ...config, ...newConfig };
@@ -136,7 +135,6 @@ export function configureApi(newConfig: Partial<ApiConfig>): void {
 
 /**
  * set the auth token for authenticated requests
- * call this after successful login
  */
 export function setAuthToken(token: string): void {
   authToken = token;
@@ -146,7 +144,6 @@ export function setAuthToken(token: string): void {
 
 /**
  * clear auth token
- * call this on logout
  */
 export function clearAuthToken(): void {
   authToken = null;

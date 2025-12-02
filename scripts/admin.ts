@@ -1,10 +1,8 @@
 import { get, del } from "./base/api-client.js";
 import {
-  AdminCharacter,
   AdminCharacterWithUser,
   AdminUser,
   Pagination,
-  PaginatedResponse,
   ApiResponse,
 } from "./base/types.js";
 

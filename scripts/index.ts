@@ -126,10 +126,6 @@ export function displayServerError(
 ): void {
   const userMessage = errorText || "Unknown error";
 
-  const lastErrorStatusCode: number = statusCode;
-  const lastErrorText: string = errorText;
-  const lastErrorUserMessage = userMessage;
-
   console.error(`Upload failed - Status: ${statusCode}, Error: ${errorText}`);
 
   if (RUNTIME) {
