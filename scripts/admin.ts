@@ -1,7 +1,7 @@
 import { get, del } from "./base/api-client.js";
 import {
-  AdminCharacterWithUser,
-  AdminUser,
+  CharacterWithUser,
+  User,
   Pagination,
   ApiResponse,
 } from "./base/types.js";
@@ -18,7 +18,7 @@ export async function listAllCharacters(
   limit: number = 50,
   showDeleted: boolean = false,
 ): Promise<
-  ApiResponse<{ characters: AdminCharacterWithUser[]; pagination: Pagination }>
+  ApiResponse<{ characters: CharacterWithUser[]; pagination: Pagination }>
 > {
   const params = new URLSearchParams({
     page: page.toString(),
@@ -39,7 +39,7 @@ export async function listAllCharacters(
  */
 export async function getCharacterDetails(
   characterId: string,
-): Promise<ApiResponse<{ character: AdminCharacterWithUser }>> {
+): Promise<ApiResponse<{ character: CharacterWithUser }>> {
   return get(`/admin/characters/${characterId}`);
 }
 
@@ -85,7 +85,7 @@ export async function deleteCharacter(
 export async function listAllUsers(
   page: number = 1,
   limit: number = 50,
-): Promise<ApiResponse<{ users: AdminUser[]; pagination: Pagination }>> {
+): Promise<ApiResponse<{ users: User[]; pagination: Pagination }>> {
   const params = new URLSearchParams({
     page: page.toString(),
     limit: Math.min(limit, 100).toString(),
@@ -102,7 +102,7 @@ export async function listAllUsers(
 export async function getRecentCharacters(
   limit: number = 20,
 ): Promise<
-  ApiResponse<{ characters: AdminCharacterWithUser[]; pagination: Pagination }>
+  ApiResponse<{ characters: CharacterWithUser[]; pagination: Pagination }>
 > {
   return listAllCharacters(1, limit, false);
 }
@@ -115,7 +115,7 @@ export async function getRecentCharacters(
 export async function getDeletedCharacters(
   limit: number = 50,
 ): Promise<
-  ApiResponse<{ characters: AdminCharacterWithUser[]; pagination: Pagination }>
+  ApiResponse<{ characters: CharacterWithUser[]; pagination: Pagination }>
 > {
   const response = await listAllCharacters(1, limit, true);
 
@@ -200,7 +200,7 @@ export async function validateAdminAccess(): Promise<boolean> {
   try {
     const { getCurrentUser } = await import("./auth.js");
     const response = await getCurrentUser();
-    return Boolean(response.success && response.data?.user?.isAdmin);
+    return Boolean(response.success && response.data?.isAdmin);
   } catch {
     return false;
   }

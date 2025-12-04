@@ -3642,7 +3642,7 @@
 								"const json_object = runtime.objects.JSON.getFirstInstance();",
 								"if (!json_object) return;",
 								"",
-								"uploadCharacter(json_object.getJsonDataCopy());"
+								"uploadCharacter(json_object.getJsonDataCopy().character_data);"
 							]
 						}
 					],
@@ -3693,7 +3693,7 @@
 										"const json_object = runtime.objects.JSON.getFirstInstance();",
 										"if (!json_object) return;",
 										"",
-										"updateUserCharacter(json_object.getJsonDataCopy());"
+										"updateUserCharacter(json_object.getJsonDataCopy().character_data);"
 									]
 								}
 							],

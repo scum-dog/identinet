@@ -9,11 +9,6 @@ import {
 
 // derived types from constants
 export type Country = (typeof COUNTRIES)[number];
-export type Sex = keyof typeof SEXES;
-export type Race = keyof typeof RACES;
-export type Ethnicity = keyof typeof ETHNICITIES;
-export type EyeColor = keyof typeof EYE_COLORS;
-export type HairColor = keyof typeof HAIR_COLORS;
 
 // value arrays
 export const SEX_VALUES = Object.keys(SEXES) as Sex[];
@@ -22,7 +17,34 @@ export const ETHNICITY_VALUES = Object.keys(ETHNICITIES) as Ethnicity[];
 export const EYE_COLOR_VALUES = Object.keys(EYE_COLORS) as EyeColor[];
 export const HAIR_COLOR_VALUES = Object.keys(HAIR_COLORS) as HairColor[];
 
-export interface CharacterPersonalInfo {
+// CHARACTERS
+export type Sex = "male" | "female" | "other";
+
+export type Race = "ai_an" | "asian" | "black" | "nh_pi" | "white" | "other";
+
+export type Ethnicity = "hispanic_latino" | "not_hispanic_latino";
+
+export type EyeColor =
+  | "black"
+  | "blue"
+  | "brown"
+  | "gray"
+  | "green"
+  | "hazel"
+  | "maroon"
+  | "pink";
+
+export type HairColor =
+  | "bald"
+  | "black"
+  | "blond"
+  | "brown"
+  | "gray"
+  | "red"
+  | "sandy"
+  | "white";
+
+export interface CharacterInfo {
   name: string;
   sex: Sex;
   date_of_birth: string;
@@ -32,22 +54,14 @@ export interface CharacterPersonalInfo {
   hair_color: HairColor;
   race: Race[];
   ethnicity: Ethnicity;
-  location: string;
+  location: Country;
 }
 
 export interface CharacterStatic {
-  head: {
-    asset_id: number;
-  };
-  hair: {
-    asset_id: number;
-  };
-  beard?: {
-    asset_id: number;
-  };
-  age_lines?: {
-    asset_id: number;
-  };
+  head: { asset_id: number };
+  hair: { asset_id: number };
+  beard?: { asset_id: number };
+  age_lines?: { asset_id: number };
 }
 
 export interface CharacterPlaceableMovable {
@@ -90,27 +104,47 @@ export interface CharacterPlaceableMovable {
     offset_x?: number;
     offset_y: number;
     scale?: number;
+    rotation?: number;
   };
 }
 
-export interface CharacterDataStructure {
-  info: CharacterPersonalInfo;
+export interface CharacterData {
+  info: CharacterInfo;
   static: CharacterStatic;
   placeable_movable: CharacterPlaceableMovable;
 }
 
-export type Platform = "newgrounds" | "itch" | "google";
+export interface CharacterMetadata {
+  id: string;
+  user_id: string;
+  created_at: string;
+  last_edited_at: string | null;
+  can_edit: boolean;
+  is_deleted: boolean;
+  deleted_at: string | null;
+  deleted_by: string | null;
+}
 
-export interface AuthResult {
-  user: {
-    id: string;
-    username: string;
-    platform: string;
-    isAdmin: boolean;
-  };
-  sessionId: string;
-  tokenType: "Bearer";
-  message: string;
+export interface Character extends CharacterMetadata {
+  character_data: CharacterData;
+}
+
+export interface CharacterWithUser extends Character {
+  username: string;
+  platform: Platform;
+  platform_user_id: string;
+  user_created_at?: string;
+  last_login?: string;
+}
+
+// AUTHENTICATION
+export type Platform = "newgrounds" | "itch" | "google" | "";
+
+export interface PlatformUser {
+  id: string;
+  username: string;
+  platform?: Platform;
+  is_admin?: boolean;
 }
 
 export interface AuthUrlResult {
@@ -120,84 +154,12 @@ export interface AuthUrlResult {
   expiresAt: Date;
 }
 
-export interface UserInfo {
-  user: {
-    id: string;
-    username: string;
-    platform: string;
-    isAdmin: boolean;
-  };
-  character?: {
-    id: string;
-    created_at: string;
-    last_edited_at: string;
-    is_edited: boolean;
-  };
-  hasCharacter: boolean;
-}
-
-export interface CharacterMetadata {
-  upload_id: string;
-  user_id: string;
-  created_at: string;
-  last_edited_at: string | null;
-  is_edited: boolean;
-  can_edit: boolean;
-  is_deleted: boolean;
-  deleted_at: string | null;
-  deleted_by: string | null;
-}
-
-export interface FullCharacterData {
-  character_data: CharacterDataStructure;
-  metadata: CharacterMetadata;
-}
-
-export interface PlazaCharacter {
-  upload_id: string;
-  creation_time: string;
-  edit_time: string | null;
+// ROUTE INTERFACES
+export interface PlazaCharacter extends Pick<
+  Character,
+  "id" | "created_at" | "last_edited_at" | "character_data"
+> {
   location: string;
-  character_data: CharacterDataStructure;
-}
-
-export interface PlazaResponse {
-  characters: PlazaCharacter[];
-  count: number;
-  total: number;
-  filters: {
-    country?: string;
-  };
-}
-
-export interface AdminCharacter {
-  id: string;
-  user_id: string;
-  character_data: string | CharacterDataStructure;
-  created_at: string;
-  last_edited_at: string | null;
-  is_edited: boolean;
-  is_deleted: boolean;
-  deleted_at: string | null;
-  deleted_by: string | null;
-}
-
-export interface AdminCharacterWithUser extends AdminCharacter {
-  username: string;
-  platform: string;
-  platform_user_id: string;
-  user_created_at?: string;
-  last_login?: string;
-}
-
-export interface AdminUser {
-  id: string;
-  username: string;
-  platform: string;
-  platform_user_id: string;
-  created_at: string;
-  last_login: string;
-  is_admin: boolean;
 }
 
 export interface Pagination {
@@ -207,13 +169,21 @@ export interface Pagination {
   totalPages: number;
 }
 
-export interface PaginatedResponse<T> {
-  data: T[];
-  pagination: Pagination;
+export interface PlazaResponse {
+  characters: PlazaCharacter[];
+  count: number;
+  total: number;
+  filters: { country?: string };
+}
+
+export interface ApiConfig {
+  baseUrl: string;
+  timeout: number;
+  defaultHeaders: Record<string, string>;
 }
 
 export interface ApiResponse<T = any> {
-  success?: boolean;
+  success: boolean;
   data?: T;
   error?: string;
   message?: string;
@@ -222,9 +192,9 @@ export interface ApiResponse<T = any> {
 
 export interface ErrorResponse {
   error: string;
-  message?: string;
+  message: string;
   details?: any;
-  statusCode?: number;
+  statusCode: number;
 }
 
 export interface RequestOptions {
@@ -232,14 +202,20 @@ export interface RequestOptions {
   timeout?: number;
 }
 
-export interface PlazaFilters {
-  country?: string;
-  limit?: number;
-  offset?: number;
+export interface User {
+  id: string;
+  username: string;
+  platform: Platform;
+  isAdmin: boolean;
 }
 
-export interface ApiConfig {
-  baseUrl: string;
-  timeout?: number;
-  defaultHeaders?: Record<string, string>;
+export interface UserInfo extends User {
+  hasCharacter: boolean;
+}
+
+export interface AuthResult {
+  user: User;
+  sessionId: string;
+  tokenType: "Bearer";
+  message: string;
 }

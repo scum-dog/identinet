@@ -18,25 +18,25 @@ export type {
   RequestOptions,
 
   // character types
-  CharacterPersonalInfo,
+  CharacterInfo,
   CharacterStatic,
   CharacterPlaceableMovable,
-  CharacterDataStructure,
+  CharacterData,
   CharacterMetadata,
-  FullCharacterData,
+  Character,
+  CharacterWithUser,
   PlazaCharacter,
   PlazaResponse,
-  PlazaFilters,
 
   // auth types
   AuthResult,
   AuthUrlResult,
   UserInfo,
+  PlatformUser,
 
   // admin types
-  AdminCharacter,
-  AdminUser,
-  PaginatedResponse,
+  User,
+  Pagination,
 
   // types from constants
   Country,
@@ -45,6 +45,7 @@ export type {
   Ethnicity,
   EyeColor,
   HairColor,
+  Platform,
 } from "./base/types.js";
 
 // value arrays

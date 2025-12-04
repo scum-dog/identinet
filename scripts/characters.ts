@@ -1,11 +1,12 @@
 import { get, post, put } from "./base/api-client.js";
 import {
-  FullCharacterData,
-  CharacterDataStructure,
+  Character,
+  CharacterData,
   PlazaResponse,
-  PlazaFilters,
   ApiResponse,
 } from "./base/types.js";
+
+type PlazaFilters = { country?: string; limit?: number; offset?: number };
 import { CHARACTER_NAME_ERROR_MESSAGE } from "./base/constants.js";
 import { isValidCountry, validateCharacterName } from "./base/utils.js";
 import { displayServerError } from "./index.js";
@@ -20,10 +21,8 @@ runOnStartup(async (runtime) => {
  * get the current user's character data
  * @returns full character with metadata, 404 if no character
  */
-export async function getUserCharacter(): Promise<
-  ApiResponse<FullCharacterData>
-> {
-  return get<FullCharacterData>("/characters/me");
+export async function getUserCharacter(): Promise<ApiResponse<Character>> {
+  return get<Character>("/characters/me");
 }
 
 /**
@@ -32,7 +31,7 @@ export async function getUserCharacter(): Promise<
  * @returns job id for async processing
  */
 export async function uploadCharacter(
-  characterData: CharacterDataStructure,
+  characterData: CharacterData,
 ): Promise<ApiResponse<{ message: string; jobId: string; status: string }>> {
   const response = await post("/characters", characterData);
 
@@ -51,7 +50,7 @@ export async function uploadCharacter(
  * @returns job id for async processing
  */
 export async function updateUserCharacter(
-  characterData: CharacterDataStructure,
+  characterData: CharacterData,
 ): Promise<ApiResponse<{ message: string; jobId: string; status: string }>> {
   const response = await put("/characters/me", characterData);
 
@@ -122,7 +121,7 @@ export async function hasCharacter(): Promise<boolean> {
  */
 export async function canEditCharacter(): Promise<boolean> {
   const response = await getUserCharacter();
-  return Boolean(response.success && response.data?.metadata?.can_edit);
+  return Boolean(response.success && response.data?.can_edit);
 }
 
 /**
@@ -172,7 +171,7 @@ export async function getOnlineCharacterPage(
  * @param characterData - character data to validate
  * @returns validation result with errors if any
  */
-export function validateCharacterData(characterData: CharacterDataStructure): {
+export function validateCharacterData(characterData: CharacterData): {
   valid: boolean;
   errors: string[];
 } {
