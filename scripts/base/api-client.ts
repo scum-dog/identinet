@@ -329,15 +329,3 @@ export async function del<T = any>(
 export function isAuthenticated(): boolean {
   return authToken !== null;
 }
-
-/**
- * handle api responses in game code
- * returns data on success, throws error on failure
- */
-export function unwrapResponse<T>(response: ApiResponse<T>): T {
-  if (response.success && response.data) {
-    return response.data;
-  }
-
-  throw new Error(response.error || "unknown_error");
-}

@@ -7,7 +7,7 @@ import {
   HAIR_COLORS,
 } from "./constants.js";
 
-// derived types from constants
+// derived from constants
 export type Country = (typeof COUNTRIES)[number];
 
 // value arrays
@@ -207,10 +207,6 @@ export interface User {
   username: string;
   platform: Platform;
   isAdmin: boolean;
-}
-
-export interface UserInfo extends User {
-  hasCharacter: boolean;
 }
 
 export interface AuthResult {

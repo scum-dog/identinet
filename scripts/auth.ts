@@ -5,12 +5,7 @@ import {
   setAuthToken,
   clearAuthToken,
 } from "./base/api-client.js";
-import {
-  AuthResult,
-  AuthUrlResult,
-  UserInfo,
-  ApiResponse,
-} from "./base/types.js";
+import { AuthResult, AuthUrlResult, User, ApiResponse } from "./base/types.js";
 
 /**
  * authenticate with newgrounds using session id
@@ -79,8 +74,8 @@ export async function verifySession(): Promise<
  * get current user information and character status
  * includes user details and whether they have a character already
  */
-export async function getCurrentUser(): Promise<ApiResponse<UserInfo>> {
-  return get<UserInfo>("/auth/me");
+export async function getCurrentUser(): Promise<ApiResponse<User>> {
+  return get<User>("/auth/me");
 }
 
 /**

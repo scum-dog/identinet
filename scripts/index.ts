@@ -16,6 +16,7 @@ export type {
   ApiResponse,
   ErrorResponse,
   RequestOptions,
+  Pagination,
 
   // character types
   CharacterInfo,
@@ -29,14 +30,11 @@ export type {
   PlazaResponse,
 
   // auth types
+  User,
+  Platform,
   AuthResult,
   AuthUrlResult,
-  UserInfo,
   PlatformUser,
-
-  // admin types
-  User,
-  Pagination,
 
   // types from constants
   Country,
@@ -45,7 +43,6 @@ export type {
   Ethnicity,
   EyeColor,
   HairColor,
-  Platform,
 } from "./base/types.js";
 
 // value arrays

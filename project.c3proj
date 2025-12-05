@@ -576,7 +576,7 @@
 	},
 	"properties": {
 		"description": "The next generation of facial compositing software is in your hands",
-		"version": "1.0.0f",
+		"version": "0.9.0b",
 		"autoIncrementVersion": false,
 		"author": "SCUM DOG LLC",
 		"authorEmail": "contact@scum.dog",
