@@ -508,6 +508,14 @@
 			"sid": 154348881792512,
 			"tags": "",
 			"instanceVariables": {}
+		},
+		{
+			"type": "SaveFile",
+			"properties": {},
+			"uid": 261,
+			"sid": 784368642998070,
+			"tags": "",
+			"instanceVariables": {}
 		}
 	],
 	"effectTypes": [],

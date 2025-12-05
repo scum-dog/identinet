@@ -1,0 +1,631 @@
+{
+	"name": "Navigation",
+	"events": [
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Navigation - Settings",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Settings"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 106377040668711,
+							"parameters": {
+								"tag": "\"button_settings\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 837506999938697,
+							"parameters": {
+								"audio-file": "select",
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 724784593507546,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 558321443477743,
+									"parameters": {
+										"variable": "MENU_overlayMenu",
+										"comparison": 1,
+										"value": "\"Settings\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "switchOverlayMenu",
+									"sid": 455231791292196,
+									"parameters": [
+										"\"Settings\""
+									]
+								}
+							],
+							"sid": 746699726926073,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "SettingsSlider",
+											"sid": 860254749104571,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"sound\""
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Text",
+											"sid": 403512016662231,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"sound\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-value",
+											"objectClass": "SettingsSlider",
+											"sid": 489217725521845,
+											"parameters": {
+												"value": "SETTING_volumeSound*100"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "Text",
+											"sid": 640135327275930,
+											"parameters": {
+												"text": "SettingsSlider.Value&\"%\""
+											}
+										}
+									],
+									"sid": 660879606876594
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "SettingsSlider",
+											"sid": 794416594827976,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"music\""
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Text",
+											"sid": 667820181689800,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"music\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-value",
+											"objectClass": "SettingsSlider",
+											"sid": 635976617630807,
+											"parameters": {
+												"value": "SETTING_volumeMusic*100"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "Text",
+											"sid": 710535591953303,
+											"parameters": {
+												"text": "SettingsSlider.Value&\"%\""
+											}
+										}
+									],
+									"sid": 888602368050362
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 628671151057756
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "switchOverlayMenu",
+									"sid": 406803466742527,
+									"parameters": [
+										"\"\""
+									]
+								}
+							],
+							"sid": 374501325707958
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "Volume sliders"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-changing",
+							"objectClass": "SettingsSlider",
+							"sid": 109757306978181
+						},
+						{
+							"id": "on-changed",
+							"objectClass": "SettingsSlider",
+							"sid": 963308455524735
+						}
+					],
+					"actions": [],
+					"sid": 334932558685551,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "SettingsSlider",
+									"sid": 705840768772555,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"sound\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 972671471119983,
+									"parameters": {
+										"variable": "SETTING_volumeSound",
+										"value": "SettingsSlider.Value/100"
+									}
+								}
+							],
+							"sid": 937424674242922
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "SettingsSlider",
+									"sid": 979816428845259,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"music\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 712289035852880,
+									"parameters": {
+										"variable": "SETTING_volumeMusic",
+										"value": "SettingsSlider.Value/100"
+									}
+								},
+								{
+									"id": "set-volume",
+									"objectClass": "Audio",
+									"sid": 489758707104864,
+									"parameters": {
+										"tag": "\"music\"",
+										"db": "(log10(SETTING_volumeMusic)*20)"
+									}
+								}
+							],
+							"sid": 790973731017182
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Text",
+									"sid": 133929584099912,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "SettingsSlider.type"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 665352179630215,
+									"parameters": {
+										"text": "SettingsSlider.Value&\"%\""
+									}
+								}
+							],
+							"sid": 536439212990899
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "comment",
+					"text": "Fullscreen"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 766523499379029,
+							"parameters": {
+								"tag": "\"button_fullscreen\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 228191065866421,
+							"parameters": {
+								"audio-file": "select",
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 462381601836268,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-fullscreen",
+									"objectClass": "Browser",
+									"sid": 698598800719486,
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "request-fullscreen",
+									"objectClass": "Browser",
+									"sid": 859527243131843,
+									"parameters": {
+										"mode": "stretch-letterbox-scale",
+										"navigation-ui": "hide"
+									}
+								}
+							],
+							"sid": 176361062902825
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-fullscreen",
+									"objectClass": "Browser",
+									"sid": 969257762225732
+								}
+							],
+							"actions": [
+								{
+									"id": "cancel-fullscreen",
+									"objectClass": "Browser",
+									"sid": 953462372901833
+								}
+							],
+							"sid": 133524857699580
+						}
+					]
+				}
+			],
+			"sid": 843068720777378
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Navigation - Credits",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Credits"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 992962159243314,
+							"parameters": {
+								"tag": "\"button_credits\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 829051320126328,
+							"parameters": {
+								"audio-file": "select",
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 362090961925304,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 151842752618026,
+									"parameters": {
+										"variable": "MENU_overlayMenu",
+										"comparison": 1,
+										"value": "\"Credits\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "switchOverlayMenu",
+									"sid": 435219804299187,
+									"parameters": [
+										"\"Credits\""
+									]
+								}
+							],
+							"sid": 397538843722767
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 599572393382106
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "switchOverlayMenu",
+									"sid": 200104134212179,
+									"parameters": [
+										"\"\""
+									]
+								}
+							],
+							"sid": 286935943061747
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "URL"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 583739046183557,
+							"parameters": {
+								"tag": "\"button_url\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 196457787212078,
+							"parameters": {
+								"audio-file": "select",
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 271947334784690,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 937653841232344,
+									"parameters": {
+										"variable": "MENU_buttonID",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "open-url-in-new-window",
+									"objectClass": "Browser",
+									"sid": 923901252510962,
+									"parameters": {
+										"url": "\"https://scum.dog/\"",
+										"tag": "\"\""
+									}
+								}
+							],
+							"sid": 728359655373213
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 232811883020684,
+									"parameters": {
+										"variable": "MENU_buttonID",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "open-url-in-new-window",
+									"objectClass": "Browser",
+									"sid": 515200841746944,
+									"parameters": {
+										"url": "\"https://www.demuja.com/\"",
+										"tag": "\"\""
+									}
+								}
+							],
+							"sid": 385627138392290
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 939653978665861,
+									"parameters": {
+										"variable": "MENU_buttonID",
+										"comparison": 0,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "open-url-in-new-window",
+									"objectClass": "Browser",
+									"sid": 457912917979755,
+									"parameters": {
+										"url": "\"https://freesound.org/s/342200/\"",
+										"tag": "\"\""
+									}
+								}
+							],
+							"sid": 286443413951394
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 563085774494440,
+									"parameters": {
+										"variable": "MENU_buttonID",
+										"comparison": 0,
+										"value": "3"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "open-url-in-new-window",
+									"objectClass": "Browser",
+									"sid": 334344922310455,
+									"parameters": {
+										"url": "\"https://freesound.org/s/423166/\"",
+										"tag": "\"\""
+									}
+								}
+							],
+							"sid": 242822074491684
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 952862829360609,
+									"parameters": {
+										"variable": "MENU_buttonID",
+										"comparison": 0,
+										"value": "4"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "open-url-in-new-window",
+									"objectClass": "Browser",
+									"sid": 651493761535768,
+									"parameters": {
+										"url": "\"https://freesound.org/s/346404/\"",
+										"tag": "\"\""
+									}
+								}
+							],
+							"sid": 432908902121438
+						}
+					]
+				}
+			],
+			"sid": 552344487981959
+		}
+	],
+	"sid": 666948032046325
+}

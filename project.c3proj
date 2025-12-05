@@ -43,6 +43,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Dictionary",
+			"name": "Dictionary",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "DrawingCanvas",
 			"name": "Drawing canvas",
 			"author": "Scirra",
@@ -173,7 +180,9 @@
 	],
 	"uniqueId": "pjmdeerwb34",
 	"objectTypes": {
-		"items": [],
+		"items": [
+			"SaveFile"
+		],
 		"subfolders": [
 			{
 				"items": [
@@ -218,7 +227,8 @@
 					"Button",
 					"ButtonIcon",
 					"MenuBackground",
-					"Logo"
+					"Logo",
+					"SettingsSlider"
 				],
 				"subfolders": [],
 				"name": "General"
@@ -280,7 +290,8 @@
 			"Plaza",
 			"Creator",
 			"Menus",
-			"Server"
+			"Server",
+			"Navigation"
 		],
 		"subfolders": []
 	},
@@ -565,7 +576,7 @@
 	},
 	"properties": {
 		"description": "The next generation of facial compositing software is in your hands",
-		"version": "1.0.0d",
+		"version": "1.0.0e",
 		"autoIncrementVersion": false,
 		"author": "SCUM DOG LLC",
 		"authorEmail": "contact@scum.dog",

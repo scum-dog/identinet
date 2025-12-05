@@ -13,7 +13,7 @@
 			"eventType": "variable",
 			"name": "LOADER_maxItems",
 			"type": "number",
-			"initialValue": "3",
+			"initialValue": "4",
 			"comment": "Total items to load",
 			"isStatic": true,
 			"isConstant": true,
@@ -128,16 +128,12 @@
 							}
 						},
 						{
-							"type": "comment",
-							"text": "(loadingprogress+LOAD_artworks+LOAD_pickups+LOAD_drinks+LOAD_skins+LOAD_medals+LOAD_save)/LOADER_maxItems"
-						},
-						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 323724378971843,
+							"sid": 209976645115343,
 							"parameters": {
 								"variable": "LOADER_progress",
-								"value": "(loadingprogress+LOAD_parts+LOAD_save)/LOADER_maxItems"
+								"value": "(loadingprogress+LOAD_parts+LOAD_saveCharacters+LOAD_saveSettings)/LOADER_maxItems"
 							}
 						},
 						{

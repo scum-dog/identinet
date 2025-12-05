@@ -778,19 +778,56 @@
 						"layer": "MENU_overlayMenu",
 						"interactive": false
 					}
-				},
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 319694402778286,
-					"parameters": {
-						"variable": "MENU_overlayMenu",
-						"value": "name"
-					}
 				}
 			],
 			"sid": 495496636879848,
 			"children": [
+				{
+					"eventType": "comment",
+					"text": "Save, when switching off of settings"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 795416403455426,
+							"parameters": {
+								"variable": "MENU_overlayMenu",
+								"comparison": 0,
+								"value": "\"Settings\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "save",
+							"sid": 137461746221821
+						}
+					],
+					"sid": 790175325568763
+				},
+				{
+					"eventType": "comment",
+					"text": "Set new menu"
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 190919498909165,
+							"parameters": {
+								"variable": "MENU_overlayMenu",
+								"value": "name"
+							}
+						}
+					],
+					"sid": 812707240401922
+				},
 				{
 					"eventType": "block",
 					"conditions": [

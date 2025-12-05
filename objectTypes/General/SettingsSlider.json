@@ -1,0 +1,17 @@
+{
+	"name": "SettingsSlider",
+	"plugin-id": "sliderbar",
+	"sid": 359252540551905,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "type",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 166702299026287
+		}
+	],
+	"behaviorTypes": []
+}

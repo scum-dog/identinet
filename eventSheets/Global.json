@@ -10,6 +10,10 @@
 			"includeSheet": "Server"
 		},
 		{
+			"eventType": "include",
+			"includeSheet": "Navigation"
+		},
+		{
 			"eventType": "comment",
 			"text": "Initialization flags"
 		},
@@ -39,13 +43,23 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "LOAD_save",
+			"name": "LOAD_saveCharacters",
 			"type": "boolean",
 			"initialValue": "false",
-			"comment": "Is the save file loaded?",
+			"comment": "Are saved characters loaded?",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 264794377819010
+		},
+		{
+			"eventType": "variable",
+			"name": "LOAD_saveSettings",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are saved settings loaded?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 950116835482998
 		},
 		{
 			"eventType": "variable",
@@ -310,6 +324,14 @@
 									"parameters": {
 										"key": "\"saveData1\""
 									}
+								},
+								{
+									"id": "check-item-exists",
+									"objectClass": "LocalStorage",
+									"sid": 573780828032114,
+									"parameters": {
+										"key": "\"saveData2\""
+									}
 								}
 							],
 							"sid": 432481568114169
@@ -479,27 +501,6 @@
 										}
 									],
 									"sid": 534736673127166
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "has-pointer-lock",
-											"objectClass": "Mouse",
-											"sid": 415699415818024
-										}
-									],
-									"actions": [
-										{
-											"id": "request-pointer-lock",
-											"objectClass": "Mouse",
-											"sid": 553984261761215,
-											"parameters": {
-												"unadjusted-movement": false
-											}
-										}
-									],
-									"sid": 809430725792374
 								}
 							]
 						},
@@ -535,27 +536,6 @@
 										}
 									],
 									"sid": 934843066124839
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "has-pointer-lock",
-											"objectClass": "Mouse",
-											"sid": 254183900445408
-										}
-									],
-									"actions": [
-										{
-											"id": "request-pointer-lock",
-											"objectClass": "Mouse",
-											"sid": 858146093385978,
-											"parameters": {
-												"unadjusted-movement": false
-											}
-										}
-									],
-									"sid": 392443654052895
 								}
 							]
 						},
@@ -583,30 +563,7 @@
 									}
 								}
 							],
-							"sid": 832848798733814,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "trigger-once-while-true",
-											"objectClass": "System",
-											"sid": 643253179806765
-										}
-									],
-									"actions": [
-										{
-											"id": "signal",
-											"objectClass": "System",
-											"sid": 416826441927277,
-											"parameters": {
-												"tag": "\"refreshToggles\""
-											}
-										}
-									],
-									"sid": 485236235179779
-								}
-							]
+							"sid": 832848798733814
 						},
 						{
 							"eventType": "block",
@@ -628,30 +585,7 @@
 									}
 								}
 							],
-							"sid": 678025845406038,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "trigger-once-while-true",
-											"objectClass": "System",
-											"sid": 332937020591583
-										}
-									],
-									"actions": [
-										{
-											"id": "signal",
-											"objectClass": "System",
-											"sid": 134236314217683,
-											"parameters": {
-												"tag": "\"refreshToggles\""
-											}
-										}
-									],
-									"sid": 982178288415076
-								}
-							]
+							"sid": 678025845406038
 						}
 					],
 					"sid": 848170105583906
@@ -1692,9 +1626,36 @@
 						{
 							"id": "load",
 							"objectClass": "SavedCharacters",
-							"sid": 777198347356256,
+							"sid": 360598406082151,
 							"parameters": {
 								"json": "LocalCharacters.AsJSON"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Settings"
+						},
+						{
+							"id": "clear",
+							"objectClass": "SaveFile",
+							"sid": 143600539556202
+						},
+						{
+							"id": "add-key",
+							"objectClass": "SaveFile",
+							"sid": 956903440765348,
+							"parameters": {
+								"key": "\"sound\"",
+								"value": "SETTING_volumeSound"
+							}
+						},
+						{
+							"id": "add-key",
+							"objectClass": "SaveFile",
+							"sid": 120476974100253,
+							"parameters": {
+								"key": "\"music\"",
+								"value": "SETTING_volumeMusic"
 							}
 						}
 					],
@@ -1726,6 +1687,10 @@
 							"sid": 387115650982821
 						},
 						{
+							"eventType": "comment",
+							"text": "Write"
+						},
+						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
@@ -1736,6 +1701,15 @@
 									"parameters": {
 										"key": "\"saveData1\"",
 										"value": "SavedCharacters.AsJSON"
+									}
+								},
+								{
+									"id": "set-item",
+									"objectClass": "LocalStorage",
+									"sid": 474221739724755,
+									"parameters": {
+										"key": "\"saveData2\"",
+										"value": "Browser.ExecJS(\"btoa('\"&SaveFile.AsJSON&\"')\")"
 									}
 								}
 							],
@@ -1772,13 +1746,38 @@
 					"actions": [
 						{
 							"callFunction": "load",
-							"sid": 590713153656908,
+							"sid": 613458424152471,
 							"parameters": [
+								"\"characters\"",
 								"LocalStorage.ItemValue"
 							]
 						}
 					],
 					"sid": 779791538256751
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-exists",
+							"objectClass": "LocalStorage",
+							"sid": 807222713018884,
+							"parameters": {
+								"key": "\"saveData2\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "load",
+							"sid": 209171029608259,
+							"parameters": [
+								"\"settings\"",
+								"Browser.ExecJS(\"atob('\"&LocalStorage.ItemValue&\"')\")"
+							]
+						}
+					],
+					"sid": 392858849061177
 				},
 				{
 					"eventType": "comment",
@@ -1807,7 +1806,7 @@
 							"objectClass": "System",
 							"sid": 386802017530525,
 							"parameters": {
-								"variable": "LOAD_save",
+								"variable": "LOAD_saveCharacters",
 								"value": "true"
 							}
 						}
@@ -1828,52 +1827,156 @@
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
+							"name": "type",
+							"type": "string",
+							"initialValue": "characters",
+							"comment": "",
+							"sid": 562639048135346
+						},
+						{
 							"name": "data",
 							"type": "string",
 							"initialValue": "",
 							"comment": "",
-							"sid": 947190901180219
+							"sid": 453186536605699
 						}
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
+					"actions": [],
+					"sid": 513821286862037,
+					"children": [
 						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 421307779320199,
-							"parameters": {
-								"variable": "LOAD_save",
-								"value": "true"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 516483117036852,
+									"parameters": {
+										"variable": "type",
+										"comparison": 0,
+										"value": "\"characters\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 995545128982891,
+									"parameters": {
+										"type": "log",
+										"message": "\"Loading character data\""
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 798447938732722,
+									"parameters": {
+										"variable": "LOAD_saveCharacters",
+										"value": "true"
+									}
+								},
+								{
+									"id": "load",
+									"objectClass": "SavedCharacters",
+									"sid": 994551294862194,
+									"parameters": {
+										"json": "data"
+									}
+								},
+								{
+									"id": "load",
+									"objectClass": "LocalCharacters",
+									"sid": 158616071232388,
+									"parameters": {
+										"json": "data"
+									}
+								}
+							],
+							"sid": 755949181419470
 						},
 						{
-							"id": "log",
-							"objectClass": "Browser",
-							"sid": 201392012514706,
-							"parameters": {
-								"type": "log",
-								"message": "\"Found save data, loading\""
-							}
-						},
-						{
-							"id": "load",
-							"objectClass": "SavedCharacters",
-							"sid": 873654686859473,
-							"parameters": {
-								"json": "data"
-							}
-						},
-						{
-							"id": "load",
-							"objectClass": "LocalCharacters",
-							"sid": 218609759032480,
-							"parameters": {
-								"json": "data"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 845605556739560,
+									"parameters": {
+										"variable": "type",
+										"comparison": 0,
+										"value": "\"settings\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 519416263723770,
+									"parameters": {
+										"type": "log",
+										"message": "\"Loading settings\""
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 829021279155109,
+									"parameters": {
+										"variable": "LOAD_saveSettings",
+										"value": "true"
+									}
+								},
+								{
+									"id": "load",
+									"objectClass": "SaveFile",
+									"sid": 952739634909746,
+									"parameters": {
+										"json": "data"
+									}
+								}
+							],
+							"sid": 816429733614643,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-empty",
+											"objectClass": "SaveFile",
+											"sid": 272016695711233,
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 458494030464295,
+											"parameters": {
+												"variable": "SETTING_volumeSound",
+												"value": "SaveFile.Get(\"sound\")"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 556275023700708,
+											"parameters": {
+												"variable": "SETTING_volumeMusic",
+												"value": "SaveFile.Get(\"music\")"
+											}
+										}
+									],
+									"sid": 521986615192317
+								}
+							]
 						}
-					],
-					"sid": 513821286862037
+					]
 				}
 			],
 			"sid": 713090861022777
