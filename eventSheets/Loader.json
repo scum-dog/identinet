@@ -619,35 +619,39 @@
 					"isOrBlock": true
 				},
 				{
+					"eventType": "comment",
+					"text": "Switch to the logo"
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
 							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 984568439165564,
-							"parameters": {
-								"variable": "TRANSITION_running"
-							}
-						},
-						{
-							"id": "compare-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 267895981549800,
+							"sid": 885835783668754,
 							"parameters": {
 								"variable": "TRANSITION_movedLayout"
 							}
 						},
 						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 372865508873138,
+							"parameters": {
+								"variable": "TRANSITION_running"
+							}
+						},
+						{
 							"id": "trigger-once-while-true",
 							"objectClass": "System",
-							"sid": 784637914653480
+							"sid": 603157550091808
 						}
 					],
 					"actions": [
 						{
 							"id": "set-layer-visible",
 							"objectClass": "System",
-							"sid": 934273347363108,
+							"sid": 701629318968477,
 							"parameters": {
 								"layer": "\"Loader\"",
 								"visibility": "invisible"
@@ -656,26 +660,42 @@
 						{
 							"id": "destroy",
 							"objectClass": "LoaderBackground",
-							"sid": 439210977719259
-						},
+							"sid": 909422879273278
+						}
+					],
+					"sid": 787435442138565
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 423594690505183,
+							"parameters": {
+								"tag": "\"transitionDone\""
+							}
+						}
+					],
+					"actions": [
 						{
 							"id": "wait",
 							"objectClass": "System",
-							"sid": 683102494346794,
+							"sid": 888299278158867,
 							"parameters": {
-								"seconds": "2.5",
+								"seconds": "1.5",
 								"use-timescale": true
 							}
 						},
 						{
 							"callFunction": "transition",
-							"sid": 101232090462302,
+							"sid": 340446419077194,
 							"parameters": [
 								"\"Plaza\"\n"
 							]
 						}
 					],
-					"sid": 319816031277947
+					"sid": 109663724291218
 				}
 			],
 			"sid": 114182442222367

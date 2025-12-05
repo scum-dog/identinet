@@ -38,6 +38,16 @@
 			"sid": 400279535474701
 		},
 		{
+			"eventType": "variable",
+			"name": "NGIO_onNewgrounds",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Are we playing on Newgrounds?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 628487759324383
+		},
+		{
 			"eventType": "comment",
 			"text": "Loading flags"
 		},
@@ -178,7 +188,46 @@
 							}
 						}
 					],
-					"sid": 109141179522247
+					"sid": 109141179522247,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "We're on Newgrounds"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 965744927186509,
+									"parameters": {
+										"first-value": "RegexMatchCount(Browser.URL, \"^(https?:\\/\\/|\\/\\/)?([a-z0-9-]+\\.)?(newgrounds\\.com|ungrounded\\.net)($|[\\/?#])\", \"gi\")",
+										"comparison": 4,
+										"second-value": "0"
+									}
+								},
+								{
+									"id": "is-in-preview",
+									"objectClass": "System",
+									"sid": 680796316246493
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 740339022301502,
+									"parameters": {
+										"variable": "NGIO_onNewgrounds",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 185311014415085,
+							"isOrBlock": true
+						}
+					]
 				},
 				{
 					"eventType": "group",
@@ -1588,6 +1637,14 @@
 												"variable": "TRANSITION_running",
 												"value": "false"
 											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 587380045732855,
+											"parameters": {
+												"tag": "\"transitionDone\""
+											}
 										}
 									],
 									"sid": 363984484603128
@@ -1729,7 +1786,7 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "File read, good to go"
+					"text": "Keys found, good to go"
 				},
 				{
 					"eventType": "block",
@@ -1781,7 +1838,7 @@
 				},
 				{
 					"eventType": "comment",
-					"text": "File not read, everything is terrible"
+					"text": "Keys not found, everything terrible"
 				},
 				{
 					"eventType": "block",
@@ -1793,11 +1850,6 @@
 							"parameters": {
 								"key": "\"saveData1\""
 							}
-						},
-						{
-							"id": "on-error",
-							"objectClass": "LocalStorage",
-							"sid": 824570187723426
 						}
 					],
 					"actions": [
@@ -1811,8 +1863,63 @@
 							}
 						}
 					],
-					"sid": 185639934971170,
-					"isOrBlock": true
+					"sid": 185639934971170
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-missing",
+							"objectClass": "LocalStorage",
+							"sid": 497802358184777,
+							"parameters": {
+								"key": "\"saveData2\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 478183988879863,
+							"parameters": {
+								"variable": "LOAD_saveSettings",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 553698574674566
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-error",
+							"objectClass": "LocalStorage",
+							"sid": 978881762368509
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 235672407761904,
+							"parameters": {
+								"variable": "LOAD_saveCharacters",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 721660027669838,
+							"parameters": {
+								"variable": "LOAD_saveSettings",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 341934746739015
 				},
 				{
 					"eventType": "comment",

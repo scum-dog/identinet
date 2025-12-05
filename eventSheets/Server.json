@@ -80,6 +80,10 @@
 					"sid": 266556607796293,
 					"children": [
 						{
+							"eventType": "comment",
+							"text": "We've logged in"
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -93,129 +97,155 @@
 									}
 								}
 							],
-							"actions": [
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 267296700051654,
-									"parameters": {
-										"variable": "SERVER_loggedIn",
-										"value": "true"
-									}
-								},
-								{
-									"type": "comment",
-									"text": "Sets our admin state on client... no, the server doesn't let you use this unrestricted"
-								},
-								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"runtime.globalVars.SERVER_isAdmin = await validateAdminAccess();"
-									]
-								}
-							],
+							"actions": [],
 							"sid": 247988440628902,
 							"children": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 985556541582694,
-											"parameters": {
-												"variable": "MENU_overlayMenu",
-												"comparison": 0,
-												"value": "\"Login\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "switchOverlayMenu",
-											"sid": 982388922085480,
-											"parameters": [
-												"\"\""
-											]
-										}
-									],
-									"sid": 981280911714759
-								},
-								{
 									"eventType": "comment",
-									"text": "If our character exists, we should create it"
+									"text": "If we're already logged in, do nothing"
 								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-eventvar",
+											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 704592964265126,
+											"sid": 148771453795772,
 											"parameters": {
-												"variable": "SERVER_uploadedCharacterData",
-												"comparison": 0,
-												"value": "\"\""
-											}
+												"variable": "SERVER_loggedIn"
+											},
+											"isInverted": true
 										}
 									],
 									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 719473776047887,
+											"parameters": {
+												"variable": "SERVER_loggedIn",
+												"value": "true"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "Sets our admin state on client... no, the server doesn't let you use this unrestricted"
+										},
 										{
 											"type": "script",
 											"language": "typescript",
 											"script": [
-												"runtime.globalVars.SERVER_uploadedCharacterData = \"waiting\";",
-												"",
-												"getUserCharacter().then(result => {",
-												"  if (result.data) {",
-												"    runtime.globalVars.SERVER_uploadedCharacterData = JSON.stringify(result.data);",
-												"    runtime.signal(\"storeUploadedCharacter\");",
-												"  } else {",
-												"    runtime.globalVars.SERVER_uploadedCharacterData = \"\";",
-												"  }",
-												"});"
+												"runtime.globalVars.SERVER_isAdmin = await validateAdminAccess();"
 											]
 										}
 									],
-									"sid": 219525957682002
-								},
-								{
-									"eventType": "block",
-									"conditions": [
+									"sid": 948656096756478,
+									"children": [
 										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 803957996476977,
-											"parameters": {
-												"first-value": "LayoutName",
-												"comparison": 0,
-												"second-value": "\"Creator\""
-											}
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 331476146071867,
+													"parameters": {
+														"variable": "MENU_overlayMenu",
+														"comparison": 0,
+														"value": "\"Login\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "switchOverlayMenu",
+													"sid": 291513167037150,
+													"parameters": [
+														"\"\""
+													]
+												}
+											],
+											"sid": 942213637915426
 										},
 										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 675534681558757,
-											"parameters": {
-												"variable": "MENU_menu",
-												"comparison": 0,
-												"value": "\"Card\""
-											}
-										}
-									],
-									"actions": [
+											"eventType": "comment",
+											"text": "If our character exists, we should create it"
+										},
 										{
-											"callFunction": "switchCardButtons",
-											"sid": 707597214627759,
-											"parameters": [
-												true
-											]
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 505924995365713,
+													"parameters": {
+														"variable": "SERVER_uploadedCharacterData",
+														"comparison": 0,
+														"value": "\"\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"type": "script",
+													"language": "typescript",
+													"script": [
+														"runtime.globalVars.SERVER_uploadedCharacterData = \"waiting\";",
+														"",
+														"getUserCharacter().then(result => {",
+														"  if (result.data) {",
+														"    runtime.globalVars.SERVER_uploadedCharacterData = JSON.stringify(result.data);",
+														"    runtime.signal(\"storeUploadedCharacter\");",
+														"  } else {",
+														"    runtime.globalVars.SERVER_uploadedCharacterData = \"\";",
+														"  }",
+														"});"
+													]
+												}
+											],
+											"sid": 475923620353439
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 440762588842680,
+													"parameters": {
+														"first-value": "LayoutName",
+														"comparison": 0,
+														"second-value": "\"Creator\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 463595580869592,
+													"parameters": {
+														"variable": "MENU_menu",
+														"comparison": 0,
+														"value": "\"Card\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "switchCardButtons",
+													"sid": 273716120004421,
+													"parameters": [
+														true
+													]
+												}
+											],
+											"sid": 309549913221223
 										}
-									],
-									"sid": 147590051399261
+									]
 								}
 							]
+						},
+						{
+							"eventType": "comment",
+							"text": "We've logged out"
 						},
 						{
 							"eventType": "block",
@@ -453,13 +483,44 @@
 										{
 											"id": "set-text",
 											"objectClass": "Text",
-											"sid": 910787964590550,
+											"sid": 578020417033242,
 											"parameters": {
-												"text": "\"Logout\""
+												"text": "\"Log out\""
 											}
 										}
 									],
-									"sid": 435998997765441
+									"sid": 435998997765441,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "No need to log out on Newgrounds"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 493221091645104,
+													"parameters": {
+														"variable": "NGIO_onNewgrounds"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "Button",
+													"sid": 884087362172089,
+													"parameters": {
+														"instance-variable": "disabled",
+														"value": "true"
+													}
+												}
+											],
+											"sid": 745272906153684
+										}
+									]
 								},
 								{
 									"eventType": "block",
@@ -474,9 +535,9 @@
 										{
 											"id": "set-text",
 											"objectClass": "Text",
-											"sid": 416962128275519,
+											"sid": 580647419515480,
 											"parameters": {
-												"text": "\"Login\""
+												"text": "\"Log in\""
 											}
 										}
 									],
@@ -486,27 +547,6 @@
 						}
 					],
 					"isOrBlock": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-login-success",
-							"objectClass": "NGIO",
-							"sid": 598743988325699
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"language": "typescript",
-							"script": [
-								"const session_id = runtime.globalVars.NGIO_sessionID as string;",
-								"authenticateNewgrounds(session_id);"
-							]
-						}
-					],
-					"sid": 190575678037808
 				},
 				{
 					"eventType": "group",
@@ -553,40 +593,82 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 665399565037504,
+											"sid": 200409917968424,
 											"parameters": {
-												"variable": "SERVER_loggedIn"
+												"variable": "NGIO_onNewgrounds"
 											},
 											"isInverted": true
 										}
 									],
 									"actions": [],
-									"sid": 201788150879779,
+									"sid": 635172860999341,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "compare-eventvar",
+													"id": "compare-boolean-eventvar",
 													"objectClass": "System",
-													"sid": 544965458675443,
+													"sid": 513446268483250,
 													"parameters": {
-														"variable": "MENU_overlayMenu",
-														"comparison": 1,
-														"value": "\"Login\""
-													}
+														"variable": "SERVER_loggedIn"
+													},
+													"isInverted": true
 												}
 											],
-											"actions": [
+											"actions": [],
+											"sid": 919471860948733,
+											"children": [
 												{
-													"callFunction": "switchOverlayMenu",
-													"sid": 103117075310931,
-													"parameters": [
-														"\"Login\""
-													]
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 446219092816470,
+															"parameters": {
+																"variable": "MENU_overlayMenu",
+																"comparison": 1,
+																"value": "\"Login\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "switchOverlayMenu",
+															"sid": 584904460718641,
+															"parameters": [
+																"\"Login\""
+															]
+														}
+													],
+													"sid": 832817980834739
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 507597546220434
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "switchOverlayMenu",
+															"sid": 143857433018218,
+															"parameters": [
+																"\"\""
+															]
+														}
+													],
+													"sid": 124267350072250
 												}
-											],
-											"sid": 242106112713359
+											]
+										},
+										{
+											"eventType": "comment",
+											"text": "Logout, flush uploaded character"
 										},
 										{
 											"eventType": "block",
@@ -594,25 +676,128 @@
 												{
 													"id": "else",
 													"objectClass": "System",
-													"sid": 676200902741159
+													"sid": 226607011749184
 												}
 											],
 											"actions": [
 												{
-													"callFunction": "switchOverlayMenu",
-													"sid": 540402709799294,
-													"parameters": [
-														"\"\""
+													"type": "script",
+													"language": "typescript",
+													"script": [
+														"logout();"
 													]
+												},
+												{
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 624031489290718,
+													"parameters": {
+														"variable": "SERVER_hasUploadedCharacter",
+														"value": "false"
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 646310999760467,
+													"parameters": {
+														"variable": "SERVER_uploadedCharacterData",
+														"value": "\"\""
+													}
+												},
+												{
+													"id": "subtract-from-eventvar",
+													"objectClass": "System",
+													"sid": 366961302552657,
+													"parameters": {
+														"variable": "CREATOR_editIndex",
+														"value": "1"
+													}
+												},
+												{
+													"id": "load",
+													"objectClass": "LocalCharacters",
+													"sid": 799946936788417,
+													"parameters": {
+														"json": "SavedCharacters.AsJSON"
+													}
 												}
 											],
-											"sid": 294978051759195
+											"sid": 228952056500873,
+											"children": [
+												{
+													"eventType": "comment",
+													"text": "Logout of Newgrounds"
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-logged-in",
+															"objectClass": "NGIO",
+															"sid": 151275174935589
+														}
+													],
+													"actions": [
+														{
+															"id": "logout",
+															"objectClass": "NGIO",
+															"sid": 401730996359702
+														},
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 422802944195644,
+															"parameters": {
+																"variable": "NGIO_sessionID",
+																"value": "\"\""
+															}
+														}
+													],
+													"sid": 812699842167364
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 256733484272373,
+															"parameters": {
+																"first-value": "LayoutName",
+																"comparison": 0,
+																"second-value": "\"Plaza\""
+															}
+														},
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 160116384067576,
+															"parameters": {
+																"variable": "PLAZA_state",
+																"comparison": 0,
+																"value": "\"local\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "updateCharacterList",
+															"sid": 543399446956009,
+															"parameters": [
+																"PLAZA_state"
+															]
+														}
+													],
+													"sid": 874568551444640
+												}
+											]
 										}
 									]
 								},
 								{
 									"eventType": "comment",
-									"text": "Logout, flush uploaded character"
+									"text": "Skip straight to a NG login"
 								},
 								{
 									"eventType": "block",
@@ -620,91 +805,20 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 467843051792511
+											"sid": 359272605953236
 										}
 									],
 									"actions": [
 										{
-											"type": "script",
-											"language": "typescript",
-											"script": [
-												"logout();"
-											]
-										},
-										{
-											"id": "set-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 740488601466023,
+											"id": "login",
+											"objectClass": "NGIO",
+											"sid": 601440249576485,
 											"parameters": {
-												"variable": "SERVER_hasUploadedCharacter",
-												"value": "false"
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 746611226357874,
-											"parameters": {
-												"variable": "SERVER_uploadedCharacterData",
-												"value": "\"\""
-											}
-										},
-										{
-											"id": "subtract-from-eventvar",
-											"objectClass": "System",
-											"sid": 140608515015254,
-											"parameters": {
-												"variable": "CREATOR_editIndex",
-												"value": "1"
-											}
-										},
-										{
-											"id": "load",
-											"objectClass": "LocalCharacters",
-											"sid": 265319876129601,
-											"parameters": {
-												"json": "SavedCharacters.AsJSON"
+												"window-mode": "popup"
 											}
 										}
 									],
-									"sid": 204581674720532,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 696160695803537,
-													"parameters": {
-														"first-value": "LayoutName",
-														"comparison": 0,
-														"second-value": "\"Plaza\""
-													}
-												},
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 754670989852350,
-													"parameters": {
-														"variable": "PLAZA_state",
-														"comparison": 0,
-														"value": "\"local\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "updateCharacterList",
-													"sid": 376228100313586,
-													"parameters": [
-														"PLAZA_state"
-													]
-												}
-											],
-											"sid": 995631307234503
-										}
-									]
+									"sid": 555726136961088
 								}
 							]
 						},
@@ -796,14 +910,14 @@
 								{
 									"id": "on-signal",
 									"objectClass": "System",
-									"sid": 115365458597502,
+									"sid": 271924202656439,
 									"parameters": {
 										"tag": "\"button_loginNewgrounds\""
 									}
 								}
 							],
 							"actions": [],
-							"sid": 624493371184917,
+							"sid": 895498652903983,
 							"children": [
 								{
 									"eventType": "comment",
@@ -815,14 +929,14 @@
 										{
 											"id": "is-ready",
 											"objectClass": "NGIO",
-											"sid": 503103418348402
+											"sid": 435265702355208
 										}
 									],
 									"actions": [
 										{
 											"id": "play",
 											"objectClass": "Audio",
-											"sid": 854742396570222,
+											"sid": 242747818779535,
 											"parameters": {
 												"audio-file": "select",
 												"loop": "not-looping",
@@ -834,13 +948,13 @@
 										{
 											"id": "login",
 											"objectClass": "NGIO",
-											"sid": 979596566168596,
+											"sid": 332317991084266,
 											"parameters": {
 												"window-mode": "popup"
 											}
 										}
 									],
-									"sid": 101049714806460
+									"sid": 106978140348144
 								},
 								{
 									"eventType": "block",
@@ -848,21 +962,51 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 820594948128882
+											"sid": 863165825861540
 										}
 									],
 									"actions": [
 										{
 											"callFunction": "error",
-											"sid": 342600122190768,
+											"sid": 364002082733517,
 											"parameters": [
 												"\"NGIO has not yet initialized. Is it down?\""
 											]
 										}
 									],
-									"sid": 899607067174334
+									"sid": 569750784770595
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-login-success",
+									"objectClass": "NGIO",
+									"sid": 750001847314600
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 683671985035179,
+									"parameters": {
+										"variable": "NGIO_sessionID",
+										"value": "NGIO.SessionID"
+									}
+								},
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"const session_id = runtime.globalVars.NGIO_sessionID as string;",
+										"authenticateNewgrounds(session_id);"
+									]
+								}
+							],
+							"sid": 774989036771965
 						}
 					],
 					"sid": 498964445715037
