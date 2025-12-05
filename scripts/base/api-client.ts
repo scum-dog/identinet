@@ -9,6 +9,7 @@ import {
   TOKEN_TIMESTAMP_KEY,
   TOKEN_MAX_AGE,
 } from "./constants.js";
+import { isPlayingOnNewgrounds } from "./utils.js";
 
 let RUNTIME: any;
 
@@ -45,7 +46,7 @@ function isLocalStorageAvailable(): boolean {
 }
 
 function loadPersistedToken(): string | null {
-  if (!isLocalStorageAvailable()) return null;
+  if (!isLocalStorageAvailable() || isPlayingOnNewgrounds()) return null;
 
   try {
     const token = localStorage.getItem(TOKEN_STORAGE_KEY);
@@ -68,7 +69,7 @@ function loadPersistedToken(): string | null {
 }
 
 function persistToken(token: string): void {
-  if (!isLocalStorageAvailable()) return;
+  if (!isLocalStorageAvailable() || isPlayingOnNewgrounds()) return;
 
   try {
     localStorage.setItem(TOKEN_STORAGE_KEY, token);
@@ -79,7 +80,7 @@ function persistToken(token: string): void {
 }
 
 function clearPersistedToken(): void {
-  if (!isLocalStorageAvailable()) return;
+  if (!isLocalStorageAvailable() || isPlayingOnNewgrounds()) return;
 
   try {
     localStorage.removeItem(TOKEN_STORAGE_KEY);

@@ -111,6 +111,7 @@ export {
   shouldDeleteField,
   handleRaceMutualExclusivity,
   sanitizeCharacterName,
+  isPlayingOnNewgrounds,
 } from "./base/utils.js";
 
 /**

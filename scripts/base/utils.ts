@@ -347,3 +347,18 @@ export function sanitizeCharacterName(name: string): string {
 
   return sanitized;
 }
+
+/**
+ * check if the game is being played on Newgrounds
+ * @returns true if playing on newgrounds.com or ungrounded.net, false otherwise
+ */
+export function isPlayingOnNewgrounds(): boolean {
+  try {
+    const hostname = window.location.hostname.toLowerCase();
+    return (
+      hostname.includes("newgrounds.com") || hostname.includes("ungrounded.net")
+    );
+  } catch {
+    return false;
+  }
+}
