@@ -2,6 +2,7 @@ import { get, del } from "./base/api-client.js";
 import {
   CharacterWithUser,
   User,
+  UserSessionData,
   Pagination,
   ApiResponse,
 } from "./base/types.js";
@@ -200,7 +201,7 @@ export async function validateAdminAccess(): Promise<boolean> {
   try {
     const { getCurrentUser } = await import("./auth.js");
     const response = await getCurrentUser();
-    return Boolean(response.success && response.data?.isAdmin);
+    return Boolean(response.success && response.data?.user?.isAdmin);
   } catch {
     return false;
   }

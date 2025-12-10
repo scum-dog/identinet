@@ -209,6 +209,14 @@ export interface User {
   isAdmin: boolean;
 }
 
+export interface UserSessionData {
+  user: User;
+  character: {
+    id: string;
+    hasCharacter: boolean;
+  };
+}
+
 export interface AuthResult {
   user: User;
   sessionId: string;
