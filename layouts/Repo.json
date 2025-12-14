@@ -10,7 +10,7 @@
 					"type": "Button",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "largeLong",
+						"initial-animation": "characterLocal",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -19,7 +19,7 @@
 					"sid": 363184220423438,
 					"tags": "",
 					"instanceVariables": {
-						"animation": "largeLong",
+						"animation": "characterLocal",
 						"type": "character",
 						"id": 0,
 						"selected": false,
@@ -253,6 +253,7 @@
 					"sid": 317277736843523,
 					"tags": "",
 					"instanceVariables": {
+						"part": false,
 						"parentType": "",
 						"parent": 0,
 						"total": 0,
@@ -294,7 +295,9 @@
 					"uid": 149,
 					"sid": 200631948369042,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"part": false
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 200631948369042,

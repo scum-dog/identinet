@@ -157,6 +157,13 @@
 		},
 		{
 			"type": "behavior",
+			"id": "Bullet",
+			"name": "Bullet",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "Timer",
 			"name": "Timer",
 			"author": "Scirra",
@@ -166,6 +173,13 @@
 			"type": "behavior",
 			"id": "Tween",
 			"name": "Tween",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "solid",
+			"name": "Solid",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -180,9 +194,7 @@
 	],
 	"uniqueId": "pjmdeerwb34",
 	"objectTypes": {
-		"items": [
-			"SaveFile"
-		],
+		"items": [],
 		"subfolders": [
 			{
 				"items": [
@@ -205,7 +217,8 @@
 					"Date",
 					"JSON",
 					"LocalStorage",
-					"Audio"
+					"Audio",
+					"SaveFile"
 				],
 				"subfolders": [],
 				"name": "Plugins"
@@ -228,7 +241,9 @@
 					"ButtonIcon",
 					"MenuBackground",
 					"Logo",
-					"SettingsSlider"
+					"SettingsSlider",
+					"Idle",
+					"ErrorBackground"
 				],
 				"subfolders": [],
 				"name": "General"
@@ -240,8 +255,8 @@
 					"CharacterCanvas",
 					"Parts",
 					"SavedCharacters",
-					"LocalCharacters",
-					"Card"
+					"Card",
+					"UUID"
 				],
 				"subfolders": [],
 				"name": "Character"
@@ -576,7 +591,7 @@
 	},
 	"properties": {
 		"description": "The next generation of facial compositing software is in your hands",
-		"version": "0.9.0b",
+		"version": "0.9.8",
 		"autoIncrementVersion": false,
 		"author": "SCUM DOG LLC",
 		"authorEmail": "contact@scum.dog",

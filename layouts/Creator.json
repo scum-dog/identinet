@@ -101,6 +101,7 @@
 					"sid": 573571138051836,
 					"tags": "",
 					"instanceVariables": {
+						"part": false,
 						"parentType": "",
 						"parent": 0,
 						"total": 0,
@@ -142,7 +143,9 @@
 					"uid": 28,
 					"sid": 554104692209814,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"part": false
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 554104692209814,
@@ -252,7 +255,9 @@
 					"uid": 127,
 					"sid": 607172134175062,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"type": ""
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 607172134175062,
@@ -289,7 +294,9 @@
 					"uid": 142,
 					"sid": 391155580787749,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"type": ""
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 391155580787749,
@@ -2878,7 +2885,9 @@
 					"uid": 25,
 					"sid": 344637026814871,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"type": ""
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 344637026814871,
@@ -2915,7 +2924,9 @@
 					"uid": 112,
 					"sid": 439265486517739,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"type": ""
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 439265486517739,
@@ -6524,7 +6535,9 @@
 					"uid": 114,
 					"sid": 194050800823615,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"type": ""
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 194050800823615,
@@ -7958,7 +7971,9 @@
 					"uid": 29,
 					"sid": 800387152064366,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"type": ""
+					},
 					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 800387152064366,
@@ -10191,6 +10206,21 @@
 									"d": true,
 									"sm": "normal"
 								}
+							},
+							{
+								"uid": 157,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"o": false,
+									"v": false,
+									"d": true,
+									"sm": "normal"
+								}
 							}
 						],
 						"flags": {
@@ -11816,6 +11846,81 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+				},
+				{
+					"type": "UUID",
+					"properties": {
+						"text": "",
+						"enable-bbcode": true,
+						"character-width": 5,
+						"character-height": 8,
+						"character-set": "0123456789abcdef-",
+						"spacing-data": "[[3,\"-\"],\n[5,\"0123456789abcdef\"]]",
+						"scale": 1,
+						"character-spacing": 0,
+						"line-height": 0,
+						"horizontal-alignment": "right",
+						"vertical-alignment": "center",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "bottom-right",
+						"read-aloud": false
+					},
+					"uid": 157,
+					"sid": 947315937231173,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"sceneGraphData": {
+						"parent-uid": 129,
+						"uid": 157,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": false,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"instanceFolderItem": {
+						"sid": 947315937231173,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 589,
+						"y": 24,
+						"width": 176,
+						"height": 12,
+						"originX": 1,
+						"originY": 1,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
 				}
 			],
 			"sid": 842633012922697,
@@ -11905,7 +12010,9 @@
 							"uid": 33,
 							"sid": 388647564815984,
 							"tags": "",
-							"instanceVariables": {},
+							"instanceVariables": {
+								"type": ""
+							},
 							"behaviors": {},
 							"instanceFolderItem": {
 								"sid": 388647564815984,
@@ -12503,6 +12610,40 @@
 					"global": false
 				},
 				{
+					"name": "Error",
+					"overriden": 1,
+					"subLayers": [],
+					"instances": [],
+					"sid": 342831497839053,
+					"effectTypes": [],
+					"isInitiallyVisible": false,
+					"isInitiallyInteractive": false,
+					"isHTMLElementsLayer": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						0.3686274509803922,
+						0.3686274509803922,
+						0.3686274509803922,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 0,
+					"parallaxY": 0,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
+				},
+				{
 					"name": "Navigation",
 					"overriden": 1,
 					"subLayers": [],
@@ -12576,6 +12717,40 @@
 			"effectTypes": [],
 			"isInitiallyVisible": true,
 			"isInitiallyInteractive": true,
+			"isHTMLElementsLayer": false,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.3686274509803922,
+				0.3686274509803922,
+				0.3686274509803922,
+				1
+			],
+			"isTransparent": true,
+			"parallaxX": 0,
+			"parallaxY": 0,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": false
+		},
+		{
+			"name": "Idle",
+			"overriden": 1,
+			"subLayers": [],
+			"instances": [],
+			"sid": 765165688442502,
+			"effectTypes": [],
+			"isInitiallyVisible": false,
+			"isInitiallyInteractive": false,
 			"isHTMLElementsLayer": false,
 			"color": [
 				1,

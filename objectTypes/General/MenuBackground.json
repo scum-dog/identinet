@@ -4,7 +4,15 @@
 	"sid": 564125946194534,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
-	"instanceVariables": [],
+	"instanceVariables": [
+		{
+			"name": "type",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 293826826672491
+		}
+	],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
@@ -27,7 +35,32 @@
 					}
 				],
 				"sid": 370653328152321,
-				"name": "plaza",
+				"name": "local",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 284,
+						"height": 208,
+						"originX": 0,
+						"originY": 0,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 5469875,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 717742785968305,
+				"name": "online",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
@@ -120,7 +153,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 7107372,
+						"imageSpriteId": 3535339,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""

@@ -1,15 +1,20 @@
 {
-	"name": "Logo",
+	"name": "Idle",
 	"plugin-id": "Sprite",
-	"sid": 365096889978776,
+	"sid": 851775118832184,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
 	"behaviorTypes": [
 		{
-			"behaviorId": "Bullet",
-			"name": "Bullet",
-			"sid": 158011611258090
+			"behaviorId": "solid",
+			"name": "Solid",
+			"sid": 737884775910332
+		},
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 348598330438012
 		}
 	],
 	"effectTypes": [],
@@ -18,33 +23,21 @@
 			{
 				"frames": [
 					{
-						"width": 163,
-						"height": 30,
-						"originX": 0.5030674846625767,
-						"originY": 0.5,
+						"width": 1,
+						"height": 1,
+						"originX": 0,
+						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 9327550,
-						"collisionPoly": {
-							"points": [
-								0.018404907975460124,
-								0.13333333333333333,
-								0.9631901840490797,
-								0.1,
-								0.9631901840490797,
-								0.8,
-								0.018404907975460124,
-								0.8
-							]
-						},
+						"imageSpriteId": 9333775,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 834289909021476,
+				"sid": 608573030977086,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

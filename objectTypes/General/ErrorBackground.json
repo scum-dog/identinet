@@ -1,0 +1,23 @@
+{
+	"name": "ErrorBackground",
+	"plugin-id": "NinePatch",
+	"sid": 484237559346455,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"image": {
+		"width": 144,
+		"height": 144,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"fileType": "image/png",
+		"imageSpriteId": 6524854,
+		"useCollisionPoly": true,
+		"tag": ""
+	}
+}

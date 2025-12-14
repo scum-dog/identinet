@@ -852,15 +852,15 @@
 					{
 						"frames": [
 							{
-								"width": 20,
-								"height": 20,
+								"width": 32,
+								"height": 32,
 								"originX": 0.5,
 								"originY": 0.5,
 								"originalSource": "",
 								"exportFormat": "lossless",
 								"exportQuality": 0.8,
 								"fileType": "image/png",
-								"imageSpriteId": 7685146,
+								"imageSpriteId": 7713726,
 								"useCollisionPoly": true,
 								"duration": 1,
 								"tag": ""
@@ -910,7 +910,7 @@
 								"exportFormat": "lossless",
 								"exportQuality": 0.8,
 								"fileType": "image/png",
-								"imageSpriteId": 1285570,
+								"imageSpriteId": 8630257,
 								"useCollisionPoly": true,
 								"duration": 1,
 								"tag": ""
@@ -927,6 +927,62 @@
 				],
 				"subfolders": [],
 				"name": "list"
+			},
+			{
+				"items": [
+					{
+						"frames": [
+							{
+								"width": 20,
+								"height": 20,
+								"originX": 0.5,
+								"originY": 0.5,
+								"originalSource": "",
+								"exportFormat": "lossless",
+								"exportQuality": 0.8,
+								"fileType": "image/png",
+								"imageSpriteId": 6632171,
+								"useCollisionPoly": true,
+								"duration": 1,
+								"tag": ""
+							}
+						],
+						"sid": 966116035425732,
+						"name": "copy",
+						"isLooping": false,
+						"isPingPong": false,
+						"repeatCount": 1,
+						"repeatTo": 0,
+						"speed": 5
+					},
+					{
+						"frames": [
+							{
+								"width": 20,
+								"height": 20,
+								"originX": 0.5,
+								"originY": 0.5,
+								"originalSource": "",
+								"exportFormat": "lossless",
+								"exportQuality": 0.8,
+								"fileType": "image/png",
+								"imageSpriteId": 4552034,
+								"useCollisionPoly": true,
+								"duration": 1,
+								"tag": ""
+							}
+						],
+						"sid": 725719327463588,
+						"name": "delete",
+						"isLooping": false,
+						"isPingPong": false,
+						"repeatCount": 1,
+						"repeatTo": 0,
+						"speed": 5
+					}
+				],
+				"subfolders": [],
+				"name": "card"
 			}
 		]
 	}

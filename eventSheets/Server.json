@@ -12,6 +12,34 @@
 			"sid": 547081615323362
 		},
 		{
+			"eventType": "comment",
+			"text": "User flags"
+		},
+		{
+			"eventType": "variable",
+			"name": "SERVER_isLoggedIn",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 388010277247496
+		},
+		{
+			"eventType": "variable",
+			"name": "SERVER_isAdmin",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 704377609683245
+		},
+		{
+			"eventType": "comment",
+			"text": "Uploaded character"
+		},
+		{
 			"eventType": "variable",
 			"name": "SERVER_hasUploadedCharacter",
 			"type": "boolean",
@@ -29,27 +57,17 @@
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
-			"sid": 846000082272557
+			"sid": 458958480398819
 		},
 		{
 			"eventType": "variable",
-			"name": "SERVER_loggedIn",
-			"type": "boolean",
-			"initialValue": "false",
+			"name": "SERVER_uploadedCharacterID",
+			"type": "string",
+			"initialValue": "",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
-			"sid": 927237439426498
-		},
-		{
-			"eventType": "variable",
-			"name": "SERVER_isAdmin",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 694373196404082
+			"sid": 101941177206993
 		},
 		{
 			"eventType": "group",
@@ -112,7 +130,7 @@
 											"objectClass": "System",
 											"sid": 148771453795772,
 											"parameters": {
-												"variable": "SERVER_loggedIn"
+												"variable": "SERVER_isLoggedIn"
 											},
 											"isInverted": true
 										}
@@ -123,7 +141,7 @@
 											"objectClass": "System",
 											"sid": 719473776047887,
 											"parameters": {
-												"variable": "SERVER_loggedIn",
+												"variable": "SERVER_isLoggedIn",
 												"value": "true"
 											}
 										},
@@ -168,7 +186,7 @@
 										},
 										{
 											"eventType": "comment",
-											"text": "If our character exists, we should create it"
+											"text": "Store our uploaded character locally"
 										},
 										{
 											"eventType": "block",
@@ -193,10 +211,9 @@
 														"",
 														"getUserCharacter().then(result => {",
 														"  if (result.data) {",
-														"    runtime.globalVars.SERVER_uploadedCharacterData = JSON.stringify(result.data);",
-														"    runtime.signal(\"storeUploadedCharacter\");",
+														"    runtime.callFunction(\"setUploadedCharacter\", JSON.stringify(result.data), result.data.id);",
 														"  } else {",
-														"    runtime.globalVars.SERVER_uploadedCharacterData = \"\";",
+														"    runtime.callFunction(\"setUploadedCharacter\", \"\", \"\");",
 														"  }",
 														"});"
 													]
@@ -233,7 +250,7 @@
 													"callFunction": "switchCardButtons",
 													"sid": 273716120004421,
 													"parameters": [
-														true
+														"\"\""
 													]
 												}
 											],
@@ -262,7 +279,7 @@
 									"objectClass": "System",
 									"sid": 799111098543884,
 									"parameters": {
-										"variable": "SERVER_loggedIn",
+										"variable": "SERVER_isLoggedIn",
 										"value": "false"
 									}
 								},
@@ -274,6 +291,14 @@
 										"variable": "SERVER_isAdmin",
 										"value": "false"
 									}
+								},
+								{
+									"callFunction": "setUploadedCharacter",
+									"sid": 291745200090342,
+									"parameters": [
+										"\"\"",
+										"\"\""
+									]
 								}
 							],
 							"sid": 207165158508499,
@@ -307,7 +332,7 @@
 											"callFunction": "switchCardButtons",
 											"sid": 792850298932970,
 											"parameters": [
-												false
+												"\"\""
 											]
 										}
 									],
@@ -333,93 +358,131 @@
 					]
 				},
 				{
-					"eventType": "comment",
-					"text": "Set our uploaded character, if it exists"
-				},
-				{
-					"eventType": "comment",
-					"text": "TODO: make setting/flushing this like, a function or something"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
+					"functionName": "setUploadedCharacter",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
 						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 787673885494085,
-							"parameters": {
-								"tag": "\"storeUploadedCharacter\""
-							}
+							"name": "data",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 659804526494516
+						},
+						{
+							"name": "id",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 188831352013955
 						}
 					],
+					"eventType": "function-block",
+					"conditions": [],
 					"actions": [
 						{
-							"id": "set-boolean-eventvar",
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 432188364236176,
+							"sid": 388360843986296,
 							"parameters": {
-								"variable": "SERVER_hasUploadedCharacter",
-								"value": "true"
+								"variable": "SERVER_uploadedCharacterData",
+								"value": "data"
 							}
 						},
 						{
-							"id": "insert",
-							"objectClass": "LocalCharacters",
-							"sid": 998983533222249,
-							"parameters": {
-								"value": "SERVER_uploadedCharacterData",
-								"index": "0",
-								"axis": "x"
-							}
-						},
-						{
-							"id": "add-to-eventvar",
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 287346463881716,
+							"sid": 437843345498196,
 							"parameters": {
-								"variable": "CREATOR_editIndex",
-								"value": "1"
+								"variable": "SERVER_uploadedCharacterID",
+								"value": "id"
 							}
 						}
 					],
-					"sid": 782370168454950,
+					"sid": 685959560752740,
 					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 194828193708599,
+									"parameters": {
+										"variable": "data",
+										"comparison": 1,
+										"value": "\"\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 222787965194449,
+									"parameters": {
+										"variable": "SERVER_hasUploadedCharacter",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 693850425113181
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 402025413648299
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 252218861658592,
+									"parameters": {
+										"variable": "SERVER_hasUploadedCharacter",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 731617887007578
+						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 854735356696310,
+									"sid": 934329744152645,
 									"parameters": {
 										"first-value": "LayoutName",
 										"comparison": 0,
 										"second-value": "\"Plaza\""
-									}
-								},
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 466952469855948,
-									"parameters": {
-										"variable": "PLAZA_state",
-										"comparison": 0,
-										"value": "\"local\""
 									}
 								}
 							],
 							"actions": [
 								{
 									"callFunction": "updateCharacterList",
-									"sid": 436548832065511,
+									"sid": 689117586683297,
 									"parameters": [
 										"PLAZA_state"
 									]
 								}
 							],
-							"sid": 199904827368270
+							"sid": 985130282677069
 						}
 					]
+				},
+				{
+					"eventType": "comment",
+					"text": "Update the login button state"
 				},
 				{
 					"eventType": "block",
@@ -427,19 +490,19 @@
 						{
 							"id": "on-start-of-layout",
 							"objectClass": "System",
-							"sid": 442406528954563
+							"sid": 361408795116389
 						},
 						{
 							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 472459611539007,
+							"sid": 316994684053531,
 							"parameters": {
 								"tag": "\"updateLoginButton\""
 							}
 						}
 					],
 					"actions": [],
-					"sid": 268497154621837,
+					"sid": 456209038244414,
 					"children": [
 						{
 							"eventType": "block",
@@ -447,7 +510,7 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "Button",
-									"sid": 494800105286810,
+									"sid": 900188742246903,
 									"parameters": {
 										"instance-variable": "type",
 										"comparison": 0,
@@ -457,7 +520,7 @@
 								{
 									"id": "pick-children",
 									"objectClass": "Button",
-									"sid": 954091839167605,
+									"sid": 818818910509285,
 									"parameters": {
 										"child": "Text",
 										"which": "own"
@@ -465,7 +528,7 @@
 								}
 							],
 							"actions": [],
-							"sid": 809129929482868,
+							"sid": 575267640381985,
 							"children": [
 								{
 									"eventType": "block",
@@ -473,9 +536,9 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 347407863445046,
+											"sid": 827092152400432,
 											"parameters": {
-												"variable": "SERVER_loggedIn"
+												"variable": "SERVER_isLoggedIn"
 											}
 										}
 									],
@@ -483,13 +546,13 @@
 										{
 											"id": "set-text",
 											"objectClass": "Text",
-											"sid": 578020417033242,
+											"sid": 929609722675541,
 											"parameters": {
 												"text": "\"Log out\""
 											}
 										}
 									],
-									"sid": 435998997765441,
+									"sid": 443273752613763,
 									"children": [
 										{
 											"eventType": "comment",
@@ -501,7 +564,7 @@
 												{
 													"id": "compare-boolean-eventvar",
 													"objectClass": "System",
-													"sid": 493221091645104,
+													"sid": 280177784996567,
 													"parameters": {
 														"variable": "NGIO_onNewgrounds"
 													}
@@ -511,14 +574,14 @@
 												{
 													"id": "set-boolean-instvar",
 													"objectClass": "Button",
-													"sid": 884087362172089,
+													"sid": 132492037354141,
 													"parameters": {
 														"instance-variable": "disabled",
 														"value": "true"
 													}
 												}
 											],
-											"sid": 745272906153684
+											"sid": 985374378800155
 										}
 									]
 								},
@@ -528,20 +591,20 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 432397901955494
+											"sid": 503312640692084
 										}
 									],
 									"actions": [
 										{
 											"id": "set-text",
 											"objectClass": "Text",
-											"sid": 580647419515480,
+											"sid": 244755197266055,
 											"parameters": {
 												"text": "\"Log in\""
 											}
 										}
 									],
-									"sid": 957775539610603
+									"sid": 335490184612231
 								}
 							]
 						}
@@ -611,7 +674,7 @@
 													"objectClass": "System",
 													"sid": 513446268483250,
 													"parameters": {
-														"variable": "SERVER_loggedIn"
+														"variable": "SERVER_isLoggedIn"
 													},
 													"isInverted": true
 												}
@@ -688,38 +751,12 @@
 													]
 												},
 												{
-													"id": "set-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 624031489290718,
-													"parameters": {
-														"variable": "SERVER_hasUploadedCharacter",
-														"value": "false"
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 646310999760467,
-													"parameters": {
-														"variable": "SERVER_uploadedCharacterData",
-														"value": "\"\""
-													}
-												},
-												{
 													"id": "subtract-from-eventvar",
 													"objectClass": "System",
 													"sid": 366961302552657,
 													"parameters": {
 														"variable": "CREATOR_editIndex",
 														"value": "1"
-													}
-												},
-												{
-													"id": "load",
-													"objectClass": "LocalCharacters",
-													"sid": 799946936788417,
-													"parameters": {
-														"json": "SavedCharacters.AsJSON"
 													}
 												}
 											],
@@ -755,41 +792,6 @@
 														}
 													],
 													"sid": 812699842167364
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-two-values",
-															"objectClass": "System",
-															"sid": 256733484272373,
-															"parameters": {
-																"first-value": "LayoutName",
-																"comparison": 0,
-																"second-value": "\"Plaza\""
-															}
-														},
-														{
-															"id": "compare-eventvar",
-															"objectClass": "System",
-															"sid": 160116384067576,
-															"parameters": {
-																"variable": "PLAZA_state",
-																"comparison": 0,
-																"value": "\"local\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"callFunction": "updateCharacterList",
-															"sid": 543399446956009,
-															"parameters": [
-																"PLAZA_state"
-															]
-														}
-													],
-													"sid": 874568551444640
 												}
 											]
 										}

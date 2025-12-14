@@ -48,6 +48,16 @@
 			"sid": 628487759324383
 		},
 		{
+			"eventType": "variable",
+			"name": "GAME_idleTimeout",
+			"type": "number",
+			"initialValue": "120",
+			"comment": "Seconds before idle timeout",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 888569783510540
+		},
+		{
 			"eventType": "comment",
 			"text": "Loading flags"
 		},
@@ -153,79 +163,110 @@
 							"id": "on-start-of-layout",
 							"objectClass": "System",
 							"sid": 335955915937430
-						},
-						{
-							"id": "compare-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 811944159369598,
-							"parameters": {
-								"variable": "GAME_init"
-							},
-							"isInverted": true
 						}
 					],
 					"actions": [
 						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 946704931859414,
+							"id": "set-angle-of-motion",
+							"objectClass": "Logo",
+							"sid": 998615477736553,
+							"behaviorType": "Bullet",
 							"parameters": {
-								"variable": "GAME_init",
-								"value": "true"
+								"angle": "random(0, 360)"
 							}
 						},
 						{
-							"type": "comment",
-							"text": "Load arrays"
-						},
-						{
-							"id": "request-project-file",
-							"objectClass": "AJAX",
-							"sid": 633887216409071,
+							"id": "start-timer",
+							"objectClass": "Idle",
+							"sid": 987370998161796,
+							"behaviorType": "Timer",
 							"parameters": {
-								"tag": "\"parts\"",
-								"file": "parts.json"
+								"duration": "GAME_idleTimeout",
+								"type": "once",
+								"tag": "\"idle\""
 							}
 						}
 					],
 					"sid": 109141179522247,
 					"children": [
 						{
-							"eventType": "comment",
-							"text": "We're on Newgrounds"
-						},
-						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-two-values",
+									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 965744927186509,
+									"sid": 881429092806765,
 									"parameters": {
-										"first-value": "RegexMatchCount(Browser.URL, \"^(https?:\\/\\/|\\/\\/)?([a-z0-9-]+\\.)?(newgrounds\\.com|ungrounded\\.net)($|[\\/?#])\", \"gi\")",
-										"comparison": 4,
-										"second-value": "0"
-									}
-								},
-								{
-									"id": "is-in-preview",
-									"objectClass": "System",
-									"sid": 680796316246493
+										"variable": "GAME_init"
+									},
+									"isInverted": true
 								}
 							],
 							"actions": [
 								{
 									"id": "set-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 740339022301502,
+									"sid": 349362590478103,
 									"parameters": {
-										"variable": "NGIO_onNewgrounds",
+										"variable": "GAME_init",
 										"value": "true"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "Load arrays"
+								},
+								{
+									"id": "request-project-file",
+									"objectClass": "AJAX",
+									"sid": 286640102060314,
+									"parameters": {
+										"tag": "\"parts\"",
+										"file": "parts.json"
 									}
 								}
 							],
-							"sid": 185311014415085,
-							"isOrBlock": true
+							"sid": 514611327270960,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "We're on Newgrounds"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 644621198937135,
+											"parameters": {
+												"first-value": "RegexMatchCount(Browser.URL, \"^(https?:\\/\\/|\\/\\/)?([a-z0-9-]+\\.)?(newgrounds\\.com|ungrounded\\.net)($|[\\/?#])\", \"gi\")",
+												"comparison": 4,
+												"second-value": "0"
+											}
+										},
+										{
+											"id": "is-in-preview",
+											"objectClass": "System",
+											"sid": 531754592930550,
+											"disabled": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 167314867426756,
+											"parameters": {
+												"variable": "NGIO_onNewgrounds",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 498031375863380,
+									"isOrBlock": true
+								}
+							]
 						}
 					]
 				},
@@ -501,6 +542,179 @@
 					],
 					"sid": 442189682028448,
 					"isOrBlock": true
+				},
+				{
+					"eventType": "comment",
+					"text": "Idle timeout"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 795395531713872,
+							"parameters": {
+								"tag": "\"inputKeyboard\""
+							}
+						},
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 121461708835598,
+							"parameters": {
+								"tag": "\"inputMouse\""
+							}
+						},
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 884204457928625,
+							"parameters": {
+								"tag": "\"inputTouch\""
+							}
+						},
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 464551540903779,
+							"parameters": {
+								"tag": "\"inputMixed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "start-timer",
+							"objectClass": "Idle",
+							"sid": 814235530367771,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "GAME_idleTimeout",
+								"type": "once",
+								"tag": "\"idle\""
+							}
+						}
+					],
+					"sid": 953933490029590,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "layer-is-visible",
+									"objectClass": "System",
+									"sid": 787362737730852,
+									"parameters": {
+										"layer": "\"Idle\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "toggleLayer",
+									"sid": 276410782153944,
+									"parameters": [
+										"\"Idle\"",
+										true,
+										false
+									]
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "InputName",
+									"sid": 997612045668101,
+									"parameters": {
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "InputDropdown",
+									"sid": 191226637337070,
+									"parameters": {
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "InputSlider",
+									"sid": 421674372519354,
+									"parameters": {
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "SettingsSlider",
+									"sid": 729542115757437,
+									"parameters": {
+										"visibility": "visible"
+									}
+								}
+							],
+							"sid": 969600499781769
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "Idle",
+							"sid": 138890174958376,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"idle\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "toggleLayer",
+							"sid": 633100896654257,
+							"parameters": [
+								"\"Idle\"",
+								true,
+								true
+							]
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "InputName",
+							"sid": 675335465033790,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "InputDropdown",
+							"sid": 952161280784165,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "InputSlider",
+							"sid": 900200988801223,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "SettingsSlider",
+							"sid": 498102679652082,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 671074622303162
 				},
 				{
 					"eventType": "group",
@@ -935,7 +1149,28 @@
 						}
 					],
 					"eventType": "function-block",
-					"conditions": [],
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Text",
+							"sid": 578688607124962,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"error\""
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Button",
+							"sid": 413973658801849,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"error\""
+							}
+						}
+					],
 					"actions": [
 						{
 							"id": "play",
@@ -950,12 +1185,46 @@
 							}
 						},
 						{
-							"id": "alert",
-							"objectClass": "Browser",
-							"sid": 457024904051535,
+							"id": "set-text",
+							"objectClass": "Text",
+							"sid": 420685540623958,
 							"parameters": {
-								"message": "text"
+								"text": "text"
 							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "ErrorBackground",
+							"sid": 334016551718469,
+							"parameters": {
+								"width": "max(Text.TextWidth+9, 40)",
+								"height": "Text.TextHeight+Button.Height+25"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "ErrorBackground",
+							"sid": 350904217256068,
+							"parameters": {
+								"x": "160-round(Self.Width/2)",
+								"y": "132-round(Self.Height/2)"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "Button",
+							"sid": 432337550425601,
+							"parameters": {
+								"x": "ErrorBackground.X+round(ErrorBackground.Width/2)",
+								"y": "Text.Y+Text.TextHeight+round(Self.Height/2)"
+							}
+						},
+						{
+							"callFunction": "switchOverlayMenu",
+							"sid": 216827256578966,
+							"parameters": [
+								"\"Error\""
+							]
 						}
 					],
 					"sid": 533205646815653
@@ -1681,18 +1950,6 @@
 					"conditions": [],
 					"actions": [
 						{
-							"id": "load",
-							"objectClass": "SavedCharacters",
-							"sid": 360598406082151,
-							"parameters": {
-								"json": "LocalCharacters.AsJSON"
-							}
-						},
-						{
-							"type": "comment",
-							"text": "Settings"
-						},
-						{
 							"id": "clear",
 							"objectClass": "SaveFile",
 							"sid": 143600539556202
@@ -1718,31 +1975,6 @@
 					],
 					"sid": 839513501978890,
 					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 498232449763117,
-									"parameters": {
-										"variable": "SERVER_hasUploadedCharacter"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "delete",
-									"objectClass": "SavedCharacters",
-									"sid": 153204298340177,
-									"parameters": {
-										"index": "0",
-										"axis": "x"
-									}
-								}
-							],
-							"sid": 387115650982821
-						},
 						{
 							"eventType": "comment",
 							"text": "Write"
@@ -1993,14 +2225,6 @@
 									"parameters": {
 										"json": "data"
 									}
-								},
-								{
-									"id": "load",
-									"objectClass": "LocalCharacters",
-									"sid": 158616071232388,
-									"parameters": {
-										"json": "data"
-									}
 								}
 							],
 							"sid": 755949181419470
@@ -2179,6 +2403,15 @@
 								"y": "y",
 								"create-hierarchy": false,
 								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "CharacterHead",
+							"sid": 746011541583918,
+							"parameters": {
+								"instance-variable": "part",
+								"value": "true"
 							}
 						},
 						{
@@ -2429,6 +2662,15 @@
 								"y": "CharacterHead.ImagePointY(part)",
 								"create-hierarchy": false,
 								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "CharacterPart",
+							"sid": 840463289720664,
+							"parameters": {
+								"instance-variable": "part",
+								"value": "true"
 							}
 						},
 						{
@@ -2824,6 +3066,13 @@
 							"sid": 331937214651639
 						},
 						{
+							"name": "type",
+							"type": "string",
+							"initialValue": "local",
+							"comment": "",
+							"sid": 903144961489985
+						},
+						{
 							"name": "layer",
 							"type": "string",
 							"initialValue": "",
@@ -2860,6 +3109,15 @@
 								"y": "y",
 								"create-hierarchy": true,
 								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Card",
+							"sid": 507889193993709,
+							"parameters": {
+								"animation": "type",
+								"from": "beginning"
 							}
 						},
 						{
@@ -2980,6 +3238,32 @@
 								}
 							],
 							"sid": 675294644780933
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 605085522093510,
+									"parameters": {
+										"variable": "type",
+										"comparison": 0,
+										"value": "\"online\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "UUID",
+									"sid": 737653076412444,
+									"parameters": {
+										"text": "JSON.Get(\"id\")"
+									}
+								}
+							],
+							"sid": 419764921688422
 						}
 					]
 				}
@@ -3087,11 +3371,11 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 473826057855145,
+									"sid": 816437198729246,
 									"parameters": {
 										"audio-file": "offlineIntro",
 										"loop": "not-looping",
-										"volume": "(log10(SETTING_volumeMusic)*20)",
+										"volume": "log10(SETTING_volumeMusic)*20",
 										"stereo-pan": "0",
 										"tag-optional": "\"music intro\""
 									}
@@ -3112,11 +3396,11 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 734660809149405,
+									"sid": 371566278172458,
 									"parameters": {
 										"audio-file": "onlineIntro",
 										"loop": "not-looping",
-										"volume": "(log10(SETTING_volumeMusic)*20)",
+										"volume": "log10(SETTING_volumeMusic)*20",
 										"stereo-pan": "0",
 										"tag-optional": "\"music intro\""
 									}
@@ -3187,11 +3471,11 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 505848258808777,
+									"sid": 219746236120765,
 									"parameters": {
 										"audio-file": "offlineLoop",
 										"loop": "looping",
-										"volume": "(log10(SETTING_volumeMusic)*20)",
+										"volume": "log10(SETTING_volumeMusic)*20",
 										"stereo-pan": "0",
 										"tag-optional": "\"music loop\""
 									}
@@ -3212,11 +3496,11 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 714745583296652,
+									"sid": 617704357312705,
 									"parameters": {
 										"audio-file": "onlineLoop",
 										"loop": "looping",
-										"volume": "(log10(SETTING_volumeMusic)*20)",
+										"volume": "log10(SETTING_volumeMusic)*20",
 										"stereo-pan": "0",
 										"tag-optional": "\"music loop\""
 									}

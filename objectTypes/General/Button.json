@@ -377,7 +377,13 @@
 						"repeatCount": 1,
 						"repeatTo": 0,
 						"speed": 5
-					},
+					}
+				],
+				"subfolders": [],
+				"name": "large"
+			},
+			{
+				"items": [
 					{
 						"frames": [
 							{
@@ -389,14 +395,14 @@
 								"exportFormat": "lossless",
 								"exportQuality": 0.8,
 								"fileType": "image/png",
-								"imageSpriteId": 8518293,
+								"imageSpriteId": 3594951,
 								"useCollisionPoly": true,
 								"duration": 1,
 								"tag": ""
 							}
 						],
 						"sid": 483930536754440,
-						"name": "largeLong",
+						"name": "characterLocal",
 						"isLooping": false,
 						"isPingPong": false,
 						"repeatCount": 1,
@@ -414,14 +420,114 @@
 								"exportFormat": "lossless",
 								"exportQuality": 0.8,
 								"fileType": "image/png",
-								"imageSpriteId": 354905,
+								"imageSpriteId": 8633351,
 								"useCollisionPoly": true,
 								"duration": 1,
 								"tag": ""
 							}
 						],
 						"sid": 285020516642158,
-						"name": "largeLongS",
+						"name": "characterLocalS",
+						"isLooping": false,
+						"isPingPong": false,
+						"repeatCount": 1,
+						"repeatTo": 0,
+						"speed": 5
+					},
+					{
+						"frames": [
+							{
+								"width": 60,
+								"height": 70,
+								"originX": 0.5,
+								"originY": 0.5,
+								"originalSource": "",
+								"exportFormat": "lossless",
+								"exportQuality": 0.8,
+								"fileType": "image/png",
+								"imageSpriteId": 6935913,
+								"useCollisionPoly": true,
+								"duration": 1,
+								"tag": ""
+							}
+						],
+						"sid": 774195437999329,
+						"name": "characterUploaded",
+						"isLooping": false,
+						"isPingPong": false,
+						"repeatCount": 1,
+						"repeatTo": 0,
+						"speed": 5
+					},
+					{
+						"frames": [
+							{
+								"width": 60,
+								"height": 70,
+								"originX": 0.5,
+								"originY": 0.5,
+								"originalSource": "",
+								"exportFormat": "lossless",
+								"exportQuality": 0.8,
+								"fileType": "image/png",
+								"imageSpriteId": 9267284,
+								"useCollisionPoly": true,
+								"duration": 1,
+								"tag": ""
+							}
+						],
+						"sid": 837274585870480,
+						"name": "characterUploadedS",
+						"isLooping": false,
+						"isPingPong": false,
+						"repeatCount": 1,
+						"repeatTo": 0,
+						"speed": 5
+					},
+					{
+						"frames": [
+							{
+								"width": 60,
+								"height": 70,
+								"originX": 0.5,
+								"originY": 0.5,
+								"originalSource": "",
+								"exportFormat": "lossless",
+								"exportQuality": 0.8,
+								"fileType": "image/png",
+								"imageSpriteId": 3662994,
+								"useCollisionPoly": true,
+								"duration": 1,
+								"tag": ""
+							}
+						],
+						"sid": 325781378997049,
+						"name": "characterOnline",
+						"isLooping": false,
+						"isPingPong": false,
+						"repeatCount": 1,
+						"repeatTo": 0,
+						"speed": 5
+					},
+					{
+						"frames": [
+							{
+								"width": 60,
+								"height": 70,
+								"originX": 0.5,
+								"originY": 0.5,
+								"originalSource": "",
+								"exportFormat": "lossless",
+								"exportQuality": 0.8,
+								"fileType": "image/png",
+								"imageSpriteId": 4054085,
+								"useCollisionPoly": true,
+								"duration": 1,
+								"tag": ""
+							}
+						],
+						"sid": 876294518783856,
+						"name": "characterOnlineS",
 						"isLooping": false,
 						"isPingPong": false,
 						"repeatCount": 1,
@@ -430,7 +536,7 @@
 					}
 				],
 				"subfolders": [],
-				"name": "large"
+				"name": "character"
 			},
 			{
 				"items": [

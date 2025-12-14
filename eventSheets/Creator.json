@@ -251,6 +251,27 @@
 							"sid": 914803077263062
 						},
 						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "Character",
+									"sid": 336750205187075,
+									"parameters": {
+										"instance-variable": "part"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "Character",
+									"sid": 258293840270590
+								}
+							],
+							"sid": 436387525812968
+						},
+						{
 							"eventType": "comment",
 							"text": "Set title"
 						},
@@ -3279,6 +3300,7 @@
 								"JSON.ToCompactString",
 								"40",
 								"28",
+								"\"local\"",
 								"\"Card\"",
 								"-1"
 							]
@@ -3313,7 +3335,7 @@
 									"objectClass": "System",
 									"sid": 347820610019950,
 									"parameters": {
-										"variable": "SERVER_loggedIn"
+										"variable": "SERVER_isLoggedIn"
 									},
 									"isInverted": true
 								},
@@ -3331,7 +3353,7 @@
 									"callFunction": "switchCardButtons",
 									"sid": 870530395687932,
 									"parameters": [
-										false
+										"\"\""
 									]
 								}
 							],
@@ -3356,7 +3378,7 @@
 									"callFunction": "switchCardButtons",
 									"sid": 576042734275761,
 									"parameters": [
-										true
+										"\"\""
 									]
 								}
 							],
@@ -3526,7 +3548,7 @@
 						},
 						{
 							"id": "push",
-							"objectClass": "LocalCharacters",
+							"objectClass": "SavedCharacters",
 							"sid": 890754773399142,
 							"parameters": {
 								"where": "back",
@@ -3723,7 +3745,7 @@
 								},
 								{
 									"id": "set-at-x",
-									"objectClass": "LocalCharacters",
+									"objectClass": "SavedCharacters",
 									"sid": 975134000536964,
 									"parameters": {
 										"x": "CREATOR_editIndex",
@@ -3772,13 +3794,12 @@
 							}
 						},
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 100679580933050,
-							"parameters": {
-								"variable": "SERVER_uploadedCharacterData",
-								"value": "JSON.ToCompactString"
-							}
+							"callFunction": "setUploadedCharacter",
+							"sid": 867483614398611,
+							"parameters": [
+								"JSON.ToCompactString",
+								"\"\""
+							]
 						},
 						{
 							"callFunction": "switchOverlayMenu",

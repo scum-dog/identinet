@@ -2,6 +2,45 @@
 	"name": "Navigation",
 	"events": [
 		{
+			"eventType": "comment",
+			"text": "Error"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-signal",
+					"objectClass": "System",
+					"sid": 434440277638998,
+					"parameters": {
+						"tag": "\"button_error\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 278242497533085,
+					"parameters": {
+						"audio-file": "select",
+						"loop": "not-looping",
+						"volume": "(log10(SETTING_volumeSound)*20)",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
+					}
+				},
+				{
+					"callFunction": "switchOverlayMenu",
+					"sid": 990525526013031,
+					"parameters": [
+						"\"\""
+					]
+				}
+			],
+			"sid": 539810533616523
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Navigation - Settings",

@@ -7,6 +7,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "PLAZA_maxLocalCharacters",
+			"type": "number",
+			"initialValue": "100",
+			"comment": "Maximum amount of local characters that can be stored",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 250697158925792
+		},
+		{
+			"eventType": "variable",
 			"name": "PLAZA_maxPerPage",
 			"type": "number",
 			"initialValue": "8",
@@ -14,16 +24,6 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 232394668386598
-		},
-		{
-			"eventType": "variable",
-			"name": "PLAZA_maxLocalCharacters",
-			"type": "number",
-			"initialValue": "100",
-			"comment": "Maximum amount of local characters that can be stored",
-			"isStatic": false,
-			"isConstant": true,
-			"sid": 367520140910481
 		},
 		{
 			"eventType": "variable",
@@ -37,20 +37,20 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "PLAZA_selectedLocal",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "Selected local character",
+			"name": "GAME_selectedCharacterType",
+			"type": "string",
+			"initialValue": "",
+			"comment": "Selected character type",
 			"isStatic": false,
 			"isConstant": false,
-			"sid": 482625878777318
+			"sid": 168595146537971
 		},
 		{
 			"eventType": "variable",
 			"name": "GAME_selectedCharacterData",
 			"type": "string",
 			"initialValue": "",
-			"comment": "Selected local character",
+			"comment": "Selected character data",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 289969703412226
@@ -413,74 +413,6 @@
 							"conditions": [
 								{
 									"id": "compare-instance-variable",
-									"objectClass": "Button",
-									"sid": 584634550366869,
-									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"create\""
-									}
-								}
-							],
-							"actions": [],
-							"sid": 892517987710759,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 244254500072333,
-											"parameters": {
-												"first-value": "SavedCharacters.Width",
-												"comparison": 5,
-												"second-value": "PLAZA_maxLocalCharacters"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-boolean-instvar",
-											"objectClass": "Button",
-											"sid": 993528091746390,
-											"parameters": {
-												"instance-variable": "disabled",
-												"value": "true"
-											}
-										}
-									],
-									"sid": 316585924762440
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 904366357265726
-										}
-									],
-									"actions": [
-										{
-											"id": "set-boolean-instvar",
-											"objectClass": "Button",
-											"sid": 178358193747459,
-											"parameters": {
-												"instance-variable": "disabled",
-												"value": "false"
-											}
-										}
-									],
-									"sid": 616019100222345
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
 									"objectClass": "Text",
 									"sid": 923929031417735,
 									"parameters": {
@@ -537,28 +469,11 @@
 										"comparison": 0,
 										"value": "\"character\""
 									}
-								}
-							],
-							"actions": [
-								{
-									"id": "destroy",
-									"objectClass": "Button",
-									"sid": 814268575981568
-								}
-							],
-							"sid": 871393553112727
-						},
-						{
-							"eventType": "comment",
-							"text": "Disable create button if we exceed the limit"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
+								},
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "Button",
-									"sid": 868116513216970,
+									"sid": 156698577063734,
 									"parameters": {
 										"instance-variable": "type",
 										"comparison": 0,
@@ -568,45 +483,34 @@
 							],
 							"actions": [
 								{
-									"id": "set-boolean-instvar",
+									"id": "destroy",
 									"objectClass": "Button",
-									"sid": 512461974042362,
+									"sid": 814268575981568
+								}
+							],
+							"sid": 871393553112727,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "Character",
+									"sid": 861094934445864,
 									"parameters": {
-										"instance-variable": "disabled",
-										"value": "false"
+										"instance-variable": "part"
 									}
 								}
 							],
-							"sid": 949024911422835,
-							"children": [
+							"actions": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 295055387549866,
-											"parameters": {
-												"first-value": "SavedCharacters.Width",
-												"comparison": 5,
-												"second-value": "PLAZA_maxLocalCharacters"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-boolean-instvar",
-											"objectClass": "Button",
-											"sid": 792984339401023,
-											"parameters": {
-												"instance-variable": "disabled",
-												"value": "true"
-											}
-										}
-									],
-									"sid": 658306615914280
+									"id": "destroy",
+									"objectClass": "Character",
+									"sid": 492855743645754
 								}
-							]
+							],
+							"sid": 898504266191736
 						},
 						{
 							"eventType": "comment",
@@ -644,12 +548,33 @@
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 679322319886566,
+											"sid": 904776763472063,
 											"parameters": {
 												"variable": "state",
 												"comparison": 0,
-												"value": "\"local\""
+												"value": "\"online\""
 											}
+										}
+									],
+									"actions": [
+										{
+											"id": "append-text",
+											"objectClass": "Text",
+											"sid": 726448068803308,
+											"parameters": {
+												"text": "newline&\"(Online)\""
+											}
+										}
+									],
+									"sid": 922062295063387
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 770784067184532
 										}
 									],
 									"actions": [
@@ -663,32 +588,6 @@
 										}
 									],
 									"sid": 684003694024328
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 865090801712160,
-											"parameters": {
-												"variable": "state",
-												"comparison": 0,
-												"value": "\"online\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "append-text",
-											"objectClass": "Text",
-											"sid": 752562623933612,
-											"parameters": {
-												"text": "newline&\"(Online)\""
-											}
-										}
-									],
-									"sid": 342467336164185
 								}
 							]
 						},
@@ -710,7 +609,16 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 214709197172708,
+									"parameters": {
+										"text": "\"\""
+									}
+								}
+							],
 							"sid": 142123501306336,
 							"children": [
 								{
@@ -764,42 +672,27 @@
 											"sid": 857386305817485
 										}
 									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 172558188494159,
-											"parameters": {
-												"variable": "state",
-												"comparison": 0,
-												"value": "\"online\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-text",
-											"objectClass": "Text",
-											"sid": 391567964590967,
-											"parameters": {
-												"text": "\"\""
-											}
-										}
-									],
-									"sid": 455435303255662
 								}
 							]
 						},
 						{
 							"eventType": "comment",
-							"text": "Loop"
+							"text": "Loop through all applicable characters of this page"
 						},
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Text",
+									"sid": 757125129275857,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"nobody\""
+									}
+								}
+							],
 							"actions": [
 								{
 									"type": "script",
@@ -807,45 +700,93 @@
 									"script": [
 										"const offset = runtime.globalVars.MENU_offset;",
 										"const max = runtime.globalVars.PLAZA_maxPerPage;",
-										"",
-										"const start = offset*max;",
-										"",
 										"const state = localVars.state;",
+										"",
+										"let total = 0;",
+										"",
+										"function loopCharacters(",
+										"  start: number,",
+										"  end: number,",
+										"  getChar: (i: number) => { data: any; type: string } | undefined",
+										") {",
+										"  for (let i = start; i <= end; i++) {",
+										"    const r = getChar(i);",
+										"    if (!r) return;",
+										"    runtime.callFunction(\"addCharacterToList\", i - start, i, r.data, r.type);",
+										"  }",
+										"}",
+										"",
 										"if (state === \"online\") {",
 										"  // Online",
-										"  // Stub out arrow buttons until we can get the proper total",
 										"  runtime.callFunction(\"updatePlazaArrows\", 0);",
-										"  let online_data = await getOnlineCharacterPage(offset, max);",
-										"  if (!online_data.success) return;",
 										"",
-										"  const total = online_data.data!.total;",
-										"  const end = Math.min((offset*max)+max-1, total-1);",
-										"",
-										"  for (let i = start; i <= end; i++) {",
-										"    let character_data: string = JSON.stringify(online_data.data!.characters![i%max]);",
-										"    if (character_data === undefined) return;",
-										"",
-										"    runtime.callFunction(\"addCharacterToList\", character_data, i);",
+										"  runtime.globalVars.MENU_locked = true;",
+										"  const online_data = await getOnlineCharacterPage(offset, max);",
+										"  runtime.globalVars.MENU_locked = false;",
+										"  if (!online_data.success) {",
+										"    runtime.callFunction(\"error\", \"Couldn't get online people directory. You may be sending too many requests.\");",
+										"    return;",
 										"  }",
 										"",
-										"  runtime.callFunction(\"updatePlazaArrows\", total);",
+										"  total = online_data.data!.total;",
+										"",
+										"  const pageStart = offset * max;",
+										"  const start = pageStart;",
+										"  const end = Math.min(pageStart + max - 1, total - 1);",
+										"",
+										"  if (total > 0 && end < start && offset > 0) {",
+										"    runtime.globalVars.MENU_offset = Math.ceil(total / max) - 1;",
+										"    runtime.callFunction(\"updateCharacterList\", runtime.globalVars.PLAZA_state);",
+										"    return;",
+										"  }",
+										"",
+										"  // Return if we're no longer processing this list",
+										"  if (offset !== runtime.globalVars.MENU_offset || state !== runtime.globalVars.PLAZA_state) return;",
+										"",
+										"  loopCharacters(start, end, i => ({",
+										"    data: JSON.stringify(online_data.data!.characters![i - start]),",
+										"    type: \"online\"",
+										"  }));",
 										"} else {",
 										"  // Local",
-										"  let array_object = runtime.objects.LocalCharacters.getFirstInstance();",
-										"  if (!array_object) return;",
-										"  const total = array_object.width;",
-										"  const end = Math.min((offset*max)+max-1, total-1);",
+										"  const hasUpload = runtime.globalVars.SERVER_hasUploadedCharacter;",
+										"  const reserved = 1 + (hasUpload ? 1 : 0);",
 										"",
-										"  for (let i = start; i <= end; i++) {",
-										"    runtime.callFunction(\"addCharacterToList\", array_object.getAt(i, 0), i);",
+										"  const local_data = runtime.objects.SavedCharacters.getFirstInstance();",
+										"  if (!local_data) return;",
+										"",
+										"  total = local_data.width + reserved;",
+										"",
+										"  const pageStart = offset * max;",
+										"  const start = pageStart - reserved;",
+										"  const end = Math.min(pageStart + max - 1, total - 1) - reserved;",
+										"",
+										"  if (total > 0 && end < start && offset > 0) {",
+										"    runtime.globalVars.MENU_offset = Math.ceil(total / max) - 1;",
+										"    runtime.callFunction(\"updateCharacterList\", runtime.globalVars.PLAZA_state);",
+										"    return;",
 										"  }",
 										"",
-										"  runtime.callFunction(\"updatePlazaArrows\", total);",
-										"}"
+										"  loopCharacters(start, end, i => {",
+										"    if (i < 0) {",
+										"      if (i === -1 && hasUpload) {",
+										"        return {",
+										"          data: runtime.globalVars.SERVER_uploadedCharacterData,",
+										"          type: \"local\"",
+										"        };",
+										"      }",
+										"      return { data: \"\", type: \"create\" };",
+										"    }",
+										"",
+										"    return { data: local_data.getAt(i, 0), type: \"local\" };",
+										"  });",
+										"}",
+										"",
+										"runtime.callFunction(\"updatePlazaArrows\", total);"
 									]
 								}
 							],
-							"sid": 557334039439187
+							"sid": 973440304187264
 						}
 					]
 				},
@@ -858,11 +799,11 @@
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
-							"name": "data",
-							"type": "string",
-							"initialValue": "",
+							"name": "index",
+							"type": "number",
+							"initialValue": "0",
 							"comment": "",
-							"sid": 800956103164322
+							"sid": 706749686143807
 						},
 						{
 							"name": "id",
@@ -870,6 +811,20 @@
 							"initialValue": "0",
 							"comment": "",
 							"sid": 364043025880487
+						},
+						{
+							"name": "data",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 800956103164322
+						},
+						{
+							"name": "type",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 686291384223657
 						}
 					],
 					"eventType": "function-block",
@@ -891,10 +846,10 @@
 						{
 							"id": "set-position",
 							"objectClass": "Button",
-							"sid": 130944180460061,
+							"sid": 716796262263350,
 							"parameters": {
-								"x": "69+(Button.Width+10)*(id%4)",
-								"y": "102+(Button.Height+3)*floor((id%8)/4)"
+								"x": "69+(Button.Width+10)*(index%4)",
+								"y": "102+(Button.Height+3)*floor((index%8)/4)"
 							}
 						},
 						{
@@ -905,26 +860,13 @@
 								"instance-variable": "id",
 								"value": "id"
 							}
-						},
-						{
-							"callFunction": "renderCharacter",
-							"sid": 982827253716503,
-							"parameters": [
-								"data",
-								"\"List\"",
-								"Button.X",
-								"Button.Y",
-								"0.33",
-								"\"list\"",
-								"Button.UID"
-							]
 						}
 					],
 					"sid": 955019283010439,
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "Uploaded  and online characters get a special color"
+							"text": "Character"
 						},
 						{
 							"eventType": "block",
@@ -932,52 +874,126 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 366669669318433,
+									"sid": 479566089267975,
 									"parameters": {
-										"variable": "PLAZA_state",
-										"comparison": 0,
-										"value": "\"local\""
+										"variable": "type",
+										"comparison": 1,
+										"value": "\"create\""
 									}
 								}
 							],
-							"actions": [],
-							"sid": 376128681002820,
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Button",
+									"sid": 943435280786909,
+									"parameters": {
+										"instance-variable": "animation",
+										"value": "\"characterLocal\""
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "Button",
+									"sid": 576320464442856,
+									"parameters": {
+										"animation": "\"characterLocal\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"callFunction": "renderCharacter",
+									"sid": 241132568203249,
+									"parameters": [
+										"data",
+										"\"List\"",
+										"Button.X",
+										"Button.Y",
+										"0.33",
+										"\"list\"",
+										"Button.UID"
+									]
+								}
+							],
+							"sid": 407047995100986,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-boolean-eventvar",
+											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 851524586113631,
+											"sid": 837309375048764,
 											"parameters": {
-												"variable": "SERVER_hasUploadedCharacter"
-											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Button",
-											"sid": 741801089772309,
-											"parameters": {
-												"instance-variable": "id",
+												"variable": "type",
 												"comparison": 0,
-												"value": "0"
+												"value": "\"online\""
 											}
 										}
 									],
 									"actions": [
 										{
-											"id": "set-default-color",
+											"id": "set-instvar-value",
 											"objectClass": "Button",
-											"sid": 134796989751784,
+											"sid": 887383719301543,
 											"parameters": {
-												"color": "rgbEx255(192, 192, 255)"
+												"instance-variable": "animation",
+												"value": "\"characterOnline\""
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "Button",
+											"sid": 800064185636355,
+											"parameters": {
+												"animation": "\"characterOnline\"",
+												"from": "beginning"
 											}
 										}
 									],
-									"sid": 187831987596955
+									"sid": 385367938939236
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-value",
+											"objectClass": "JSON",
+											"sid": 145744107829317,
+											"parameters": {
+												"path": "\"id\"",
+												"cmp": 0,
+												"value": "SERVER_uploadedCharacterID"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "Button",
+											"sid": 383571646711400,
+											"parameters": {
+												"instance-variable": "animation",
+												"value": "\"characterUploaded\""
+											}
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "Button",
+											"sid": 186799652138459,
+											"parameters": {
+												"animation": "\"characterUploaded\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 730869669489551
 								}
 							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Create"
 						},
 						{
 							"eventType": "block",
@@ -985,20 +1001,89 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 212682133977777
+									"sid": 603477573826110
 								}
 							],
 							"actions": [
 								{
-									"id": "set-default-color",
-									"objectClass": "Button",
-									"sid": 480084675516676,
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 741803005105672,
 									"parameters": {
-										"color": "rgbEx255(192, 192, 255)"
+										"object-to-create": "ButtonIcon",
+										"layer": "\"List\"",
+										"x": "Button.X",
+										"y": "Button.Y",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "ButtonIcon",
+									"sid": 805857922276685,
+									"parameters": {
+										"animation": "\"create\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "add-child",
+									"objectClass": "Button",
+									"sid": 779946791893331,
+									"parameters": {
+										"child": "ButtonIcon",
+										"transform-x": true,
+										"transform-y": true,
+										"transform-w": true,
+										"transform-h": true,
+										"transform-a": true,
+										"transform-o": true,
+										"transform-z-elevation": true,
+										"transform-visibility": true,
+										"destroy-with-parent": true
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Button",
+									"sid": 653466733805200,
+									"parameters": {
+										"instance-variable": "type",
+										"value": "\"create\""
 									}
 								}
 							],
-							"sid": 246921165854924
+							"sid": 909626484540268,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 181599289922692,
+											"parameters": {
+												"variable": "PLAZA_maxLocalCharacters",
+												"comparison": 3,
+												"value": "SavedCharacters.Width"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Button",
+											"sid": 639831297905042,
+											"parameters": {
+												"instance-variable": "disabled",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 702735130016577
+								}
+							]
 						}
 					]
 				},
@@ -1177,77 +1262,6 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "Create"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 155687357361880,
-							"parameters": {
-								"tag": "\"button_create\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "play",
-							"objectClass": "Audio",
-							"sid": 710549543692606,
-							"parameters": {
-								"audio-file": "select",
-								"loop": "not-looping",
-								"volume": "(log10(SETTING_volumeSound)*20)",
-								"stereo-pan": "0",
-								"tag-optional": "\"\""
-							}
-						},
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 319559992135729,
-							"parameters": {
-								"variable": "CREATOR_editing",
-								"value": "false"
-							}
-						},
-						{
-							"callFunction": "transition",
-							"sid": 524986802523096,
-							"parameters": [
-								"\"Creator\""
-							]
-						}
-					],
-					"sid": 407061488543453
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 533602987323852,
-							"parameters": {
-								"tag": "\"buttonE_create\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "error",
-							"sid": 179093709389403,
-							"parameters": [
-								"\"Maximum of \"&PLAZA_maxLocalCharacters&\" people reached. Free up space to create more.\""
-							]
-						}
-					],
-					"sid": 937471909110846
-				},
-				{
-					"eventType": "comment",
 					"text": "Local"
 				},
 				{
@@ -1274,6 +1288,13 @@
 								"stereo-pan": "0",
 								"tag-optional": "\"\""
 							}
+						},
+						{
+							"callFunction": "switchMenu",
+							"sid": 977120585972675,
+							"parameters": [
+								"\"List\""
+							]
 						}
 					],
 					"sid": 863176618867702,
@@ -1282,9 +1303,36 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "compare-instance-variable",
+									"objectClass": "MenuBackground",
+									"sid": 763557266242973,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"list\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "MenuBackground",
+									"sid": 468534817517010,
+									"parameters": {
+										"animation": "\"local\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 761107365872416
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 846690065132391,
+									"sid": 637378763987228,
 									"parameters": {
 										"variable": "PLAZA_state",
 										"comparison": 0,
@@ -1297,22 +1345,45 @@
 								{
 									"id": "signal",
 									"objectClass": "System",
-									"sid": 725778631477486,
+									"sid": 202818784911033,
 									"parameters": {
 										"tag": "\"swapMusic\""
 									}
 								}
 							],
-							"sid": 645197229977803
+							"sid": 729305595910104
 						},
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 594505623995805,
+									"parameters": {
+										"variable": "PLAZA_state",
+										"comparison": 0,
+										"value": "\"local\""
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 231432634125315,
+									"parameters": {
+										"variable": "MENU_offset",
+										"comparison": 0,
+										"value": "0"
+									},
+									"isInverted": true
+								}
+							],
 							"actions": [
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 105616102250632,
+									"sid": 778372500627171,
 									"parameters": {
 										"variable": "PLAZA_state",
 										"value": "\"local\""
@@ -1321,7 +1392,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 463515198690392,
+									"sid": 422724096041514,
 									"parameters": {
 										"variable": "MENU_offset",
 										"value": "0"
@@ -1329,13 +1400,14 @@
 								},
 								{
 									"callFunction": "updateCharacterList",
-									"sid": 216684948283904,
+									"sid": 645550250608329,
 									"parameters": [
 										"PLAZA_state"
 									]
 								}
 							],
-							"sid": 318011653560531
+							"sid": 932448203360937,
+							"isOrBlock": true
 						}
 					]
 				},
@@ -1367,6 +1439,13 @@
 								"stereo-pan": "0",
 								"tag-optional": "\"\""
 							}
+						},
+						{
+							"callFunction": "switchMenu",
+							"sid": 507506995435933,
+							"parameters": [
+								"\"List\""
+							]
 						}
 					],
 					"sid": 726556414643012,
@@ -1375,9 +1454,36 @@
 							"eventType": "block",
 							"conditions": [
 								{
+									"id": "compare-instance-variable",
+									"objectClass": "MenuBackground",
+									"sid": 412855464850742,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"list\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "MenuBackground",
+									"sid": 974465161365439,
+									"parameters": {
+										"animation": "\"online\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 771864989110878
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 322038634071958,
+									"sid": 802352608789905,
 									"parameters": {
 										"variable": "PLAZA_state",
 										"comparison": 0,
@@ -1390,22 +1496,45 @@
 								{
 									"id": "signal",
 									"objectClass": "System",
-									"sid": 843143303123197,
+									"sid": 512666211015126,
 									"parameters": {
 										"tag": "\"swapMusic\""
 									}
 								}
 							],
-							"sid": 930249114831409
+							"sid": 979804312072594
 						},
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 659618574118918,
+									"parameters": {
+										"variable": "PLAZA_state",
+										"comparison": 0,
+										"value": "\"online\""
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 385221483469301,
+									"parameters": {
+										"variable": "MENU_offset",
+										"comparison": 0,
+										"value": "0"
+									},
+									"isInverted": true
+								}
+							],
 							"actions": [
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 424715351912840,
+									"sid": 574238630948701,
 									"parameters": {
 										"variable": "PLAZA_state",
 										"value": "\"online\""
@@ -1414,7 +1543,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 706175708474012,
+									"sid": 394501928211657,
 									"parameters": {
 										"variable": "MENU_offset",
 										"value": "0"
@@ -1422,13 +1551,14 @@
 								},
 								{
 									"callFunction": "updateCharacterList",
-									"sid": 608962772475976,
+									"sid": 162061553375028,
 									"parameters": [
 										"PLAZA_state"
 									]
 								}
 							],
-							"sid": 955060232731400
+							"sid": 527557752222747,
+							"isOrBlock": true
 						}
 					]
 				},
@@ -1567,7 +1697,78 @@
 				},
 				{
 					"eventType": "comment",
-					"text": "Character"
+					"text": "Create"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 152994851063846,
+							"parameters": {
+								"tag": "\"button_create\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 703906778681787,
+							"parameters": {
+								"audio-file": "select",
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 436397302969173,
+							"parameters": {
+								"variable": "CREATOR_editing",
+								"value": "false"
+							}
+						},
+						{
+							"callFunction": "transition",
+							"sid": 922640086641318,
+							"parameters": [
+								"\"Creator\""
+							]
+						}
+					],
+					"sid": 837951204514346
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 917722370873781,
+							"parameters": {
+								"tag": "\"buttonE_create\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "error",
+							"sid": 171345417070228,
+							"parameters": [
+								"\"Maximum of \"&PLAZA_maxLocalCharacters&\" people reached. Free up space to create more.\""
+							]
+						}
+					],
+					"sid": 571019774319734
+				},
+				{
+					"eventType": "comment",
+					"text": "Character list buttons"
 				},
 				{
 					"eventType": "block",
@@ -1579,204 +1780,154 @@
 							"parameters": {
 								"tag": "\"button_character\""
 							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Button",
+							"sid": 487331749763614,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"character\""
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Button",
+							"sid": 117498407434865,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "MENU_buttonID"
+							}
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "Button",
+							"sid": 381372878126901,
+							"parameters": {
+								"child": "CharacterCanvas",
+								"which": "own"
+							}
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 494105609228283,
+							"parameters": {
+								"audio-file": "select",
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 590843340582124,
+							"parameters": {
+								"variable": "GAME_selectedCharacterData",
+								"value": "CharacterCanvas.data"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Card",
+							"sid": 798954386854876
+						},
+						{
+							"callFunction": "renderCard",
+							"sid": 471765733350826,
+							"parameters": [
+								"GAME_selectedCharacterData",
+								"40",
+								"28",
+								"PLAZA_state",
+								"\"Card\"",
+								"MENU_buttonID"
+							]
+						},
+						{
+							"callFunction": "switchMenu",
+							"sid": 389725659416026,
+							"parameters": [
+								"\"Card\""
+							]
+						}
+					],
 					"sid": 878662321578233,
 					"children": [
+						{
+							"eventType": "comment",
+							"text": "Local - Copy, Edit, Delete"
+						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "Button",
-									"sid": 380071147317729,
+									"sid": 308487309054406,
 									"parameters": {
-										"instance-variable": "type",
+										"instance-variable": "animation",
 										"comparison": 0,
-										"value": "\"character\""
-									}
-								},
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "Button",
-									"sid": 817900839448546,
-									"parameters": {
-										"instance-variable": "id",
-										"comparison": 0,
-										"value": "MENU_buttonID"
-									}
-								},
-								{
-									"id": "pick-children",
-									"objectClass": "Button",
-									"sid": 572627867975834,
-									"parameters": {
-										"child": "CharacterCanvas",
-										"which": "own"
+										"value": "\"characterLocal\""
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "play",
-									"objectClass": "Audio",
-									"sid": 378368200099864,
-									"parameters": {
-										"audio-file": "select",
-										"loop": "not-looping",
-										"volume": "(log10(SETTING_volumeSound)*20)",
-										"stereo-pan": "0",
-										"tag-optional": "\"\""
-									}
-								},
-								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 928727281378730,
+									"sid": 621427677182765,
 									"parameters": {
-										"variable": "GAME_selectedCharacterData",
-										"value": "CharacterCanvas.data"
+										"variable": "GAME_selectedCharacterType",
+										"value": "\"local\""
 									}
 								},
 								{
-									"id": "destroy",
-									"objectClass": "Card",
-									"sid": 254498936060333
-								},
-								{
-									"callFunction": "renderCard",
-									"sid": 170207975829031,
+									"callFunction": "switchCardButtons",
+									"sid": 479301735985179,
 									"parameters": [
-										"GAME_selectedCharacterData",
-										"40",
-										"28",
-										"\"Card\"",
-										"MENU_buttonID"
-									]
-								},
-								{
-									"callFunction": "switchMenu",
-									"sid": 302220861145359,
-									"parameters": [
-										"\"Card\""
+										"\"Card_CED\""
 									]
 								}
 							],
-							"sid": 444523368640508,
+							"sid": 697713984668394
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 491520182179492,
+									"parameters": {
+										"instance-variable": "animation",
+										"comparison": 0,
+										"value": "\"characterUploaded\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 406039494340235,
+									"parameters": {
+										"variable": "GAME_selectedCharacterType",
+										"value": "\"uploaded\""
+									}
+								}
+							],
+							"sid": 387041288507241,
 							"children": [
 								{
 									"eventType": "comment",
-									"text": "Online, not admin"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 899799985857797,
-											"parameters": {
-												"variable": "PLAZA_state",
-												"comparison": 0,
-												"value": "\"online\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "switchCardButtons",
-											"sid": 951340038945787,
-											"parameters": [
-												false
-											]
-										}
-									],
-									"sid": 287428370841404
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 763249427850624,
-											"parameters": {
-												"variable": "PLAZA_state",
-												"comparison": 0,
-												"value": "\"local\""
-											}
-										}
-									],
-									"actions": [],
-									"sid": 257532570165935,
-									"children": [
-										{
-											"eventType": "comment",
-											"text": "Local, uploaded"
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 677530832802234,
-													"parameters": {
-														"variable": "SERVER_hasUploadedCharacter"
-													}
-												},
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 239397251693308,
-													"parameters": {
-														"variable": "MENU_buttonID",
-														"comparison": 0,
-														"value": "0"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "switchCardButtons",
-													"sid": 663864233950567,
-													"parameters": [
-														false
-													]
-												}
-											],
-											"sid": 545439396944760
-										},
-										{
-											"eventType": "comment",
-											"text": "Local, not uploaded"
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 728537183044272
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "switchCardButtons",
-													"sid": 664477800579240,
-													"parameters": [
-														true
-													]
-												}
-											],
-											"sid": 866713631744923
-										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "Admin"
+									"text": "Uploaded - Copy, Edit"
 								},
 								{
 									"eventType": "block",
@@ -1784,22 +1935,128 @@
 										{
 											"id": "compare-boolean-eventvar",
 											"objectClass": "System",
-											"sid": 928319225137735,
+											"sid": 866341139954984,
 											"parameters": {
 												"variable": "SERVER_isAdmin"
-											}
+											},
+											"isInverted": true
 										}
 									],
 									"actions": [
 										{
 											"callFunction": "switchCardButtons",
-											"sid": 709583603038972,
+											"sid": 775845706172408,
 											"parameters": [
-												true
+												"\"Card_CE\""
 											]
 										}
 									],
-									"sid": 900469900015383
+									"sid": 524597437040779
+								},
+								{
+									"eventType": "comment",
+									"text": "Uploaded (Admin) - Copy, Edit, Delete"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 383388489094979
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "switchCardButtons",
+											"sid": 714311736881745,
+											"parameters": [
+												"\"Card_CED\""
+											]
+										}
+									],
+									"sid": 318778907594404
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 391322332851771,
+									"parameters": {
+										"instance-variable": "animation",
+										"comparison": 0,
+										"value": "\"characterOnline\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 705971514903894,
+									"parameters": {
+										"variable": "GAME_selectedCharacterType",
+										"value": "\"online\""
+									}
+								}
+							],
+							"sid": 875908642544094,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Online - Copy"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 938608381625671,
+											"parameters": {
+												"variable": "SERVER_isAdmin"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "switchCardButtons",
+											"sid": 596383426022049,
+											"parameters": [
+												"\"Card_C\""
+											]
+										}
+									],
+									"sid": 125057206056558
+								},
+								{
+									"eventType": "comment",
+									"text": "Online (Admin) - Copy, Edit, Delete"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 312166336275294
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "switchCardButtons",
+											"sid": 255334986085364,
+											"parameters": [
+												"\"Card_CED\""
+											]
+										}
+									],
+									"sid": 396927562077409
 								}
 							]
 						}
@@ -1856,7 +2113,7 @@
 				},
 				{
 					"eventType": "comment",
-					"text": "Wildcard"
+					"text": "Copy"
 				},
 				{
 					"eventType": "block",
@@ -1864,201 +2121,113 @@
 						{
 							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 307931124388353,
+							"sid": 616114782449953,
 							"parameters": {
-								"tag": "\"button_wildcard\""
+								"tag": "\"button_copy\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 782521327483828,
+							"parameters": {
+								"audio-file": "select",
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Copy character data and save"
+						},
+						{
+							"id": "push",
+							"objectClass": "SavedCharacters",
+							"sid": 255674503078133,
+							"parameters": {
+								"where": "back",
+								"value": "GAME_selectedCharacterData",
+								"axis": "x"
+							}
+						},
+						{
+							"callFunction": "save",
+							"sid": 817239538540114
+						},
+						{
+							"type": "comment",
+							"text": "Return to menu"
+						},
+						{
+							"callFunction": "switchMenu",
+							"sid": 902608066533827,
+							"parameters": [
+								"\"List\""
+							]
+						},
+						{
+							"callFunction": "updateCharacterList",
+							"sid": 251766805964345,
+							"parameters": [
+								"PLAZA_state"
+							]
+						}
+					],
+					"sid": 311205886579456
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 198101911865329,
+							"parameters": {
+								"tag": "\"buttonE_copy\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "error",
+							"sid": 869521118226638,
+							"parameters": [
+								"\"Maximum of \"&PLAZA_maxLocalCharacters&\" people reached. Free up space to copy this person.\""
+							]
+						}
+					],
+					"sid": 844126497456824
+				},
+				{
+					"eventType": "comment",
+					"text": "Edit"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 893487321967860,
+							"parameters": {
+								"tag": "\"button_edit\""
 							}
 						}
 					],
 					"actions": [],
-					"sid": 873238437347325,
+					"sid": 750328939942744,
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "Edit"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 277387350833311,
-									"parameters": {
-										"variable": "PLAZA_state",
-										"comparison": 0,
-										"value": "\"local\""
-									}
-								}
-							],
-							"actions": [],
-							"sid": 947528146695421,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 706762855266755,
-											"parameters": {
-												"variable": "SERVER_hasUploadedCharacter"
-											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Card",
-											"sid": 877353761132488,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "0"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 549280666187116,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "has-key",
-													"objectClass": "JSON",
-													"sid": 148289159325586,
-													"parameters": {
-														"path": "\"can_edit\""
-													}
-												},
-												{
-													"id": "compare-value",
-													"objectClass": "JSON",
-													"sid": 373979621311165,
-													"parameters": {
-														"path": "\"can_edit\"",
-														"cmp": 0,
-														"value": "1"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "play",
-													"objectClass": "Audio",
-													"sid": 922560186891267,
-													"parameters": {
-														"audio-file": "select",
-														"loop": "not-looping",
-														"volume": "(log10(SETTING_volumeSound)*20)",
-														"stereo-pan": "0",
-														"tag-optional": "\"\""
-													}
-												},
-												{
-													"id": "set-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 503211490189855,
-													"parameters": {
-														"variable": "CREATOR_editing",
-														"value": "true"
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 129942709723871,
-													"parameters": {
-														"variable": "CREATOR_editIndex",
-														"value": "Card.id"
-													}
-												},
-												{
-													"callFunction": "transition",
-													"sid": 299610826301214,
-													"parameters": [
-														"\"Creator\""
-													]
-												}
-											],
-											"sid": 357616976443692
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "else",
-													"objectClass": "System",
-													"sid": 484932126107033
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "error",
-													"sid": 615967007297795,
-													"parameters": [
-														"\"You cannot currently edit your uploaded character. Uploaded characters have an edit cooldown of 7 days.\""
-													]
-												}
-											],
-											"sid": 849083097844618
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 596342810498318
-										}
-									],
-									"actions": [
-										{
-											"id": "play",
-											"objectClass": "Audio",
-											"sid": 618934605442049,
-											"parameters": {
-												"audio-file": "select",
-												"loop": "not-looping",
-												"volume": "(log10(SETTING_volumeSound)*20)",
-												"stereo-pan": "0",
-												"tag-optional": "\"\""
-											}
-										},
-										{
-											"id": "set-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 671960198214750,
-											"parameters": {
-												"variable": "CREATOR_editing",
-												"value": "true"
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 634304075607994,
-											"parameters": {
-												"variable": "CREATOR_editIndex",
-												"value": "Card.id"
-											}
-										},
-										{
-											"callFunction": "transition",
-											"sid": 994649801874347,
-											"parameters": [
-												"\"Creator\""
-											]
-										}
-									],
-									"sid": 567063529332951
-								}
-							]
+							"text": "Local character"
 						},
 						{
 							"eventType": "comment",
-							"text": "Copy"
+							"text": "TODO: fix this"
 						},
 						{
 							"eventType": "block",
@@ -2066,11 +2235,11 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 924269450240082,
+									"sid": 618705535015441,
 									"parameters": {
-										"variable": "PLAZA_state",
+										"variable": "SERVER_uploadedCharacterData",
 										"comparison": 0,
-										"value": "\"online\""
+										"value": "\"local\""
 									}
 								}
 							],
@@ -2078,7 +2247,7 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 647375938826823,
+									"sid": 681782865868889,
 									"parameters": {
 										"audio-file": "select",
 										"loop": "not-looping",
@@ -2088,43 +2257,90 @@
 									}
 								},
 								{
-									"type": "comment",
-									"text": "Copy character data and save"
-								},
-								{
-									"id": "push",
-									"objectClass": "LocalCharacters",
-									"sid": 371837716396083,
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 408402152370673,
 									"parameters": {
-										"where": "back",
-										"value": "GAME_selectedCharacterData",
-										"axis": "x"
+										"variable": "CREATOR_editing",
+										"value": "true"
 									}
 								},
 								{
-									"callFunction": "save",
-									"sid": 885463882262803
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 640118273834344,
+									"parameters": {
+										"variable": "CREATOR_editIndex",
+										"value": "Card.id"
+									}
 								},
 								{
-									"type": "comment",
-									"text": "Return to menu"
-								},
-								{
-									"callFunction": "switchMenu",
-									"sid": 867108775514954,
+									"callFunction": "transition",
+									"sid": 426673166976543,
 									"parameters": [
-										"\"List\""
-									]
-								},
-								{
-									"callFunction": "updateCharacterList",
-									"sid": 849321289684098,
-									"parameters": [
-										"PLAZA_state"
+										"\"Creator\""
 									]
 								}
 							],
-							"sid": 613922088720933
+							"sid": 772919125248512
+						},
+						{
+							"eventType": "comment",
+							"text": "Uploaded and (Admin) Online"
+						},
+						{
+							"eventType": "comment",
+							"text": "TODO: fix this"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 905359922174978
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 243724566785016,
+									"parameters": {
+										"audio-file": "select",
+										"loop": "not-looping",
+										"volume": "(log10(SETTING_volumeSound)*20)",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 752231732004020,
+									"parameters": {
+										"variable": "CREATOR_editing",
+										"value": "true"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 877375468314060,
+									"parameters": {
+										"variable": "CREATOR_editIndex",
+										"value": "Card.id"
+									}
+								},
+								{
+									"callFunction": "transition",
+									"sid": 885745197280613,
+									"parameters": [
+										"\"Creator\""
+									]
+								}
+							],
+							"sid": 925896678568652
 						}
 					]
 				},
@@ -2134,22 +2350,22 @@
 						{
 							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 445987605352100,
+							"sid": 367768175149124,
 							"parameters": {
-								"tag": "\"buttonE_wildcard\""
+								"tag": "\"buttonE_edit\""
 							}
 						}
 					],
 					"actions": [
 						{
 							"callFunction": "error",
-							"sid": 993902481609900,
+							"sid": 429057806108482,
 							"parameters": [
-								"\"Maximum of \"&PLAZA_maxLocalCharacters&\" people reached. Free up space to copy this person.\""
+								"\"You cannot currently edit your uploaded character. Uploaded characters have an edit cooldown of 7 days.\""
 							]
 						}
 					],
-					"sid": 845271671204379
+					"sid": 740730549999709
 				},
 				{
 					"eventType": "comment",
@@ -2161,160 +2377,30 @@
 						{
 							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 710978886848838,
+							"sid": 740250397333474,
 							"parameters": {
 								"tag": "\"button_delete\""
 							}
 						}
 					],
 					"actions": [],
-					"sid": 185495943615190,
+					"sid": 586511173314698,
 					"children": [
 						{
+							"eventType": "comment",
+							"text": "Local"
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 482828383986347,
+									"sid": 289371092015325,
 									"parameters": {
-										"variable": "PLAZA_state",
+										"variable": "SERVER_uploadedCharacterData",
 										"comparison": 0,
 										"value": "\"local\""
-									}
-								}
-							],
-							"actions": [],
-							"sid": 779201356182287,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "Admins only!"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 649194981701729,
-											"parameters": {
-												"variable": "SERVER_hasUploadedCharacter"
-											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Card",
-											"sid": 799083720992732,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "0"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "play",
-											"objectClass": "Audio",
-											"sid": 284923452645351,
-											"parameters": {
-												"audio-file": "error",
-												"loop": "not-looping",
-												"volume": "(log10(SETTING_volumeSound)*20)",
-												"stereo-pan": "0",
-												"tag-optional": "\"\""
-											}
-										}
-									],
-									"sid": 106888168913960
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 949641222560170
-										}
-									],
-									"actions": [
-										{
-											"id": "play",
-											"objectClass": "Audio",
-											"sid": 282634876259603,
-											"parameters": {
-												"audio-file": "select",
-												"loop": "not-looping",
-												"volume": "(log10(SETTING_volumeSound)*20)",
-												"stereo-pan": "0",
-												"tag-optional": "\"\""
-											}
-										},
-										{
-											"type": "comment",
-											"text": "Delete character data and save"
-										},
-										{
-											"id": "delete",
-											"objectClass": "LocalCharacters",
-											"sid": 975898786206892,
-											"parameters": {
-												"index": "Card.id",
-												"axis": "x"
-											}
-										},
-										{
-											"callFunction": "save",
-											"sid": 232405911345860
-										},
-										{
-											"type": "comment",
-											"text": "Return to menu"
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 956172330015430,
-											"parameters": {
-												"variable": "MENU_offset",
-												"value": "0"
-											}
-										},
-										{
-											"callFunction": "switchMenu",
-											"sid": 800385793316853,
-											"parameters": [
-												"\"List\""
-											]
-										},
-										{
-											"callFunction": "updateCharacterList",
-											"sid": 854666064907392,
-											"parameters": [
-												"PLAZA_state"
-											]
-										}
-									],
-									"sid": 593463049562298
-								}
-							]
-						},
-						{
-							"eventType": "comment",
-							"text": "Admins only!"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 148809571549421,
-									"parameters": {
-										"variable": "PLAZA_state",
-										"comparison": 0,
-										"value": "\"online\""
 									}
 								}
 							],
@@ -2322,17 +2408,90 @@
 								{
 									"id": "play",
 									"objectClass": "Audio",
-									"sid": 462300450824443,
+									"sid": 860189822937994,
 									"parameters": {
-										"audio-file": "error",
+										"audio-file": "select",
 										"loop": "not-looping",
 										"volume": "(log10(SETTING_volumeSound)*20)",
 										"stereo-pan": "0",
 										"tag-optional": "\"\""
 									}
+								},
+								{
+									"type": "comment",
+									"text": "Delete character data and save"
+								},
+								{
+									"id": "delete",
+									"objectClass": "SavedCharacters",
+									"sid": 951144231953724,
+									"parameters": {
+										"index": "Card.id",
+										"axis": "x"
+									}
+								},
+								{
+									"callFunction": "save",
+									"sid": 793082311064948
+								},
+								{
+									"type": "comment",
+									"text": "Return to menu"
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 988016439741823,
+									"parameters": {
+										"variable": "MENU_offset",
+										"value": "0"
+									}
+								},
+								{
+									"callFunction": "switchMenu",
+									"sid": 315156738471603,
+									"parameters": [
+										"\"List\""
+									]
+								},
+								{
+									"callFunction": "updateCharacterList",
+									"sid": 993898493903331,
+									"parameters": [
+										"PLAZA_state"
+									]
 								}
 							],
-							"sid": 543146375801549
+							"sid": 597100090303727
+						},
+						{
+							"eventType": "comment",
+							"text": "(Admin) Uploaded and Online"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 570482629655963
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 626714510129653,
+									"parameters": {
+										"audio-file": "error",
+										"loop": "not-looping",
+										"volume": "(log10(SETTING_volumeSound)*20)",
+										"stereo-pan": "0",
+										"tag-optional": "\"ADMIN\""
+									}
+								}
+							],
+							"sid": 697877552587781
 						}
 					]
 				}
