@@ -35,6 +35,7 @@ export async function uploadCharacter(
 ): Promise<ApiResponse<{ message: string; jobId: string; status: string }>> {
   const response = await post("/characters", characterData);
 
+  RUNTIME.globalVars.MENU_locked = false;
   if (!response.success && response.statusCode) {
     displayServerError(response.error || "Upload failed", response.statusCode);
   } else {
@@ -54,6 +55,7 @@ export async function updateUserCharacter(
 ): Promise<ApiResponse<{ message: string; jobId: string; status: string }>> {
   const response = await put("/characters/me", characterData);
 
+  RUNTIME.globalVars.MENU_locked = false;
   if (!response.success && response.statusCode) {
     displayServerError(response.error || "Update failed", response.statusCode);
   } else {
@@ -179,48 +181,48 @@ export function validateCharacterData(characterData: CharacterData): {
 
   // check top-level structure
   if (!characterData.info) {
-    errors.push("Missing character info section");
+    errors.push("Missing character info section.");
   }
   if (!characterData.static) {
-    errors.push("Missing character static section");
+    errors.push("Missing character static section.");
   }
   if (!characterData.placeable_movable) {
-    errors.push("Missing character placeable/movable section");
+    errors.push("Missing character placeable/movable section.");
   }
 
   // check required info fields
   if (characterData.info) {
     if (!characterData.info.name) {
-      errors.push("Character name is required");
+      errors.push("Character name is required.");
     } else if (!validateCharacterName(characterData.info.name).valid) {
       errors.push(CHARACTER_NAME_ERROR_MESSAGE);
     }
     if (!characterData.info.sex) {
-      errors.push("Character sex is required");
+      errors.push("Character sex is required.");
     }
     if (!characterData.info.eye_color) {
-      errors.push("Character eye color is required");
+      errors.push("Character eye color is required.");
     }
     if (!characterData.info.hair_color) {
-      errors.push("Character hair color is required");
+      errors.push("Character hair color is required.");
     }
     if (
       !characterData.info.race ||
       !Array.isArray(characterData.info.race) ||
       characterData.info.race.length === 0
     ) {
-      errors.push("Character race is required");
+      errors.push("Character race is required.");
     }
     if (!characterData.info.ethnicity) {
-      errors.push("Character ethnicity is required");
+      errors.push("Character ethnicity is required.");
     }
     if (!characterData.info.location) {
-      errors.push("Character country is required");
+      errors.push("Character country is required.");
     } else if (!isValidCountry(characterData.info.location)) {
-      errors.push("Invalid country selected");
+      errors.push("Invalid country selected.");
     }
     if (!characterData.info.date_of_birth) {
-      errors.push("Character birth date is required");
+      errors.push("Character birth date is required.");
     } else {
       const birthDate = new Date(characterData.info.date_of_birth);
       const today = new Date();
@@ -230,7 +232,7 @@ export function validateCharacterData(characterData: CharacterData): {
         today.getDate(),
       );
       if (birthDate < new Date("1900-01-01") || birthDate > maxDate) {
-        errors.push("Character must be at least 13 years old");
+        errors.push("Character must be at least 13 years old.");
       }
     }
   }
@@ -238,10 +240,10 @@ export function validateCharacterData(characterData: CharacterData): {
   // check required static fields
   if (characterData.static) {
     if (characterData.static.head?.asset_id === undefined) {
-      errors.push("Head asset_id is required");
+      errors.push("Head asset_id is required.");
     }
     if (characterData.static.hair?.asset_id === undefined) {
-      errors.push("Hair asset_id is required");
+      errors.push("Hair asset_id is required.");
     }
   }
 
@@ -255,7 +257,7 @@ export function validateCharacterData(characterData: CharacterData): {
     ];
     for (const field of required) {
       if (characterData.placeable_movable[field]?.asset_id === undefined) {
-        errors.push(`${field} asset_id is required`);
+        errors.push(`${field} asset_id is required.`);
       }
     }
   }

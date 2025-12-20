@@ -222,7 +222,9 @@
 									"sid": 286640102060314,
 									"parameters": {
 										"tag": "\"parts\"",
-										"file": "parts.json"
+										"file": {
+											"path": "parts.json"
+										}
 									}
 								}
 							],
@@ -1177,7 +1179,9 @@
 							"objectClass": "Audio",
 							"sid": 560691769476741,
 							"parameters": {
-								"audio-file": "error",
+								"audio-file": {
+									"path": "error"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -3373,7 +3377,9 @@
 									"objectClass": "Audio",
 									"sid": 816437198729246,
 									"parameters": {
-										"audio-file": "offlineIntro",
+										"audio-file": {
+											"path": "offlineIntro"
+										},
 										"loop": "not-looping",
 										"volume": "log10(SETTING_volumeMusic)*20",
 										"stereo-pan": "0",
@@ -3398,7 +3404,9 @@
 									"objectClass": "Audio",
 									"sid": 371566278172458,
 									"parameters": {
-										"audio-file": "onlineIntro",
+										"audio-file": {
+											"path": "onlineIntro"
+										},
 										"loop": "not-looping",
 										"volume": "log10(SETTING_volumeMusic)*20",
 										"stereo-pan": "0",
@@ -3473,7 +3481,9 @@
 									"objectClass": "Audio",
 									"sid": 219746236120765,
 									"parameters": {
-										"audio-file": "offlineLoop",
+										"audio-file": {
+											"path": "offlineLoop"
+										},
 										"loop": "looping",
 										"volume": "log10(SETTING_volumeMusic)*20",
 										"stereo-pan": "0",
@@ -3498,7 +3508,9 @@
 									"objectClass": "Audio",
 									"sid": 617704357312705,
 									"parameters": {
-										"audio-file": "onlineLoop",
+										"audio-file": {
+											"path": "onlineLoop"
+										},
 										"loop": "looping",
 										"volume": "log10(SETTING_volumeMusic)*20",
 										"stereo-pan": "0",

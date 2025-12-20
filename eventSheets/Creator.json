@@ -32,26 +32,6 @@
 			"sid": 361449043691647
 		},
 		{
-			"eventType": "variable",
-			"name": "CREATOR_editIndex",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 703881161290216
-		},
-		{
-			"eventType": "variable",
-			"name": "CREATOR_mode",
-			"type": "string",
-			"initialValue": "create",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 748897575366710
-		},
-		{
 			"eventType": "include",
 			"includeSheet": "Global"
 		},
@@ -170,7 +150,9 @@
 							"sid": 792961067476377,
 							"parameters": {
 								"tag": "\"json\"",
-								"file": "character.json"
+								"file": {
+									"path": "character.json"
+								}
 							}
 						}
 					],
@@ -270,6 +252,104 @@
 								}
 							],
 							"sid": 436387525812968
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 902850017454198,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"properties\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "Button",
+									"sid": 804391309471363,
+									"parameters": {
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "Button",
+									"sid": 302116307405208,
+									"parameters": {
+										"instance-variable": "disabled",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 415381935328637,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Hide the properties button if this part category has none"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-at-xy",
+											"objectClass": "Parts",
+											"sid": 499371267137603,
+											"parameters": {
+												"x": "Self.IndexOf(CREATOR_part)",
+												"y": "1",
+												"comparison": 0,
+												"value": "\"static\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 473852391473384,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 890943553655794
+								},
+								{
+									"eventType": "comment",
+									"text": "Disable the properties button if this part has none"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "has-key",
+											"objectClass": "JSON",
+											"sid": 696452354956797,
+											"parameters": {
+												"path": "\"character_data.placeable_movable.\"&CREATOR_part&\".asset_id\""
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Button",
+											"sid": 371971872209406,
+											"parameters": {
+												"instance-variable": "disabled",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 438007032338239
+								}
+							]
 						},
 						{
 							"eventType": "comment",
@@ -460,77 +540,6 @@
 										}
 									],
 									"sid": 722323770724719
-								}
-							]
-						},
-						{
-							"eventType": "comment",
-							"text": "Disable the properties button if this part has none"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "Button",
-									"sid": 398998100407909,
-									"parameters": {
-										"instance-variable": "type",
-										"comparison": 0,
-										"value": "\"properties\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-boolean-instvar",
-									"objectClass": "Button",
-									"sid": 976558635614622,
-									"parameters": {
-										"instance-variable": "disabled",
-										"value": "false"
-									}
-								}
-							],
-							"sid": 415892039625168,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-at-xy",
-											"objectClass": "Parts",
-											"sid": 603056001306706,
-											"parameters": {
-												"x": "Self.IndexOf(CREATOR_part)",
-												"y": "1",
-												"comparison": 0,
-												"value": "\"static\""
-											}
-										},
-										{
-											"id": "has-key",
-											"objectClass": "JSON",
-											"sid": 462033366041731,
-											"parameters": {
-												"path": "\"character_data.placeable_movable.\"&CREATOR_part&\".asset_id\""
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "set-boolean-instvar",
-											"objectClass": "Button",
-											"sid": 755764355162883,
-											"parameters": {
-												"instance-variable": "disabled",
-												"value": "true"
-											}
-										}
-									],
-									"sid": 291324576768077,
-									"isOrBlock": true
 								}
 							]
 						}
@@ -981,7 +990,9 @@
 									"objectClass": "Audio",
 									"sid": 638734942231066,
 									"parameters": {
-										"audio-file": "select",
+										"audio-file": {
+											"path": "select"
+										},
 										"loop": "not-looping",
 										"volume": "(log10(SETTING_volumeSound)*20)",
 										"stereo-pan": "0",
@@ -1013,7 +1024,9 @@
 									"objectClass": "Audio",
 									"sid": 779407256262719,
 									"parameters": {
-										"audio-file": "select",
+										"audio-file": {
+											"path": "select"
+										},
 										"loop": "not-looping",
 										"volume": "(log10(SETTING_volumeSound)*20)",
 										"stereo-pan": "0",
@@ -1054,7 +1067,9 @@
 							"objectClass": "Audio",
 							"sid": 777073502589611,
 							"parameters": {
-								"audio-file": "select",
+								"audio-file": {
+									"path": "select"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -1115,7 +1130,9 @@
 							"objectClass": "Audio",
 							"sid": 528718702280398,
 							"parameters": {
-								"audio-file": "select",
+								"audio-file": {
+									"path": "select"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -1315,7 +1332,7 @@
 								{
 									"id": "compare-instance-variable",
 									"objectClass": "Button",
-									"sid": 873348233498669,
+									"sid": 879296923928775,
 									"parameters": {
 										"instance-variable": "type",
 										"comparison": 0,
@@ -1327,14 +1344,14 @@
 								{
 									"id": "set-boolean-instvar",
 									"objectClass": "Button",
-									"sid": 426726125814559,
+									"sid": 193654353470828,
 									"parameters": {
 										"instance-variable": "disabled",
 										"value": "false"
 									}
 								}
 							],
-							"sid": 664574963025564,
+							"sid": 336802893448407,
 							"children": [
 								{
 									"eventType": "block",
@@ -1342,7 +1359,7 @@
 										{
 											"id": "has-key",
 											"objectClass": "JSON",
-											"sid": 338650797639864,
+											"sid": 377854650611073,
 											"parameters": {
 												"path": "\"character_data.placeable_movable.\"&CREATOR_part&\".asset_id\""
 											},
@@ -1353,14 +1370,14 @@
 										{
 											"id": "set-boolean-instvar",
 											"objectClass": "Button",
-											"sid": 850764208758187,
+											"sid": 877794428909669,
 											"parameters": {
 												"instance-variable": "disabled",
 												"value": "true"
 											}
 										}
 									],
-									"sid": 381998397837750
+									"sid": 220710858406344
 								}
 							]
 						}
@@ -1388,7 +1405,9 @@
 							"objectClass": "Audio",
 							"sid": 662291675231140,
 							"parameters": {
-								"audio-file": "select",
+								"audio-file": {
+									"path": "select"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -1433,7 +1452,9 @@
 							"objectClass": "Audio",
 							"sid": 845886273190865,
 							"parameters": {
-								"audio-file": "select",
+								"audio-file": {
+									"path": "select"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -1482,7 +1503,9 @@
 							"objectClass": "Audio",
 							"sid": 456694935701862,
 							"parameters": {
-								"audio-file": "error",
+								"audio-file": {
+									"path": "error"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -1515,7 +1538,9 @@
 							"objectClass": "Audio",
 							"sid": 410730118448242,
 							"parameters": {
-								"audio-file": "select",
+								"audio-file": {
+									"path": "select"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -1553,7 +1578,220 @@
 									"sid": 406764302788758
 								}
 							],
-							"sid": 727250600803449
+							"sid": 727250600803449,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "Conditionally change icons for eyes and eyebrows"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 440131380542946,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"property\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 193213591274110,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 441777532264421,
+													"parameters": {
+														"variable": "CREATOR_part",
+														"comparison": 0,
+														"value": "\"eyes\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 993736117083764,
+													"parameters": {
+														"variable": "CREATOR_part",
+														"comparison": 0,
+														"value": "\"eyebrows\""
+													}
+												}
+											],
+											"actions": [],
+											"sid": 341480002795908,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "Button",
+															"sid": 448735921495737,
+															"parameters": {
+																"instance-variable": "id",
+																"comparison": 0,
+																"value": "0"
+															}
+														},
+														{
+															"id": "pick-children",
+															"objectClass": "Button",
+															"sid": 106875897371168,
+															"parameters": {
+																"child": "ButtonIcon",
+																"which": "own"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-animation",
+															"objectClass": "ButtonIcon",
+															"sid": 757416637772112,
+															"parameters": {
+																"animation": "\"apart\"",
+																"from": "beginning"
+															}
+														}
+													],
+													"sid": 782762883260618
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "Button",
+															"sid": 816327281455405,
+															"parameters": {
+																"instance-variable": "id",
+																"comparison": 0,
+																"value": "1"
+															}
+														},
+														{
+															"id": "pick-children",
+															"objectClass": "Button",
+															"sid": 377576667807754,
+															"parameters": {
+																"child": "ButtonIcon",
+																"which": "own"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-animation",
+															"objectClass": "ButtonIcon",
+															"sid": 773435949688513,
+															"parameters": {
+																"animation": "\"together\"",
+																"from": "beginning"
+															}
+														}
+													],
+													"sid": 685864096007896
+												}
+											],
+											"isOrBlock": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 245097812616321
+												}
+											],
+											"actions": [],
+											"sid": 577414325955841,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "Button",
+															"sid": 286581473379957,
+															"parameters": {
+																"instance-variable": "id",
+																"comparison": 0,
+																"value": "0"
+															}
+														},
+														{
+															"id": "pick-children",
+															"objectClass": "Button",
+															"sid": 634329344001773,
+															"parameters": {
+																"child": "ButtonIcon",
+																"which": "own"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-animation",
+															"objectClass": "ButtonIcon",
+															"sid": 407197062178116,
+															"parameters": {
+																"animation": "\"left\"",
+																"from": "beginning"
+															}
+														}
+													],
+													"sid": 893384282079667
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "Button",
+															"sid": 309671348675094,
+															"parameters": {
+																"instance-variable": "id",
+																"comparison": 0,
+																"value": "1"
+															}
+														},
+														{
+															"id": "pick-children",
+															"objectClass": "Button",
+															"sid": 546034224467123,
+															"parameters": {
+																"child": "ButtonIcon",
+																"which": "own"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-animation",
+															"objectClass": "ButtonIcon",
+															"sid": 300245236709369,
+															"parameters": {
+																"animation": "\"right\"",
+																"from": "beginning"
+															}
+														}
+													],
+													"sid": 459648692651947
+												}
+											]
+										}
+									]
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -1592,9 +1830,9 @@
 					"actions": [
 						{
 							"callFunction": "error",
-							"sid": 166885973451446,
+							"sid": 827159995331909,
 							"parameters": [
-								"\"This part type has no modifiable properties.\""
+								"\"Please select a part to modify its properties.\""
 							]
 						}
 					],
@@ -1622,7 +1860,9 @@
 							"objectClass": "Audio",
 							"sid": 114235271996449,
 							"parameters": {
-								"audio-file": "select",
+								"audio-file": {
+									"path": "select"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -1860,7 +2100,9 @@
 							"objectClass": "Audio",
 							"sid": 354686081474238,
 							"parameters": {
-								"audio-file": "error",
+								"audio-file": {
+									"path": "error"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -2786,7 +3028,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Creator - Information (Buttons)",
+			"title": "Creator - Buttons (Information)",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -2812,7 +3054,9 @@
 							"objectClass": "Audio",
 							"sid": 439239286175618,
 							"parameters": {
-								"audio-file": "select",
+								"audio-file": {
+									"path": "select"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -2851,7 +3095,9 @@
 							"objectClass": "Audio",
 							"sid": 755615852460690,
 							"parameters": {
-								"audio-file": "select",
+								"audio-file": {
+									"path": "select"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -3104,7 +3350,9 @@
 							"objectClass": "Audio",
 							"sid": 391314677393650,
 							"parameters": {
-								"audio-file": "select",
+								"audio-file": {
+									"path": "select"
+								},
 								"loop": "not-looping",
 								"volume": "(log10(SETTING_volumeSound)*20)",
 								"stereo-pan": "0",
@@ -3258,565 +3506,6 @@
 							"sid": 797069668956776
 						}
 					]
-				},
-				{
-					"eventType": "comment",
-					"text": "Card"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 569603693253089,
-							"parameters": {
-								"tag": "\"button_card\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "play",
-							"objectClass": "Audio",
-							"sid": 907426544625104,
-							"parameters": {
-								"audio-file": "select",
-								"loop": "not-looping",
-								"volume": "(log10(SETTING_volumeSound)*20)",
-								"stereo-pan": "0",
-								"tag-optional": "\"\""
-							}
-						},
-						{
-							"id": "destroy",
-							"objectClass": "Card",
-							"sid": 725178792776081
-						},
-						{
-							"callFunction": "renderCard",
-							"sid": 382767527020815,
-							"parameters": [
-								"JSON.ToCompactString",
-								"40",
-								"28",
-								"\"local\"",
-								"\"Card\"",
-								"-1"
-							]
-						},
-						{
-							"callFunction": "switchMenu",
-							"sid": 489452233376666,
-							"parameters": [
-								"\"Card\""
-							]
-						}
-					],
-					"sid": 379396147761487,
-					"children": [
-						{
-							"eventType": "comment",
-							"text": "Can't upload; editing, not logged in, or already has a character"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 891127984169432,
-									"parameters": {
-										"variable": "CREATOR_editing"
-									}
-								},
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 347820610019950,
-									"parameters": {
-										"variable": "SERVER_isLoggedIn"
-									},
-									"isInverted": true
-								},
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 257907322236994,
-									"parameters": {
-										"variable": "SERVER_hasUploadedCharacter"
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "switchCardButtons",
-									"sid": 870530395687932,
-									"parameters": [
-										"\"\""
-									]
-								}
-							],
-							"sid": 360719882119884,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "comment",
-							"text": "Can upload"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 282791781163140
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "switchCardButtons",
-									"sid": 576042734275761,
-									"parameters": [
-										"\"\""
-									]
-								}
-							],
-							"sid": 405306373697214
-						}
-					]
-				},
-				{
-					"eventType": "comment",
-					"text": "Save"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 528530054466620,
-							"parameters": {
-								"tag": "\"button_save\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"language": "typescript",
-							"script": [
-								"const json_object = runtime.objects.JSON.getFirstInstance();",
-								"if (!json_object) return;",
-								"",
-								"const errors = validateCharacterData(",
-								"  json_object.getJsonDataCopy().character_data",
-								").errors;",
-								"",
-								"if (errors.length > 0) {",
-								"  // Reject with errors",
-								"  runtime.callFunction(\"error\", errors.join(\"\\n\"));",
-								"} else {",
-								"  runtime.signal(\"saveCharacter\");",
-								"}"
-							]
-						}
-					],
-					"sid": 172182884612687
-				},
-				{
-					"eventType": "comment",
-					"text": "Wildcard"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 961842960516437,
-							"parameters": {
-								"tag": "\"button_wildcard\""
-							}
-						}
-					],
-					"actions": [],
-					"sid": 360915457926286,
-					"children": [
-						{
-							"eventType": "comment",
-							"text": "Update"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 518826706004729,
-									"parameters": {
-										"variable": "CREATOR_editing"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"const json_object = runtime.objects.JSON.getFirstInstance();",
-										"if (!json_object) return;",
-										"",
-										"const errors = validateCharacterData(",
-										"  json_object.getJsonDataCopy().character_data",
-										").errors;",
-										"",
-										"if (errors.length > 0) {",
-										"  // Reject with errors",
-										"  runtime.callFunction(\"error\", errors.join(\"\\n\"));",
-										"} else {",
-										"  runtime.signal(\"updateCharacter\");",
-										"}"
-									]
-								}
-							],
-							"sid": 416223715426000
-						},
-						{
-							"eventType": "comment",
-							"text": "Save"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 797269858516689
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"const json_object = runtime.objects.JSON.getFirstInstance();",
-										"if (!json_object) return;",
-										"",
-										"const errors = validateCharacterData(",
-										"  json_object.getJsonDataCopy().character_data",
-										").errors;",
-										"",
-										"if (errors.length > 0) {",
-										"  // Reject with errors",
-										"  runtime.callFunction(\"error\", errors.join(\"\\n\"));",
-										"} else {",
-										"  runtime.signal(\"saveCharacter\");",
-										"}"
-									]
-								}
-							],
-							"sid": 580163116325639
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 788162980207170,
-							"parameters": {
-								"tag": "\"saveCharacter\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "play",
-							"objectClass": "Audio",
-							"sid": 131434308964522,
-							"parameters": {
-								"audio-file": "select",
-								"loop": "not-looping",
-								"volume": "(log10(SETTING_volumeSound)*20)",
-								"stereo-pan": "0",
-								"tag-optional": "\"\""
-							}
-						},
-						{
-							"id": "push",
-							"objectClass": "SavedCharacters",
-							"sid": 890754773399142,
-							"parameters": {
-								"where": "back",
-								"value": "JSON.ToCompactString",
-								"axis": "x"
-							}
-						},
-						{
-							"callFunction": "save",
-							"sid": 578735710807435
-						},
-						{
-							"callFunction": "transition",
-							"sid": 783655456800004,
-							"parameters": [
-								"\"Plaza\""
-							]
-						}
-					],
-					"sid": 699480280171146
-				},
-				{
-					"eventType": "comment",
-					"text": "Upload"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 633857099535956,
-							"parameters": {
-								"tag": "\"button_try_upload\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"language": "typescript",
-							"script": [
-								"const json_object = runtime.objects.JSON.getFirstInstance();",
-								"if (!json_object) return;",
-								"",
-								"const errors = validateCharacterData(",
-								"  json_object.getJsonDataCopy().character_data",
-								").errors;",
-								"",
-								"if (errors.length > 0) {",
-								"  // Reject with errors",
-								"  runtime.callFunction(\"error\", errors.join(\"\\n\"));",
-								"} else {",
-								"  runtime.signal(\"showDisclaimer\");",
-								"}"
-							]
-						}
-					],
-					"sid": 777945278549065
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 445104045464719,
-							"parameters": {
-								"tag": "\"showDisclaimer\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "play",
-							"objectClass": "Audio",
-							"sid": 589473376660654,
-							"parameters": {
-								"audio-file": "select",
-								"loop": "not-looping",
-								"volume": "(log10(SETTING_volumeSound)*20)",
-								"stereo-pan": "0",
-								"tag-optional": "\"\""
-							}
-						},
-						{
-							"callFunction": "switchOverlayMenu",
-							"sid": 374930340391341,
-							"parameters": [
-								"\"Disclaimer\""
-							]
-						}
-					],
-					"sid": 235688490722742
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 163808397421948,
-							"parameters": {
-								"tag": "\"button_upload\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"language": "typescript",
-							"script": [
-								"const json_object = runtime.objects.JSON.getFirstInstance();",
-								"if (!json_object) return;",
-								"",
-								"uploadCharacter(json_object.getJsonDataCopy().character_data);"
-							]
-						}
-					],
-					"sid": 423328390690165
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 833232522942741,
-							"parameters": {
-								"tag": "\"updateCharacter\""
-							}
-						}
-					],
-					"actions": [],
-					"sid": 227401914234547,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 670104647353322,
-									"parameters": {
-										"variable": "SERVER_hasUploadedCharacter"
-									}
-								},
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 894990708007652,
-									"parameters": {
-										"variable": "CREATOR_editIndex",
-										"comparison": 0,
-										"value": "0"
-									}
-								}
-							],
-							"actions": [
-								{
-									"type": "script",
-									"language": "typescript",
-									"script": [
-										"const json_object = runtime.objects.JSON.getFirstInstance();",
-										"if (!json_object) return;",
-										"",
-										"updateUserCharacter(json_object.getJsonDataCopy().character_data);"
-									]
-								}
-							],
-							"sid": 451897268239110
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 443847570198329
-								}
-							],
-							"actions": [
-								{
-									"id": "play",
-									"objectClass": "Audio",
-									"sid": 964327542393347,
-									"parameters": {
-										"audio-file": "select",
-										"loop": "not-looping",
-										"volume": "(log10(SETTING_volumeSound)*20)",
-										"stereo-pan": "0",
-										"tag-optional": "\"\""
-									}
-								},
-								{
-									"id": "set-at-x",
-									"objectClass": "SavedCharacters",
-									"sid": 975134000536964,
-									"parameters": {
-										"x": "CREATOR_editIndex",
-										"value": "JSON.ToCompactString"
-									}
-								},
-								{
-									"callFunction": "save",
-									"sid": 597637638269508
-								},
-								{
-									"callFunction": "transition",
-									"sid": 646177598164461,
-									"parameters": [
-										"\"Plaza\""
-									]
-								}
-							],
-							"sid": 542352369133428
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-signal",
-							"objectClass": "System",
-							"sid": 900999693683796,
-							"parameters": {
-								"tag": "\"uploadSuccess\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "play",
-							"objectClass": "Audio",
-							"sid": 992624333003153,
-							"parameters": {
-								"audio-file": "upload",
-								"loop": "not-looping",
-								"volume": "(log10(SETTING_volumeSound)*20)",
-								"stereo-pan": "0",
-								"tag-optional": "\"\""
-							}
-						},
-						{
-							"callFunction": "setUploadedCharacter",
-							"sid": 867483614398611,
-							"parameters": [
-								"JSON.ToCompactString",
-								"\"\""
-							]
-						},
-						{
-							"callFunction": "switchOverlayMenu",
-							"sid": 969663192388346,
-							"parameters": [
-								"\"\""
-							]
-						},
-						{
-							"callFunction": "transition",
-							"sid": 847253079071342,
-							"parameters": [
-								"\"Plaza\""
-							]
-						}
-					],
-					"sid": 323612408952061
 				}
 			],
 			"sid": 524615809327212
@@ -3824,7 +3513,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Creator - Information (Inputs)",
+			"title": "Creator - Inputs",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -3955,8 +3644,8 @@
 												"      );",
 												"    case \"year\":",
 												"      const currentYear = new Date().getFullYear();",
-												"      return Array.from({ length: currentYear - 1900 + 1 }, (_, i) =>",
-												"        String(currentYear - i),",
+												"      return Array.from({ length: currentYear - 13 - 1900 + 1 }, (_, i) =>",
+												"        String(currentYear - 13 - i),",
 												"      );",
 												"    case \"sex\":",
 												"      return extractLabels(sexes);",
@@ -4426,6 +4115,843 @@
 				}
 			],
 			"sid": 132593179489904
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Creator - Buttons (Card)",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Card"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 987802234591972,
+							"parameters": {
+								"tag": "\"button_card\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 569449672923864,
+							"parameters": {
+								"audio-file": {
+									"path": "select"
+								},
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Card",
+							"sid": 274494637149667
+						},
+						{
+							"callFunction": "renderCard",
+							"sid": 928139166491747,
+							"parameters": [
+								"JSON.ToCompactString",
+								"40",
+								"28",
+								"\"local\"",
+								"\"Card\"",
+								"-1"
+							]
+						},
+						{
+							"callFunction": "switchMenu",
+							"sid": 741459193118688,
+							"parameters": [
+								"\"Card\""
+							]
+						},
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 238628840111951,
+							"parameters": {
+								"tag": "\"updateCardButtons\""
+							}
+						}
+					],
+					"sid": 651168034089555
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 996191277219830,
+							"parameters": {
+								"tag": "\"updateCardButtons\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 548256383387285,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 365831136050468,
+									"parameters": {
+										"variable": "CREATOR_editing"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [],
+							"sid": 878225390838004,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "We can't upload"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 458578185252039,
+											"parameters": {
+												"variable": "SERVER_isLoggedIn"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 212035805141841,
+											"parameters": {
+												"variable": "SERVER_hasUploadedCharacter"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "switchCardButtons",
+											"sid": 758624565748415,
+											"parameters": [
+												"\"Card_S\""
+											]
+										}
+									],
+									"sid": 864844427343165
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 387822347723951
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "switchCardButtons",
+											"sid": 170465143684059,
+											"parameters": [
+												"\"Card_SU\""
+											]
+										}
+									],
+									"sid": 877992293326753
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 835250017970404
+								}
+							],
+							"actions": [],
+							"sid": 119496869664212,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "We can't upload"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 278426430945452,
+											"parameters": {
+												"variable": "SERVER_isLoggedIn"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 713742093834000,
+											"parameters": {
+												"variable": "SERVER_hasUploadedCharacter"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "switchCardButtons",
+											"sid": 282483012106845,
+											"parameters": [
+												"\"Card_U\""
+											]
+										}
+									],
+									"sid": 807156751402270
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 276932592841665
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "switchCardButtons",
+											"sid": 414268429836576,
+											"parameters": [
+												"\"Card_UU\""
+											]
+										}
+									],
+									"sid": 398282376851463
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 327086786276029,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"disclaimer\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 712443536794451,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 309649317437664,
+											"parameters": {
+												"variable": "SERVER_isLoggedIn"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 721998831161292,
+											"parameters": {
+												"variable": "SERVER_hasUploadedCharacter"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Button",
+											"sid": 325467182862411,
+											"parameters": {
+												"instance-variable": "disabled",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 431300080606798,
+									"isOrBlock": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 414478479502957
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Button",
+											"sid": 975384482407755,
+											"parameters": {
+												"instance-variable": "disabled",
+												"value": "false"
+											}
+										}
+									],
+									"sid": 896262822694195
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "Save"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 236235622437881,
+							"parameters": {
+								"tag": "\"button_save\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"const json_object = runtime.objects.JSON.getFirstInstance();",
+								"if (!json_object) return;",
+								"",
+								"const errors = validateCharacterData(",
+								"  json_object.getJsonDataCopy().character_data",
+								").errors;",
+								"",
+								"if (errors.length > 0) {",
+								"  // Reject with errors",
+								"  runtime.callFunction(\"error\", errors.join(\"\\n\"));",
+								"} else {",
+								"  runtime.signal(\"saveCharacter\");",
+								"}"
+							]
+						}
+					],
+					"sid": 510990505742587
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 227060099563352,
+							"parameters": {
+								"tag": "\"saveCharacter\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 823372087295396,
+							"parameters": {
+								"audio-file": {
+									"path": "success"
+								},
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "push",
+							"objectClass": "SavedCharacters",
+							"sid": 331871869855873,
+							"parameters": {
+								"where": "back",
+								"value": "JSON.ToCompactString",
+								"axis": "x"
+							}
+						},
+						{
+							"callFunction": "save",
+							"sid": 909200356922118
+						},
+						{
+							"callFunction": "transition",
+							"sid": 534872224850289,
+							"parameters": [
+								"\"Plaza\""
+							]
+						}
+					],
+					"sid": 292398044537142
+				},
+				{
+					"eventType": "comment",
+					"text": "Disclaimer (upload)"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 109513729964920,
+							"parameters": {
+								"tag": "\"button_disclaimer\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"const json_object = runtime.objects.JSON.getFirstInstance();",
+								"if (!json_object) return;",
+								"",
+								"const errors = validateCharacterData(",
+								"  json_object.getJsonDataCopy().character_data",
+								").errors;",
+								"",
+								"if (errors.length > 0) {",
+								"  // Reject with errors",
+								"  runtime.callFunction(\"error\", errors.join(\"\\n\"));",
+								"} else {",
+								"  runtime.signal(\"showDisclaimer\");",
+								"}"
+							]
+						}
+					],
+					"sid": 436997516558509
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 736441808228348,
+							"parameters": {
+								"tag": "\"showDisclaimer\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 594633209136660,
+							"parameters": {
+								"audio-file": {
+									"path": "select"
+								},
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"callFunction": "switchOverlayMenu",
+							"sid": 764540244832656,
+							"parameters": [
+								"\"Disclaimer\""
+							]
+						}
+					],
+					"sid": 567758120979978
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 784595074883783,
+							"parameters": {
+								"tag": "\"buttonE_disclaimer\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "error",
+							"sid": 305102952864877,
+							"parameters": [
+								"\"You must log in to upload a person!\""
+							]
+						}
+					],
+					"sid": 404488218070288
+				},
+				{
+					"eventType": "comment",
+					"text": "Upload"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 507660719561692,
+							"parameters": {
+								"tag": "\"button_upload\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 260603710569609,
+							"parameters": {
+								"variable": "MENU_locked",
+								"value": "true"
+							}
+						},
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"const json_object = runtime.objects.JSON.getFirstInstance();",
+								"if (!json_object) return;",
+								"",
+								"uploadCharacter(json_object.getJsonDataCopy().character_data);"
+							]
+						}
+					],
+					"sid": 291192354326807
+				},
+				{
+					"eventType": "comment",
+					"text": "Update"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 112427477163764,
+							"parameters": {
+								"tag": "\"button_update\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"const json_object = runtime.objects.JSON.getFirstInstance();",
+								"if (!json_object) return;",
+								"",
+								"const errors = validateCharacterData(",
+								"  json_object.getJsonDataCopy().character_data",
+								").errors;",
+								"",
+								"if (errors.length > 0) {",
+								"  // Reject with errors",
+								"  runtime.callFunction(\"error\", errors.join(\"\\n\"));",
+								"} else {",
+								"  runtime.signal(\"updateCharacter\");",
+								"}"
+							]
+						}
+					],
+					"sid": 402803368110439
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 486971159607560,
+							"parameters": {
+								"tag": "\"updateCharacter\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 282775371904547,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Just update our local character"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 985322754861658,
+									"parameters": {
+										"variable": "GAME_selectedCharacterType",
+										"comparison": 1,
+										"value": "\"uploaded\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 307504891427404,
+									"parameters": {
+										"audio-file": {
+											"path": "success"
+										},
+										"loop": "not-looping",
+										"volume": "(log10(SETTING_volumeSound)*20)",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
+									"id": "set-at-x",
+									"objectClass": "SavedCharacters",
+									"sid": 119250308318325,
+									"parameters": {
+										"x": "GAME_selectedCharacterIndex",
+										"value": "JSON.ToCompactString"
+									}
+								},
+								{
+									"callFunction": "save",
+									"sid": 543339365115405
+								},
+								{
+									"callFunction": "transition",
+									"sid": 151482458329614,
+									"parameters": [
+										"\"Plaza\""
+									]
+								}
+							],
+							"sid": 224195277719024
+						},
+						{
+							"eventType": "comment",
+							"text": "Update our uploaded character"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 917642470667938
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 556066726023522,
+									"parameters": {
+										"variable": "MENU_locked",
+										"value": "true"
+									}
+								},
+								{
+									"type": "script",
+									"language": "typescript",
+									"script": [
+										"const json_object = runtime.objects.JSON.getFirstInstance();",
+										"if (!json_object) return;",
+										"",
+										"updateUserCharacter(json_object.getJsonDataCopy().character_data);"
+									]
+								}
+							],
+							"sid": 537488920496906
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 705508399363976,
+							"parameters": {
+								"tag": "\"uploadSuccess\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 331613261563401,
+							"parameters": {
+								"audio-file": {
+									"path": "success"
+								},
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Grab our new character"
+						},
+						{
+							"callFunction": "getUploadedCharacter",
+							"sid": 617066055168807
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 733846074189632,
+							"parameters": {
+								"type": "log",
+								"message": "\"grabbing\""
+							}
+						}
+					],
+					"sid": 336182051994599,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Additionally carry out the normal local action for this character"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 819125150176526,
+									"parameters": {
+										"variable": "GAME_selectedCharacterType",
+										"comparison": 1,
+										"value": "\"uploaded\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 568714901449801,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 675954653502155,
+											"parameters": {
+												"variable": "CREATOR_editing"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "push",
+											"objectClass": "SavedCharacters",
+											"sid": 422733278680496,
+											"parameters": {
+												"where": "back",
+												"value": "JSON.ToCompactString",
+												"axis": "x"
+											}
+										},
+										{
+											"callFunction": "save",
+											"sid": 971796102358311
+										}
+									],
+									"sid": 514907240229128
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 760502780089704
+										}
+									],
+									"actions": [
+										{
+											"id": "set-at-x",
+											"objectClass": "SavedCharacters",
+											"sid": 875818586651445,
+											"parameters": {
+												"x": "GAME_selectedCharacterIndex",
+												"value": "JSON.ToCompactString"
+											}
+										},
+										{
+											"callFunction": "save",
+											"sid": 581861940630476
+										}
+									],
+									"sid": 502941703509709
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"callFunction": "switchOverlayMenu",
+									"sid": 919172397599326,
+									"parameters": [
+										"\"\""
+									]
+								},
+								{
+									"callFunction": "transition",
+									"sid": 337090895141758,
+									"parameters": [
+										"\"Plaza\""
+									]
+								}
+							],
+							"sid": 408255920782415
+						}
+					]
+				}
+			],
+			"sid": 300042310604023
 		}
 	],
 	"sid": 247199195301411

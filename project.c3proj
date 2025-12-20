@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 45802,
+	"savedWithRelease": 46600,
 	"name": "IDENTI-NET",
 	"runtime": "c3",
 	"useWorker": "dom",
@@ -406,7 +406,7 @@
 					}
 				},
 				{
-					"name": "upload.webm",
+					"name": "success.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 544421665654106,
 					"file-info": {
@@ -417,6 +417,14 @@
 					"name": "error.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 350846007892488,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "delete.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 390334316873111,
 					"file-info": {
 						"purpose": "none"
 					}
@@ -591,7 +599,7 @@
 	},
 	"properties": {
 		"description": "The next generation of facial compositing software is in your hands",
-		"version": "0.9.8",
+		"version": "0.9.20",
 		"autoIncrementVersion": false,
 		"author": "SCUM DOG LLC",
 		"authorEmail": "contact@scum.dog",

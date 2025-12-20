@@ -477,6 +477,10 @@
 			"conditions": [],
 			"actions": [
 				{
+					"type": "comment",
+					"text": "Plaza"
+				},
+				{
 					"callFunction": "toggleLayer",
 					"sid": 496607006758511,
 					"parameters": [
@@ -487,9 +491,18 @@
 				},
 				{
 					"callFunction": "toggleLayer",
-					"sid": 506782144367131,
+					"sid": 747543322140948,
 					"parameters": [
 						"\"Card_CE\"",
+						true,
+						false
+					]
+				},
+				{
+					"callFunction": "toggleLayer",
+					"sid": 137798554560222,
+					"parameters": [
+						"\"Card_CD\"",
 						true,
 						false
 					]
@@ -499,6 +512,46 @@
 					"sid": 985244791460125,
 					"parameters": [
 						"\"Card_C\"",
+						true,
+						false
+					]
+				},
+				{
+					"type": "comment",
+					"text": "Creator"
+				},
+				{
+					"callFunction": "toggleLayer",
+					"sid": 354711152599576,
+					"parameters": [
+						"\"Card_UU\"",
+						true,
+						false
+					]
+				},
+				{
+					"callFunction": "toggleLayer",
+					"sid": 864875503212395,
+					"parameters": [
+						"\"Card_SU\"",
+						true,
+						false
+					]
+				},
+				{
+					"callFunction": "toggleLayer",
+					"sid": 857821185131642,
+					"parameters": [
+						"\"Card_U\"",
+						true,
+						false
+					]
+				},
+				{
+					"callFunction": "toggleLayer",
+					"sid": 613545285798880,
+					"parameters": [
+						"\"Card_S\"",
 						true,
 						false
 					]
@@ -531,6 +584,16 @@
 								"comparison": 0,
 								"value": "\"copy\""
 							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Button",
+							"sid": 419688417497651,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"edit\""
+							}
 						}
 					],
 					"actions": [
@@ -546,6 +609,10 @@
 					],
 					"sid": 778885954422455,
 					"isOrBlock": true
+				},
+				{
+					"eventType": "comment",
+					"text": "Disable card buttons that are unavailable"
 				},
 				{
 					"eventType": "block",
@@ -598,22 +665,23 @@
 							}
 						},
 						{
-							"id": "has-key",
-							"objectClass": "JSON",
-							"sid": 457001367717805,
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 283074817017034,
 							"parameters": {
-								"path": "\"can_edit\""
+								"variable": "GAME_selectedCharacterType",
+								"comparison": 0,
+								"value": "\"uploaded\""
 							}
 						},
 						{
-							"id": "compare-value",
-							"objectClass": "JSON",
-							"sid": 752699581573390,
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 460868449379159,
 							"parameters": {
-								"path": "\"can_edit\"",
-								"cmp": 0,
-								"value": "1"
-							}
+								"variable": "SERVER_uploadedCharacterEditable"
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [

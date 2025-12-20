@@ -70,6 +70,16 @@
 			"sid": 101941177206993
 		},
 		{
+			"eventType": "variable",
+			"name": "SERVER_uploadedCharacterEditable",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 935897483201686
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Server - Login",
@@ -204,57 +214,11 @@
 											],
 											"actions": [
 												{
-													"type": "script",
-													"language": "typescript",
-													"script": [
-														"runtime.globalVars.SERVER_uploadedCharacterData = \"waiting\";",
-														"",
-														"getUserCharacter().then(result => {",
-														"  if (result.data) {",
-														"    runtime.callFunction(\"setUploadedCharacter\", JSON.stringify(result.data), result.data.id);",
-														"  } else {",
-														"    runtime.callFunction(\"setUploadedCharacter\", \"\", \"\");",
-														"  }",
-														"});"
-													]
+													"callFunction": "getUploadedCharacter",
+													"sid": 329405157289081
 												}
 											],
 											"sid": 475923620353439
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 440762588842680,
-													"parameters": {
-														"first-value": "LayoutName",
-														"comparison": 0,
-														"second-value": "\"Creator\""
-													}
-												},
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 463595580869592,
-													"parameters": {
-														"variable": "MENU_menu",
-														"comparison": 0,
-														"value": "\"Card\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "switchCardButtons",
-													"sid": 273716120004421,
-													"parameters": [
-														"\"\""
-													]
-												}
-											],
-											"sid": 309549913221223
 										}
 									]
 								}
@@ -297,48 +261,48 @@
 									"sid": 291745200090342,
 									"parameters": [
 										"\"\"",
-										"\"\""
+										"\"\"",
+										false
 									]
 								}
 							],
-							"sid": 207165158508499,
-							"children": [
+							"sid": 207165158508499
+						},
+						{
+							"eventType": "block",
+							"conditions": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 674585695822848,
-											"parameters": {
-												"first-value": "LayoutName",
-												"comparison": 0,
-												"second-value": "\"Creator\""
-											}
-										},
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 133604933458329,
-											"parameters": {
-												"variable": "MENU_menu",
-												"comparison": 0,
-												"value": "\"Card\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "switchCardButtons",
-											"sid": 792850298932970,
-											"parameters": [
-												"\"\""
-											]
-										}
-									],
-									"sid": 765964507436766
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 300598128437100,
+									"parameters": {
+										"first-value": "LayoutName",
+										"comparison": 0,
+										"second-value": "\"Creator\""
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 403793601462289,
+									"parameters": {
+										"variable": "MENU_menu",
+										"comparison": 0,
+										"value": "\"Card\""
+									}
 								}
-							]
+							],
+							"actions": [
+								{
+									"id": "signal",
+									"objectClass": "System",
+									"sid": 798515693727485,
+									"parameters": {
+										"tag": "\"updateCardButtons\""
+									}
+								}
+							],
+							"sid": 892080600832388
 						},
 						{
 							"eventType": "block",
@@ -356,6 +320,39 @@
 							"sid": 975483828705115
 						}
 					]
+				},
+				{
+					"eventType": "comment",
+					"text": "Handle uploaded character"
+				},
+				{
+					"functionName": "getUploadedCharacter",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"runtime.globalVars.SERVER_uploadedCharacterData = \"waiting\";",
+								"",
+								"getUserCharacter().then(result => {",
+								"  if (result.data) {",
+								"    runtime.callFunction(\"setUploadedCharacter\", JSON.stringify(result.data), result.data.id, +result.data.can_edit);",
+								"  } else {",
+								"    runtime.callFunction(\"setUploadedCharacter\", \"\", \"\");",
+								"  }",
+								"});"
+							]
+						}
+					],
+					"sid": 181584207207859
 				},
 				{
 					"functionName": "setUploadedCharacter",
@@ -378,6 +375,13 @@
 							"initialValue": "",
 							"comment": "",
 							"sid": 188831352013955
+						},
+						{
+							"name": "editable",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"sid": 943012892838615
 						}
 					],
 					"eventType": "function-block",
@@ -399,6 +403,15 @@
 							"parameters": {
 								"variable": "SERVER_uploadedCharacterID",
 								"value": "id"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 840792797002319,
+							"parameters": {
+								"variable": "SERVER_uploadedCharacterEditable",
+								"value": "false"
 							}
 						}
 					],
@@ -429,7 +442,34 @@
 									}
 								}
 							],
-							"sid": 693850425113181
+							"sid": 693850425113181,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 697605872450481,
+											"parameters": {
+												"variable": "editable"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 497570013011271,
+											"parameters": {
+												"variable": "SERVER_uploadedCharacterEditable",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 431120412997037
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -640,7 +680,9 @@
 									"objectClass": "Audio",
 									"sid": 336014980063264,
 									"parameters": {
-										"audio-file": "select",
+										"audio-file": {
+											"path": "select"
+										},
 										"loop": "not-looping",
 										"volume": "(log10(SETTING_volumeSound)*20)",
 										"stereo-pan": "0",
@@ -755,7 +797,7 @@
 													"objectClass": "System",
 													"sid": 366961302552657,
 													"parameters": {
-														"variable": "CREATOR_editIndex",
+														"variable": "GAME_selectedCharacterIndex",
 														"value": "1"
 													}
 												}
@@ -846,7 +888,9 @@
 									"objectClass": "Audio",
 									"sid": 636635527688334,
 									"parameters": {
-										"audio-file": "select",
+										"audio-file": {
+											"path": "select"
+										},
 										"loop": "not-looping",
 										"volume": "(log10(SETTING_volumeSound)*20)",
 										"stereo-pan": "0",
@@ -885,7 +929,9 @@
 									"objectClass": "Audio",
 									"sid": 139609875815621,
 									"parameters": {
-										"audio-file": "select",
+										"audio-file": {
+											"path": "select"
+										},
 										"loop": "not-looping",
 										"volume": "(log10(SETTING_volumeSound)*20)",
 										"stereo-pan": "0",
@@ -940,7 +986,9 @@
 											"objectClass": "Audio",
 											"sid": 242747818779535,
 											"parameters": {
-												"audio-file": "select",
+												"audio-file": {
+													"path": "select"
+												},
 												"loop": "not-looping",
 												"volume": "(log10(SETTING_volumeSound)*20)",
 												"stereo-pan": "0",

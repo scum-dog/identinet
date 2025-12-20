@@ -7,6 +7,13 @@ import {
   ApiResponse,
 } from "./base/types.js";
 
+let RUNTIME: any;
+
+runOnStartup(async (runtime) => {
+  RUNTIME = runtime;
+});
+
+
 /**
  * get paginated user list with optional filters
  * @param page - page number (starts at 1)
@@ -55,26 +62,42 @@ export async function deleteCharacter(
   reason: string,
 ): Promise<ApiResponse<any>> {
   if (!reason || reason.trim().length === 0) {
-    return {
+    const response = {
       success: false,
       error: "validation_error",
       data: {
         message: "Deletion reason is required",
       },
     };
+
+    RUNTIME.callFunction("error", "Deletion reason is required.");
+    return response;
   }
 
   if (reason.length > 500) {
-    return {
+    const response = {
       success: false,
       error: "validation_error",
       data: {
         message: "Deletion reason must be 500 characters or less",
       },
     };
+
+    RUNTIME.callFunction("error", "Deletion reason must be 500 characters or less.");
+    return response;
   }
 
-  return del(`/admin/characters/${characterId}`, { reason });
+  const response = await del(`/admin/characters/${characterId}`, { reason });
+
+  if (response.success) {
+    // Blank cached uploaded character
+    if (characterId === RUNTIME.globalVars.SERVER_uploadedCharacterID) RUNTIME.callFunction("setUploadedCharacter", "", "");
+    RUNTIME.signal("delete");
+  } else {
+    RUNTIME.callFunction("error", "An unknown error occurred.");
+  }
+
+  return response;
 }
 
 /**
