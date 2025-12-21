@@ -438,7 +438,7 @@
 					"locked": false,
 					"world": {
 						"x": 180,
-						"y": 216,
+						"y": 217,
 						"width": 108,
 						"height": 16,
 						"originX": 0,
@@ -551,7 +551,7 @@
 					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "biographic",
+						"initial-animation": "information",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -3115,7 +3115,7 @@
 					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "biographic",
+						"initial-animation": "information",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -7386,7 +7386,7 @@
 					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "head",
+						"initial-animation": "character",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -8162,7 +8162,7 @@
 					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "head",
+						"initial-animation": "character",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -11943,7 +11943,7 @@
 					"type": "ButtonIcon",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "head",
+						"initial-animation": "character",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -13249,6 +13249,40 @@
 					"subLayers": [],
 					"instances": [],
 					"sid": 342831497839053,
+					"effectTypes": [],
+					"isInitiallyVisible": false,
+					"isInitiallyInteractive": false,
+					"isHTMLElementsLayer": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						0.3686274509803922,
+						0.3686274509803922,
+						0.3686274509803922,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 0,
+					"parallaxY": 0,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
+				},
+				{
+					"name": "Notice",
+					"overriden": 1,
+					"subLayers": [],
+					"instances": [],
+					"sid": 887973945050913,
 					"effectTypes": [],
 					"isInitiallyVisible": false,
 					"isInitiallyInteractive": false,

@@ -270,42 +270,6 @@
 						},
 						{
 							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 300598128437100,
-									"parameters": {
-										"first-value": "LayoutName",
-										"comparison": 0,
-										"second-value": "\"Creator\""
-									}
-								},
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 403793601462289,
-									"parameters": {
-										"variable": "MENU_menu",
-										"comparison": 0,
-										"value": "\"Card\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "signal",
-									"objectClass": "System",
-									"sid": 798515693727485,
-									"parameters": {
-										"tag": "\"updateCardButtons\""
-									}
-								}
-							],
-							"sid": 892080600832388
-						},
-						{
-							"eventType": "block",
 							"conditions": [],
 							"actions": [
 								{
@@ -346,7 +310,7 @@
 								"  if (result.data) {",
 								"    runtime.callFunction(\"setUploadedCharacter\", JSON.stringify(result.data), result.data.id, +result.data.can_edit);",
 								"  } else {",
-								"    runtime.callFunction(\"setUploadedCharacter\", \"\", \"\");",
+								"    runtime.callFunction(\"setUploadedCharacter\", \"\", \"\", \"\");",
 								"  }",
 								"});"
 							]
@@ -517,6 +481,42 @@
 								}
 							],
 							"sid": 985130282677069
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 370974304441256,
+									"parameters": {
+										"first-value": "LayoutName",
+										"comparison": 0,
+										"second-value": "\"Creator\""
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 749364505013538,
+									"parameters": {
+										"variable": "MENU_menu",
+										"comparison": 0,
+										"value": "\"Card\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "signal",
+									"objectClass": "System",
+									"sid": 150586458002656,
+									"parameters": {
+										"tag": "\"updateCardButtons\""
+									}
+								}
+							],
+							"sid": 932175988213318
 						}
 					]
 				},
@@ -867,6 +867,36 @@
 							]
 						},
 						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-signal",
+									"objectClass": "System",
+									"sid": 487515199730664,
+									"parameters": {
+										"tag": "\"buttonE_login\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 817000677723226,
+									"parameters": {
+										"audio-file": {
+											"path": "error"
+										},
+										"loop": "not-looping",
+										"volume": "(log10(SETTING_volumeSound)*20)",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								}
+							],
+							"sid": 309479294241728
+						},
+						{
 							"eventType": "comment",
 							"text": "Login Google"
 						},
@@ -1018,9 +1048,9 @@
 									"actions": [
 										{
 											"callFunction": "error",
-											"sid": 364002082733517,
+											"sid": 454782679319075,
 											"parameters": [
-												"\"NGIO has not yet initialized. Is it down?\""
+												"\"NGIO has not yet initialized. Server may be down.\""
 											]
 										}
 									],

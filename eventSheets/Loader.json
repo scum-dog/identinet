@@ -686,16 +686,54 @@
 								"seconds": "1.5",
 								"use-timescale": true
 							}
-						},
-						{
-							"callFunction": "transition",
-							"sid": 340446419077194,
-							"parameters": [
-								"\"Plaza\"\n"
-							]
 						}
 					],
-					"sid": 109663724291218
+					"sid": 109663724291218,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 848845066918950,
+									"parameters": {
+										"variable": "LOAD_disclaimer"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "transition",
+									"sid": 183968281323552,
+									"parameters": [
+										"\"Disclaimer\"\n"
+									]
+								}
+							],
+							"sid": 299263922540754
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 425671040450516
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "transition",
+									"sid": 940604747044299,
+									"parameters": [
+										"\"Plaza\"\n"
+									]
+								}
+							],
+							"sid": 190296299541301
+						}
+					]
 				}
 			],
 			"sid": 114182442222367

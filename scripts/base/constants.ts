@@ -323,17 +323,23 @@ export const TOKEN_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 1 week
 // "L*NE" would catch LANE, LINE, LONE etc.
 export const BANNED_WORDS = [
   "rape",
+  "rapist",
   "die",
   "kill",
   "dox",
   "doxx",
-  "nigg",
-  "nigga",
-  "nigger",
+  "nazi",
+
+  "*nigg*",
+  "*igga",
+  "nig",
+  "chink",
+  "spic",
+  "kike",
+
   "fag",
   "faggot",
   "tranny",
-  "trannie",
+  "trannie*",
   "troon",
-  "kike",
 ] as const;

@@ -45,6 +45,371 @@
 		{
 			"eventType": "group",
 			"disabled": false,
+			"title": "Navigation - Buttons",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-on-layer",
+							"objectClass": "Button",
+							"sid": 537049461528860,
+							"parameters": {
+								"layer": "\"Navigation\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 856281428718241,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 605372187935155,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"back\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 798052250496961,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 898601906500240,
+											"parameters": {
+												"variable": "MENU_overlayMenu",
+												"comparison": 0,
+												"value": "\"\""
+											}
+										},
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 465112849788884,
+											"parameters": {
+												"layer": "\"Notice\""
+											},
+											"isInverted": true
+										},
+										{
+											"id": "layer-is-visible",
+											"objectClass": "System",
+											"sid": 951932267546648,
+											"parameters": {
+												"layer": "\"Error\""
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [],
+									"sid": 374375658529350,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 928097216708809,
+													"parameters": {
+														"first-value": "LayoutName",
+														"comparison": 0,
+														"second-value": "\"Plaza\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 147458095763306,
+													"parameters": {
+														"variable": "MENU_menu",
+														"comparison": 1,
+														"value": "\"Card\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "Button",
+													"sid": 971382761570368,
+													"parameters": {
+														"visibility": "invisible"
+													}
+												}
+											],
+											"sid": 433390258764646
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 641038335434040
+												},
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 642185649057265,
+													"parameters": {
+														"first-value": "LayoutName",
+														"comparison": 0,
+														"second-value": "\"Creator\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 345956100559686,
+													"parameters": {
+														"variable": "MENU_menu",
+														"comparison": 1,
+														"value": "\"Parts\""
+													}
+												},
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 373245283978282,
+													"parameters": {
+														"variable": "MENU_menu",
+														"comparison": 1,
+														"value": "\"Properties\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "Button",
+													"sid": 503734275242878,
+													"parameters": {
+														"visibility": "invisible"
+													}
+												}
+											],
+											"sid": 796479224992749
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 835978806847241
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "Button",
+													"sid": 601801401729556,
+													"parameters": {
+														"visibility": "visible"
+													}
+												}
+											],
+											"sid": 102978338913602
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 258689675954451
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 661328963709584,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 291035705178905
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 840007956499706,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"login\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 601024376478784,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 263889635572492,
+											"parameters": {
+												"first-value": "LayoutName",
+												"comparison": 0,
+												"second-value": "\"Creator\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 106280027576328,
+											"parameters": {
+												"variable": "MENU_menu",
+												"comparison": 1,
+												"value": "\"Card\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 927355777374808,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 465233032313385
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 930359101250129
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 778335742662221,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 624322561105697
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 933634715420397,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"settings\""
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 931457667272244,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"credits\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 537643473464918,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 506889783948093,
+											"parameters": {
+												"first-value": "LayoutName",
+												"comparison": 0,
+												"second-value": "\"Creator\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 711436906616851,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 122195148825430
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 621444782514226
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 329784526017505,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 671895357571324
+								}
+							],
+							"isOrBlock": true
+						}
+					]
+				}
+			],
+			"sid": 802141293760968
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
 			"title": "Navigation - Settings",
 			"description": "",
 			"isActiveOnStart": true,
@@ -674,6 +1039,32 @@
 				}
 			],
 			"sid": 552344487981959
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Text",
+					"sid": 892951129135336,
+					"parameters": {
+						"instance-variable": "type",
+						"comparison": 0,
+						"value": "\"time\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "Text",
+					"sid": 716261421984986,
+					"parameters": {
+						"text": "zeropad(Date.GetHours(Date.Now),2)&(Date.GetSeconds(Date.Now)%2 ? \":\" : \"•\")&zeropad(Date.GetMinutes(Date.Now),2)"
+					}
+				}
+			],
+			"sid": 122993464901505
 		}
 	],
 	"sid": 666948032046325

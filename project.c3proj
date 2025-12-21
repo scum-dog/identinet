@@ -273,7 +273,8 @@
 			{
 				"items": [
 					"CreatorBackground",
-					"PlazaBackground"
+					"PlazaBackground",
+					"DisclaimerBackground"
 				],
 				"subfolders": [],
 				"name": "Backgrounds"
@@ -294,7 +295,8 @@
 			"Loader",
 			"Plaza",
 			"Creator",
-			"Repo"
+			"Repo",
+			"Disclaimer"
 		],
 		"subfolders": []
 	},
@@ -599,7 +601,7 @@
 	},
 	"properties": {
 		"description": "The next generation of facial compositing software is in your hands",
-		"version": "0.9.20",
+		"version": "1.0.0-rc1",
 		"autoIncrementVersion": false,
 		"author": "SCUM DOG LLC",
 		"authorEmail": "contact@scum.dog",

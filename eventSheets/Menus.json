@@ -62,756 +62,70 @@
 			"sid": 185311967574837
 		},
 		{
-			"functionName": "switchMenu",
-			"functionDescription": "",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [
-				{
-					"name": "name",
-					"type": "string",
-					"initialValue": "",
-					"comment": "",
-					"sid": 966283679211335
-				}
-			],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "Disable old menu"
-				},
-				{
-					"id": "set-layer-visible",
-					"objectClass": "System",
-					"sid": 452557628909013,
-					"parameters": {
-						"layer": "MENU_menu",
-						"visibility": "invisible"
-					}
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 542461065442365,
-					"parameters": {
-						"layer": "MENU_menu",
-						"interactive": false
-					}
-				},
-				{
-					"type": "comment",
-					"text": "Enable new menu"
-				},
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 342088787711405,
-					"parameters": {
-						"variable": "MENU_menu",
-						"value": "name"
-					}
-				},
-				{
-					"id": "set-layer-visible",
-					"objectClass": "System",
-					"sid": 759185713168138,
-					"parameters": {
-						"layer": "name",
-						"visibility": "visible"
-					}
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 192069267937759,
-					"parameters": {
-						"layer": "name",
-						"interactive": true
-					}
-				}
-			],
-			"sid": 529447598416815,
+			"eventType": "group",
+			"disabled": false,
+			"title": "Menus - Switching",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
 				{
-					"eventType": "comment",
-					"text": "Conditionally show navigation buttons and layers, as needed"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
+					"functionName": "switchMenu",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
 						{
-							"id": "is-on-layer",
-							"objectClass": "Button",
-							"sid": 842605052738091,
-							"parameters": {
-								"layer": "\"Navigation\""
-							}
+							"name": "name",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 966283679211335
 						}
 					],
-					"actions": [
-						{
-							"id": "set-visible",
-							"objectClass": "Button",
-							"sid": 743222315121240,
-							"parameters": {
-								"visibility": "invisible"
-							}
-						}
-					],
-					"sid": 157342754821435
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 887655415555818,
-							"parameters": {
-								"first-value": "LayoutName",
-								"comparison": 0,
-								"second-value": "\"Plaza\""
-							}
-						}
-					],
-					"actions": [],
-					"sid": 144380696349414,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 633584578111272,
-									"parameters": {
-										"variable": "name",
-										"comparison": 0,
-										"value": "\"List\""
-									}
-								}
-							],
-							"actions": [],
-							"sid": 503876985893405,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Button",
-											"sid": 906253865765611,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "\"login\""
-											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Button",
-											"sid": 638177771944720,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "\"settings\""
-											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Button",
-											"sid": 519363662797825,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "\"credits\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-visible",
-											"objectClass": "Button",
-											"sid": 655130056837325,
-											"parameters": {
-												"visibility": "visible"
-											}
-										}
-									],
-									"sid": 898513660258914,
-									"isOrBlock": true
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 761164094767030,
-									"parameters": {
-										"variable": "name",
-										"comparison": 0,
-										"value": "\"Card\""
-									}
-								}
-							],
-							"actions": [],
-							"sid": 925899684451842,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Button",
-											"sid": 818458487851072,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "\"back\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-visible",
-											"objectClass": "Button",
-											"sid": 429843619224266,
-											"parameters": {
-												"visibility": "visible"
-											}
-										}
-									],
-									"sid": 802444655160486
-								}
-							]
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 851471373456083,
-							"parameters": {
-								"first-value": "LayoutName",
-								"comparison": 0,
-								"second-value": "\"Creator\""
-							}
-						}
-					],
-					"actions": [],
-					"sid": 776835109957105,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 374932475446519,
-									"parameters": {
-										"variable": "name",
-										"comparison": 0,
-										"value": "\"Parts\""
-									}
-								},
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 822089611712479,
-									"parameters": {
-										"variable": "name",
-										"comparison": 0,
-										"value": "\"Properties\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "toggleLayer",
-									"sid": 314382073728862,
-									"parameters": [
-										"\"Character\"",
-										true,
-										true
-									]
-								}
-							],
-							"sid": 879251076567316,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Button",
-											"sid": 759263470016991,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "\"back\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-visible",
-											"objectClass": "Button",
-											"sid": 233835505908979,
-											"parameters": {
-												"visibility": "visible"
-											}
-										}
-									],
-									"sid": 933997733065915
-								}
-							],
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 991747153039836
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "toggleLayer",
-									"sid": 961066579839687,
-									"parameters": [
-										"\"Character\"",
-										true,
-										false
-									]
-								}
-							],
-							"sid": 249068621141597
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 195326015993513,
-									"parameters": {
-										"variable": "name",
-										"comparison": 0,
-										"value": "\"Card\""
-									}
-								}
-							],
-							"actions": [],
-							"sid": 606025538668046,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Button",
-											"sid": 791339603870126,
-											"parameters": {
-												"instance-variable": "type",
-												"comparison": 0,
-												"value": "\"login\""
-											}
-										},
-										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 262653935204033,
-											"parameters": {
-												"variable": "CREATOR_editing"
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "set-visible",
-											"objectClass": "Button",
-											"sid": 952205760752639,
-											"parameters": {
-												"visibility": "visible"
-											}
-										}
-									],
-									"sid": 303427450650846
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"functionName": "switchCardButtons",
-			"functionDescription": "",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [
-				{
-					"name": "name",
-					"type": "string",
-					"initialValue": "",
-					"comment": "",
-					"sid": 777892617918026
-				}
-			],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "Plaza"
-				},
-				{
-					"callFunction": "toggleLayer",
-					"sid": 496607006758511,
-					"parameters": [
-						"\"Card_CED\"",
-						true,
-						false
-					]
-				},
-				{
-					"callFunction": "toggleLayer",
-					"sid": 747543322140948,
-					"parameters": [
-						"\"Card_CE\"",
-						true,
-						false
-					]
-				},
-				{
-					"callFunction": "toggleLayer",
-					"sid": 137798554560222,
-					"parameters": [
-						"\"Card_CD\"",
-						true,
-						false
-					]
-				},
-				{
-					"callFunction": "toggleLayer",
-					"sid": 985244791460125,
-					"parameters": [
-						"\"Card_C\"",
-						true,
-						false
-					]
-				},
-				{
-					"type": "comment",
-					"text": "Creator"
-				},
-				{
-					"callFunction": "toggleLayer",
-					"sid": 354711152599576,
-					"parameters": [
-						"\"Card_UU\"",
-						true,
-						false
-					]
-				},
-				{
-					"callFunction": "toggleLayer",
-					"sid": 864875503212395,
-					"parameters": [
-						"\"Card_SU\"",
-						true,
-						false
-					]
-				},
-				{
-					"callFunction": "toggleLayer",
-					"sid": 857821185131642,
-					"parameters": [
-						"\"Card_U\"",
-						true,
-						false
-					]
-				},
-				{
-					"callFunction": "toggleLayer",
-					"sid": 613545285798880,
-					"parameters": [
-						"\"Card_S\"",
-						true,
-						false
-					]
-				},
-				{
-					"type": "comment",
-					"text": "Enable the selected one"
-				},
-				{
-					"callFunction": "toggleLayer",
-					"sid": 940707171457257,
-					"parameters": [
-						"name",
-						true,
-						true
-					]
-				}
-			],
-			"sid": 696281588234720,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Button",
-							"sid": 565703702359394,
-							"parameters": {
-								"instance-variable": "type",
-								"comparison": 0,
-								"value": "\"copy\""
-							}
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Button",
-							"sid": 419688417497651,
-							"parameters": {
-								"instance-variable": "type",
-								"comparison": 0,
-								"value": "\"edit\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-instvar",
-							"objectClass": "Button",
-							"sid": 155227391460331,
-							"parameters": {
-								"instance-variable": "disabled",
-								"value": "false"
-							}
-						}
-					],
-					"sid": 778885954422455,
-					"isOrBlock": true
-				},
-				{
-					"eventType": "comment",
-					"text": "Disable card buttons that are unavailable"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Button",
-							"sid": 480609916096563,
-							"parameters": {
-								"instance-variable": "type",
-								"comparison": 0,
-								"value": "\"copy\""
-							}
-						},
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 544147955317399,
-							"parameters": {
-								"variable": "PLAZA_maxLocalCharacters",
-								"comparison": 3,
-								"value": "SavedCharacters.Width"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-instvar",
-							"objectClass": "Button",
-							"sid": 544028530208413,
-							"parameters": {
-								"instance-variable": "disabled",
-								"value": "true"
-							}
-						}
-					],
-					"sid": 931956575298622
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Button",
-							"sid": 855259237595788,
-							"parameters": {
-								"instance-variable": "type",
-								"comparison": 0,
-								"value": "\"edit\""
-							}
-						},
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 283074817017034,
-							"parameters": {
-								"variable": "GAME_selectedCharacterType",
-								"comparison": 0,
-								"value": "\"uploaded\""
-							}
-						},
-						{
-							"id": "compare-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 460868449379159,
-							"parameters": {
-								"variable": "SERVER_uploadedCharacterEditable"
-							},
-							"isInverted": true
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-instvar",
-							"objectClass": "Button",
-							"sid": 469936215483811,
-							"parameters": {
-								"instance-variable": "disabled",
-								"value": "true"
-							}
-						}
-					],
-					"sid": 475328253057319
-				}
-			]
-		},
-		{
-			"functionName": "switchOverlayMenu",
-			"functionDescription": "",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [
-				{
-					"name": "name",
-					"type": "string",
-					"initialValue": "",
-					"comment": "",
-					"sid": 206306057173608
-				}
-			],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "Disable old menu"
-				},
-				{
-					"id": "set-layer-visible",
-					"objectClass": "System",
-					"sid": 753592662684636,
-					"parameters": {
-						"layer": "MENU_overlayMenu",
-						"visibility": "invisible"
-					}
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 305824030300069,
-					"parameters": {
-						"layer": "MENU_overlayMenu",
-						"interactive": false
-					}
-				}
-			],
-			"sid": 495496636879848,
-			"children": [
-				{
-					"eventType": "comment",
-					"text": "Save, when switching off of settings"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 795416403455426,
-							"parameters": {
-								"variable": "MENU_overlayMenu",
-								"comparison": 0,
-								"value": "\"Settings\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "save",
-							"sid": 137461746221821
-						}
-					],
-					"sid": 790175325568763
-				},
-				{
-					"eventType": "comment",
-					"text": "Set new menu"
-				},
-				{
-					"eventType": "block",
+					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 190919498909165,
-							"parameters": {
-								"variable": "MENU_overlayMenu",
-								"value": "name"
-							}
-						}
-					],
-					"sid": 812707240401922
-				},
-				{
-					"eventType": "block",
-					"conditions": [
+							"type": "comment",
+							"text": "Disable old menu"
+						},
 						{
-							"id": "compare-eventvar",
+							"id": "set-layer-visible",
 							"objectClass": "System",
-							"sid": 607492828758484,
+							"sid": 208310037444078,
 							"parameters": {
-								"variable": "name",
-								"comparison": 1,
-								"value": "\"\""
+								"layer": "MENU_menu",
+								"visibility": "invisible"
 							}
-						}
-					],
-					"actions": [
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 785595518403202,
+							"parameters": {
+								"layer": "MENU_menu",
+								"interactive": false
+							}
+						},
 						{
 							"type": "comment",
 							"text": "Enable new menu"
 						},
 						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 907889171542662,
+							"parameters": {
+								"variable": "MENU_menu",
+								"value": "name"
+							}
+						},
+						{
 							"id": "set-layer-visible",
 							"objectClass": "System",
-							"sid": 387300933864313,
+							"sid": 855118798586182,
 							"parameters": {
 								"layer": "name",
 								"visibility": "visible"
@@ -820,86 +134,472 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 211121892216503,
+							"sid": 889949505150007,
 							"parameters": {
 								"layer": "name",
 								"interactive": true
 							}
 						}
 					],
-					"sid": 915728176575462
-				},
-				{
-					"eventType": "comment",
-					"text": "Hide login button when disclaimer is shown"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
+					"sid": 769041946402239,
+					"children": [
 						{
-							"id": "compare-instance-variable",
-							"objectClass": "Button",
-							"sid": 941668035122927,
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 567382495755875,
+									"parameters": {
+										"first-value": "LayoutName",
+										"comparison": 0,
+										"second-value": "\"Creator\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 967359045131629,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 401394833332459,
+											"parameters": {
+												"variable": "name",
+												"comparison": 0,
+												"value": "\"Parts\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 743761719350642,
+											"parameters": {
+												"variable": "name",
+												"comparison": 0,
+												"value": "\"Properties\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "toggleLayer",
+											"sid": 562583169038838,
+											"parameters": [
+												"\"Character\"",
+												true,
+												true
+											]
+										}
+									],
+									"sid": 412298177355680,
+									"isOrBlock": true
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 221628727807520
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "toggleLayer",
+											"sid": 208574320730510,
+											"parameters": [
+												"\"Character\"",
+												true,
+												false
+											]
+										}
+									],
+									"sid": 580569127777050
+								}
+							]
+						}
+					]
+				},
+				{
+					"functionName": "switchCardButtons",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "name",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 777892617918026
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Plaza"
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 732079042832667,
+							"parameters": [
+								"\"Card_CED\"",
+								true,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 821137850534767,
+							"parameters": [
+								"\"Card_CE\"",
+								true,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 372786376416619,
+							"parameters": [
+								"\"Card_CD\"",
+								true,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 137255999020614,
+							"parameters": [
+								"\"Card_C\"",
+								true,
+								false
+							]
+						},
+						{
+							"type": "comment",
+							"text": "Creator"
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 333301530636650,
+							"parameters": [
+								"\"Card_UU\"",
+								true,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 835735050917468,
+							"parameters": [
+								"\"Card_SU\"",
+								true,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 723586569150791,
+							"parameters": [
+								"\"Card_U\"",
+								true,
+								false
+							]
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 668053593720984,
+							"parameters": [
+								"\"Card_S\"",
+								true,
+								false
+							]
+						},
+						{
+							"type": "comment",
+							"text": "Enable the selected one"
+						},
+						{
+							"callFunction": "toggleLayer",
+							"sid": 889897682765939,
+							"parameters": [
+								"name",
+								true,
+								true
+							]
+						}
+					],
+					"sid": 516915739763174,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 527190620976623,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"copy\""
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 836886969373682,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"edit\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "Button",
+									"sid": 333903106415151,
+									"parameters": {
+										"instance-variable": "disabled",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 528256933584835,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "comment",
+							"text": "Disable card buttons that are unavailable"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 421711369437666,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"copy\""
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 825858534315402,
+									"parameters": {
+										"variable": "PLAZA_maxLocalCharacters",
+										"comparison": 3,
+										"value": "SavedCharacters.Width"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "Button",
+									"sid": 594777516649276,
+									"parameters": {
+										"instance-variable": "disabled",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 579126043464646
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 232857546607381,
+									"parameters": {
+										"instance-variable": "type",
+										"comparison": 0,
+										"value": "\"edit\""
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 658889634921390,
+									"parameters": {
+										"variable": "GAME_selectedCharacterType",
+										"comparison": 0,
+										"value": "\"uploaded\""
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 327782731484537,
+									"parameters": {
+										"variable": "SERVER_uploadedCharacterEditable"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "Button",
+									"sid": 983366678231541,
+									"parameters": {
+										"instance-variable": "disabled",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 953366077752268
+						}
+					]
+				},
+				{
+					"functionName": "switchOverlayMenu",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "name",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 206306057173608
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Disable old menu"
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 308414444586751,
 							"parameters": {
-								"instance-variable": "type",
-								"comparison": 0,
-								"value": "\"login\""
+								"layer": "MENU_overlayMenu",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 854156692476476,
+							"parameters": {
+								"layer": "MENU_overlayMenu",
+								"interactive": false
 							}
 						}
 					],
-					"actions": [],
-					"sid": 427636861296671,
+					"sid": 536856708392520,
 					"children": [
+						{
+							"eventType": "comment",
+							"text": "Save, when switching off of settings"
+						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 435332584393081,
+									"sid": 559900711544903,
 									"parameters": {
 										"variable": "MENU_overlayMenu",
 										"comparison": 0,
-										"value": "\"Disclaimer\""
+										"value": "\"Settings\""
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "set-visible",
-									"objectClass": "Button",
-									"sid": 267565116241396,
+									"callFunction": "save",
+									"sid": 242014378553710
+								}
+							],
+							"sid": 958079682191550
+						},
+						{
+							"eventType": "comment",
+							"text": "Set new menu"
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 491082920969821,
 									"parameters": {
-										"visibility": "invisible"
+										"variable": "MENU_overlayMenu",
+										"value": "name"
 									}
 								}
 							],
-							"sid": 778168439166589
+							"sid": 180904405547102
 						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "else",
+									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 832708427484652
+									"sid": 167626149486459,
+									"parameters": {
+										"variable": "name",
+										"comparison": 1,
+										"value": "\"\""
+									}
 								}
 							],
 							"actions": [
 								{
-									"id": "set-visible",
-									"objectClass": "Button",
-									"sid": 658741351531010,
+									"type": "comment",
+									"text": "Enable new menu"
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 268182287041383,
 									"parameters": {
+										"layer": "name",
 										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 689685589843161,
+									"parameters": {
+										"layer": "name",
+										"interactive": true
 									}
 								}
 							],
-							"sid": 591484546310571
+							"sid": 398857734265898
 						}
 					]
 				}
-			]
+			],
+			"sid": 323813610013429
 		},
 		{
 			"eventType": "group",
@@ -2299,30 +1999,49 @@
 			"sid": 769542039953001
 		},
 		{
+			"eventType": "comment",
+			"text": "Disclaimer button"
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "compare-instance-variable",
-					"objectClass": "Text",
-					"sid": 892951129135336,
+					"id": "on-signal",
+					"objectClass": "System",
+					"sid": 694888517889574,
 					"parameters": {
-						"instance-variable": "type",
-						"comparison": 0,
-						"value": "\"time\""
+						"tag": "\"button_okay\""
 					}
 				}
 			],
 			"actions": [
 				{
-					"id": "set-text",
-					"objectClass": "Text",
-					"sid": 716261421984986,
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 749681761919408,
 					"parameters": {
-						"text": "zeropad(Date.GetHours(Date.Now),2)&(Date.GetSeconds(Date.Now)%2 ? \":\" : \"•\")&zeropad(Date.GetMinutes(Date.Now),2)"
+						"audio-file": {
+							"path": "select"
+						},
+						"loop": "not-looping",
+						"volume": "(log10(SETTING_volumeSound)*20)",
+						"stereo-pan": "0",
+						"tag-optional": "\"\""
 					}
+				},
+				{
+					"callFunction": "transition",
+					"sid": 784776016229765,
+					"parameters": [
+						"\"Plaza\""
+					]
+				},
+				{
+					"callFunction": "save",
+					"sid": 860425972543636
 				}
 			],
-			"sid": 122993464901505
+			"sid": 280593330334381
 		}
 	],
 	"sid": 353135059416559

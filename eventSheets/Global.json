@@ -83,6 +83,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "LOAD_disclaimer",
+			"type": "boolean",
+			"initialValue": "true",
+			"comment": "Should we show the disclaimer?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 346523908358868
+		},
+		{
+			"eventType": "variable",
 			"name": "LOAD_parts",
 			"type": "boolean",
 			"initialValue": "false",
@@ -1232,6 +1242,54 @@
 						}
 					],
 					"sid": 533205646815653
+				},
+				{
+					"functionName": "notice",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "text",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 336577672657723
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Text",
+							"sid": 519836066949644,
+							"parameters": {
+								"instance-variable": "type",
+								"comparison": 0,
+								"value": "\"notice\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "Text",
+							"sid": 887636538116324,
+							"parameters": {
+								"text": "text"
+							}
+						},
+						{
+							"callFunction": "switchOverlayMenu",
+							"sid": 858363569393567,
+							"parameters": [
+								"\"Notice\""
+							]
+						}
+					],
+					"sid": 285273772892145
 				}
 			],
 			"sid": 105681604197051
@@ -2068,6 +2126,15 @@
 								"\"settings\"",
 								"Browser.ExecJS(\"atob('\"&LocalStorage.ItemValue&\"')\")"
 							]
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 965897247624022,
+							"parameters": {
+								"variable": "LOAD_disclaimer",
+								"value": "false"
+							}
 						}
 					],
 					"sid": 392858849061177
@@ -3301,6 +3368,16 @@
 								"first-value": "LayoutName",
 								"comparison": 1,
 								"second-value": "\"Loader\""
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 972929659934982,
+							"parameters": {
+								"first-value": "LayoutName",
+								"comparison": 1,
+								"second-value": "\"Disclaimer\""
 							}
 						},
 						{

@@ -1000,10 +1000,10 @@
 									}
 								},
 								{
-									"callFunction": "transition",
-									"sid": 978330546675560,
+									"callFunction": "notice",
+									"sid": 994481143102128,
 									"parameters": [
-										"\"Plaza\""
+										"\"Are you sure you want to go back? Any unsaved changes will be lost.\""
 									]
 								}
 							],
@@ -1044,6 +1044,50 @@
 							"sid": 618154636119559
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 364123874970512,
+							"parameters": {
+								"tag": "\"button_notice\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 495717824653227,
+							"parameters": {
+								"audio-file": {
+									"path": "select"
+								},
+								"loop": "not-looping",
+								"volume": "(log10(SETTING_volumeSound)*20)",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"callFunction": "switchOverlayMenu",
+							"sid": 470001376005326,
+							"parameters": [
+								"\"\""
+							]
+						},
+						{
+							"callFunction": "transition",
+							"sid": 503104521959917,
+							"parameters": [
+								"\"Plaza\""
+							]
+						}
+					],
+					"sid": 196299629090859
 				},
 				{
 					"eventType": "comment",
@@ -4834,15 +4878,6 @@
 						{
 							"callFunction": "getUploadedCharacter",
 							"sid": 617066055168807
-						},
-						{
-							"id": "log",
-							"objectClass": "Browser",
-							"sid": 733846074189632,
-							"parameters": {
-								"type": "log",
-								"message": "\"grabbing\""
-							}
 						}
 					],
 					"sid": 336182051994599,
