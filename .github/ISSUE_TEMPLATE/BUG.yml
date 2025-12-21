@@ -9,7 +9,7 @@ body:
     id: game-version
     attributes:
       label: Version
-      description: What version of the game were you playing? The game version can be validated by checking the title screen.
+      description: What version of the game were you playing? The game version can be validated by checking the bottom-right of the people directory.
       placeholder: ex. v1.4.0
     validations:
       required: true
