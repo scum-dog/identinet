@@ -522,7 +522,7 @@
 										"  runtime.callFunction(\"updatePlazaArrows\", 0);",
 										"",
 										"  runtime.globalVars.MENU_locked = true;",
-										"  const online_data = await getOnlineCharacterPage(offset, max);",
+										"  const online_data = await getOnlineCharacterPage(offset * max, max);",
 										"  runtime.globalVars.MENU_locked = false;",
 										"  if (!online_data.success) {",
 										"    runtime.callFunction(\"error\", \"Could not get online people directory. The server may be down, or you may be sending too many requests.\");",

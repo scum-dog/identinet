@@ -1859,7 +1859,7 @@
 															"children": [
 																{
 																	"eventType": "comment",
-																	"text": "Properties get a faster cooldown"
+																	"text": "Properties get a slightly faster cooldown"
 																},
 																{
 																	"eventType": "block",
@@ -1879,10 +1879,10 @@
 																		{
 																			"id": "start-timer",
 																			"objectClass": "Button",
-																			"sid": 297196440045844,
+																			"sid": 498963774300357,
 																			"behaviorType": "Timer",
 																			"parameters": {
-																				"duration": "0.1",
+																				"duration": "0.2",
 																				"type": "once",
 																				"tag": "\"cooldown\""
 																			}
