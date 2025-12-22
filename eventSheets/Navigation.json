@@ -339,7 +339,16 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"id": "set-x",
+									"objectClass": "Button",
+									"sid": 914045721061755,
+									"parameters": {
+										"x": "256"
+									}
+								}
+							],
 							"sid": 537643473464918,
 							"children": [
 								{
@@ -366,45 +375,53 @@
 											}
 										}
 									],
-									"sid": 122195148825430,
-									"children": [
+									"sid": 122195148825430
+								},
+								{
+									"eventType": "block",
+									"conditions": [
 										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 330402669319324,
-													"parameters": {
-														"variable": "MENU_menu",
-														"comparison": 1,
-														"value": "\"Parts\""
-													}
-												},
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 684451745962049,
-													"parameters": {
-														"variable": "MENU_menu",
-														"comparison": 1,
-														"value": "\"Properties\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-visible",
-													"objectClass": "Button",
-													"sid": 363836698678910,
-													"parameters": {
-														"visibility": "invisible"
-													}
-												}
-											],
-											"sid": 182416596854272
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 194602540364937,
+											"parameters": {
+												"first-value": "LayoutName",
+												"comparison": 0,
+												"second-value": "\"Creator\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 637720331405942,
+											"parameters": {
+												"variable": "MENU_menu",
+												"comparison": 1,
+												"value": "\"Parts\""
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 436920875189002,
+											"parameters": {
+												"variable": "MENU_menu",
+												"comparison": 1,
+												"value": "\"Properties\""
+											}
 										}
-									]
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 648377284871012,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 234517886594741
 								},
 								{
 									"eventType": "block",
@@ -416,14 +433,6 @@
 										}
 									],
 									"actions": [
-										{
-											"id": "set-x",
-											"objectClass": "Button",
-											"sid": 225129247650582,
-											"parameters": {
-												"x": "256"
-											}
-										},
 										{
 											"id": "set-visible",
 											"objectClass": "Button",

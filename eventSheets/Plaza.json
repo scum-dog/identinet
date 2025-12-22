@@ -2107,9 +2107,9 @@
 								{
 									"id": "delete",
 									"objectClass": "SavedCharacters",
-									"sid": 222122532821532,
+									"sid": 527432577844514,
 									"parameters": {
-										"index": "Card.id",
+										"index": "SavedCharacters.IndexOf(SortedCharacters.At(Card.id))",
 										"axis": "x"
 									}
 								},
