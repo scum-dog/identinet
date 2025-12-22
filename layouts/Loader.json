@@ -516,6 +516,18 @@
 			"sid": 784368642998070,
 			"tags": "",
 			"instanceVariables": {}
+		},
+		{
+			"type": "SortedCharacters",
+			"properties": {
+				"width": 0,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 291,
+			"sid": 793911718473965,
+			"tags": "",
+			"instanceVariables": {}
 		}
 	],
 	"effectTypes": [],

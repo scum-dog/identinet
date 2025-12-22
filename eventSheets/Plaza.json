@@ -67,307 +67,6 @@
 		},
 		{
 			"eventType": "group",
-			"disabled": true,
-			"title": "Plaza - Unused",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-start-of-layout",
-							"objectClass": "System",
-							"sid": 749071384163903
-						}
-					],
-					"actions": [
-						{
-							"id": "scroll-to-position",
-							"objectClass": "System",
-							"sid": 515637258699828,
-							"parameters": {
-								"x": "LayoutWidth/2",
-								"y": "LayoutHeight/2"
-							}
-						}
-					],
-					"sid": 627846378211785
-				},
-				{
-					"eventType": "group",
-					"disabled": false,
-					"title": "Plaza - Scrolling",
-					"description": "",
-					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "mouseOldX",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 497729006780033
-						},
-						{
-							"eventType": "variable",
-							"name": "mouseOldY",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 902121526998402
-						},
-						{
-							"eventType": "variable",
-							"name": "scrolling",
-							"type": "boolean",
-							"initialValue": "false",
-							"comment": "",
-							"isStatic": true,
-							"isConstant": false,
-							"sid": 417677559140705
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 488590945105519,
-									"parameters": {
-										"variable": "TRANSITION_running"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [],
-							"sid": 881203458102253,
-							"children": [
-								{
-									"eventType": "comment",
-									"text": "We're not hovered over another object, so allow scrolling"
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-cursor-style2",
-											"objectClass": "Mouse",
-											"sid": 546222458673485,
-											"parameters": {
-												"cursor-style": "grab"
-											}
-										}
-									],
-									"sid": 543753226891034,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "on-click",
-													"objectClass": "Mouse",
-													"sid": 734133003331033,
-													"parameters": {
-														"mouse-button": "left",
-														"click-type": "clicked"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 100385745280773,
-													"parameters": {
-														"variable": "mouseOldX",
-														"value": "Mouse.X"
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 753018594294155,
-													"parameters": {
-														"variable": "mouseOldY",
-														"value": "Mouse.Y"
-													}
-												},
-												{
-													"id": "set-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 781920883129971,
-													"parameters": {
-														"variable": "scrolling",
-														"value": "true"
-													}
-												}
-											],
-											"sid": 781154375051194
-										}
-									]
-								},
-								{
-									"eventType": "comment",
-									"text": "We're hovered over another object, ignore"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 256652658768995
-										},
-										{
-											"id": "compare-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 657027043940942,
-											"parameters": {
-												"variable": "scrolling"
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "set-cursor-style2",
-											"objectClass": "Mouse",
-											"sid": 920066274886350,
-											"parameters": {
-												"cursor-style": "normal"
-											}
-										}
-									],
-									"sid": 182765333387630
-								},
-								{
-									"eventType": "comment",
-									"text": "If we're allowed to scroll, do it"
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "mouse-button-is-down",
-											"objectClass": "Mouse",
-											"sid": 699836293695444,
-											"parameters": {
-												"mouse-button": "left"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 758912478584043,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 181156105677768,
-													"parameters": {
-														"variable": "scrolling"
-													}
-												}
-											],
-											"actions": [
-												{
-													"callFunction": "scroll",
-													"sid": 883782645552873
-												}
-											],
-											"sid": 167683549301014
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 198504751000287
-										}
-									],
-									"actions": [
-										{
-											"id": "set-boolean-eventvar",
-											"objectClass": "System",
-											"sid": 811280649427341,
-											"parameters": {
-												"variable": "scrolling",
-												"value": "false"
-											}
-										}
-									],
-									"sid": 701553464492146
-								}
-							]
-						},
-						{
-							"functionName": "scroll",
-							"functionDescription": "",
-							"functionCategory": "",
-							"functionReturnType": "none",
-							"functionCopyPicked": false,
-							"functionIsAsync": false,
-							"functionParameters": [],
-							"eventType": "function-block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "scroll-to-position",
-									"objectClass": "System",
-									"sid": 916646379216527,
-									"parameters": {
-										"x": "scrollx-(Mouse.X-mouseOldX)",
-										"y": "scrolly-(Mouse.Y-mouseOldY)"
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 949239528820657,
-									"parameters": {
-										"variable": "mouseOldX",
-										"value": "Mouse.X"
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 972889064167383,
-									"parameters": {
-										"variable": "mouseOldY",
-										"value": "Mouse.Y"
-									}
-								},
-								{
-									"id": "set-cursor-style2",
-									"objectClass": "Mouse",
-									"sid": 670678301856805,
-									"parameters": {
-										"cursor-style": "grabbing"
-									}
-								}
-							],
-							"sid": 278214514609779
-						}
-					],
-					"sid": 688865955388071
-				}
-			],
-			"sid": 269593153103213
-		},
-		{
-			"eventType": "group",
 			"disabled": false,
 			"title": "Plaza - List",
 			"description": "",
@@ -777,6 +476,22 @@
 							],
 							"actions": [
 								{
+									"id": "load",
+									"objectClass": "SortedCharacters",
+									"sid": 582785412289618,
+									"parameters": {
+										"json": "SavedCharacters.AsJSON"
+									}
+								},
+								{
+									"id": "reverse",
+									"objectClass": "SortedCharacters",
+									"sid": 956843629746285,
+									"parameters": {
+										"axis": "x"
+									}
+								},
+								{
 									"type": "script",
 									"language": "typescript",
 									"script": [
@@ -843,7 +558,7 @@
 										"  const hasUpload = runtime.globalVars.SERVER_hasUploadedCharacter;",
 										"  const reserved = 1 + (hasUpload ? 1 : 0);",
 										"",
-										"  const local_data = runtime.objects.SavedCharacters.getFirstInstance();",
+										"  const local_data = runtime.objects.SortedCharacters.getFirstInstance();",
 										"  if (!local_data) return;",
 										"",
 										"  total = local_data.width + reserved;",

@@ -256,7 +256,8 @@
 					"Parts",
 					"SavedCharacters",
 					"Card",
-					"UUID"
+					"UUID",
+					"SortedCharacters"
 				],
 				"subfolders": [],
 				"name": "Character"
@@ -601,7 +602,7 @@
 	},
 	"properties": {
 		"description": "The next generation of facial compositing software is in your hands",
-		"version": "1.0.0-rc1",
+		"version": "1.0.0-rc2",
 		"autoIncrementVersion": false,
 		"author": "SCUM DOG LLC",
 		"authorEmail": "contact@scum.dog",
