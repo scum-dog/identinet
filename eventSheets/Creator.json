@@ -32,6 +32,16 @@
 			"sid": 361449043691647
 		},
 		{
+			"eventType": "variable",
+			"name": "CREATOR_cachedCharacterData",
+			"type": "string",
+			"initialValue": "",
+			"comment": "Cached character data",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 770601370187705
+		},
+		{
 			"eventType": "include",
 			"includeSheet": "Global"
 		},
@@ -130,6 +140,15 @@
 								"\"\"",
 								"0"
 							]
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 419465714346158,
+							"parameters": {
+								"variable": "CREATOR_cachedCharacterData",
+								"value": "GAME_selectedCharacterData"
+							}
 						}
 					],
 					"sid": 415855805329650
@@ -185,6 +204,15 @@
 						"\"\"",
 						"0"
 					]
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 727181303846559,
+					"parameters": {
+						"variable": "CREATOR_cachedCharacterData",
+						"value": "AJAX.LastData"
+					}
 				}
 			],
 			"sid": 221188305471193
@@ -998,16 +1026,63 @@
 										"stereo-pan": "0",
 										"tag-optional": "\"\""
 									}
-								},
-								{
-									"callFunction": "notice",
-									"sid": 994481143102128,
-									"parameters": [
-										"\"Are you sure you want to go back? Any unsaved changes will be lost.\""
-									]
 								}
 							],
-							"sid": 418988052381553
+							"sid": 418988052381553,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 481320657923375,
+											"parameters": {
+												"variable": "CREATOR_cachedCharacterData",
+												"comparison": 0,
+												"value": "JSON.ToCompactString"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "switchOverlayMenu",
+											"sid": 858513740071068,
+											"parameters": [
+												"\"\""
+											]
+										},
+										{
+											"callFunction": "transition",
+											"sid": 839454713184425,
+											"parameters": [
+												"\"Plaza\""
+											]
+										}
+									],
+									"sid": 176822551722753
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 576207801296662
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "notice",
+											"sid": 920860136296010,
+											"parameters": [
+												"\"Are you sure you want to go back? Any unsaved changes will be lost.\""
+											]
+										}
+									],
+									"sid": 620413924445338
+								}
+							]
 						},
 						{
 							"eventType": "block",

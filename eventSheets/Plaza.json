@@ -519,8 +519,6 @@
 										"",
 										"if (state === \"online\") {",
 										"  // Online",
-										"  runtime.callFunction(\"updatePlazaArrows\", 0);",
-										"",
 										"  runtime.globalVars.MENU_locked = true;",
 										"  const online_data = await getOnlineCharacterPage(offset * max, max);",
 										"  runtime.globalVars.MENU_locked = false;",

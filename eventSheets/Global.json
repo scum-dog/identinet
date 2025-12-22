@@ -3509,6 +3509,15 @@
 							"parameters": {
 								"tag": "\"intro\""
 							}
+						},
+						{
+							"id": "is-tag-playing",
+							"objectClass": "Audio",
+							"sid": 445845350240647,
+							"parameters": {
+								"tag": "\"intro\""
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [

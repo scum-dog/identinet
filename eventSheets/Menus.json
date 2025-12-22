@@ -1588,11 +1588,12 @@
 													}
 												},
 												{
-													"id": "on-tap-object",
+													"id": "on-touched-object",
 													"objectClass": "Touch",
-													"sid": 595009583773620,
+													"sid": 784543492944967,
 													"parameters": {
-														"object": "Button"
+														"object": "Button",
+														"type": "end"
 													}
 												}
 											],
