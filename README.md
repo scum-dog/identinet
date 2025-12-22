@@ -1,6 +1,6 @@
 <h1 align="center"><img width="489" src="https://github.com/user-attachments/assets/23c2db0a-cceb-4d8d-b414-e19b1040e49a" /></h1>
 
-**IDENTI-NET** is a character creation game that uses assets from the 1983 Smith & Wesson Identi-Kit Model II. The Identi-Kit was a tool used by police since the 50's to assist witnesses in re-constructing the faces of suspects.
+**IDENTI-NET** is a character creation game that uses assets from the 1983 Smith & Wesson Identi-Kit Model II. The Identi-Kit was a tool used by police since the '50s to assist witnesses in re-constructing the faces of suspects.
 
 In IDENTI-NET, all the assets from the Identi-Kit have been compiled into one user-friendly package that allows anyone to create a face. Make yourself! Make a friend! Make a monster! The next generation of facial compositing software is in your hands.
 
