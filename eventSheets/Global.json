@@ -39,6 +39,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "GAME_mobile",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Is the game being played with touch controls?",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 276891970545030
+		},
+		{
+			"eventType": "variable",
 			"name": "NGIO_onNewgrounds",
 			"type": "boolean",
 			"initialValue": "false",
@@ -279,6 +289,32 @@
 									"isOrBlock": true
 								}
 							]
+						},
+						{
+							"eventType": "comment",
+							"text": "We're on mobile"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-on-mobile",
+									"objectClass": "PlatformInfo",
+									"sid": 834241204918924
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 530192233303279,
+									"parameters": {
+										"variable": "GAME_mobile",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 973304144043684
 						}
 					]
 				},

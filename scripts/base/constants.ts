@@ -322,7 +322,7 @@ export const TOKEN_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 1 week
 // can also add asterisks to words to act as wildcards
 // "L*NE" would catch LANE, LINE, LONE etc.
 export const BANNED_WORDS = [
-  // Threats
+  // Threats or insults
   "*al qaeda*",
   "die",
   "dox",
@@ -330,11 +330,14 @@ export const BANNED_WORDS = [
   "*genocide*",
   "hurt",
   "kill*",
+  "*mongoloid*",
   "mossad",
   "*murder*",
   "*nazi*",
   "rape",
   "*rapist*",
+  "*retard*",
+  "tard",
 
   // Groups
   "dike",

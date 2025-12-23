@@ -4861,9 +4861,9 @@
 								{
 									"id": "set-at-x",
 									"objectClass": "SavedCharacters",
-									"sid": 119250308318325,
+									"sid": 229578349716590,
 									"parameters": {
-										"x": "GAME_selectedCharacterIndex",
+										"x": "SortedCharacters.At(GAME_selectedCharacterIndex)",
 										"value": "JSON.ToCompactString"
 									}
 								},
@@ -5022,9 +5022,9 @@
 										{
 											"id": "set-at-x",
 											"objectClass": "SavedCharacters",
-											"sid": 875818586651445,
+											"sid": 829866117537201,
 											"parameters": {
-												"x": "GAME_selectedCharacterIndex",
+												"x": "SortedCharacters.At(GAME_selectedCharacterIndex)",
 												"value": "JSON.ToCompactString"
 											}
 										},

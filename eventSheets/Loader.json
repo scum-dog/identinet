@@ -83,6 +83,46 @@
 						"transform-visibility": false,
 						"destroy-with-parent": false
 					}
+				},
+				{
+					"id": "preload",
+					"objectClass": "Audio",
+					"sid": 346829293909356,
+					"parameters": {
+						"audio-file": {
+							"path": "offlineIntro"
+						}
+					}
+				},
+				{
+					"id": "preload",
+					"objectClass": "Audio",
+					"sid": 439045009454927,
+					"parameters": {
+						"audio-file": {
+							"path": "offlineLoop"
+						}
+					}
+				},
+				{
+					"id": "preload",
+					"objectClass": "Audio",
+					"sid": 314241016276553,
+					"parameters": {
+						"audio-file": {
+							"path": "onlineIntro"
+						}
+					}
+				},
+				{
+					"id": "preload",
+					"objectClass": "Audio",
+					"sid": 693892105990907,
+					"parameters": {
+						"audio-file": {
+							"path": "onlineLoop"
+						}
+					}
 				}
 			],
 			"sid": 285701772623755

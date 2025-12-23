@@ -645,6 +645,35 @@
 										}
 									],
 									"sid": 335490184612231
+								},
+								{
+									"eventType": "comment",
+									"text": "Stubbing out mobile auth for now, because it's broken"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 794790359506004,
+											"parameters": {
+												"variable": "GAME_mobile"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "Button",
+											"sid": 350831235494124,
+											"parameters": {
+												"instance-variable": "disabled",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 581992748932955
 								}
 							]
 						}
@@ -791,15 +820,6 @@
 													"script": [
 														"logout();"
 													]
-												},
-												{
-													"id": "subtract-from-eventvar",
-													"objectClass": "System",
-													"sid": 366961302552657,
-													"parameters": {
-														"variable": "GAME_selectedCharacterIndex",
-														"value": "1"
-													}
 												}
 											],
 											"sid": 228952056500873,
@@ -878,23 +898,64 @@
 									}
 								}
 							],
-							"actions": [
+							"actions": [],
+							"sid": 309479294241728,
+							"children": [
 								{
-									"id": "play",
-									"objectClass": "Audio",
-									"sid": 817000677723226,
-									"parameters": {
-										"audio-file": {
-											"path": "error"
-										},
-										"loop": "not-looping",
-										"volume": "(log10(SETTING_volumeSound)*20)",
-										"stereo-pan": "0",
-										"tag-optional": "\"\""
-									}
+									"eventType": "comment",
+									"text": "Stubbing out mobile auth for now, because it's broken"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 472562408244954,
+											"parameters": {
+												"variable": "GAME_mobile"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "error",
+											"sid": 470034878507110,
+											"parameters": [
+												"\"Mobile authentication coming soon!\""
+											]
+										}
+									],
+									"sid": 877284866442413
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 387436379458039
+										}
+									],
+									"actions": [
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 208106634926793,
+											"parameters": {
+												"audio-file": {
+													"path": "error"
+												},
+												"loop": "not-looping",
+												"volume": "(log10(SETTING_volumeSound)*20)",
+												"stereo-pan": "0",
+												"tag-optional": "\"\""
+											}
+										}
+									],
+									"sid": 335357806861917
 								}
-							],
-							"sid": 309479294241728
+							]
 						},
 						{
 							"eventType": "comment",

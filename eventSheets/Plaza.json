@@ -458,6 +458,69 @@
 						},
 						{
 							"eventType": "comment",
+							"text": "Sort our characters ahead of time"
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-size",
+									"objectClass": "SortedCharacters",
+									"sid": 776719025053158,
+									"parameters": {
+										"width": "SavedCharacters.Width",
+										"height": "1",
+										"depth": "1"
+									}
+								}
+							],
+							"sid": 448053729453761,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each-element",
+											"objectClass": "SavedCharacters",
+											"sid": 471854646932273,
+											"parameters": {
+												"axes": "x"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-at-x",
+											"objectClass": "SortedCharacters",
+											"sid": 919143470826342,
+											"parameters": {
+												"x": "SavedCharacters.CurX",
+												"value": "SavedCharacters.CurX"
+											}
+										}
+									],
+									"sid": 677643455928961
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "reverse",
+									"objectClass": "SortedCharacters",
+									"sid": 356174770817256,
+									"parameters": {
+										"axis": "x"
+									}
+								}
+							],
+							"sid": 191537243127113
+						},
+						{
+							"eventType": "comment",
 							"text": "Loop through all applicable characters of this page"
 						},
 						{
@@ -475,22 +538,6 @@
 								}
 							],
 							"actions": [
-								{
-									"id": "load",
-									"objectClass": "SortedCharacters",
-									"sid": 582785412289618,
-									"parameters": {
-										"json": "SavedCharacters.AsJSON"
-									}
-								},
-								{
-									"id": "reverse",
-									"objectClass": "SortedCharacters",
-									"sid": 956843629746285,
-									"parameters": {
-										"axis": "x"
-									}
-								},
 								{
 									"type": "script",
 									"language": "typescript",
@@ -556,8 +603,9 @@
 										"  const hasUpload = runtime.globalVars.SERVER_hasUploadedCharacter;",
 										"  const reserved = 1 + (hasUpload ? 1 : 0);",
 										"",
-										"  const local_data = runtime.objects.SortedCharacters.getFirstInstance();",
-										"  if (!local_data) return;",
+										"  const local_data = runtime.objects.SavedCharacters.getFirstInstance();",
+										"  const local_data_sorted = runtime.objects.SortedCharacters.getFirstInstance();",
+										"  if (!local_data || !local_data_sorted) return;",
 										"",
 										"  total = local_data.width + reserved;",
 										"",
@@ -582,7 +630,8 @@
 										"      return { data: \"\", type: \"create\" };",
 										"    }",
 										"",
-										"    return { data: local_data.getAt(i, 0), type: \"local\" };",
+										"    let index = local_data_sorted.getAt(i, 0) as number;",
+										"    return { data: local_data.getAt(index, 0), type: \"local\" };",
 										"  });",
 										"}",
 										"",
@@ -2107,9 +2156,9 @@
 								{
 									"id": "delete",
 									"objectClass": "SavedCharacters",
-									"sid": 527432577844514,
+									"sid": 200776886481241,
 									"parameters": {
-										"index": "SavedCharacters.IndexOf(SortedCharacters.At(Card.id))",
+										"index": "SortedCharacters.At(GAME_selectedCharacterIndex)",
 										"axis": "x"
 									}
 								},
@@ -2241,13 +2290,29 @@
 							}
 						},
 						{
+							"type": "script",
+							"language": "typescript",
+							"script": [
+								"const data = JSON.parse(runtime.globalVars.GAME_selectedCharacterData);",
+								"",
+								"const name = data.character_data.info.name;",
+								"const censored = sanitizeCharacterName(name);",
+								"",
+								"if (name !== censored) {",
+								"  // Redact the name if it's censored",
+								"  data.character_data.info.name = \"REDACTED\";",
+								"  runtime.globalVars.GAME_selectedCharacterData = JSON.stringify(data);",
+								"}"
+							]
+						},
+						{
 							"type": "comment",
 							"text": "Copy character data and save"
 						},
 						{
 							"id": "push",
 							"objectClass": "SavedCharacters",
-							"sid": 255674503078133,
+							"sid": 231178294774810,
 							"parameters": {
 								"where": "back",
 								"value": "GAME_selectedCharacterData",
@@ -2256,7 +2321,7 @@
 						},
 						{
 							"callFunction": "save",
-							"sid": 817239538540114
+							"sid": 693451907040770
 						},
 						{
 							"type": "comment",
@@ -2264,14 +2329,14 @@
 						},
 						{
 							"callFunction": "switchMenu",
-							"sid": 216934067974208,
+							"sid": 368441224929946,
 							"parameters": [
 								"\"List\""
 							]
 						},
 						{
 							"callFunction": "updateCharacterList",
-							"sid": 782010456057810,
+							"sid": 833344507174375,
 							"parameters": [
 								"PLAZA_state"
 							]
