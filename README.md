@@ -16,7 +16,7 @@ Created by [SCUM DOG](https://scum.dog/)
 - [Demuja](https://www.demuja.com/) - Music
 
 ## Resources Used
-- Smith & Wesson Identi-Kit Model II
+- [Smith & Wesson Identi-Kit Model II](https://archive.org/details/identi-kit-model-ii_202512/)
 - [Videogame Menu BUTTON CLICK](https://freesound.org/s/342200/) by [Christopherderp](https://freesound.org/people/Christopherderp/)
 - [Minimalist Sci-Fi UI Error](https://freesound.org/s/423166/) by [plasterbrain](https://freesound.org/people/plasterbrain/)
 - [06698 gem collect ding.wav](https://freesound.org/s/346404/) by [Robinhood76](https://freesound.org/people/Robinhood76/)
